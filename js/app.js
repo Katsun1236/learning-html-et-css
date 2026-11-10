@@ -12,14 +12,16 @@ import { fireConfetti } from './confetti.js';
 import { sound } from './audio.js';
 import { CinematicIntro } from './cinematic.js';
 import { BodhiDialogueEngine } from './dialogue-box.js';
-import { NotableEventsEngine } from './notable-events.js';
+import { NotableEventsEngine, NOTABLE_EVENTS } from './notable-events.js';
 import { relicsManager } from './relics-system.js';
+import { WEBPEDIA_ARTICLES } from './webpedia-data.js';
 
 class SanctuaireApp {
   constructor() {
     this.currentStepIndex = 0;
     this.highestUnlockedStep = 0;
     this.selectedInternetCategory = 'all';
+    this.selectedWebpediaCategory = 'all';
 
     this.cacheElements();
     this.initTheme();
@@ -29,9 +31,11 @@ class SanctuaireApp {
     this.initSplitResizer();
     this.initCinematic();
     this.initCheatsheet();
+    this.initWebpedia();
     this.initNotableEvents();
     this.initRelicsSystem();
     this.initExportSystem();
+    this.initSecretCodes();
     this.bindEvents();
 
     this.loadSavedProgress();
@@ -116,6 +120,10 @@ class SanctuaireApp {
       internetTabBtnChronicles: document.getElementById('internet-tab-btn-chronicles'),
       internetTabEncyclopedia: document.getElementById('internet-tab-encyclopedia'),
       internetTabChronicles: document.getElementById('internet-tab-chronicles'),
+      webpediaSearch: document.getElementById('webpedia-search'),
+      webpediaContent: document.getElementById('webpedia-content'),
+      webpediaCounter: document.getElementById('webpedia-counter'),
+      webpediaCategoryPills: document.getElementById('webpedia-category-pills'),
 
       // Codes Secrets
       secretCodesBtn: document.getElementById('secret-codes-btn'),
@@ -474,6 +482,12 @@ class SanctuaireApp {
     // =========================================================================
     // CODES SECRETS D'ARCHITECTE (TAPÉS DIRECTEMENT DANS L'ÉDITEUR DE CODE)
     // =========================================================================
+
+    // Vérifier les codes de saut d'histoire directs (ACTE1, NULL1, CSS, ADA, RELIQUES, etc.)
+    const firstWord = (this.editor.textarea ? this.editor.textarea.value : '').trim().split(/\s+/)[0];
+    if (firstWord && this.handleStoryTeleportCode(firstWord)) {
+      return;
+    }
 
     // Fin 1 : Le Phare Universel (Voie du Phare / Altruiste)
     if (lowerCombined.includes('phare') || lowerCombined.includes('fin1') || lowerCombined.includes('lumiere')) {
@@ -974,7 +988,131 @@ class SanctuaireApp {
   }
 
   /* ===========================================================================
-     CODES SECRETS DU SANCTUAIRE (FINS MULTIPLES DIRECTES)
+     WEBPÉDIA HISTORIQUE & DÉCOUVERTE ACTIVE DES RELIQUES
+     =========================================================================== */
+
+  initWebpedia() {
+    this.selectedWebpediaCategory = 'all';
+    this.renderWebpediaPills();
+    this.renderWebpediaContent('');
+
+    if (this.el.webpediaSearch) {
+      this.el.webpediaSearch.addEventListener('input', (e) => {
+        this.renderWebpediaContent(e.target.value);
+      });
+    }
+
+    if (this.el.webpediaContent) {
+      this.el.webpediaContent.addEventListener('click', (e) => {
+        const wrap = e.target.closest('.webpedia-relic-interactive');
+        if (!wrap) return;
+        const relicId = wrap.getAttribute('data-relic-id');
+        if (!relicId) return;
+
+        const isNew = this.relics.unlockRelic(relicId);
+        sound.playSuccess();
+        if (isNew) {
+          fireConfetti();
+          this.showToast("Archive classifiée récupérée ! Relique ajoutée au dossier.", "success");
+        } else {
+          this.showToast("Cette relique est déjà consignée dans votre dossier.", "info");
+        }
+        this.renderWebpediaContent(this.el.webpediaSearch ? this.el.webpediaSearch.value : '');
+      });
+    }
+  }
+
+  renderWebpediaPills() {
+    if (!this.el.webpediaCategoryPills) return;
+    const categories = ['all', ...new Set(WEBPEDIA_ARTICLES.map(a => a.category))];
+
+    this.el.webpediaCategoryPills.innerHTML = categories.map(cat => `
+      <button type="button" class="category-pill ${this.selectedWebpediaCategory === cat ? 'active' : ''}" data-cat="${cat}">
+        ${cat === 'all' ? 'Toutes les archives' : cat}
+      </button>
+    `).join('');
+
+    this.el.webpediaCategoryPills.querySelectorAll('.category-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        this.selectedWebpediaCategory = btn.getAttribute('data-cat');
+        this.renderWebpediaPills();
+        this.renderWebpediaContent(this.el.webpediaSearch ? this.el.webpediaSearch.value : '');
+      });
+    });
+  }
+
+  renderWebpediaContent(query = '') {
+    if (!this.el.webpediaContent) return;
+    const q = query.toLowerCase().trim();
+
+    const filtered = WEBPEDIA_ARTICLES.filter(art => {
+      if (this.selectedWebpediaCategory !== 'all' && art.category !== this.selectedWebpediaCategory) {
+        return false;
+      }
+      if (!q) return true;
+      return art.title.toLowerCase().includes(q) ||
+             art.summary.toLowerCase().includes(q) ||
+             art.content.toLowerCase().includes(q) ||
+             art.author.toLowerCase().includes(q);
+    });
+
+    if (this.el.webpediaCounter) {
+      this.el.webpediaCounter.textContent = `${filtered.length} archive${filtered.length > 1 ? 's' : ''}`;
+    }
+
+    if (filtered.length === 0) {
+      this.el.webpediaContent.innerHTML = `
+        <div class="webpedia-empty" style="text-align: center; padding: 40px 20px; color: var(--text-secondary);">
+          <p>Aucune chronique historique ne correspond à « ${this.escapeHtml(query)} ».</p>
+        </div>
+      `;
+      return;
+    }
+
+    this.el.webpediaContent.innerHTML = filtered.map(art => {
+      let relicHtml = '';
+      if (art.hasRelic) {
+        const isUnlocked = this.relics.isRelicUnlocked({ id: art.hasRelic, unlockedAtStep: 999 });
+        relicHtml = `
+          <div class="webpedia-relic-interactive ${isUnlocked ? 'is-collected' : ''}" data-relic-id="${art.hasRelic}" title="Clique pour saisir cette relique dans ton Dossier Classifié">
+            <div class="webpedia-relic-img-box">
+              <img src="${art.relicImage}" alt="${art.title}" class="webpedia-relic-img">
+              <div class="webpedia-relic-banner">
+                ${isUnlocked ? '[RELIQUE ACQUISE // ENREGISTRÉE DANS LE DOSSIER]' : '[PIÈCE À CONVICTION : CLIQUEZ POUR SAISIR LA RELIQUE]'}
+              </div>
+            </div>
+            <p class="webpedia-relic-prompt">${art.relicPrompt}</p>
+          </div>
+        `;
+      }
+
+      return `
+        <article class="webpedia-article-card">
+          <div class="webpedia-article-header">
+            <div class="webpedia-meta-row">
+              <span class="webpedia-category-tag">${art.category}</span>
+              <span class="webpedia-date-tag">${art.date}</span>
+            </div>
+            <h3 class="webpedia-article-title">${art.title}</h3>
+            <p class="webpedia-article-author">Source : ${art.author}</p>
+          </div>
+
+          <div class="webpedia-article-summary">
+            <p><strong>En résumé :</strong> ${art.summary}</p>
+          </div>
+
+          <div class="webpedia-article-body">
+            ${art.content}
+          </div>
+
+          ${relicHtml}
+        </article>
+      `;
+    }).join('');
+  }
+
+  /* ===========================================================================
+     CODES SECRETS DU SANCTUAIRE & SAUTS D'HISTOIRE
      =========================================================================== */
 
   initSecretCodes() {
@@ -1060,35 +1198,129 @@ class SanctuaireApp {
     const rawVal = this.el.secretCodeInput.value.trim().toUpperCase();
     if (!rawVal) {
       if (this.el.secretCodeFeedback) {
-        this.el.secretCodeFeedback.textContent = "Saisis un code d'Architecte (ex: PHARE, GARDIEN, REBELLE).";
+        this.el.secretCodeFeedback.textContent = "Saisis un code d'Architecte (ex: ACTE1, NULL1, CSS, ADA, RELIQUES, FINALE).";
         this.el.secretCodeFeedback.className = "secret-code-feedback error";
       }
       return;
     }
 
+    const handled = this.handleStoryTeleportCode(rawVal);
+    if (!handled) {
+      sound.playError();
+      if (this.el.secretCodeFeedback) {
+        this.el.secretCodeFeedback.textContent = `Code « ${rawVal} » inconnu. Essaie ACTE1, NULL1, ACTE2, NULL2, CSS, NULL3, ADA, RELIQUES, ou FINALE.`;
+        this.el.secretCodeFeedback.className = "secret-code-feedback error";
+      }
+    }
+  }
+
+  handleStoryTeleportCode(rawCode) {
+    if (!rawCode) return false;
+    const c = String(rawCode).trim().toUpperCase();
+
+    // 1. Actes & Étapes clés
+    if (c === 'ACTE1' || c === 'DEBUT' || c === 'S1') {
+      this.teleportToStep(0, "Acte I : Le Commencement");
+      return true;
+    }
+    if (c === 'ACTE2' || c === 'PAGES' || c === 'S8') {
+      this.teleportToStep(7, "Acte II : La Toile Multi-pages");
+      return true;
+    }
+    if (c === 'ACTE3' || c === 'CSS' || c === 'S13') {
+      this.teleportToStep(12, "Acte III : L'Harmonie CSS");
+      return true;
+    }
+    if (c === 'ACTE4' || c === 'GRID' || c === 'S25') {
+      this.teleportToStep(24, "Acte IV : CSS Grid & Layout");
+      return true;
+    }
+    if (c === 'ACTE5' || c === 'MAITRISE' || c === 'S34') {
+      this.teleportToStep(33, "Acte V : Haute Maîtrise & Accessibilité");
+      return true;
+    }
+    if (c === 'ADA' || c === 'ACTE6' || c === 'JS' || c === 'S37') {
+      this.teleportToStep(36, "Acte VI : L'Atelier du Runtime avec Ada (JavaScript)");
+      return true;
+    }
+    if (c === 'LOCALSTORAGE' || c === 'S39') {
+      this.teleportToStep(38, "Étape 39 : L'Exode de la Mémoire (localStorage)");
+      return true;
+    }
+    if (c === 'FINALE' || c === 'APOTHEOSE' || c === 'S40') {
+      this.teleportToStep(39, "Étape 40 : L'Apothéose & L'Ascension Éternelle");
+      return true;
+    }
+
+    // 2. Événements Notables d'Urgence avec NULL
+    if (c === 'NULL1' || c === 'CRASH1') {
+      this.teleportToNotableEvent('event-1');
+      return true;
+    }
+    if (c === 'NULL2' || c === 'CRASH2') {
+      this.teleportToNotableEvent('event-2');
+      return true;
+    }
+    if (c === 'NULL3' || c === 'CRASH3') {
+      this.teleportToNotableEvent('event-3');
+      return true;
+    }
+
+    // 3. Déblocage du Coffre des 4 Reliques
+    if (c === 'RELIQUES' || c === 'DOSSIER' || c === 'ENQUETE') {
+      ['relic-1', 'relic-2', 'relic-3', 'relic-4'].forEach(id => this.relics.unlockRelic(id));
+      this.closeSecretCodesModal();
+      this.relics.open();
+      this.showToast("Les 4 Reliques sont déverrouillées et consignées dans le dossier.", "success");
+      return true;
+    }
+
+    // 4. Fins secrètes traditionnelles
     const phareAliases = ['PHARE', 'PHARE1991', 'FIN1', 'LUMIERE', '1'];
     const gardienAliases = ['GARDIEN', 'GARDIENW3C', 'FIN2', 'MEMOIRE', '2'];
     const rebelleAliases = ['REBELLE', 'REBELLE404', 'FIN3', 'BAZAR', '3'];
 
-    if (phareAliases.includes(rawVal)) {
+    if (phareAliases.includes(c)) {
       this.unlockSecretEnding('phare');
-    } else if (gardienAliases.includes(rawVal)) {
+      return true;
+    }
+    if (gardienAliases.includes(c)) {
       this.unlockSecretEnding('gardien');
-    } else if (rebelleAliases.includes(rawVal)) {
+      return true;
+    }
+    if (rebelleAliases.includes(c)) {
       this.unlockSecretEnding('rebelle');
-    } else if (rawVal === 'ADMINPASS') {
+      return true;
+    }
+    if (c === 'ADMINPASS') {
       this.highestUnlockedStep = MULTIPAGE_STEPS.length - 1;
       storage.setHighestUnlockedStep(this.highestUnlockedStep);
       this.loadStep(this.highestUnlockedStep);
       this.closeSecretCodesModal();
-      this.showToast("Toutes les étapes du sanctuaire sont déverrouillées !", "success");
-    } else {
-      sound.playError();
-      if (this.el.secretCodeFeedback) {
-        this.el.secretCodeFeedback.textContent = `Code « ${rawVal} » inconnu des anciens. Essaie PHARE, GARDIEN ou REBELLE.`;
-        this.el.secretCodeFeedback.className = "secret-code-feedback error";
-      }
+      this.showToast("Accès Grand Architecte accordé ! Toutes les 40 étapes sont déverrouillées.", "success");
+      return true;
     }
+
+    return false;
+  }
+
+  teleportToStep(stepIndex, label) {
+    if (stepIndex > this.highestUnlockedStep) {
+      this.highestUnlockedStep = stepIndex;
+      storage.setHighestUnlockedStep(stepIndex);
+    }
+    this.loadStep(stepIndex);
+    sound.playSuccess();
+    fireConfetti();
+    this.closeSecretCodesModal();
+    this.showToast(`Téléportation : ${label}`, "success");
+  }
+
+  teleportToNotableEvent(eventId) {
+    const ev = NOTABLE_EVENTS.find(e => e.id === eventId);
+    if (!ev) return;
+    this.closeSecretCodesModal();
+    this.notableEvents.triggerEvent(ev);
   }
 
   unlockSecretEnding(endingKey) {

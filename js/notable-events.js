@@ -263,9 +263,9 @@ export class NotableEventsEngine {
       speakerEl.textContent = d.speaker;
       speechEl.innerHTML = d.text;
       if (dialogueIndex === eventData.introDialogue.length - 1) {
-        nextBtn.textContent = "Passer au Débogage d'Urgence ⚡";
+        nextBtn.textContent = "Passer au Débogage d'Urgence";
       } else {
-        nextBtn.textContent = "Continuer ▶";
+        nextBtn.textContent = "Continuer";
       }
     };
 
@@ -297,7 +297,7 @@ export class NotableEventsEngine {
         <div class="bodhi-feedback error debug-alert-mode">
           <p class="bodhi-feedback-title">${eventData.title}</p>
           <p><strong>NULL :</strong> « ${eventData.missionRiddle} »</p>
-          <p class="debug-urgent-text">⚠️ Répare le code dans l'éditeur puis clique sur <strong>Vérifier mon code</strong> pour repousser la purge !</p>
+          <p class="debug-urgent-text">Attention : Répare le code dans l'éditeur puis clique sur <strong>Vérifier mon code</strong> pour repousser la purge !</p>
         </div>
       `;
     }
@@ -340,7 +340,7 @@ export class NotableEventsEngine {
           <div class="event-speaker-badge" id="event-speaker-name">RÉSOLU</div>
           <p class="event-speech-text" id="event-speech-text"></p>
           <div class="event-actions">
-            <button id="event-resolution-next-btn" class="event-btn-primary">Poursuivre la voie ▶</button>
+            <button id="event-resolution-next-btn" class="event-btn-primary">Poursuivre la voie</button>
           </div>
         </div>
       </div>
@@ -358,9 +358,9 @@ export class NotableEventsEngine {
       speakerEl.textContent = d.speaker;
       speechEl.innerHTML = d.text;
       if (idx === eventData.resolutionDialogue.length - 1) {
-        nextBtn.textContent = "Reprendre l'apprentissage 🌟";
+        nextBtn.textContent = "Reprendre l'apprentissage";
       } else {
-        nextBtn.textContent = "Continuer ▶";
+        nextBtn.textContent = "Continuer";
       }
     };
 

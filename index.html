@@ -32,10 +32,10 @@
     <!-- CONTRÔLES ÉPURÉS (THÈME, SON, RELIQUES ET EXPORT) -->
     <div class="header-right">
       <button id="open-relics-btn" class="header-control-btn btn-relics-special" title="Consulter les Reliques du Premier Serveur (Dossier Classifié)">
-        <span>📜 Reliques</span>
+        <span>Reliques</span>
       </button>
       <button id="export-project-btn" class="header-control-btn" title="Télécharger ton Sanctuaire (.ZIP complet)">
-        <span>💾 Exporter</span>
+        <span>Exporter</span>
       </button>
       <button id="theme-toggle" class="header-control-btn" title="Changer le thème">
         <span id="theme-icon-text">Thème clair</span>
@@ -314,13 +314,13 @@
         <button id="close-cheatsheet-btn" class="close-modal-btn">Fermer</button>
       </div>
 
-      <!-- Navigation d'onglets : Encyclopédie vs Chroniques Historiques -->
+      <!-- Navigation d'onglets : Encyclopédie vs Webpédia Historique -->
       <div class="internet-nav-tabs">
         <button type="button" id="internet-tab-btn-encyclopedia" class="internet-nav-tab active">
           Encyclopédie &amp; Syntaxes (181 fiches)
         </button>
         <button type="button" id="internet-tab-btn-chronicles" class="internet-nav-tab">
-          Chroniques &amp; Histoire du Web
+          Webpédia (Histoire &amp; Archives du Web)
         </button>
       </div>
 
@@ -340,69 +340,19 @@
         </div>
       </div>
 
-      <!-- Contenu Onglet 2 : Chroniques Historiques illustrées -->
+      <!-- Contenu Onglet 2 : Webpédia Historique & Reliques Cachées -->
       <div id="internet-tab-chronicles" class="internet-tab-pane hidden">
-        <div class="internet-chronicles-container">
-          <div class="internet-chronicle-card">
-            <div class="chronicle-media-wrap">
-              <img src="assets/lore/cern_server.jpg" alt="Le Premier Serveur Web au CERN" class="chronicle-img">
-              <span class="chronicle-year-badge">1990 — CERN, Genève</span>
-            </div>
-            <div class="chronicle-content">
-              <h4>Le Premier Serveur du Monde &amp; Le Post-it Sacré</h4>
-              <p class="chronicle-lead">
-                « Cette machine est un serveur. Ne l'éteignez surtout pas ! »
-              </p>
-              <p>
-                Dans un laboratoire souterrain du CERN, Tim Berners-Lee conçoit le premier serveur web de l'histoire sur une station NeXT Cube noire. Pour éviter qu'un collègue ou le personnel d'entretien ne débranche la prise par inadvertance, il colle ce fameux morceau de papier adhésif. C'est ici que sont nés le protocole HTTP, les URL et la toute première spécification de HTML. Si cette machine s'était éteinte, le Web aurait pu ne jamais voir le jour.
-              </p>
-              <div class="chronicle-footer">
-                <span class="chronicle-tag">Premier Serveur NCSA/NeXT</span>
-                <span class="chronicle-tag">Naissance du HTML</span>
-              </div>
-            </div>
+        <div class="internet-toolbar webpedia-toolbar">
+          <div class="sidebar-search-box internet-search-box">
+            <input type="text" id="webpedia-search" class="search-input" placeholder="Rechercher dans Webpédia (CERN, JavaScript, NeXT, CSS, Flash, Bug 2000, 404...)...">
+            <span id="webpedia-counter" class="internet-counter-badge">14 archives</span>
           </div>
-
-          <div class="internet-chronicle-card">
-            <div class="chronicle-media-wrap">
-              <img src="assets/lore/browser_wars.jpg" alt="La Guerre des Navigateurs" class="chronicle-img">
-              <span class="chronicle-year-badge">1995-2001 — La Grande Bataille</span>
-            </div>
-            <div class="chronicle-content">
-              <h4>La Guerre des Navigateurs : Netscape vs Internet Explorer</h4>
-              <p class="chronicle-lead">
-                L'affrontement maritime pour la suprématie des portes du Web.
-              </p>
-              <p>
-                Entre l'armada agile de Netscape Navigator et la forteresse massive d'Internet Explorer, la bataille fit rage pendant une décennie. Chacun inventait ses balises propriétaires pour capturer les utilisateurs, forçant les développeurs à coder des sites en double exemplaire. C'est de cette guerre sanglante qu'est née la nécessité vitale des standards ouverts du W3C et du WHATWG que nous honorons aujourd'hui dans ce Sanctuaire.
-              </p>
-              <div class="chronicle-footer">
-                <span class="chronicle-tag">Netscape Navigator</span>
-                <span class="chronicle-tag">Internet Explorer 6</span>
-                <span class="chronicle-tag">Standards W3C</span>
-              </div>
-            </div>
+          <div class="internet-category-pills" id="webpedia-category-pills">
+            <!-- Rendu dynamique des filtres de catégories Webpédia -->
           </div>
-
-          <div class="internet-chronicle-card">
-            <div class="chronicle-media-wrap">
-              <img src="assets/lore/web_pioneers.jpg" alt="Bodhi et les Pionniers du Web" class="chronicle-img">
-              <span class="chronicle-year-badge">1991 — L'Aube du Réseau</span>
-            </div>
-            <div class="chronicle-content">
-              <h4>La Confrérie des Pionniers : Le Premier Clic Mondial</h4>
-              <p class="chronicle-lead">
-                Le jour où les écrans cathodiques se sont illuminés pour la première fois.
-              </p>
-              <p>
-                Rassemblés autour d'un moniteur lourd et bourdonnant, Bodhi et les premiers étudiants en informatique voient la première page web s'afficher. Une simple ligne bleue cliquable relie deux documents situés à l'autre bout du continent. Les sourires explosent : l'humanité venait de créer un espace de liberté, sans frontière, où le savoir circule librement. C'est cette promesse originelle que tu perpétues en apprenant chaque balise.
-              </p>
-              <div class="chronicle-footer">
-                <span class="chronicle-tag">Hypertexte</span>
-                <span class="chronicle-tag">Partage Universel</span>
-              </div>
-            </div>
-          </div>
+        </div>
+        <div id="webpedia-content" class="modal-body internet-body webpedia-body">
+          <!-- Rendu dynamique des articles avec reliques interactives -->
         </div>
       </div>
     </div>

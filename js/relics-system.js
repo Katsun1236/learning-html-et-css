@@ -78,7 +78,35 @@ export class RelicsManager {
   }
 
   isRelicUnlocked(relic) {
-    return this.currentStep >= relic.unlockedAtStep;
+    if (!this.manuallyUnlocked) {
+      try {
+        const saved = typeof localStorage !== 'undefined' ? localStorage.getItem('sanctuaire_manual_relics') : '[]';
+        this.manuallyUnlocked = new Set(JSON.parse(saved || '[]'));
+      } catch (_) {
+        this.manuallyUnlocked = new Set();
+      }
+    }
+    return this.currentStep >= relic.unlockedAtStep || this.manuallyUnlocked.has(relic.id);
+  }
+
+  unlockRelic(relicId) {
+    if (!this.manuallyUnlocked) {
+      try {
+        const saved = typeof localStorage !== 'undefined' ? localStorage.getItem('sanctuaire_manual_relics') : '[]';
+        this.manuallyUnlocked = new Set(JSON.parse(saved || '[]'));
+      } catch (_) {
+        this.manuallyUnlocked = new Set();
+      }
+    }
+    const isNew = !this.manuallyUnlocked.has(relicId);
+    this.manuallyUnlocked.add(relicId);
+    try {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('sanctuaire_manual_relics', JSON.stringify([...this.manuallyUnlocked]));
+      }
+    } catch (_) {}
+    this.updateBadge();
+    return isNew;
   }
 
   getUnlockedCount() {
@@ -111,7 +139,7 @@ export class RelicsManager {
           </div>
 
           <div class="relics-truth-banner hidden" id="relics-truth-banner">
-            <div class="truth-icon">⚡</div>
+            <div class="truth-icon">[DOSSIER RÉSOLU]</div>
             <div class="truth-body">
               <strong>LA VÉRITÉ EST DÉVOILÉE :</strong>
               <p>Maître Bodhi est la première IA d'accueil du Web de 1991. Sa mémoire est à 99 % de saturation et NULL est contraint d'exécuter l'effacement. Seul le JavaScript peut déporter sa mémoire dans ton navigateur pour le sauver !</p>
@@ -184,9 +212,9 @@ export class RelicsManager {
         return `
           <div class="relic-card locked">
             <div class="relic-locked-overlay">
-              <div class="lock-icon">🔒</div>
-              <div class="lock-title">Archive Verrouillée</div>
-              <div class="lock-hint">Se débloque à l'Étape ${relic.unlockedAtStep}</div>
+              <div class="lock-icon">[VERROUILLÉ]</div>
+              <div class="lock-title">Archive Non Découverte</div>
+              <div class="lock-hint">À déterrer dans le Webpédia ou à l'Étape ${relic.unlockedAtStep}</div>
             </div>
           </div>
         `;

@@ -3518,5 +3518,187 @@ body.dialogue-resizing .bodhi-resize-handle::after {
   margin: 0;
 }
 
+/* =============================================================================
+   WEBPÉDIA HISTORIQUE DU WEB & RELIQUES INTERACTIVES
+   ============================================================================= */
+
+.webpedia-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 32px;
+}
+
+.webpedia-article-card {
+  background: var(--bg-card, #1e293b);
+  border: 1px solid var(--border-color, #334155);
+  border-radius: 14px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.webpedia-article-card:hover {
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.webpedia-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.webpedia-category-tag {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.webpedia-date-tag {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.webpedia-article-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary, #f8fafc);
+  margin: 0 0 4px 0;
+  line-height: 1.35;
+}
+
+.webpedia-article-author {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin: 0 0 14px 0;
+  font-style: italic;
+}
+
+.webpedia-article-summary {
+  background: rgba(15, 23, 42, 0.5);
+  border-left: 3px solid #f59e0b;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.webpedia-article-summary p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.webpedia-article-body {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text-secondary, #94a3b8);
+}
+
+.webpedia-article-body p {
+  margin: 0 0 12px 0;
+}
+
+.webpedia-article-body ol, .webpedia-article-body ul {
+  padding-left: 20px;
+  margin: 8px 0 14px 0;
+}
+
+.webpedia-article-body li {
+  margin-bottom: 6px;
+}
+
+/* CARTE DE RELIQUE CLIQUABLE DANS LES ARTICLES */
+.webpedia-relic-interactive {
+  margin-top: 20px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(15, 23, 42, 0.85));
+  border: 2px dashed #f59e0b;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.webpedia-relic-interactive:hover {
+  transform: translateY(-2px);
+  border-color: #fbbf24;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.25);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(15, 23, 42, 0.95));
+}
+
+.webpedia-relic-interactive.is-collected {
+  border: 1px solid #10b981;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.webpedia-relic-interactive.is-collected:hover {
+  border-color: #34d399;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.15);
+}
+
+.webpedia-relic-img-box {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  height: 220px;
+  margin: 0 auto 12px auto;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #334155;
+  background: #000000;
+}
+
+.webpedia-relic-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.webpedia-relic-interactive:hover .webpedia-relic-img {
+  transform: scale(1.04);
+}
+
+.webpedia-relic-banner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.85);
+  color: #f59e0b;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-align: center;
+  padding: 6px 10px;
+  letter-spacing: 0.06em;
+  backdrop-filter: blur(4px);
+  border-top: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.webpedia-relic-interactive.is-collected .webpedia-relic-banner {
+  color: #10b981;
+  border-top-color: rgba(16, 185, 129, 0.4);
+}
+
+.webpedia-relic-prompt {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  text-align: center;
+  margin: 0;
+  font-style: italic;
+}
+
+
 
 
