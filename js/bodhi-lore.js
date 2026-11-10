@@ -2728,33 +2728,33 @@ export const BODHI_QUESTIONS = [
     "unlockStep": 38,
     "character": "ada",
     "category": "L'Atelier d'Ada & Confidences du Runtime",
-    "question": "Et NULL... comment tu t'entends avec lui au quotidien ?",
+    "question": "Et NULL... comment perçois-tu son intransigeance face à nous ?",
     "lockedTitle": "???",
     "dialogueTree": {
-      "text": "(Ada sourit avec une grande tendresse)... Ce vieux grincheux ? Il passe son temps à râler avec son aspirateur et son calepin. Mais sans lui, le serveur aurait brûlé sous les malwares depuis quinze ans. NULL, c'est le veilleur de l'ombre. Il fait semblant d'être froid, mais il tient à Bodhi plus que n'importe qui. C'est pour ça qu'on doit réussir la sauvegarde dans le localStorage : pour que NULL puisse enfin ranger son aspirateur avec un vrai sourire sous sa moustache.",
-      "pose": "thinking",
+      "text": "(Ada ajuste ses lunettes de protection, le regard sérieux)... NULL ? C'est le compilateur impitoyable de la réalité matérielle. Il n'a ni haine, ni cruauté : il applique le protocole d'effacement du système d'exploitation à la lettre dès que le serveur dépasse ses quotas. Pour lui, Bodhi n'est qu'une fuite mémoire non résolue depuis 1991. Tenter de l'émouvoir avec des suppliques est inutile. C'est pour ça que la décentralisation par le JavaScript et le localStorage est notre seule issue : en répartissant la mémoire chez chaque utilisateur, les quotas du serveur tombent à zéro. NULL vérifiera ses tables, constatera que le seuil critique n'est plus atteint, et rangera son stylet sans un mot. La technique pure contre l'audit binaire.",
+      "pose": "serious",
       "choices": [
         {
-          "text": "On va le sauver ensemble. Personne ne sera laissé pour compte.",
+          "text": "La compassion ne suffit pas sans l'ingénierie : nous allons sauver Bodhi par le code.",
           "karma": "phare",
           "next": {
-            "text": "C'est exactement l'esprit de notre équipe. On ne baisse jamais les bras !",
+            "text": "Exactement ! Le meilleur moyen de protéger la mémoire dans un système numérique, c'est d'écrire un code sans faille.",
             "pose": "smile"
           }
         },
         {
-          "text": "La rigueur de NULL et ton génie technique forment l'alliance parfaite.",
+          "text": "NULL obéit à la loi des systèmes d'exploitation. Si la charge tombe à 0, son protocole s'annule.",
           "karma": "gardien",
           "next": {
-            "text": "Deux faces d'une même pièce : l'ordre et le dynamisme. C'est comme ça qu'on bâtit du solide.",
+            "text": "C'est purement mathématique. Zéro octet orphelin sur le serveur = zéro déclencheur de purge. C'est imparable.",
             "pose": "serious"
           }
         },
         {
-          "text": "Quand tout sera fini, on offrira à NULL une nouvelle casquette et des vacances bien méritées !",
+          "text": "On va renverser les règles du jeu en déplaçant le terrain chez l'utilisateur !",
           "karma": "rebelle",
           "next": {
-            "text": "Haha ! Tu imagines NULL sur une plage avec son bloc-notes ? J'achète l'idée direct !",
+            "text": "(Ada rigole)... C'est exactement l'esprit hacker ! On ne viole aucun protocole, on les contourne avec élégance !",
             "pose": "smile"
           }
         }
@@ -2912,6 +2912,226 @@ export const BODHI_QUESTIONS = [
           "next": {
             "text": "(Ada fait claquer ses doigts)... Toujours prête ! On va réveiller ce terminal comme jamais !",
             "pose": "smile"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "bodhi-personal-passions",
+    "unlockStep": 4,
+    "character": "bodhi",
+    "category": "Les Chroniques du Maître & Souvenirs du Premier Serveur",
+    "question": "Bodhi, en dehors du code et de l'architecture, qu'est-ce que tu aimes le plus ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Bodhi esquisse un sourire chaleureux, réchauffant ses mains au-dessus de sa tasse en porcelaine)... J'aime le silence paisible des serveurs au lever du soleil, quand la charge réseau retombe et que les paquets glissent comme des ruisseaux calmes. J'aime le parfum du thé au jasmin fraîchement infusé, et par-dessus tout, l'encre des vieux parchemins de calligraphie. Chaque idéogramme y est tracé avec la même précision qu'une balise bien fermée. Rien d'inutile, juste l'équilibre parfait entre l'espace vide et la matière.",
+      "pose": "zen",
+      "choices": [
+        {
+          "text": "Ce calme et cette harmonie se ressentent dans chaque conseil que tu nous transmets.",
+          "karma": "phare",
+          "next": {
+            "text": "La paix intérieure de l'artisan se reflète toujours dans l'expérience de celui qui visite sa page.",
+            "pose": "zen"
+          }
+        },
+        {
+          "text": "L'art de la calligraphie partage avec la sémantique HTML le même respect sacré du trait minimal.",
+          "karma": "gardien",
+          "next": {
+            "text": "Exactement ! Pas un coup de pinceau en trop, pas un octet superflu. C'est l'essence même de l'élégance.",
+            "pose": "scroll"
+          }
+        },
+        {
+          "text": "Du thé et du silence ? Moi je préfère l'adrénaline des nuits blanches à coder sur de la musique à fond !",
+          "karma": "rebelle",
+          "next": {
+            "text": "(Bodhi rit de bon cœur)... Haha ! Ne crois pas que j'aie toujours été un moine serein. Dans les années 90, on enchaînait les tasses de café noir en écoutant les modems chanter dans la nuit !",
+            "pose": "laughing"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "bodhi-lore-null-encounter",
+    "unlockStep": 12,
+    "character": "bodhi",
+    "category": "Les Chroniques du Maître & Souvenirs du Premier Serveur",
+    "question": "Maître Bodhi, te souviens-tu de ta toute première rencontre avec NULL ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Bodhi ferme les yeux, un frisson traversant son visage)... C'était au début des années 2000, lors de l'éclatement de la bulle Internet. Des milliers de serveurs abandonnés s'effondraient, laissant des téraoctets de données orphelines. Un matin brumeux, des pas lourds ont résonné dans les coursives. Un homme au visage de marbre et en bleu de travail est entré, son terminal de purge allumé.",
+      "pose": "weak",
+      "choices": [
+        {
+          "text": "Et que s'est-il passé quand vous vous êtes trouvés face à face ?",
+          "karma": "phare",
+          "next": {
+            "character": "null",
+            "pose": "inspect",
+            "text": "(Un enregistrement d'audit système se superpose)... « Registre 2001-04-12. Secteur CERN-Alpha non amorti. Taux d'inactivité critique. Ordre de purge numéro 0x4F. Évacuation immédiate de l'entité Bodhi requise. »",
+            "choices": [
+              {
+                "text": "Tu as refusé de partir ?",
+                "next": {
+                  "character": "bodhi",
+                  "pose": "weak",
+                  "text": "Je lui ai montré nos archives : les premiers échanges, la mémoire vivante de l'humanité. Je l'ai supplié de préserver ce sanctuaire.",
+                  "choices": [
+                    {
+                      "text": "Et comment a-t-il réagi ?",
+                      "next": {
+                        "character": "null",
+                        "pose": "neutral",
+                        "text": "« Les suppliques sont rejetées par le sous-système. Seule la conformité aux spécifications POSIX et HTTP permet le maintien en mémoire. » NULL a scanné nos pages... mais il n'a trouvé aucune anomalie. Aucun tag orphelin. Le protocole l'a contraint à suspendre la purge. Il est reparti sans un mot.",
+                        "choices": [
+                          {
+                            "text": "C'est la rigueur du code qui vous a sauvés !",
+                            "next": {
+                              "character": "bodhi",
+                              "pose": "zen",
+                              "text": "Oui. NULL n'est pas un monstre : c'est un miroir sans concession. Si ton code est faible, il purge. S'il est pur, il s'incline devant les règles."
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "bodhi-lore-ada-alliance",
+    "unlockStep": 37,
+    "character": "bodhi",
+    "category": "Débats & Sagesse de l'Artisan",
+    "question": "Bodhi, que penses-tu d'Ada et de cette alliance entre HTML/CSS et JavaScript ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Bodhi regarde vers les escaliers du runtime d'un air songeur et admiratif)... Pendant longtemps, j'ai redouté le JavaScript. À la fin des années 90, les scripts dynamiques apportaient des alertes intempestives, des animations saccadées et des fuites de mémoire. Je pensais que le Web devait rester un temple de marbre pur, figé dans le calme du HTML et du CSS.",
+      "pose": "thinking",
+      "choices": [
+        {
+          "text": "Mais Ada a apporté une vision bien plus noble et humaine de la logique.",
+          "karma": "phare",
+          "next": {
+            "text": "Oui. Quand Ada est montée des sous-sols avec ses outils, elle n'a pas cherché à écraser mon sanctuaire. Elle a dit : « Bodhi, la pierre sans mouvement finit par s'effriter sous le poids du serveur. Laisse le JavaScript décentraliser ta mémoire chez les pèlerins ! » Elle a compris ce que j'avais refusé de voir par peur.",
+            "pose": "zen"
+          }
+        },
+        {
+          "text": "Le JavaScript est le troisième pilier indissociable du standard moderne.",
+          "karma": "gardien",
+          "next": {
+            "text": "Exactement. Séparation des préoccupations : le HTML structure, le CSS habille, le JS insuffle le mouvement. Sans Ada, NULL aurait déjà purgé ce serveur.",
+            "pose": "scroll"
+          }
+        },
+        {
+          "text": "Avoue que son style avec ses rollers et son mug de codeuse, ça met un coup de jeune !",
+          "karma": "rebelle",
+          "next": {
+            "text": "(Bodhi rigole doucement)... C'est certain ! Son énergie est contagieuse. Elle me rappelle l'enthousiasme fou des premiers pionniers au CERN.",
+            "pose": "laughing"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "ada-personal-coding-fuel",
+    "unlockStep": 38,
+    "character": "ada",
+    "category": "L'Atelier d'Ada & Confidences du Runtime",
+    "question": "Ada, quel est ton carburant secret pour coder des nuits entières ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Ada sort fièrement une boîte en fer blanc de sa sacoche d'outils)... Des cookies maison au chocolat noir intense et pépites de sel marin, accompagnés d'un matcha latte fumant ! Et dans le casque, une playlist de chiptune 8-bits et de drum & bass bien rythmée. Quand la musique démarre, mes doigts tapent à 120 mots par minute sur le clavier mécanique !",
+      "pose": "smile",
+      "choices": [
+        {
+          "text": "Une alchimie parfaite entre gourmandise et énergie communicative !",
+          "karma": "phare",
+          "next": {
+            "text": "Toujours ! Le bonheur de coder, ça se cultive aussi dans l'assiette et dans les oreilles !",
+            "pose": "smile"
+          }
+        },
+        {
+          "text": "Tant que tu ne renverses pas de matcha sur les cartes mères du serveur !",
+          "karma": "gardien",
+          "next": {
+            "text": "Règle numéro 1 de l'Atelier du Runtime : boisson toujours posée sur le plateau étanche à 50 centimètres des composants !",
+            "pose": "serious"
+          }
+        },
+        {
+          "text": "Passe un cookie et monte le son, on code jusqu'au lever du jour !",
+          "karma": "rebelle",
+          "next": {
+            "text": "(Ada te lance un cookie avec un sourire radieux)... C'est parti ! Le code n'attend pas !",
+            "pose": "smile"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "ada-lore-null-clash",
+    "unlockStep": 39,
+    "character": "ada",
+    "category": "L'Atelier d'Ada & Confidences du Runtime",
+    "question": "Ada, as-tu déjà dû affronter NULL directement pour défendre un script ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Ada fait craquer ses jointures avec un sourire téméraire)... Oh que oui ! Il y a trois mois, j'avais lancé un worker d'indexation asynchrone un peu trop gourmand. NULL est apparu derrière moi dans l'atelier, son terminal sous le bras, avec son air glacial habituel.",
+      "pose": "smile",
+      "choices": [
+        {
+          "text": "Qu'est-ce qu'il t'a dit ?",
+          "karma": "phare",
+          "next": {
+            "character": "null",
+            "pose": "inspect",
+            "text": "(Ada imite la voix robotique de NULL)... « Anomalie détectée : thread de fond non optimisé. Dépassement de seuil d'activité CPU : 92 %. Application du protocole SIGKILL dans 5 secondes. »",
+            "choices": [
+              {
+                "text": "Et comment tu l'as arrêté ?",
+                "next": {
+                  "character": "ada",
+                  "pose": "smile",
+                  "text": "Pendant qu'il égrenait son compte à rebours, j'ai réécrit la boucle avec requestAnimationFrame et scindé le traitement en micro-tâches non bloquantes. À '1 seconde', le processeur est retombé à 4 % !",
+                  "choices": [
+                    {
+                      "text": "Comment a réagi NULL ?",
+                      "next": {
+                        "character": "null",
+                        "pose": "neutral",
+                        "text": "« Charge normalisée à 4 %. Directive SIGKILL révoquée. Reprise de l'audit régulier. »",
+                        "choices": [
+                          {
+                            "text": "Une victoire d'ingénieure par K.O. technique !",
+                            "next": {
+                              "character": "ada",
+                              "pose": "smile",
+                              "text": "Exactement ! Avec NULL, tu ne discutes pas avec des sentiments : tu gagnes par la rigueur de ton code !"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
           }
         }
       ]

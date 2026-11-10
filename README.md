@@ -1,20 +1,20 @@
 # Le Sanctuaire du Web — L'Aventure Complète (HTML5, CSS3 & JavaScript)
 
-Jeu pédagogique et narratif d'apprentissage du Web moderne sous forme de Visual Novel immersif aux côtés de Maître Bodhi, d'Ada (Ingénieure du Runtime) et de NULL (Agent de Maintenance).
+Jeu pédagogique et narratif d'apprentissage du Web moderne sous forme de Visual Novel immersif aux côtés de Maître Bodhi, d'Ada (Ingénieure du Runtime) et de NULL (Auditeur Système & Garbage Collector).
 
 ---
 
-## 🌟 Synopsis & Univers Narratif
+## Synopsis & Univers Narratif
 
 Dans ce jeu interactif, vous incarnez un apprenti débarquant devant les ruines du Sanctuaire du Web. Guidé par **Maître Bodhi**, un être chaleureux dont le cache mémoire s'efface peu à peu, vous bâtissez pas à pas un site web complet (`index.html`, `chroniques.html`, `galerie.html`, `contact.html`, `style.css`, `script.js`) à travers **40 étapes progressives**.
 
-Au fil de l'aventure, des **Événements Notables** surgissent : **NULL**, le vieux concierge du serveur, est mandaté par le Garbage Collector pour purger les démons obsolètes. À travers l'enquête des **4 Reliques du Premier Serveur (CERN 1991)**, la vérité éclate : Bodhi n'a jamais été un humain... il est la première IA d'accueil du Web, saturée à 99 % de RAM !
+Au fil de l'aventure, des **Événements Notables** surgissent : **NULL**, l'auditeur système impassible du serveur, est mandaté par le Garbage Collector pour purger les démons et les segments mémoires saturés. Le serveur physique du CERN de 1991 approche des 99 % de saturation RAM !
 
-Pour le sauver de l'effacement, l'ingénieure **Ada** intervient et vous initie au **JavaScript** afin de décentraliser l'âme de Bodhi directement dans la mémoire de votre propre navigateur (`localStorage`, `addEventListener`).
+Pour sauver Bodhi de l'effacement définitif imposé par les protocoles de purge, l'ingénieure **Ada** intervient et vous initie au **JavaScript** afin de décentraliser l'âme et le savoir de Bodhi directement dans la mémoire de chaque navigateur utilisateur (`localStorage`, `addEventListener`).
 
 ---
 
-## ⚡ Fonctionnalités Majeures
+## Fonctionnalités Majeures
 
 - **40 Étapes Réparties en 6 Actes Épiques** :
   - **Acte I** : Les Fondations & Le Néant Originel (`index.html`)
@@ -27,15 +27,10 @@ Pour le sauver de l'effacement, l'ingénieure **Ada** intervient et vous initie 
   - Fin Acte I : Le Premier Effondrement (balise brisée, cinématique 16:9, intrusion de NULL)
   - Fin Acte II : La Fracture des Chemins (Erreur 404 & chemins relatifs, amnésie de Bodhi)
   - Fin Acte III : Le Crash CSS & L'Avis de Purge Ultime (seuil 99 % de saturation mémoire)
-- **Le Coffre des 4 Reliques (Dossier Classifié)** :
-  - Relique 1 : Journal de boot du CERN (6 août 1991, `Init: BODHI_DAEMON`)
-  - Relique 2 : Oscilloscope télémétrique SYSMON (saturation à 99 % de RAM)
-  - Relique 3 : Ordre de mission officiel de NULL avec tampon `EFFACEMENT AUTOMATIQUE`
-  - Relique 4 : Parchemin manuscrit secret de Bodhi à côté de sa tasse de thé
 - **Distribution des Rôles & Nouveaux PNJ Illustrés** :
   - **Maître Bodhi** : 15 expressions (dont `bodhi_weak`, `bodhi_glitch`, `bodhi_ascended`)
   - **NULL** : 4 expressions (neutral, action, inspect, relieved)
-  - **Ada** : 4 expressions (neutral, serious / shocked, thinking, smile)
+  - **Ada** : 5 expressions (neutral, serious, shocked, thinking, smile)
 - **Éditeur de Code Multi-Fichiers Style VS Code** :
   - Prise en charge complète du HTML, du CSS et du JavaScript (`script.js`)
   - Coloration syntaxique haute fidélité, complétion intelligente et retour à la ligne automatique
@@ -44,11 +39,11 @@ Pour le sauver de l'effacement, l'ingénieure **Ada** intervient et vous initie 
   - Téléchargez à tout moment l'ensemble de votre projet en local pour l'ouvrir dans VS Code ou le déployer sur le Web !
 - **L'Internet de Maître Bodhi** :
   - 181 fiches encyclopédiques débloquées au fil de l'aventure
-  - Chroniques historiques illustrées du Web
+  - Aide-mémoire complet des syntaxes HTML et CSS
 
 ---
 
-## 🚀 Déploiement sur Cloudflare Pages
+## Déploiement sur Cloudflare Pages
 
 Le projet est 100 % statique et prêt pour un déploiement instantané sur Cloudflare Pages ou tout serveur web moderne :
 

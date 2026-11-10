@@ -278,6 +278,13 @@ export class BodhiDialogueEngine {
     if (this.glossaryCode) this.glossaryCode.textContent = item.code;
     if (this.glossaryTip) this.glossaryTip.textContent = item.bodhiTip;
 
+    if (this.glossaryPopover) {
+      const tipLabel = this.glossaryPopover.querySelector('.glossary-tip-label');
+      if (tipLabel) {
+        tipLabel.textContent = (this.currentCharacter === 'ada') ? "Conseil d'Ada :" : "Conseil de Bodhi :";
+      }
+    }
+
     this.glossaryPopover.classList.remove('hidden');
     this.glossaryPopover.setAttribute('aria-hidden', 'false');
     sound.playClick();
@@ -628,6 +635,10 @@ export class BodhiDialogueEngine {
     if (!this.qaDrawer) return;
     const isHidden = this.qaDrawer.classList.contains('hidden');
     if (isHidden) {
+      const drawerTitle = this.qaDrawer.querySelector('.qa-drawer-title');
+      if (drawerTitle) {
+        drawerTitle.textContent = (this.currentCharacter === 'ada') ? "Échanger avec Ada" : "Interroger Maître Bodhi";
+      }
       this.renderQAList();
       this.qaDrawer.classList.remove('hidden');
       if (this.speechContainer) this.speechContainer.classList.add('hidden');
@@ -671,9 +682,8 @@ export class BodhiDialogueEngine {
   renderConversationNode(node) {
     if (!this.speechContainer) return;
 
-    const char = this.activeQuestionCharacter || this.currentCharacter || 'bodhi';
-    const isAda = (char === 'ada');
-    const speakerLabel = isAda ? "Ada (Ingénieure Runtime) :" : "Maître Bodhi :";
+    const activeChar = this.activeQuestionCharacter || this.currentCharacter || 'bodhi';
+    const isAda = (activeChar === 'ada');
     const endTagText = isAda
       ? "Ada te fait un clin d'œil complice en buvant une gorgée de son mug '>_'. L'échange est gravé dans le runtime."
       : "Bodhi te sourit avec bienveillance. L'échange est gravé dans ton esprit.";
@@ -686,14 +696,25 @@ export class BodhiDialogueEngine {
             <p>« ${enrichWithGlossary(entry.text)} »</p>
           </div>
         `;
-      } else {
-        return `
-          <div class="qa-bodhi-bubble ${isAda ? 'qa-ada-bubble' : ''}">
-            <span class="qa-label">${speakerLabel}</span>
-            <p>« ${enrichWithGlossary(entry.text)} »</p>
-          </div>
-        `;
       }
+
+      const role = entry.role || 'bodhi';
+      let bubbleClass = 'qa-bodhi-bubble';
+      let speakerLabel = 'Maître Bodhi :';
+      if (role === 'ada') {
+        bubbleClass = 'qa-bodhi-bubble qa-ada-bubble';
+        speakerLabel = 'Ada (Ingénieure Runtime) :';
+      } else if (role === 'null') {
+        bubbleClass = 'qa-bodhi-bubble qa-null-bubble';
+        speakerLabel = 'NULL :';
+      }
+
+      return `
+        <div class="${bubbleClass}">
+          <span class="qa-label">${speakerLabel}</span>
+          <p>« ${enrichWithGlossary(entry.text)} »</p>
+        </div>
+      `;
     }).join('');
 
     let choicesHtml = '';
@@ -752,9 +773,10 @@ export class BodhiDialogueEngine {
             storage.setArchitectAlignment(choice.next.ending);
           }
 
+          const nextChar = choice.next.character || (choice.next.role ? choice.next.role : activeChar);
           this.conversationHistory.push({ role: 'user', text: choice.text });
-          this.conversationHistory.push({ role: char, text: choice.next.text, pose: choice.next.pose || 'neutral' });
-          this.setPose(choice.next.pose || 'neutral', char);
+          this.conversationHistory.push({ role: nextChar, text: choice.next.text, pose: choice.next.pose || 'neutral' });
+          this.setPose(choice.next.pose || 'neutral', nextChar);
           this.renderConversationNode(choice.next);
         }
       });
