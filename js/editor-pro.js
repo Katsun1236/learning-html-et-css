@@ -823,19 +823,53 @@ export class VSCodeEditor {
         }
       }
 
-      if (processedHtml.includes('</head>')) {
-        documentContent = processedHtml.replace('</head>', `<style id="virtual-style">\n${globalCss}\n</style></head>`);
-      } else {
-        documentContent = `<style id="virtual-style">\n${globalCss}\n</style>\n` + processedHtml;
-      }
+      // Remplacement pro-actif des balises <link rel="stylesheet" href="..."> locales par le contenu virtuel
+      // pour éviter toute requête réseau 404 et erreur de MIME type dans l'iframe
+      let hasInlinedGlobalCss = false;
+      processedHtml = processedHtml.replace(/<link\b([^>]*?)href=["']([^"']+\.css[^"']*)["']([^>]*?)>/gi, (match, p1, href, p2) => {
+        const full = p1 + p2;
+        if (/rel=["']stylesheet["']/i.test(full) || /rel=["']stylesheet["']/i.test(match)) {
+          const clean = href.replace(/^\.\//, '').split('?')[0];
+          const content = this.files[clean] !== undefined ? this.files[clean] : (clean === 'style.css' ? globalCss : null);
+          if (content !== null) {
+            if (clean === 'style.css') hasInlinedGlobalCss = true;
+            return `<style data-source="${clean}">\n${content}\n</style>`;
+          }
+        }
+        return match;
+      });
 
-      if (globalJs) {
-        if (documentContent.includes('</body>')) {
-          documentContent = documentContent.replace('</body>', `<script id="virtual-script">\ntry {\n${globalJs}\n} catch(err) { console.error("Script error:", err); }\n</script>\n</body>`);
+      // Remplacement pro-actif des balises <script src="*.js"...></script> locales par le script inline virtuel
+      let hasInlinedGlobalJs = false;
+      processedHtml = processedHtml.replace(/<script\b([^>]*?)src=["']([^"']+\.js[^"']*)["']([^>]*?)>\s*<\/script>/gi, (match, p1, src, p2) => {
+        const clean = src.replace(/^\.\//, '').split('?')[0];
+        const content = this.files[clean] !== undefined ? this.files[clean] : (clean === 'script.js' ? globalJs : null);
+        if (content !== null) {
+          if (clean === 'script.js') hasInlinedGlobalJs = true;
+          return `<script data-source="${clean}">\ntry {\n${content}\n} catch(err) { console.error("Script error (" + "${clean}" + "):", err); }\n</script>`;
+        }
+        return match;
+      });
+
+      // Injection fallback de style.css si non lié explicitement
+      if (globalCss && !hasInlinedGlobalCss) {
+        if (processedHtml.includes('</head>')) {
+          processedHtml = processedHtml.replace('</head>', `<style id="virtual-style">\n${globalCss}\n</style></head>`);
         } else {
-          documentContent += `\n<script id="virtual-script">\ntry {\n${globalJs}\n} catch(err) { console.error("Script error:", err); }\n</script>`;
+          processedHtml = `<style id="virtual-style">\n${globalCss}\n</style>\n` + processedHtml;
         }
       }
+
+      // Injection fallback de script.js si non lié explicitement
+      if (globalJs && !hasInlinedGlobalJs) {
+        if (processedHtml.includes('</body>')) {
+          processedHtml = processedHtml.replace('</body>', `<script id="virtual-script">\ntry {\n${globalJs}\n} catch(err) { console.error("Script error:", err); }\n</script>\n</body>`);
+        } else {
+          processedHtml += `\n<script id="virtual-script">\ntry {\n${globalJs}\n} catch(err) { console.error("Script error:", err); }\n</script>`;
+        }
+      }
+
+      documentContent = processedHtml;
     } else {
       documentContent = `<!DOCTYPE html>
 <html lang="fr">
@@ -872,17 +906,25 @@ ${globalJs ? `<script id="virtual-script">\ntry {\n${globalJs}\n} catch(err) { c
         const a = e.target.closest('a');
         if (a) {
           const href = a.getAttribute('href');
-          if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('mailto:')) {
+          if (href && !href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('//') && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+            e.preventDefault(); // Toujours bloquer la navigation physique pour ne jamais tomber sur chrome-error://chromewebdata
             const cleanHref = href.replace(/^\.\//, '');
             if (this.files[cleanHref] !== undefined) {
-              e.preventDefault();
               this.switchPreviewPage(cleanHref);
               if (typeof this.onFileSwitchRequested === 'function') {
                 this.onFileSwitchRequested(cleanHref);
               }
+            } else {
+              console.warn(`Lien vers '${cleanHref}' ignoré : le fichier n'existe pas encore dans le projet.`);
             }
           }
         }
+      });
+
+      // Interception des soumissions de formulaire pour éviter toute navigation 404
+      iframeDoc.addEventListener('submit', (e) => {
+        e.preventDefault();
+        console.info('Simulation : formulaire intercepté dans la prévisualisation (aucun rechargement réseau).');
       });
     } catch {
       this.previewIframe.srcdoc = documentContent;

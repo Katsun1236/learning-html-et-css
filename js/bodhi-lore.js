@@ -2836,5 +2836,85 @@ export const BODHI_QUESTIONS = [
         }
       ]
     }
+  },
+
+  // =========================================================================
+  // LA VÉRITÉ SUR LES RELIQUES & LA LIBÉRATION DU RUNTIME
+  // =========================================================================
+  {
+    "id": "bodhi-lore-relics-illusion",
+    "unlockStep": 8,
+    "character": "bodhi",
+    "category": "Débats & Sagesse de l'Artisan",
+    "question": "Bodhi, pourquoi n'y a-t-il plus d'armoire à reliques ni de grand musée statique dans le sanctuaire ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Bodhi sourit avec une modestie sincère en regardant le ciel numérique)... C'était mon péché d'orgueil d'ancien gardien. Après les années 90, j'avais une peur panique de l'oubli. Alors j'entassais des artefacts, des reliques et des archives encyclopédiques lourdes, comme pour embaumer le Web... Mais le serveur s'asphyxiait sous cette nostalgie inutile. Un jour, un apprenti m'a dit : 'Maître, un pont sert à relier les vivants, pas à y clouer des meubles de grenier.' Il avait raison. C'est votre code qui perpétue le sanctuaire, pas des vieilles breloques mortes.",
+      "pose": "zen",
+      "choices": [
+        {
+          "text": "La mémoire vit dans les cœurs de ceux qui apprennent, pas dans des coffres scellés.",
+          "karma": "phare",
+          "next": {
+            "text": "Exactement, mon enfant. La flamme se transmet de main en main, elle ne s'enferme pas dans un bocal.",
+            "pose": "zen"
+          }
+        },
+        {
+          "text": "Moins de données parasites, c'est aussi un serveur plus rapide et un code plus rigoureux.",
+          "karma": "gardien",
+          "next": {
+            "text": "Précisément ! L'épure architecturale. Chaque octet doit avoir une raison d'être.",
+            "pose": "scroll"
+          }
+        },
+        {
+          "text": "En vrai, faire du ménage par le vide, ça fait un bien fou au disque dur !",
+          "karma": "rebelle",
+          "next": {
+            "text": "(Bodhi rit doucement)... Haha ! NULL dirait la même chose ! Moins de poussière, plus d'espace pour créer !",
+            "pose": "laughing"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "ada-lore-purging-relics",
+    "unlockStep": 38,
+    "character": "ada",
+    "category": "L'Atelier d'Ada & Confidences du Runtime",
+    "question": "Ada, tu as vraiment balancé les vieilles reliques et l'encyclopédie de Bodhi à la poubelle ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Ada éclate de rire et prend une gorgée de son mug '>_')... Et comment ! Sans une demi-seconde d'hésitation ! Tu aurais dû voir la tête de NULL : pour une fois de sa vie, il n'a pas râlé. Presque 45 % de charge mémoire libérée d'un seul coup de 'rm -rf' ! Les apprentis s'imaginent souvent que pour comprendre le Web, il faut vénérer des vieilles disquettes de 1991 et lire 500 pages d'histoire statique. Tout faux ! Le Web se comprend en codant en direct, en branchant des événements et en manipulant le runtime. Moins de musée, plus d'action !",
+      "pose": "smile",
+      "choices": [
+        {
+          "text": "L'important, c'est que Bodhi soit libéré de son angoisse du passé pour regarder l'avenir.",
+          "karma": "phare",
+          "next": {
+            "text": "C'est tout à fait ça. La nostalgie était en train de le tuer à petit feu. Maintenant, il revit grâce à nous !",
+            "pose": "smile"
+          }
+        },
+        {
+          "text": "Une optimisation chirurgicale : éliminer la dette technique pour sauver l'infrastructure.",
+          "karma": "gardien",
+          "next": {
+            "text": "Carrément ! Zéro compromis sur les performances. On ne garde que l'acier et le silicium utile.",
+            "pose": "serious"
+          }
+        },
+        {
+          "text": "NULL avec son aspirateur et toi avec la commande de purge... vous formez le duo parfait !",
+          "karma": "rebelle",
+          "next": {
+            "text": "(Ada fait un grand clin d'œil)... Ne lui dis surtout pas, il a son ego de vieux briscard à préserver ! Mais ensemble, on déchire !",
+            "pose": "smile"
+          }
+        }
+      ]
+    }
   }
 ];

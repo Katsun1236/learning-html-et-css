@@ -22,8 +22,8 @@ export class CinematicIntro {
       {
         pose: 'assets/characters/bodhi_scroll.jpg',
         bg: 'assets/backgrounds/library_vault.jpg',
-        quote: "« J'ai moi aussi débuté dans l'ignorance. J'ai connu le chaos des guerres de navigateurs, des nuits entières à réparer du code brisé et des échecs cuisants. »",
-        sub: "Maître Bodhi déroule un parchemin d'archives. « J'ai vu des temples entiers s'effondrer parce que leurs fondations étaient bancales. C'est de mes erreurs que j'ai forgé ma maîtrise. »"
+        quote: "« J'ai moi aussi débuté dans l'ignorance. J'ai connu le chaos des guerres de navigateurs et des nuits entières à réparer du code brisé. Pendant des décennies, j'ai cru qu'il suffisait d'entasser de vieilles reliques et des encyclopédies figées pour préserver l'histoire... Mais un savoir qui ne circule pas finit par étouffer son propre serveur. »",
+        sub: "Maître Bodhi déroule un parchemin d'archives. « J'ai vu des temples s'effondrer sous le poids de leur propre nostalgie. C'est en apprenant à bâtir soi-même du code pur, pas en contemplant de vieux bibelots, que l'on devient un véritable artisan. »"
       },
       {
         pose: 'assets/characters/bodhi_code_magic.jpg',

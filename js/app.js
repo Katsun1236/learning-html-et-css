@@ -13,18 +13,14 @@ import { sound } from './audio.js';
 import { CinematicIntro } from './cinematic.js';
 import { BodhiDialogueEngine } from './dialogue-box.js';
 import { NotableEventsEngine, NOTABLE_EVENTS } from './notable-events.js';
-import { relicsManager } from './relics-system.js';
-import { WEBPEDIA_ARTICLES } from './webpedia-data.js';
 
 export class SanctuaireApp {
   constructor() {
     this.currentStepIndex = 0;
     this.highestUnlockedStep = 0;
     this.selectedInternetCategory = 'all';
-    this.selectedWebpediaCategory = 'all';
 
     // Sous-systèmes fondamentaux pré-initialisés sans risque
-    this.relics = relicsManager;
     try {
       this.notableEvents = new NotableEventsEngine(this);
     } catch (e) {
@@ -38,9 +34,7 @@ export class SanctuaireApp {
     try { this.initBodhi(); } catch (e) { console.error("Erreur initBodhi:", e); }
     try { this.initSplitResizer(); } catch (e) { console.error("Erreur initSplitResizer:", e); }
     try { this.initCinematic(); } catch (e) { console.error("Erreur initCinematic:", e); }
-    try { this.initRelicsSystem(); } catch (e) { console.error("Erreur initRelicsSystem:", e); }
     try { this.initCheatsheet(); } catch (e) { console.error("Erreur initCheatsheet:", e); }
-    try { this.initWebpedia(); } catch (e) { console.error("Erreur initWebpedia:", e); }
     try { this.initNotableEvents(); } catch (e) { console.error("Erreur initNotableEvents:", e); }
     try { this.initExportSystem(); } catch (e) { console.error("Erreur initExportSystem:", e); }
     try { this.initSecretCodes(); } catch (e) { console.error("Erreur initSecretCodes:", e); }
@@ -128,14 +122,6 @@ export class SanctuaireApp {
       cheatsheetContent: document.getElementById('cheatsheet-content'),
       cheatsheetCounter: document.getElementById('cheatsheet-counter'),
       internetCategoryPills: document.getElementById('internet-category-pills'),
-      internetTabBtnEncyclopedia: document.getElementById('internet-tab-btn-encyclopedia'),
-      internetTabBtnChronicles: document.getElementById('internet-tab-btn-chronicles'),
-      internetTabEncyclopedia: document.getElementById('internet-tab-encyclopedia'),
-      internetTabChronicles: document.getElementById('internet-tab-chronicles'),
-      webpediaSearch: document.getElementById('webpedia-search'),
-      webpediaContent: document.getElementById('webpedia-content'),
-      webpediaCounter: document.getElementById('webpedia-counter'),
-      webpediaCategoryPills: document.getElementById('webpedia-category-pills'),
 
       // Codes Secrets
       secretCodesBtn: document.getElementById('secret-codes-btn'),
@@ -719,23 +705,6 @@ export class SanctuaireApp {
     this.notableEvents = new NotableEventsEngine(this);
   }
 
-  initRelicsSystem() {
-    this.relics = relicsManager;
-    const headerBtn = document.getElementById('open-relics-btn');
-    if (headerBtn) {
-      headerBtn.addEventListener('click', () => {
-        this.relics.open();
-      });
-    }
-
-    const bodhiRelicsBtn = document.getElementById('bodhi-relics-btn');
-    if (bodhiRelicsBtn) {
-      bodhiRelicsBtn.addEventListener('click', () => {
-        this.relics.open();
-      });
-    }
-  }
-
   initExportSystem() {
     const exportBtn = document.getElementById('export-project-btn');
     if (!exportBtn) return;
@@ -941,9 +910,6 @@ export class SanctuaireApp {
   openCheatsheet(query = '') {
     if (this.el.cheatsheetModal) {
       this.el.cheatsheetModal.classList.remove('hidden');
-      if (this.el.internetTabBtnEncyclopedia) {
-        this.el.internetTabBtnEncyclopedia.click();
-      }
       this.renderCategoryPills();
       if (this.el.cheatsheetSearch) {
         this.el.cheatsheetSearch.value = query || '';
@@ -959,139 +925,6 @@ export class SanctuaireApp {
     if (this.el.cheatsheetModal) {
       this.el.cheatsheetModal.classList.add('hidden');
     }
-  }
-
-  /* ===========================================================================
-     WEBPÉDIA HISTORIQUE & DÉCOUVERTE ACTIVE DES RELIQUES
-     =========================================================================== */
-
-  initWebpedia() {
-    this.selectedWebpediaCategory = 'all';
-    this.renderWebpediaPills();
-    this.renderWebpediaContent('');
-
-    if (this.el.webpediaSearch) {
-      this.el.webpediaSearch.addEventListener('input', (e) => {
-        this.renderWebpediaContent(e.target.value);
-      });
-    }
-
-    if (this.el.webpediaContent) {
-      this.el.webpediaContent.addEventListener('click', (e) => {
-        const wrap = e.target.closest('.webpedia-relic-interactive');
-        if (!wrap) return;
-        const relicId = wrap.getAttribute('data-relic-id');
-        if (!relicId) return;
-
-        const relicsEngine = this.relics || relicsManager;
-        const isNew = relicsEngine ? relicsEngine.unlockRelic(relicId) : false;
-        sound.playSuccess();
-        if (isNew) {
-          fireConfetti();
-          this.showToast("Archive classifiée récupérée ! Relique ajoutée au dossier.", "success");
-        } else {
-          this.showToast("Cette relique est déjà consignée dans votre dossier.", "info");
-        }
-        this.renderWebpediaContent(this.el.webpediaSearch ? this.el.webpediaSearch.value : '');
-      });
-    }
-  }
-
-  renderWebpediaPills() {
-    if (!this.el.webpediaCategoryPills) return;
-    const categories = ['all', ...new Set(WEBPEDIA_ARTICLES.map(a => a.category))];
-
-    this.el.webpediaCategoryPills.innerHTML = categories.map(cat => `
-      <button type="button" class="category-pill ${this.selectedWebpediaCategory === cat ? 'active' : ''}" data-cat="${cat}">
-        ${cat === 'all' ? 'Toutes les archives' : cat}
-      </button>
-    `).join('');
-
-    this.el.webpediaCategoryPills.querySelectorAll('.category-pill').forEach(btn => {
-      btn.addEventListener('click', () => {
-        this.selectedWebpediaCategory = btn.getAttribute('data-cat');
-        this.renderWebpediaPills();
-        this.renderWebpediaContent(this.el.webpediaSearch ? this.el.webpediaSearch.value : '');
-      });
-    });
-  }
-
-  renderWebpediaContent(query = '') {
-    if (!this.el.webpediaContent) return;
-    const q = query.toLowerCase().trim();
-
-    const filtered = WEBPEDIA_ARTICLES.filter(art => {
-      if (this.selectedWebpediaCategory !== 'all' && art.category !== this.selectedWebpediaCategory) {
-        return false;
-      }
-      if (!q) return true;
-      return art.title.toLowerCase().includes(q) ||
-             art.summary.toLowerCase().includes(q) ||
-             art.content.toLowerCase().includes(q) ||
-             art.author.toLowerCase().includes(q);
-    });
-
-    if (this.el.webpediaCounter) {
-      this.el.webpediaCounter.textContent = `${filtered.length} archive${filtered.length > 1 ? 's' : ''}`;
-    }
-
-    if (filtered.length === 0) {
-      this.el.webpediaContent.innerHTML = `
-        <div class="webpedia-empty" style="text-align: center; padding: 40px 20px; color: var(--text-secondary);">
-          <p>Aucune chronique historique ne correspond à « ${this.escapeHtml(query)} ».</p>
-        </div>
-      `;
-      return;
-    }
-
-    this.el.webpediaContent.innerHTML = filtered.map(art => {
-      let relicHtml = '';
-      if (art.hasRelic) {
-        let isUnlocked = false;
-        try {
-          const relicsEngine = this.relics || relicsManager;
-          if (relicsEngine && typeof relicsEngine.isRelicUnlocked === 'function') {
-            isUnlocked = relicsEngine.isRelicUnlocked(art.hasRelic);
-          }
-        } catch (_) {
-          isUnlocked = false;
-        }
-        relicHtml = `
-          <div class="webpedia-relic-interactive ${isUnlocked ? 'is-collected' : ''}" data-relic-id="${art.hasRelic}" title="Clique pour saisir cette relique dans ton Dossier Classifié">
-            <div class="webpedia-relic-img-box">
-              <img src="${art.relicImage}" alt="${art.title}" class="webpedia-relic-img">
-              <div class="webpedia-relic-banner">
-                ${isUnlocked ? '[RELIQUE ACQUISE // ENREGISTRÉE DANS LE DOSSIER]' : '[PIÈCE À CONVICTION : CLIQUEZ POUR SAISIR LA RELIQUE]'}
-              </div>
-            </div>
-            <p class="webpedia-relic-prompt">${art.relicPrompt}</p>
-          </div>
-        `;
-      }
-
-      return `
-        <article class="webpedia-article-card">
-          <div class="webpedia-article-header">
-            <div class="webpedia-meta-row">
-              <span class="webpedia-category-tag">${art.category}</span>
-              <span class="webpedia-date-tag">${art.date}</span>
-            </div>
-            <h3 class="webpedia-article-title">${art.title}</h3>
-            <p class="webpedia-article-author">Source : ${art.author}</p>
-          </div>
-
-          <div class="webpedia-article-summary">
-            <p><strong>En résumé :</strong> ${art.summary}</p>
-          </div>
-
-          <div class="webpedia-article-body">
-            ${art.content}
-          </div>
-
-          ${relicHtml}
-        </article>
-      `;
-    }).join('');
   }
 
   /* ===========================================================================
@@ -1249,12 +1082,11 @@ export class SanctuaireApp {
       return true;
     }
 
-    // 3. Déblocage du Coffre des 4 Reliques
+    // 3. Réponse d'Ada sur les Reliques
     if (c === 'RELIQUES' || c === 'DOSSIER' || c === 'ENQUETE') {
-      ['relic-1', 'relic-2', 'relic-3', 'relic-4'].forEach(id => this.relics.unlockRelic(id));
       this.closeSecretCodesModal();
-      this.relics.open();
-      this.showToast("Les 4 Reliques sont déverrouillées et consignées dans le dossier.", "success");
+      sound.playSuccess();
+      this.showToast("Ada : « Les vieilles reliques statiques ont été purgées ! Le Web vit dans le runtime. »", "info");
       return true;
     }
 

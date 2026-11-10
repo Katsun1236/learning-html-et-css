@@ -26,13 +26,13 @@ export const NOTABLE_EVENTS = [
         character: 'null',
         speaker: 'NULL',
         pose: 'neutral',
-        text: "(Un vieil homme en bleu de travail entre d'un pas lourd dans le couloir, son bloc-notes sous le bras)... Pardonnez-moi le dérangement. Ce secteur est répertorié comme inactif depuis trente ans."
+        text: "(Un vieil homme en bleu de travail entre d'un pas lourd dans le couloir, son bloc-notes sous le bras)... Pardonnez-moi le dérangement. Ce secteur est répertorié comme saturé de mémoire morte depuis trente ans. Bodhi s'entoure de vieilles reliques et d'archives figées qui ne font qu'asphyxier le serveur. Résultat : une surcharge matérielle critique."
       },
       {
         character: 'null',
         speaker: 'NULL',
         pose: 'action',
-        text: "Regarde ton fichier index.html, gamin : la balise de fermeture de l'en-tête s'est brisée sous la pression. Si ce code reste invalide dans mon rapport, je dois actionner l'aspirateur et formater l'entité Bodhi. Répare la balise &lt;/header&gt; immédiatement si tu veux le revoir debout."
+        text: "Regarde ton fichier index.html, gamin : la balise de fermeture de l'en-tête s'est brisée sous la pression. Aucune de ses prétendues reliques ne va le relever à ta place. Si ce code reste invalide dans mon rapport, j'actionne l'aspirateur et je formate le secteur. Répare la balise &lt;/header&gt; immédiatement si tu veux le revoir debout."
       }
     ],
     targetFile: 'index.html',
@@ -91,7 +91,7 @@ export const NOTABLE_EVENTS = [
         character: 'null',
         speaker: 'NULL',
         pose: 'neutral',
-        text: "C'est encore moi, petit. Mauvaise nouvelle : les liens de navigation se sont décalés. Erreur 404 en cascade. Quand les chemins sont morts, la mémoire de Bodhi perd le fil de qui tu es."
+        text: "C'est encore moi, petit. Mauvaise nouvelle : les liens de navigation se sont décalés. Erreur 404 en cascade. Quand les chemins sont rompus, la mémoire de Bodhi se désintègre. Tu vois bien que ses vieilles encyclopédies figées ne lui servent à rien dans ce genre de crise : elles dorment sur le disque sans bouger pendant qu'il perd le fil de qui tu es."
       },
       {
         character: 'null',
@@ -127,7 +127,7 @@ export const NOTABLE_EVENTS = [
         character: 'null',
         speaker: 'NULL',
         pose: 'inspect',
-        text: "Pointeurs rétablis à 100 %. Tu as de la ressource, gamin. Peu de gens savent réparer les artères d'un site aussi vite."
+        text: "Pointeurs rétablis à 100 %. Tu as de la ressource, gamin. C'est ça la vraie sève du Web : des liens hypertextes vivants et fonctionnels, pas un tas de paperasse et de reliques mortes."
       },
       {
         character: 'bodhi',
@@ -156,13 +156,13 @@ export const NOTABLE_EVENTS = [
         character: 'null',
         speaker: 'NULL',
         pose: 'inspect',
-        text: "99 % d'occupation mémoire. Le cache de Bodhi est au bord de l'explosion. Dans quelques étapes, mon automate lancera la purge finale sans que je puisse l'arrêter."
+        text: "99 % d'occupation mémoire. Le cache de Bodhi est au bord de l'explosion. Toutes ses vieilles reliques encombrantes et ses archives statiques n'ont servi à rien : elles n'ont fait qu'accélérer la saturation du système. Dans quelques étapes, l'automate de purge balaiera tout sans que je puisse l'arrêter."
       },
       {
         character: 'null',
         speaker: 'NULL',
         pose: 'action',
-        text: "Un bug de feuille de style bloque le rendu : dans style.css, un sélecteur 'body { display: none !important; }' a été injecté par le système. Supprime cette ligne pour débloquer l'affichage, mais prépare-toi : le HTML et le CSS ne suffiront plus à le sauver."
+        text: "Un bug de feuille de style bloque le rendu : dans style.css, un sélecteur 'body { display: none !important; }' a été injecté par le système. Supprime cette ligne pour débloquer l'affichage. Mais prépare-toi : la structure et la peinture ne suffiront plus. Sans une étincelle vivante de runtime, Bodhi ne passera pas l'acte suivant."
       }
     ],
     targetFile: 'style.css',
@@ -192,7 +192,7 @@ export const NOTABLE_EVENTS = [
         character: 'null',
         speaker: 'NULL',
         pose: 'neutral',
-        text: "Le sanctuaire respire encore. Mais écoute-moi bien, gamin : j'ai une tournée à terminer. Quand je reviendrai après tes grilles et tes animations, si personne n'a trouvé comment déporter la mémoire de Bodhi hors de ce serveur... je devrai tirer le levier."
+        text: "Le sanctuaire respire encore. Mais écoute-moi bien, gamin : j'ai une tournée à terminer. Quand je reviendrai après tes grilles et tes animations, si personne n'a trouvé comment expédier tout ce bric-à-brac statique à la poubelle et déporter la mémoire de Bodhi hors de ce serveur... je devrai tirer le levier."
       },
       {
         character: 'bodhi',

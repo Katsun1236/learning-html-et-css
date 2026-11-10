@@ -29,11 +29,8 @@
       </div>
     </div>
 
-    <!-- CONTRÔLES ÉPURÉS (THÈME, SON, RELIQUES ET EXPORT) -->
+    <!-- CONTRÔLES ÉPURÉS (THÈME, SON ET EXPORT) -->
     <div class="header-right">
-      <button id="open-relics-btn" class="header-control-btn btn-relics-special" title="Consulter les Reliques du Premier Serveur (Dossier Classifié)">
-        <span>Reliques</span>
-      </button>
       <button id="export-project-btn" class="header-control-btn" title="Télécharger ton Sanctuaire (.ZIP complet)">
         <span>Exporter</span>
       </button>
@@ -233,11 +230,8 @@
         <button id="bodhi-ask-btn" class="btn-bodhi-secondary">
           Poser une question
         </button>
-        <button id="bodhi-relics-btn" class="btn-bodhi-secondary" title="Consulter les 4 Reliques du Premier Serveur">
-          Reliques
-        </button>
-        <button id="bodhi-grimoire-btn" class="btn-bodhi-secondary" title="Consulter l'encyclopédie Internet et les chroniques du Web">
-          Internet
+        <button id="bodhi-grimoire-btn" class="btn-bodhi-secondary" title="Consulter l'aide-mémoire et les syntaxes HTML/CSS">
+          Aide-mémoire
         </button>
       </div>
 
@@ -308,24 +302,14 @@
             <span class="browser-dot dot-yellow"></span>
             <span class="browser-dot dot-green"></span>
           </div>
-          <h3>L'Internet de Maître Bodhi</h3>
-          <span class="internet-url-badge">https://sanctuaire.web/archives/internet</span>
+          <h3>Aide-mémoire &amp; Syntaxes du Web</h3>
+          <span class="internet-url-badge">https://sanctuaire.web/aide-memoire</span>
         </div>
         <button id="close-cheatsheet-btn" class="close-modal-btn">Fermer</button>
       </div>
 
-      <!-- Navigation d'onglets : Encyclopédie vs Webpédia Historique -->
-      <div class="internet-nav-tabs">
-        <button type="button" id="internet-tab-btn-encyclopedia" class="internet-nav-tab active">
-          Encyclopédie &amp; Syntaxes (181 fiches)
-        </button>
-        <button type="button" id="internet-tab-btn-chronicles" class="internet-nav-tab">
-          Webpédia (Histoire &amp; Archives du Web)
-        </button>
-      </div>
-
-      <!-- Contenu Onglet 1 : Encyclopédie 181 termes -->
-      <div id="internet-tab-encyclopedia" class="internet-tab-pane active">
+      <!-- Contenu : Fiches de syntaxe HTML & CSS (181 fiches) -->
+      <div id="internet-tab-encyclopedia" class="internet-tab-pane active" style="display:flex; flex-direction:column; flex:1; overflow:hidden;">
         <div class="internet-toolbar">
           <div class="sidebar-search-box internet-search-box">
             <input type="text" id="cheatsheet-search" class="search-input" placeholder="Rechercher une balise, propriété ou règle (ex: flex, grid, border, padding, input, nav)...">
@@ -337,22 +321,6 @@
         </div>
         <div id="cheatsheet-content" class="modal-body internet-body">
           <!-- Rendu dynamique des fiches -->
-        </div>
-      </div>
-
-      <!-- Contenu Onglet 2 : Webpédia Historique & Reliques Cachées -->
-      <div id="internet-tab-chronicles" class="internet-tab-pane hidden">
-        <div class="internet-toolbar webpedia-toolbar">
-          <div class="sidebar-search-box internet-search-box">
-            <input type="text" id="webpedia-search" class="search-input" placeholder="Rechercher dans Webpédia (CERN, JavaScript, NeXT, CSS, Flash, Bug 2000, 404...)...">
-            <span id="webpedia-counter" class="internet-counter-badge">14 archives</span>
-          </div>
-          <div class="internet-category-pills" id="webpedia-category-pills">
-            <!-- Rendu dynamique des filtres de catégories Webpédia -->
-          </div>
-        </div>
-        <div id="webpedia-content" class="modal-body internet-body webpedia-body">
-          <!-- Rendu dynamique des articles avec reliques interactives -->
         </div>
       </div>
     </div>
