@@ -16,33 +16,45 @@ import { NotableEventsEngine, NOTABLE_EVENTS } from './notable-events.js';
 import { relicsManager } from './relics-system.js';
 import { WEBPEDIA_ARTICLES } from './webpedia-data.js';
 
-class SanctuaireApp {
+export class SanctuaireApp {
   constructor() {
     this.currentStepIndex = 0;
     this.highestUnlockedStep = 0;
     this.selectedInternetCategory = 'all';
     this.selectedWebpediaCategory = 'all';
 
-    this.cacheElements();
-    this.initTheme();
-    this.initSound();
-    this.initEditor();
-    this.initBodhi();
-    this.initSplitResizer();
-    this.initCinematic();
-    this.initRelicsSystem();
-    this.initCheatsheet();
-    this.initWebpedia();
-    this.initNotableEvents();
-    this.initExportSystem();
-    this.initSecretCodes();
-    this.bindEvents();
+    // Sous-systèmes fondamentaux pré-initialisés sans risque
+    this.relics = relicsManager;
+    try {
+      this.notableEvents = new NotableEventsEngine(this);
+    } catch (e) {
+      console.warn("NotableEventsEngine initialisation différée :", e);
+    }
 
-    this.loadSavedProgress();
+    try { this.cacheElements(); } catch (e) { console.error("Erreur cacheElements:", e); }
+    try { this.initTheme(); } catch (e) { console.error("Erreur initTheme:", e); }
+    try { this.initSound(); } catch (e) { console.error("Erreur initSound:", e); }
+    try { this.initEditor(); } catch (e) { console.error("Erreur initEditor:", e); }
+    try { this.initBodhi(); } catch (e) { console.error("Erreur initBodhi:", e); }
+    try { this.initSplitResizer(); } catch (e) { console.error("Erreur initSplitResizer:", e); }
+    try { this.initCinematic(); } catch (e) { console.error("Erreur initCinematic:", e); }
+    try { this.initRelicsSystem(); } catch (e) { console.error("Erreur initRelicsSystem:", e); }
+    try { this.initCheatsheet(); } catch (e) { console.error("Erreur initCheatsheet:", e); }
+    try { this.initWebpedia(); } catch (e) { console.error("Erreur initWebpedia:", e); }
+    try { this.initNotableEvents(); } catch (e) { console.error("Erreur initNotableEvents:", e); }
+    try { this.initExportSystem(); } catch (e) { console.error("Erreur initExportSystem:", e); }
+    try { this.initSecretCodes(); } catch (e) { console.error("Erreur initSecretCodes:", e); }
+    try { this.bindEvents(); } catch (e) { console.error("Erreur bindEvents:", e); }
+
+    try { this.loadSavedProgress(); } catch (e) { console.error("Erreur loadSavedProgress:", e); }
 
     // Lancer la cinématique uniquement la première fois
-    if (!storage.hasSeenPrologue()) {
-      this.cinematic.start();
+    try {
+      if (this.cinematic && !storage.hasSeenPrologue()) {
+        this.cinematic.start();
+      }
+    } catch (e) {
+      console.error("Erreur cinematic:", e);
     }
   }
 
@@ -483,62 +495,27 @@ class SanctuaireApp {
     // CODES SECRETS D'ARCHITECTE (TAPÉS DIRECTEMENT DANS L'ÉDITEUR DE CODE)
     // =========================================================================
 
-    // Vérifier les codes de saut d'histoire directs (ACTE1, NULL1, CSS, ADA, RELIQUES, etc.)
-    const firstWord = (this.editor.textarea ? this.editor.textarea.value : '').trim().split(/\s+/)[0];
-    if (firstWord && this.handleStoryTeleportCode(firstWord)) {
-      return;
-    }
-
-    // Fin 1 : Le Phare Universel (Voie du Phare / Altruiste)
-    if (lowerCombined.includes('phare') || lowerCombined.includes('fin1') || lowerCombined.includes('lumiere')) {
-      storage.discoverAllTerms(GLOSSARY_ITEMS.map(i => i.id));
-      this.unlockSecretEnding('phare');
-      return;
-    }
-
-    // Fin 2 : Le Sanctuaire Éternel (Voie du Gardien / Puriste)
-    if (lowerCombined.includes('gardien') || lowerCombined.includes('fin2') || lowerCombined.includes('memoire')) {
-      storage.discoverAllTerms(GLOSSARY_ITEMS.map(i => i.id));
-      this.unlockSecretEnding('gardien');
-      return;
-    }
-
-    // Fin 3 : Le Grand Bazar Étoilé (Voie du Rebelle / Festif)
-    if (lowerCombined.includes('rebelle') || lowerCombined.includes('fin3') || lowerCombined.includes('bazar')) {
-      storage.discoverAllTerms(GLOSSARY_ITEMS.map(i => i.id));
-      this.unlockSecretEnding('rebelle');
-      return;
-    }
-
-    // Code Secret : adminpass (Débloque toutes les étapes et tout l'Internet)
-    if (lowerCombined.includes('adminpass')) {
-      storage.discoverAllTerms(GLOSSARY_ITEMS.map(i => i.id));
-      this.highestUnlockedStep = MULTIPAGE_STEPS.length - 1;
-      storage.setHighestUnlockedStep(MULTIPAGE_STEPS.length - 1);
-      this.bodhi.highestUnlockedStep = MULTIPAGE_STEPS.length - 1;
-      this.bodhi.setPose('secret');
-      sound.playSuccess();
-      fireConfetti();
-      this.updateStepUI();
-      this.showToast("Accès Grand Architecte accordé ! Toutes les 36 étapes et tout l'Internet sont débloqués.", "success");
-      return;
-    }
-
-    // 2. Code Secret : resetall (Supprime les données et relance la cinématique d'intro)
-    if (lowerCombined.includes('resetall')) {
-      if (confirm("Ce code secret va réinitialiser l'ensemble de ta progression et relancer la cinématique d'intro. Continuer ?")) {
-        storage.resetAll();
-        this.editor.setFiles({}, null);
-        this.highestUnlockedStep = 0;
-        this.currentStepIndex = 0;
-        storage.setCurrentStep(0);
-        storage.setHighestUnlockedStep(0);
-        storage.setSeenPrologue(false);
-        this.updateStepUI();
-        this.cinematic.start();
-        this.showToast("Sanctuaire réinitialisé au néant originel.", "info");
+    // Vérifier les codes de saut d'histoire directs (uniquement si le contenu de l'éditeur est une commande isolée)
+    const editorRaw = (this.editor.textarea ? this.editor.textarea.value : '').trim();
+    if (editorRaw && !editorRaw.includes('<') && !editorRaw.includes('{') && editorRaw.length <= 30) {
+      if (this.handleStoryTeleportCode(editorRaw)) {
+        return;
       }
-      return;
+      if (editorRaw.toLowerCase() === 'resetall') {
+        if (confirm("Ce code secret va réinitialiser l'ensemble de ta progression et relancer la cinématique d'intro. Continuer ?")) {
+          storage.resetAll();
+          this.editor.setFiles({}, null);
+          this.highestUnlockedStep = 0;
+          this.currentStepIndex = 0;
+          storage.setCurrentStep(0);
+          storage.setHighestUnlockedStep(0);
+          storage.setSeenPrologue(false);
+          this.updateStepUI();
+          this.cinematic.start();
+          this.showToast("Sanctuaire réinitialisé au néant originel.", "info");
+        }
+        return;
+      }
     }
 
     const step = MULTIPAGE_STEPS[this.currentStepIndex];
@@ -1073,8 +1050,15 @@ class SanctuaireApp {
     this.el.webpediaContent.innerHTML = filtered.map(art => {
       let relicHtml = '';
       if (art.hasRelic) {
-        const relicsEngine = this.relics || relicsManager;
-        const isUnlocked = relicsEngine ? relicsEngine.isRelicUnlocked({ id: art.hasRelic, unlockedAtStep: 999 }) : false;
+        let isUnlocked = false;
+        try {
+          const relicsEngine = this.relics || relicsManager;
+          if (relicsEngine && typeof relicsEngine.isRelicUnlocked === 'function') {
+            isUnlocked = relicsEngine.isRelicUnlocked(art.hasRelic);
+          }
+        } catch (_) {
+          isUnlocked = false;
+        }
         relicHtml = `
           <div class="webpedia-relic-interactive ${isUnlocked ? 'is-collected' : ''}" data-relic-id="${art.hasRelic}" title="Clique pour saisir cette relique dans ton Dossier Classifié">
             <div class="webpedia-relic-img-box">
@@ -1322,7 +1306,16 @@ class SanctuaireApp {
     const ev = NOTABLE_EVENTS.find(e => e.id === eventId);
     if (!ev) return;
     this.closeSecretCodesModal();
-    this.notableEvents.triggerEvent(ev);
+    if (!this.notableEvents) {
+      try {
+        this.notableEvents = new NotableEventsEngine(this);
+      } catch (err) {
+        console.error("Impossible d'initialiser NotableEventsEngine:", err);
+      }
+    }
+    if (this.notableEvents) {
+      this.notableEvents.triggerEvent(ev);
+    }
   }
 
   unlockSecretEnding(endingKey) {
@@ -1393,7 +1386,11 @@ class SanctuaireApp {
 
 // Initialisation dès que le document est prêt dans le navigateur
 if (typeof document !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', () => {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      window.app = new SanctuaireApp();
+    });
+  } else {
     window.app = new SanctuaireApp();
-  });
+  }
 }

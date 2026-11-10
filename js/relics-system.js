@@ -77,7 +77,12 @@ export class RelicsManager {
     this.updateBadge();
   }
 
-  isRelicUnlocked(relic) {
+  isRelicUnlocked(relicOrId) {
+    if (!relicOrId) return false;
+    const relicId = typeof relicOrId === 'string' ? relicOrId : relicOrId.id;
+    const relicObj = this.relics.find(r => r.id === relicId) || (typeof relicOrId === 'object' ? relicOrId : null);
+    const stepThreshold = relicObj && typeof relicObj.unlockedAtStep === 'number' ? relicObj.unlockedAtStep : 999;
+
     if (!this.manuallyUnlocked) {
       try {
         const saved = typeof localStorage !== 'undefined' ? localStorage.getItem('sanctuaire_manual_relics') : '[]';
@@ -86,7 +91,7 @@ export class RelicsManager {
         this.manuallyUnlocked = new Set();
       }
     }
-    return this.currentStep >= relic.unlockedAtStep || this.manuallyUnlocked.has(relic.id);
+    return (typeof this.currentStep === 'number' && this.currentStep >= stepThreshold) || this.manuallyUnlocked.has(relicId);
   }
 
   unlockRelic(relicId) {
@@ -118,6 +123,7 @@ export class RelicsManager {
   }
 
   initModal() {
+    if (typeof document === 'undefined' || !document.body) return;
     let modal = document.getElementById('relics-modal');
     if (!modal) {
       modal = document.createElement('div');
@@ -185,6 +191,7 @@ export class RelicsManager {
 
   open() {
     sound.playClick();
+    this.initModal();
     this.render();
     const modal = document.getElementById('relics-modal');
     if (modal) {

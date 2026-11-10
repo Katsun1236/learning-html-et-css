@@ -3,23 +3,29 @@
 // =============================================================================
 
 export function fireConfetti() {
-  const canvas = document.createElement('canvas');
-  canvas.style.position = 'fixed';
-  canvas.style.top = '0';
-  canvas.style.left = '0';
-  canvas.style.width = '100vw';
-  canvas.style.height = '100vh';
-  canvas.style.pointerEvents = 'none';
-  canvas.style.zIndex = '999999';
-  document.body.appendChild(canvas);
+  try {
+    const canvas = document.createElement('canvas');
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = '999999';
+    document.body.appendChild(canvas);
 
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  canvas.width = width * dpr;
-  canvas.height = height * dpr;
-  ctx.scale(dpr, dpr);
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {
+      if (canvas.parentNode) canvas.remove();
+      return;
+    }
+
+    const dpr = window.devicePixelRatio || 1;
+    const width = window.innerWidth || 800;
+    const height = window.innerHeight || 600;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.scale(dpr, dpr);
 
   const colors = ['#6366f1', '#38bdf8', '#10b981', '#f59e0b', '#ec4899', '#a855f7'];
   const particles = [];
@@ -72,4 +78,7 @@ export function fireConfetti() {
   }
 
   render();
+  } catch {
+    // Échec silencieux si canvas n'est pas supporté
+  }
 }

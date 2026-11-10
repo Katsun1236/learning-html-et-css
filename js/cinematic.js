@@ -44,6 +44,7 @@ export class CinematicIntro {
   }
 
   preloadAll() {
+    if (typeof Image === 'undefined') return;
     this.scenes.forEach(scene => {
       if (scene.pose) {
         const img = new Image();

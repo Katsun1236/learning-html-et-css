@@ -34,6 +34,9 @@
       <button id="open-relics-btn" class="header-control-btn btn-relics-special" title="Consulter les Reliques du Premier Serveur (Dossier Classifié)">
         <span>Reliques</span>
       </button>
+      <button id="secret-codes-btn" class="header-control-btn" title="Codes Secrets &amp; Sauts d'Histoire (Ctrl+Shift+S)">
+        <span>Codes</span>
+      </button>
       <button id="export-project-btn" class="header-control-btn" title="Télécharger ton Sanctuaire (.ZIP complet)">
         <span>Exporter</span>
       </button>
@@ -358,10 +361,67 @@
     </div>
   </div>
 
+  <!-- =========================================================================
+       MODALE : CODES SECRETS & TÉLÉPORTATION D'HISTOIRE
+       ========================================================================= -->
+  <div id="secret-codes-modal" class="modal-backdrop hidden">
+    <div class="modal-card secret-modal-card">
+      <div class="modal-header secret-header">
+        <div class="secret-title-group">
+          <span class="secret-vault-icon">ARCHIVES CLASSIFIÉES</span>
+          <h3>Codes Secrets &amp; Sauts d'Histoire</h3>
+        </div>
+        <button id="close-secrets-btn" class="close-modal-btn">Fermer</button>
+      </div>
+      <div class="modal-body secret-modal-body">
+        <p class="secret-modal-subtitle">
+          Saisis un code secret d'Architecte pour naviguer instantanément vers n'importe quel chapitre, incident ou événement clé de l'histoire :
+        </p>
+        <div class="secret-input-wrapper">
+          <input type="text" id="secret-code-input" class="secret-code-input" placeholder="Ex: ACTE1, NULL1, CSS, ADA, RELIQUES, FINALE..." autocomplete="off">
+          <button id="submit-secret-code-btn" class="btn-primary">Activer</button>
+        </div>
+        <div id="secret-code-feedback" class="secret-code-feedback"></div>
+
+        <div class="secret-endings-grid">
+          <div class="secret-ending-card card-phare" data-ending="phare">
+            <div class="secret-card-top">
+              <span class="ending-pill pill-phare">Fin 1</span>
+              <h4>Le Phare Universel</h4>
+            </div>
+            <p class="secret-desc">L'Âme Ouverte &amp; Altruiste. Le faisceau qui relie tous les voyageurs du Web.</p>
+            <span class="secret-code-label">Code : <strong>PHARE</strong></span>
+            <button type="button" class="btn-ghost-skip btn-ending-trigger" data-ending="phare">Déclencher</button>
+          </div>
+
+          <div class="secret-ending-card card-gardien" data-ending="gardien">
+            <div class="secret-card-top">
+              <span class="ending-pill pill-gardien">Fin 2</span>
+              <h4>Le Sanctuaire Éternel</h4>
+            </div>
+            <p class="secret-desc">L'Artisan Puriste. Un temple de marbre pur taillé dans le respect absolu des standards.</p>
+            <span class="secret-code-label">Code : <strong>GARDIEN</strong></span>
+            <button type="button" class="btn-ghost-skip btn-ending-trigger" data-ending="gardien">Déclencher</button>
+          </div>
+
+          <div class="secret-ending-card card-rebelle" data-ending="rebelle">
+            <div class="secret-card-top">
+              <span class="ending-pill pill-rebelle">Fin 3</span>
+              <h4>Le Grand Bazar Étoilé</h4>
+            </div>
+            <p class="secret-desc">L'Esprit Sauvage &amp; Joyeux. L'énergie festive, rebelle et vivante de la liberté numérique.</p>
+            <span class="secret-code-label">Code : <strong>REBELLE</strong></span>
+            <button type="button" class="btn-ghost-skip btn-ending-trigger" data-ending="rebelle">Déclencher</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- TOAST FEEDBACK -->
   <div id="toast" class="toast"></div>
 
-  <!-- APPLICATION PRINCIPALE -->
-  <script type="module" src="js/app.js"></script>
+  <!-- APPLICATION PRINCIPALE (AVEC GESTION DU CACHE NAVIGATEUR) -->
+  <script type="module" src="js/app.js?v=2.2"></script>
 </body>
 </html>
