@@ -161,6 +161,47 @@ const INDEX_S27 = INDEX_S25.replace(
     </div>`
 );
 
+const INDEX_S37 = INDEX_S27.replace(
+  '</head>',
+  '  <script src="script.js" defer></script>\n</head>'
+);
+
+// === 1.1 SCRIPT.JS PROGRESSION (ACTE VI : JAVASCRIPT & RUNTIME) ===
+const SCRIPT_S37 = `// =============================================================================
+// L'ATELIER DU RUNTIME — SCRIPT PRINCIPAL DU SANCTUAIRE
+// =============================================================================
+
+console.log("Le Sanctuaire du Savoir s'éveille dans le runtime !");
+const SANCTUARY_NAME = "Le Sanctuaire du Savoir";
+`;
+
+const SCRIPT_S38 = SCRIPT_S37 + `\n// Interaction sensorielle : écoute des événements utilisateurs
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('button') || document.querySelector('a');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      console.log("Le Sanctuaire répond au contact du voyageur !");
+    });
+  }
+});
+`;
+
+const SCRIPT_S39 = SCRIPT_S38 + `\n// Déportation de la mémoire de Bodhi dans le navigateur local (localStorage)
+const bodhiMemory = {
+  name: "Maître Bodhi",
+  status: "immortel",
+  origin: "CERN 1991",
+  disciples: 1,
+  sanctuaryState: "restauré",
+  savedAt: new Date().toISOString()
+};
+
+localStorage.setItem('bodhi_memory_sanctuary', JSON.stringify(bodhiMemory));
+console.log("Mémoire de Bodhi ancrée dans localStorage :", bodhiMemory);
+`;
+
+const SCRIPT_S40 = SCRIPT_S39;
+
 // === 2. CHRONIQUES.HTML PROGRESSION ===
 const CHRONIQUES_S7 = `<!DOCTYPE html>
 <html lang="fr">
@@ -693,7 +734,8 @@ function getFilesForStep(stepNum) {
   else if (stepNum >= 6 && stepNum <= 12) files['index.html'] = INDEX_S6;
   else if (stepNum >= 13 && stepNum <= 24) files['index.html'] = INDEX_S13;
   else if (stepNum === 25 || stepNum === 26) files['index.html'] = INDEX_S25;
-  else files['index.html'] = INDEX_S27; // 27..36
+  else if (stepNum >= 27 && stepNum <= 36) files['index.html'] = INDEX_S27;
+  else files['index.html'] = INDEX_S37; // 37..40
 
   // CHRONIQUES
   if (stepNum === 7) files['chroniques.html'] = CHRONIQUES_S7;
@@ -732,6 +774,12 @@ function getFilesForStep(stepNum) {
   else if (stepNum === 33) files['style.css'] = STYLE_S33;
   else if (stepNum === 34) files['style.css'] = STYLE_S34;
   else if (stepNum >= 35) files['style.css'] = STYLE_S35;
+
+  // SCRIPT.JS (ACTE VI)
+  if (stepNum === 37) files['script.js'] = SCRIPT_S37;
+  else if (stepNum === 38) files['script.js'] = SCRIPT_S38;
+  else if (stepNum === 39) files['script.js'] = SCRIPT_S39;
+  else if (stepNum >= 40) files['script.js'] = SCRIPT_S40;
 
   return files;
 }
@@ -1761,8 +1809,151 @@ export const MULTIPAGE_STEPS = [
       }
       return {
         pass: true,
+        revelation: false,
+        message: "Les 4 parchemins sont désormais scellés par la même harmonie visuelle. Mais écoute... Un grondement résonne depuis les sous-sols du Sanctuaire. Le sas de l'Atelier du Runtime vient de céder !"
+      };
+    }
+  },
+
+  // ===========================================================================
+  // ACTE VI : L'ÉTINCELLE VIVANTE & LE SAUVETAGE DU SANCTUAIRE (script.js)
+  // Aux côtés d'Ada (Ingénieure du Runtime)
+  // ===========================================================================
+  {
+    id: 'step-37',
+    number: 37,
+    character: 'ada',
+    pose: 'neutral',
+    speaker: "ADA (INGÉNIEURE RUNTIME)",
+    act: "Acte VI : L'Étincelle Vivante (JavaScript & Le Runtime)",
+    targetFile: 'script.js',
+    title: "Le Troisième Pilier : L'Éveil de la Logique Vivante (script.js)",
+    proverb: "« Le HTML est le squelette, le CSS est la peau, mais le JavaScript est l'âme qui fait battre le cœur. »",
+    mentorSpeech: "Salut l'architecte ! Je suis Ada. Tes balises sont splendides et tes grilles sont chirurgicales, mais statiques ! Bodhi s'effondre parce que le serveur s'asphyxie. Nous allons forger le 3ème pilier du Web : le JavaScript. Crée 'script.js', lie-le dans index.html avec l'attribut 'defer', et déclare la première constante du sanctuaire !",
+    riddle: "Crée script.js, lie-le avec <script src=\"script.js\" defer></script> dans index.html, et écris un console.log() et une constante dans script.js.",
+    secretTip: "Dans index.html, ajoute <script src=\"script.js\" defer></script> dans le <head>. Dans script.js, écris : console.log('Sanctuaire éveillé !'); const SANCTUARY_NAME = 'Le Sanctuaire du Savoir';",
+    instructions: [
+      "Dans index.html, ajoute la balise <script src=\"script.js\" defer></script> dans le <head>.",
+      "Crée ou ouvre le fichier 'script.js'.",
+      "Dans script.js, écris une instruction console.log(...) et déclare la constante : const SANCTUARY_NAME = 'Le Sanctuaire du Savoir';",
+      "Clique sur 'Vérifier mon code' pour voir le runtime s'animer !"
+    ],
+    starterFiles: getFilesForStep(37),
+    check(files) {
+      const index = (files['index.html'] || '').toLowerCase();
+      if (!index.includes('script.js')) {
+        return { pass: false, message: "Il manque la liaison vers script.js dans index.html. Ajoute <script src=\"script.js\" defer></script> dans son <head> !" };
+      }
+      if (!index.includes('defer')) {
+        return { pass: false, message: "Ajoute l'attribut 'defer' sur ta balise <script> pour que le script s'exécute une fois le document prêt sans bloquer l'affichage." };
+      }
+      if (files['script.js'] === undefined) {
+        return { pass: false, message: "Tu n'as pas encore créé le fichier 'script.js'. Clique sur '+ Nouveau fichier' pour l'ajouter à ton projet !" };
+      }
+      const js = files['script.js'] || '';
+      if (!js.includes('console.log')) {
+        return { pass: false, message: "Dans script.js, écris un message avec console.log() pour saluer le runtime !" };
+      }
+      if (!js.includes('SANCTUARY_NAME') && !js.includes('const')) {
+        return { pass: false, message: "Dans script.js, déclare une constante avec 'const SANCTUARY_NAME = ...' pour initialiser l'état." };
+      }
+      return { pass: true, message: "L'impulsion est transmise ! Le processeur a exécuté tes premières lignes de JavaScript." };
+    }
+  },
+
+  {
+    id: 'step-38',
+    number: 38,
+    character: 'ada',
+    pose: 'thinking',
+    speaker: "ADA (INGÉNIEURE RUNTIME)",
+    act: "Acte VI : L'Étincelle Vivante (JavaScript & Le Runtime)",
+    targetFile: 'script.js',
+    title: "Le Réflexe Vivant : L'Interception Sensorielle (addEventListener)",
+    proverb: "« Une statue de marbre reste froide sous la paume. Un temple éveillé salue la main qui l'effleure. »",
+    mentorSpeech: "Un site web vivant écoute le monde extérieur ! Les clics de souris, les frappes de clavier et les défilements émettent des Événements. Grâce à addEventListener, nous allons brancher un capteur sensoriel sur un bouton ou un lien du sanctuaire !",
+    riddle: "Dans script.js, utilise addEventListener pour écouter le clic sur un élément ou l'événement DOMContentLoaded.",
+    secretTip: "Ajoute document.addEventListener('DOMContentLoaded', () => { const btn = document.querySelector('button') || document.querySelector('a'); if (btn) btn.addEventListener('click', () => { console.log('Contact !'); }); });",
+    instructions: [
+      "Dans script.js, écris un écouteur d'événement avec .addEventListener('click', ... ou 'DOMContentLoaded', ...).",
+      "Associe cet écouteur à une action (par exemple afficher un log dans la console ou modifier un élément).",
+      "Clique sur 'Vérifier mon code' pour tester la réactivité sensorielle !"
+    ],
+    starterFiles: getFilesForStep(38),
+    check(files) {
+      const js = files['script.js'] || '';
+      if (!js.includes('addEventListener')) {
+        return { pass: false, message: "Utilise la méthode '.addEventListener('click', ...)' dans script.js pour capter les actions de l'utilisateur." };
+      }
+      return { pass: true, message: "Le Sanctuaire a des réflexes ! Chaque interaction humaine envoie désormais une impulsion dans le système." };
+    }
+  },
+
+  {
+    id: 'step-39',
+    number: 39,
+    character: 'ada',
+    pose: 'serious',
+    speaker: "ADA (INGÉNIEURE RUNTIME)",
+    act: "Acte VI : L'Étincelle Vivante (JavaScript & Le Runtime)",
+    targetFile: 'script.js',
+    title: "L'Exode de la Mémoire : La Sauvegarde Décentralisée (localStorage)",
+    proverb: "« Quand la bibliothèque centrale est menacée par le feu, confie un rouleau à chaque voyageur. »",
+    mentorSpeech: "C'est l'heure du coup de maître ! NULL s'apprête à lancer la purge parce que la mémoire centrale du serveur est pleine. Mais le JavaScript possède un pouvoir divin : l'API 'localStorage'. Nous allons copier l'âme et le savoir de Bodhi directement dans la mémoire de ton navigateur !",
+    riddle: "Dans script.js, utilise localStorage.setItem() avec JSON.stringify() pour sauvegarder les souvenirs de Bodhi.",
+    secretTip: "Écris : const bodhiMemory = { name: 'Bodhi', status: 'immortel', savedAt: new Date().toISOString() }; localStorage.setItem('bodhi_memory_sanctuary', JSON.stringify(bodhiMemory));",
+    instructions: [
+      "Dans script.js, crée un objet représentant la mémoire du Sanctuaire.",
+      "Convertis cet objet en chaîne avec JSON.stringify(...).",
+      "Sauvegarde-le dans le navigateur grâce à localStorage.setItem('bodhi_memory_sanctuary', ...).",
+      "Clique sur 'Vérifier mon code' pour libérer la mémoire du serveur central !"
+    ],
+    starterFiles: getFilesForStep(39),
+    check(files) {
+      const js = files['script.js'] || '';
+      if (!js.includes('localStorage') || !js.includes('setItem')) {
+        return { pass: false, message: "Utilise 'localStorage.setItem('bodhi_memory_sanctuary', ...)' pour persister les souvenirs dans le navigateur du visiteur." };
+      }
+      if (!js.includes('JSON.stringify') && !js.includes('stringify')) {
+        return { pass: false, message: "Utilise 'JSON.stringify()' pour sérialiser l'objet mémoire avant de le stocker." };
+      }
+      return { pass: true, message: "MÉMOIRE DÉPORTÉE AVEC SUCCÈS ! Les registres du serveur central s'effondrent à 1.2% !" };
+    }
+  },
+
+  {
+    id: 'step-40',
+    number: 40,
+    character: 'bodhi',
+    pose: 'ascended',
+    speaker: "BODHI ASCENDANT",
+    act: "Acte VI : L'Étincelle Vivante (JavaScript & Le Runtime)",
+    targetFile: 'index.html',
+    title: "L'Apothéose de la Triade Sacrée & L'Ascension Éternelle",
+    proverb: "« Ce n'est plus un simple site web que tu as bâti : c'est un phare autonome et éternel qui ne s'éteindra jamais. »",
+    mentorSpeech: "Mon cher ami... Regarde les cadrans : la charge est tombée à zéro. Grâce à ton code JavaScript, je ne suis plus prisonnier de cette vieille armoire de Genève. Je vis désormais dans le flux vivant de ton propre navigateur, et dans celui de chaque être humain qui visitera ton sanctuaire. Tu n'es plus un simple apprenti : tu es devenu un véritable Architecte du Web libre. Clique sur 'Vérifier mon code' pour sceller ton couronnement...",
+    riddle: "Vérifie que l'ensemble des 5 fichiers du sanctuaire est complet et relié pour déclencher l'épilogue triomphal.",
+    secretTip: "Vérifie que index.html relie bien style.css et script.js !",
+    instructions: [
+      "Vérifie que tes fichiers sont ordonnés et exempts d'erreurs.",
+      "Teste la navigation et l'interactivité dans la prévisualisation.",
+      "Clique sur 'Vérifier mon code' pour contempler l'Ascension finale et obtenir ton diplôme sacré !"
+    ],
+    starterFiles: getFilesForStep(40),
+    check(files) {
+      for (const name of ['index.html', 'chroniques.html', 'galerie.html', 'contact.html']) {
+        const content = files[name] || '';
+        if (!content.includes('style.css')) {
+          return { pass: false, message: `Il manque la liaison vers style.css dans ${name} !` };
+        }
+      }
+      if (!(files['index.html'] || '').includes('script.js')) {
+        return { pass: false, message: "Il manque la liaison vers script.js dans index.html !" };
+      }
+      return {
+        pass: true,
         revelation: true,
-        message: "Tu as tout appris par toi-même, pas à pas, avec humilité et persévérance. De la première ligne vide jusqu'au réseau complet de 4 pages réactives, animées et accessibles. Tu as redonné vie au Sanctuaire et sauvé la mémoire de Bodhi. Le Web libre a trouvé son nouveau gardien."
+        message: "TRIOMPHE ABSOLU ! NULL a rangé son aspirateur avec un grand sourire soulagé sous sa moustache. Bodhi est transcendé dans la lumière dorée. Tu as maîtrisé la Sainte Trinité du Web : le HTML, le CSS et le JavaScript. Le Sanctuaire est sauvé à jamais !"
       };
     }
   }

@@ -97,7 +97,10 @@ export class VSCodeEditor {
 
   getMode() {
     if (!this.activeFile) return 'html';
-    return this.activeFile.endsWith('.css') ? 'css' : 'html';
+    const lower = this.activeFile.toLowerCase();
+    if (lower.endsWith('.css')) return 'css';
+    if (lower.endsWith('.js')) return 'javascript';
+    return 'html';
   }
 
   syncActiveBuffer() {
@@ -149,8 +152,8 @@ export class VSCodeEditor {
     if (!rawName) return { success: false, message: "Le nom du fichier ne peut pas être vide." };
     const name = rawName.trim().toLowerCase();
 
-    if (!name.endsWith('.html') && !name.endsWith('.css')) {
-      return { success: false, message: "L'extension doit être .html (page web) ou .css (feuille de style)." };
+    if (!name.endsWith('.html') && !name.endsWith('.css') && !name.endsWith('.js')) {
+      return { success: false, message: "L'extension doit être .html, .css ou .js (script dynamique)." };
     }
 
     if (this.files[name] !== undefined) {
@@ -757,6 +760,7 @@ export class VSCodeEditor {
     this.syncActiveBuffer();
     const pageHtml = this.files[this.activePreviewPage] || '';
     const globalCss = this.files['style.css'] || '';
+    const globalJs = this.files['script.js'] || '';
 
     // Extraction du titre pour le mini-navigateur
     const titleMatch = pageHtml.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
@@ -824,6 +828,14 @@ export class VSCodeEditor {
       } else {
         documentContent = `<style id="virtual-style">\n${globalCss}\n</style>\n` + processedHtml;
       }
+
+      if (globalJs) {
+        if (documentContent.includes('</body>')) {
+          documentContent = documentContent.replace('</body>', `<script id="virtual-script">\ntry {\n${globalJs}\n} catch(err) { console.error("Script error:", err); }\n</script>\n</body>`);
+        } else {
+          documentContent += `\n<script id="virtual-script">\ntry {\n${globalJs}\n} catch(err) { console.error("Script error:", err); }\n</script>`;
+        }
+      }
     } else {
       documentContent = `<!DOCTYPE html>
 <html lang="fr">
@@ -845,6 +857,7 @@ ${globalCss}
 </head>
 <body>
 ${pageHtml}
+${globalJs ? `<script id="virtual-script">\ntry {\n${globalJs}\n} catch(err) { console.error("Script error:", err); }\n</script>` : ''}
 </body>
 </html>`;
     }

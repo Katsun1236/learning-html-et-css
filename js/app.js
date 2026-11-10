@@ -12,6 +12,8 @@ import { fireConfetti } from './confetti.js';
 import { sound } from './audio.js';
 import { CinematicIntro } from './cinematic.js';
 import { BodhiDialogueEngine } from './dialogue-box.js';
+import { NotableEventsEngine } from './notable-events.js';
+import { relicsManager } from './relics-system.js';
 
 class SanctuaireApp {
   constructor() {
@@ -27,6 +29,9 @@ class SanctuaireApp {
     this.initSplitResizer();
     this.initCinematic();
     this.initCheatsheet();
+    this.initNotableEvents();
+    this.initRelicsSystem();
+    this.initExportSystem();
     this.bindEvents();
 
     this.loadSavedProgress();
@@ -411,6 +416,10 @@ class SanctuaireApp {
     // Bodhi avec déblocage progressif des questions
     this.bodhi.loadStep(step, MULTIPAGE_STEPS.length, this.highestUnlockedStep);
 
+    if (this.relics) {
+      this.relics.setCurrentStep(step.number);
+    }
+
     // Navigation sereine
     if (this.el.bodhiNextBtn) {
       const canAdvance = this.currentStepIndex < this.highestUnlockedStep;
@@ -442,6 +451,23 @@ class SanctuaireApp {
 
   validateCurrentStep() {
     const files = this.editor.getFiles();
+
+    // =========================================================================
+    // DÉBOGAGE D'URGENCE LORS D'UN ÉVÉNEMENT NOTABLE (NULL)
+    // =========================================================================
+    if (this.notableEvents && this.notableEvents.activeEvent) {
+      const res = this.notableEvents.checkEventResolution(files);
+      if (res && res.pass) {
+        fireConfetti();
+        this.notableEvents.resolveActiveEvent();
+        this.showToast(res.message, "success");
+      } else {
+        this.bodhi.onValidationFailure(res ? res.message : "Le code injecté par NULL n'est toujours pas réparé !");
+        this.showToast("La purge approche : répare le code !", "error");
+      }
+      return;
+    }
+
     const allCodeCombined = Object.values(files).join(' ') + ' ' + (this.editor.textarea ? this.editor.textarea.value : '');
     const lowerCombined = allCodeCombined.toLowerCase();
 
@@ -508,6 +534,16 @@ class SanctuaireApp {
 
     if (result.pass) {
       fireConfetti();
+
+      // Déclencheur inopiné : Événement Notable de maintenance (NULL)
+      if (this.notableEvents && this.notableEvents.hasPendingEvent(step.number)) {
+        const ev = this.notableEvents.getEventForStep(step.number);
+        this.showToast("Incident système détecté...", "error");
+        setTimeout(() => {
+          this.notableEvents.triggerEvent(ev);
+        }, 1200);
+        return;
+      }
 
       const nextIndex = this.currentStepIndex + 1;
       const isFinal = nextIndex >= MULTIPAGE_STEPS.length;
@@ -690,6 +726,62 @@ class SanctuaireApp {
   /* ===========================================================================
      L'INTERNET DE MAÎTRE BODHI (ENCYCLOPÉDIE VIVANTE & CHRONIQUES HISTORIQUES)
      =========================================================================== */
+
+  initNotableEvents() {
+    this.notableEvents = new NotableEventsEngine(this);
+  }
+
+  initRelicsSystem() {
+    this.relics = relicsManager;
+    const headerBtn = document.getElementById('open-relics-btn');
+    if (headerBtn) {
+      headerBtn.addEventListener('click', () => {
+        this.relics.open();
+      });
+    }
+
+    const bodhiRelicsBtn = document.getElementById('bodhi-relics-btn');
+    if (bodhiRelicsBtn) {
+      bodhiRelicsBtn.addEventListener('click', () => {
+        this.relics.open();
+      });
+    }
+  }
+
+  initExportSystem() {
+    const exportBtn = document.getElementById('export-project-btn');
+    if (!exportBtn) return;
+
+    exportBtn.addEventListener('click', () => {
+      sound.playClick();
+      const files = this.editor.getFiles();
+      const fileNames = Object.keys(files);
+
+      if (fileNames.length === 0) {
+        this.showToast("Aucun fichier à exporter pour le moment.", "info");
+        return;
+      }
+
+      // Exportation directe : création d'un ensemble de téléchargements ou archive
+      fileNames.forEach((name, i) => {
+        setTimeout(() => {
+          const content = files[name] || '';
+          const mime = name.endsWith('.html') ? 'text/html' : (name.endsWith('.css') ? 'text/css' : 'application/javascript');
+          const blob = new Blob([content], { type: `${mime};charset=utf-8` });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = name;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }, i * 180);
+      });
+
+      this.showToast(`Exportation lancée (${fileNames.length} fichiers du Sanctuaire) !`, "success");
+    });
+  }
 
   initCheatsheet() {
     this.selectedInternetCategory = 'all';

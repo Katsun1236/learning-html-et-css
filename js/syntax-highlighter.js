@@ -12,8 +12,10 @@ function escapeHtml(str) {
 
 export function highlightCode(code, fileName = 'index.html') {
   if (!code) return '';
-  const isCss = fileName.toLowerCase().endsWith('.css');
-  return isCss ? highlightCSS(code) : highlightHTML(code);
+  const lower = fileName.toLowerCase();
+  if (lower.endsWith('.css')) return highlightCSS(code);
+  if (lower.endsWith('.js')) return highlightJS(code);
+  return highlightHTML(code);
 }
 
 function highlightHTML(code) {
@@ -184,6 +186,104 @@ function highlightCSS(code) {
     }
 
     // 8. Espaces ou autres caractères
+    result += escapeHtml(code[i]);
+    i++;
+  }
+
+  return result;
+}
+
+function highlightJS(code) {
+  let result = '';
+  let i = 0;
+  const len = code.length;
+
+  const JS_KEYWORDS = new Set([
+    'const', 'let', 'var', 'function', 'return', 'if', 'else', 'for', 'while',
+    'try', 'catch', 'finally', 'async', 'await', 'import', 'export', 'default',
+    'class', 'new', 'this', 'typeof', 'instanceof', 'void', 'switch', 'case', 'break'
+  ]);
+
+  const JS_BUILTINS = new Set([
+    'document', 'window', 'localStorage', 'sessionStorage', 'console', 'Math',
+    'JSON', 'Array', 'Object', 'String', 'Number', 'Boolean', 'Promise', 'fetch', 'setTimeout'
+  ]);
+
+  while (i < len) {
+    // 1. Commentaires // ... ou /* ... */
+    if (code.startsWith('//', i)) {
+      const end = code.indexOf('\n', i);
+      const comment = end !== -1 ? code.slice(i, end) : code.slice(i);
+      result += `<span class="token-comment">${escapeHtml(comment)}</span>`;
+      i += comment.length;
+      continue;
+    }
+    if (code.startsWith('/*', i)) {
+      const end = code.indexOf('*/', i);
+      const comment = end !== -1 ? code.slice(i, end + 2) : code.slice(i);
+      result += `<span class="token-comment">${escapeHtml(comment)}</span>`;
+      i += comment.length;
+      continue;
+    }
+
+    // 2. Chaînes de caractères ("...", '...', `...`)
+    if (code[i] === '"' || code[i] === "'" || code[i] === '`') {
+      const q = code[i];
+      let end = i + 1;
+      while (end < len && code[end] !== q) {
+        if (code[end] === '\\') end++;
+        end++;
+      }
+      const str = code.slice(i, end + 1);
+      result += `<span class="token-string">${escapeHtml(str)}</span>`;
+      i += str.length;
+      continue;
+    }
+
+    // 3. Nombres (123, 0.5, etc.)
+    const numMatch = code.slice(i).match(/^([0-9]*\.?[0-9]+)\b/);
+    if (numMatch && (i === 0 || /[\s:,(=\-+*\/]/.test(code[i - 1]))) {
+      result += `<span class="token-number">${escapeHtml(numMatch[1])}</span>`;
+      i += numMatch[1].length;
+      continue;
+    }
+
+    // 4. Opérateurs et ponctuation
+    if (/[{}();:,.[\]]/.test(code[i])) {
+      result += `<span class="token-punctuation">${code[i]}</span>`;
+      i++;
+      continue;
+    }
+
+    if (/[=+\-*\/%&|!<>?]/.test(code[i])) {
+      result += `<span class="token-operator">${escapeHtml(code[i])}</span>`;
+      i++;
+      continue;
+    }
+
+    // 5. Identifiants & mots-clés
+    const idMatch = code.slice(i).match(/^[a-zA-Z_$][a-zA-Z0-9_$]*/);
+    if (idMatch) {
+      const word = idMatch[0];
+      const after = code.slice(i + word.length).trimStart();
+
+      if (JS_KEYWORDS.has(word)) {
+        result += `<span class="token-keyword">${escapeHtml(word)}</span>`;
+      } else if (JS_BUILTINS.has(word)) {
+        result += `<span class="token-variable">${escapeHtml(word)}</span>`;
+      } else if (word === 'true' || word === 'false' || word === 'null' || word === 'undefined') {
+        result += `<span class="token-value">${escapeHtml(word)}</span>`;
+      } else if (after.startsWith('(')) {
+        // Appel de fonction / méthode
+        result += `<span class="token-function">${escapeHtml(word)}</span>`;
+      } else {
+        result += `<span class="token-attr-name">${escapeHtml(word)}</span>`;
+      }
+      i += word.length;
+      continue;
+    }
+
+    // 6. Autres
     result += escapeHtml(code[i]);
     i++;
   }

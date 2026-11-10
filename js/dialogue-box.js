@@ -20,7 +20,32 @@ export const BODHI_POSES = {
   zen: 'assets/characters/bodhi_zen.jpg',
   emotional: 'assets/characters/bodhi_emotional.jpg',
   sleeping: 'assets/characters/bodhi_sleeping.jpg',
-  laughing: 'assets/characters/bodhi_laughing.jpg'
+  laughing: 'assets/characters/bodhi_laughing.jpg',
+  weak: 'assets/characters/bodhi_weak.jpg',
+  glitch: 'assets/characters/bodhi_glitch.jpg',
+  ascended: 'assets/characters/bodhi_ascended.jpg'
+};
+
+export const NULL_POSES = {
+  neutral: 'assets/characters/null_neutral.jpg',
+  action: 'assets/characters/null_action.jpg',
+  purge: 'assets/characters/null_action.jpg',
+  inspect: 'assets/characters/null_inspect.jpg',
+  relieved: 'assets/characters/null_relieved.jpg'
+};
+
+export const ADA_POSES = {
+  neutral: 'assets/characters/ada_neutral.jpg',
+  serious: 'assets/characters/ada_serious.jpg',
+  shocked: 'assets/characters/ada_shocked.jpg',
+  thinking: 'assets/characters/ada_thinking.jpg',
+  smile: 'assets/characters/ada_smile.jpg'
+};
+
+export const ALL_CHARACTERS = {
+  bodhi: { name: 'MAÎTRE BODHI', poses: BODHI_POSES },
+  null: { name: 'NULL (MAINTENANCE)', poses: NULL_POSES },
+  ada: { name: 'ADA (RUNTIME)', poses: ADA_POSES }
 };
 
 export class BodhiDialogueEngine {
@@ -708,21 +733,37 @@ export class BodhiDialogueEngine {
     }
   }
 
-  setPose(poseName) {
+  setPose(poseName, character = 'bodhi') {
     if (!this.avatarContainer) return;
-    const src = BODHI_POSES[poseName] || BODHI_POSES.neutral;
+    this.currentCharacter = character || 'bodhi';
+    const charData = ALL_CHARACTERS[this.currentCharacter] || ALL_CHARACTERS.bodhi;
+    let src = charData.poses[poseName] || charData.poses.neutral;
+
+    // Fallback si la pose demandée est une pose Bodhi sur un autre perso ou vice-versa
+    if (!src) {
+      src = BODHI_POSES[poseName] || BODHI_POSES.neutral;
+    }
+
     this.currentPose = poseName;
 
     let img = this.avatarContainer.querySelector('.bodhi-avatar-img');
     if (!img) {
-      this.avatarContainer.innerHTML = `<img src="${src}" alt="Maître Bodhi" class="bodhi-avatar-img">`;
+      this.avatarContainer.innerHTML = `<img src="${src}" alt="${charData.name}" class="bodhi-avatar-img">`;
     } else if (img.getAttribute('src') !== src) {
       img.src = src;
+      img.alt = charData.name;
     }
 
     this.avatarContainer.classList.remove('bodhi-pop');
     void this.avatarContainer.offsetWidth; // reflow
     this.avatarContainer.classList.add('bodhi-pop');
+  }
+
+  setSpeaker(name, poseName, character = 'bodhi') {
+    if (this.nameBadge && name) {
+      this.nameBadge.textContent = name;
+    }
+    this.setPose(poseName, character);
   }
 
   loadStep(step, totalSteps, highestUnlockedStep = 0) {
@@ -731,11 +772,11 @@ export class BodhiDialogueEngine {
     this.highestUnlockedStep = highestUnlockedStep;
     this.showingHint = false;
 
-    this.setPose('neutral');
+    const char = step.character || 'bodhi';
+    const pose = step.pose || 'neutral';
+    const speaker = step.speaker || (ALL_CHARACTERS[char] ? ALL_CHARACTERS[char].name : "MAÎTRE BODHI");
 
-    if (this.nameBadge) {
-      this.nameBadge.textContent = "MAÎTRE BODHI";
-    }
+    this.setSpeaker(speaker, pose, char);
 
     if (this.stepBadge) {
       this.stepBadge.style.display = 'none';
