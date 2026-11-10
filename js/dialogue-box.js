@@ -9,15 +9,15 @@ import { storage } from './storage.js';
 import { enrichWithGlossary, getGlossaryItem } from './glossary-data.js';
 
 export const BODHI_POSES = {
-  neutral: 'assets/characters/bodhi_neutral.png',
-  thinking: 'assets/characters/bodhi_thinking.png',
-  secret: 'assets/characters/bodhi_secret.png',
-  thumbs_up: 'assets/characters/bodhi_thumbs_up.png',
-  shocked: 'assets/characters/bodhi_shocked.png',
-  code_magic: 'assets/characters/bodhi_code_magic.png',
-  pointing: 'assets/characters/bodhi_pointing.png',
-  scroll: 'assets/characters/bodhi_scroll.png',
-  zen: 'assets/characters/bodhi_zen.png',
+  neutral: 'assets/characters/bodhi_neutral.jpg',
+  thinking: 'assets/characters/bodhi_thinking.jpg',
+  secret: 'assets/characters/bodhi_secret.jpg',
+  thumbs_up: 'assets/characters/bodhi_thumbs_up.jpg',
+  shocked: 'assets/characters/bodhi_shocked.jpg',
+  code_magic: 'assets/characters/bodhi_code_magic.jpg',
+  pointing: 'assets/characters/bodhi_pointing.jpg',
+  scroll: 'assets/characters/bodhi_scroll.jpg',
+  zen: 'assets/characters/bodhi_zen.jpg',
   emotional: 'assets/characters/bodhi_emotional.jpg',
   sleeping: 'assets/characters/bodhi_sleeping.jpg',
   laughing: 'assets/characters/bodhi_laughing.jpg'
@@ -652,9 +652,12 @@ export class BodhiDialogueEngine {
     const src = BODHI_POSES[poseName] || BODHI_POSES.neutral;
     this.currentPose = poseName;
 
-    this.avatarContainer.innerHTML = `
-      <img src="${src}" alt="Maître Bodhi" class="bodhi-avatar-img">
-    `;
+    let img = this.avatarContainer.querySelector('.bodhi-avatar-img');
+    if (!img) {
+      this.avatarContainer.innerHTML = `<img src="${src}" alt="Maître Bodhi" class="bodhi-avatar-img">`;
+    } else if (img.getAttribute('src') !== src) {
+      img.src = src;
+    }
 
     this.avatarContainer.classList.remove('bodhi-pop');
     void this.avatarContainer.offsetWidth; // reflow

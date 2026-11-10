@@ -14,32 +14,46 @@ export class CinematicIntro {
 
     this.scenes = [
       {
-        pose: 'assets/characters/bodhi_neutral.png',
-        bg: 'assets/backgrounds/sanctuary_dawn.png',
+        pose: 'assets/characters/bodhi_neutral.jpg',
+        bg: 'assets/backgrounds/sanctuary_dawn.jpg',
         quote: "« Tu franchis ce seuil les mains nues, sans certitudes... et c'est la plus grande de tes forces. »",
         sub: "Tu arrives dans le Sanctuaire en simple apprenti. Autour de toi, les vestiges de vieux sites web abandonnés s'étendent à perte de vue."
       },
       {
-        pose: 'assets/characters/bodhi_scroll.png',
-        bg: 'assets/backgrounds/library_vault.png',
+        pose: 'assets/characters/bodhi_scroll.jpg',
+        bg: 'assets/backgrounds/library_vault.jpg',
         quote: "« J'ai moi aussi débuté dans l'ignorance. J'ai connu le chaos des guerres de navigateurs, des nuits entières à réparer du code brisé et des échecs cuisants. »",
         sub: "Maître Bodhi déroule un parchemin d'archives. « J'ai vu des temples entiers s'effondrer parce que leurs fondations étaient bancales. C'est de mes erreurs que j'ai forgé ma maîtrise. »"
       },
       {
-        pose: 'assets/characters/bodhi_code_magic.png',
-        bg: 'assets/backgrounds/stellar_city.png',
+        pose: 'assets/characters/bodhi_code_magic.jpg',
+        bg: 'assets/backgrounds/stellar_city.jpg',
         quote: "« Je ne cherche pas un prodige né, mais un compagnon courageux prêt à apprendre pas à pas la vérité du Web. »",
         sub: "« À chaque défi, je te raconterai mes combats, mes doutes, et comment la rigueur du HTML et du CSS m'a sauvé. Tu vas forger tes propres armes. »"
       },
       {
-        pose: 'assets/characters/bodhi_thumbs_up.png',
-        bg: 'assets/backgrounds/sanctuary_dawn.png',
+        pose: 'assets/characters/bodhi_thumbs_up.jpg',
+        bg: 'assets/backgrounds/sanctuary_dawn.jpg',
         quote: "« Prends place devant ton éditeur, apprenti. Ensemble, posons ta toute première pierre. »",
         sub: "Clique sur 'Commencer la construction' pour débuter ton apprentissage."
       }
     ];
 
+    this.preloadAll();
     this.bindControls();
+  }
+
+  preloadAll() {
+    this.scenes.forEach(scene => {
+      if (scene.pose) {
+        const img = new Image();
+        img.src = scene.pose;
+      }
+      if (scene.bg) {
+        const bg = new Image();
+        bg.src = scene.bg;
+      }
+    });
   }
 
   bindControls() {
@@ -109,7 +123,20 @@ export class CinematicIntro {
     }
 
     if (avatarEl) {
-      avatarEl.innerHTML = `<img src="${scene.pose}" alt="Maître Bodhi" class="cinematic-portrait-img">`;
+      let portraitImg = avatarEl.querySelector('.cinematic-portrait-img');
+      if (!portraitImg) {
+        avatarEl.innerHTML = `<img src="${scene.pose}" alt="Maître Bodhi" class="cinematic-portrait-img">`;
+      } else if (portraitImg.getAttribute('src') !== scene.pose) {
+        // Pré-chargement sécurisé pour éviter tout cercle noir vide lors du changement de slide
+        const nextImg = new Image();
+        nextImg.onload = () => {
+          portraitImg.src = scene.pose;
+        };
+        nextImg.src = scene.pose;
+        if (nextImg.complete) {
+          portraitImg.src = scene.pose;
+        }
+      }
     }
 
     if (nextBtn) {
@@ -123,7 +150,6 @@ export class CinematicIntro {
     }
 
     sound.playClick();
-    // AUCUN défilement automatique avec timer : le joueur avance à son rythme !
   }
 
   next() {

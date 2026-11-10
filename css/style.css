@@ -1310,13 +1310,17 @@ body {
   border: 3px solid var(--amber-primary);
   box-shadow: 0 10px 30px var(--amber-glow);
   margin-bottom: 24px;
-  background: #1e293b;
+  background: #1e293b url('../assets/characters/bodhi_neutral.jpg') center/cover no-repeat;
+  position: relative;
+  display: inline-block;
 }
 
 .cinematic-portrait-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+  transition: opacity 0.2s ease;
 }
 
 .cinematic-quote {
