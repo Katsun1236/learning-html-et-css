@@ -3,6 +3,741 @@
 // 24 ÉTAPES PROGRESSIVES DU NÉANT ABSOLU AU CHEF-D'ŒUVRE COMPLET
 // =============================================================================
 
+// =============================================================================
+// MODÈLES CANONIQUES CUMULATIFS COMPLETS POUR CHAQUE ÉTAPE (1 À 36)
+// =============================================================================
+
+// We define the canonical progression of all 5 files across the 36 steps.
+
+// === 1. INDEX.HTML PROGRESSION ===
+const INDEX_S1 = `<!DOCTYPE html>
+<html lang="fr">
+</html>`;
+
+const INDEX_S2 = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Le Sanctuaire du Savoir</title>
+</head>
+</html>`;
+
+const INDEX_S3 = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Le Sanctuaire du Savoir</title>
+</head>
+<body>
+
+  <header>
+    <h1>Le Sanctuaire du Savoir</h1>
+    <p>L'académie sacrée où l'art du code pur reprend vie.</p>
+  </header>
+
+</body>
+</html>`;
+
+const INDEX_S4 = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Le Sanctuaire du Savoir</title>
+</head>
+<body>
+
+  <header>
+    <h1>Le Sanctuaire du Savoir</h1>
+    <p>L'académie sacrée où l'art du code pur reprend vie.</p>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="chroniques.html">Chroniques</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+</body>
+</html>`;
+
+const INDEX_S5 = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Le Sanctuaire du Savoir</title>
+</head>
+<body>
+
+  <header>
+    <h1>Le Sanctuaire du Savoir</h1>
+    <p>L'académie sacrée où l'art du code pur reprend vie.</p>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="chroniques.html">Chroniques</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Présentation du Sanctuaire</h2>
+      <article>
+        <p>Ce lieu fut érigé pour rappeler aux esprits curieux que le Web appartient à ceux qui apprennent à le bâtir par eux-mêmes, brique par brique, sans dépendre d'artifices éphémères.</p>
+      </article>
+    </section>
+  </main>
+
+</body>
+</html>`;
+
+const INDEX_S6 = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Le Sanctuaire du Savoir</title>
+</head>
+<body>
+
+  <header>
+    <h1>Le Sanctuaire du Savoir</h1>
+    <p>L'académie sacrée où l'art du code pur reprend vie.</p>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="chroniques.html">Chroniques</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Présentation du Sanctuaire</h2>
+      <article>
+        <p>Ce lieu fut érigé pour rappeler aux esprits curieux que le Web appartient à ceux qui apprennent à le bâtir par eux-mêmes, brique par brique, sans dépendre d'artifices éphémères.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Le Sanctuaire du Savoir — Conçu avec sagesse et code pur.</p>
+  </footer>
+
+</body>
+</html>`;
+
+const INDEX_S13 = INDEX_S6.replace(
+  '<title>Le Sanctuaire du Savoir</title>',
+  '<title>Le Sanctuaire du Savoir</title>\n  <link rel="stylesheet" href="style.css">'
+);
+
+const INDEX_S25 = INDEX_S13.replace(
+  '<main>',
+  `<main>
+    <div class="hero">
+      <span class="hero-badge">Sanctuaire Ouvert</span>
+      <h2 class="hero-title">L'Académie du Code Éternel</h2>
+      <p class="hero-subtitle">Apprends les fondations du Web aux côtés des anciens bâtisseurs.</p>
+    </div>`
+);
+
+const INDEX_S27 = INDEX_S25.replace(
+  '    </section>',
+  `    </section>
+
+    <div class="card-grid">
+      <article class="card">
+        <h3>Sagesse du HTML</h3>
+        <p>La sémantique pure qui donne un sens éternel à chaque octet de contenu.</p>
+      </article>
+      <article class="card">
+        <h3>Structure & Flux</h3>
+        <p>L'harmonie de Flexbox et de la Grille qui ordonne l'univers visuel.</p>
+      </article>
+      <article class="card">
+        <h3>Éclat du CSS</h3>
+        <p>Les teintes profondes et les animations douces qui enchantent le visiteur.</p>
+      </article>
+    </div>`
+);
+
+// === 2. CHRONIQUES.HTML PROGRESSION ===
+const CHRONIQUES_S7 = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Les Chroniques du Web</title>
+</head>
+<body>
+
+  <header>
+    <h1>Les Chroniques du Web</h1>
+  </header>
+
+</body>
+</html>`;
+
+const CHRONIQUES_S8 = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Les Chroniques du Web</title>
+</head>
+<body>
+
+  <header>
+    <h1>Les Chroniques du Web</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="chroniques.html">Chroniques</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+</body>
+</html>`;
+
+const CHRONIQUES_S9 = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Les Chroniques du Web</title>
+</head>
+<body>
+
+  <header>
+    <h1>Les Chroniques du Web</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="chroniques.html">Chroniques</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Les Âges du Réseau</h2>
+      <ul>
+        <li><strong>L'Ère du Texte Brut (1990) :</strong> Les premiers hyperliens inventés au CERN par Tim Berners-Lee.</li>
+        <li><strong>La Guerre des Navigateurs (1995) :</strong> L'affrontement titanesque entre Netscape et Internet Explorer.</li>
+        <li><strong>L'Harmonie des Standards (2000+) :</strong> L'avènement du W3C et des feuilles de style CSS universelles.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Le Sanctuaire du Savoir — Conçu avec sagesse et code pur.</p>
+  </footer>
+
+</body>
+</html>`;
+
+const CHRONIQUES_S13 = CHRONIQUES_S9.replace(
+  '<title>Les Chroniques du Web</title>',
+  '<title>Les Chroniques du Web</title>\n  <link rel="stylesheet" href="style.css">'
+);
+
+const CHRONIQUES_S29 = CHRONIQUES_S13.replace(
+  '    </section>',
+  `      <blockquote>
+        « Le code n'appartient à personne et appartient à tous. C'est en le partageant sans barrières que nous élevons l'humanité. »
+        <cite>— Le Premier Architecte du Web (1991)</cite>
+      </blockquote>
+    </section>`
+);
+
+// === 3. GALERIE.HTML PROGRESSION ===
+const GALERIE_S10 = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Galerie des Bâtisseurs</title>
+</head>
+<body>
+
+  <header>
+    <h1>Galerie des Bâtisseurs</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="chroniques.html">Chroniques</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Fresques du Premier Siècle</h2>
+    </section>
+  </main>
+
+</body>
+</html>`;
+
+const GALERIE_S11 = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Galerie des Bâtisseurs</title>
+</head>
+<body>
+
+  <header>
+    <h1>Galerie des Bâtisseurs</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="chroniques.html">Chroniques</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Fresques du Premier Siècle</h2>
+      <div class="galerie-conteneur">
+        <figure>
+          <img src="assets/gallery/tree_dom.png" alt="L'Arbre du DOM">
+          <figcaption>L'Arbre Sacré du DOM : la hiérarchie des balises vivantes.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/gallery/cascades_css.png" alt="Les Cascades CSS">
+          <figcaption>Les Cascades de Style : la beauté héritée des propriétés.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/gallery/hyperlink_bridge.png" alt="Le Pont Hypertexte">
+          <figcaption>Le Pont Hypertexte : reliant les mondes distants en un clic.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/gallery/messenger_envoy.png" alt="L'Envoyé Messager">
+          <figcaption>L'Envoyé du Réseau : délivrant les formulaires au serveur.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Le Sanctuaire du Savoir — Conçu avec sagesse et code pur.</p>
+  </footer>
+
+</body>
+</html>`;
+
+const GALERIE_S13 = GALERIE_S11.replace(
+  '<title>Galerie des Bâtisseurs</title>',
+  '<title>Galerie des Bâtisseurs</title>\n  <link rel="stylesheet" href="style.css">'
+);
+
+// === 4. CONTACT.HTML PROGRESSION ===
+const CONTACT_S12 = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Contacter le Sanctuaire</title>
+</head>
+<body>
+
+  <header>
+    <h1>Contacter le Sanctuaire</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="chroniques.html">Chroniques</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Envoyer un Parchemin à Maître Bodhi</h2>
+      <form action="#" method="post">
+        <label for="nom">Ton nom d'apprenti :</label>
+        <input type="text" id="nom" name="nom" placeholder="Ex: Scribe du Web">
+
+        <label for="email">Ton adresse de contact :</label>
+        <input type="email" id="email" name="email" placeholder="nom@domaine.org">
+
+        <label for="message">Ton message pour le sanctuaire :</label>
+        <textarea id="message" name="message" rows="5" placeholder="Écris ton message ici..."></textarea>
+
+        <button type="submit">Envoyer le message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Le Sanctuaire du Savoir — Conçu avec sagesse et code pur.</p>
+  </footer>
+
+</body>
+</html>`;
+
+const CONTACT_S13 = CONTACT_S12.replace(
+  '<title>Contacter le Sanctuaire</title>',
+  '<title>Contacter le Sanctuaire</title>\n  <link rel="stylesheet" href="style.css">'
+);
+
+// === 5. STYLE.CSS PROGRESSION ===
+const STYLE_S13 = `/* Feuille de style du Sanctuaire */`;
+
+const STYLE_S14 = `* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}`;
+
+const STYLE_S15 = STYLE_S14 + `\n
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #0f172a;
+  color: #f8fafc;
+  line-height: 1.6;
+}`;
+
+const STYLE_S16 = STYLE_S15 + `\n
+section {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  padding: 28px;
+  max-width: 800px;
+  margin: 24px auto;
+  border-radius: 14px;
+}`;
+
+const STYLE_S17 = STYLE_S16 + `\n
+header {
+  background-color: #1e293b;
+  padding: 24px 20px;
+  text-align: center;
+  border-bottom: 2px solid #334155;
+}
+
+nav a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 14px;
+}
+
+nav a:hover {
+  color: #f59e0b;
+}`;
+
+const STYLE_S18 = STYLE_S17.replace(
+  'border-radius: 14px;',
+  'border-radius: 14px;\n  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);'
+);
+
+const STYLE_S19 = STYLE_S18.replace(
+  'header {',
+  `nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-top: 14px;
+}
+
+header {`
+);
+
+const STYLE_S20 = STYLE_S19 + `\n
+.galerie-conteneur {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+figure {
+  background: #0f172a;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+}
+
+figure img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+figcaption {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-top: 8px;
+  text-align: center;
+}`;
+
+const STYLE_S21 = STYLE_S20 + `\n
+form {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+input, textarea {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #f8fafc;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+button {
+  background: #f59e0b;
+  color: #1e293b;
+  font-weight: 800;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}`;
+
+const STYLE_S22 = STYLE_S21.replace(
+  'nav a {',
+  'nav a {\n  transition: color 0.2s;'
+).replace(
+  'border: 1px solid #334155;\n}',
+  `border: 1px solid #334155;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+figure:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+}`
+).replace(
+  'font-size: 1rem;\n}',
+  `font-size: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4);
+}`
+);
+
+const STYLE_S23 = STYLE_S22 + `\n
+footer {
+  text-align: center;
+  padding: 24px;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  section {
+    margin: 16px 12px;
+    padding: 20px;
+  }
+}`;
+
+const STYLE_S24 = `:root {
+  --gold-primary: #f59e0b;
+  --bg-main: #0f172a;
+  --text-main: #f8fafc;
+}
+
+` + STYLE_S23;
+
+const STYLE_S26 = STYLE_S24 + `\n
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  border-bottom: 1px solid #334155;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid var(--gold-primary, #f59e0b);
+  border-radius: 20px;
+  color: var(--gold-primary, #f59e0b);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}`;
+
+const STYLE_S28 = STYLE_S26 + `\n
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 960px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+.card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-primary, #f59e0b);
+}`;
+
+const STYLE_S30 = STYLE_S28 + `\n
+blockquote {
+  border-left: 4px solid var(--gold-primary, #f59e0b);
+  padding: 18px 24px;
+  margin: 24px 0;
+  background: rgba(245, 158, 11, 0.05);
+  border-radius: 0 10px 10px 0;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #e2e8f0;
+}
+
+blockquote cite {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  font-style: normal;
+  color: var(--gold-primary, #f59e0b);
+  font-weight: 700;
+}`;
+
+const STYLE_S31 = STYLE_S30.replace(
+  'figure {',
+  'figure {\n  overflow: hidden;'
+).replace(
+  'figure:hover {',
+  'figure:hover img {\n  transform: scale(1.08);\n}\n\nfigure:hover {'
+);
+
+const STYLE_S32 = STYLE_S31 + `\n
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--gold-primary, #f59e0b);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);
+}
+
+form:focus-within {
+  border-color: var(--gold-primary, #f59e0b);
+}`;
+
+const STYLE_S33 = STYLE_S32 + `\n
+@keyframes beaconPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 14px 4px rgba(245, 158, 11, 0.3);
+  }
+}
+
+.hero-badge {
+  animation: beaconPulse 3s infinite ease-in-out;
+}`;
+
+const STYLE_S34 = STYLE_S33.replace(
+  'header {',
+  `header {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(30, 41, 59, 0.85);
+  z-index: 100;`
+);
+
+const STYLE_S35 = STYLE_S34 + `\n
+:focus-visible {
+  outline: 2px solid var(--gold-primary, #f59e0b);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}`;
+
+const STYLE_S36 = STYLE_S35;
+
+// Construct map for each step 1..36
+function getFilesForStep(stepNum) {
+  const files = {};
+  
+  // INDEX
+  if (stepNum === 1) files['index.html'] = INDEX_S1;
+  else if (stepNum === 2) files['index.html'] = INDEX_S2;
+  else if (stepNum === 3) files['index.html'] = INDEX_S3;
+  else if (stepNum === 4) files['index.html'] = INDEX_S4;
+  else if (stepNum === 5) files['index.html'] = INDEX_S5;
+  else if (stepNum >= 6 && stepNum <= 12) files['index.html'] = INDEX_S6;
+  else if (stepNum >= 13 && stepNum <= 24) files['index.html'] = INDEX_S13;
+  else if (stepNum === 25 || stepNum === 26) files['index.html'] = INDEX_S25;
+  else files['index.html'] = INDEX_S27; // 27..36
+
+  // CHRONIQUES
+  if (stepNum === 7) files['chroniques.html'] = CHRONIQUES_S7;
+  else if (stepNum === 8) files['chroniques.html'] = CHRONIQUES_S8;
+  else if (stepNum >= 9 && stepNum <= 12) files['chroniques.html'] = CHRONIQUES_S9;
+  else if (stepNum >= 13 && stepNum <= 28) files['chroniques.html'] = CHRONIQUES_S13;
+  else if (stepNum >= 29) files['chroniques.html'] = CHRONIQUES_S29;
+
+  // GALERIE
+  if (stepNum === 10) files['galerie.html'] = GALERIE_S10;
+  else if (stepNum === 11 || stepNum === 12) files['galerie.html'] = GALERIE_S11;
+  else if (stepNum >= 13) files['galerie.html'] = GALERIE_S13;
+
+  // CONTACT
+  if (stepNum === 12) files['contact.html'] = CONTACT_S12;
+  else if (stepNum >= 13) files['contact.html'] = CONTACT_S13;
+
+  // STYLE.CSS
+  if (stepNum === 13) files['style.css'] = STYLE_S13;
+  else if (stepNum === 14) files['style.css'] = STYLE_S14;
+  else if (stepNum === 15) files['style.css'] = STYLE_S15;
+  else if (stepNum === 16) files['style.css'] = STYLE_S16;
+  else if (stepNum === 17) files['style.css'] = STYLE_S17;
+  else if (stepNum === 18) files['style.css'] = STYLE_S18;
+  else if (stepNum === 19) files['style.css'] = STYLE_S19;
+  else if (stepNum === 20) files['style.css'] = STYLE_S20;
+  else if (stepNum === 21) files['style.css'] = STYLE_S21;
+  else if (stepNum === 22) files['style.css'] = STYLE_S22;
+  else if (stepNum === 23) files['style.css'] = STYLE_S23;
+  else if (stepNum === 24 || stepNum === 25) files['style.css'] = STYLE_S24;
+  else if (stepNum === 26 || stepNum === 27) files['style.css'] = STYLE_S26;
+  else if (stepNum === 28 || stepNum === 29) files['style.css'] = STYLE_S28;
+  else if (stepNum === 30) files['style.css'] = STYLE_S30;
+  else if (stepNum === 31) files['style.css'] = STYLE_S31;
+  else if (stepNum === 32) files['style.css'] = STYLE_S32;
+  else if (stepNum === 33) files['style.css'] = STYLE_S33;
+  else if (stepNum === 34) files['style.css'] = STYLE_S34;
+  else if (stepNum >= 35) files['style.css'] = STYLE_S35;
+
+  return files;
+}
+
+export { getFilesForStep as getStepCanonicalFiles };
+
 export const MULTIPAGE_STEPS = [
   // ===========================================================================
   // ACTE I : LE COMMENCEMENT DANS LE NÉANT (index.html)
@@ -22,7 +757,7 @@ export const MULTIPAGE_STEPS = [
       "Dans index.html, écris à la première ligne la déclaration <!DOCTYPE html>.",
       "Ouvre et ferme la balise racine <html lang=\"fr\"></html>."
     ],
-    starterFiles: {},
+    starterFiles: getFilesForStep(1),
     check(files) {
       if (files['index.html'] === undefined) {
         return { pass: false, message: "Tu n'as pas encore créé le fichier index.html. Clique sur '+ Nouveau fichier' au-dessus de l'éditeur pour donner naissance à ton premier parchemin !" };
@@ -54,19 +789,7 @@ export const MULTIPAGE_STEPS = [
       "Définis l'encodage des caractères avec <meta charset=\"UTF-8\">.",
       "Donne un titre à l'onglet avec <title>Le Sanctuaire du Savoir</title>."
     ],
-    starterFiles: {
-      'index.html': `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Le Sanctuaire du Savoir</title>
-</head>
-</html>`,
-      'chroniques.html': '',
-      'galerie.html': '',
-      'contact.html': '',
-      'style.css': ''
-    },
+    starterFiles: getFilesForStep(2),
     check(files) {
       const html = (files['index.html'] || '').toLowerCase();
       if (!html.includes('<head>') || !html.includes('</head>')) {
@@ -97,27 +820,7 @@ export const MULTIPAGE_STEPS = [
       "Dans le body, ajoute la balise sémantique <header></header>.",
       "Dans le header, pose le titre principal <h1>Le Sanctuaire du Savoir</h1> et un paragraphe <p> présentant la devise."
     ],
-    starterFiles: {
-      'index.html': `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Le Sanctuaire du Savoir</title>
-</head>
-<body>
-
-  <header>
-    <h1>Le Sanctuaire du Savoir</h1>
-    <p>L'académie sacrée où l'art du code pur reprend vie.</p>
-  </header>
-
-</body>
-</html>`,
-      'chroniques.html': '',
-      'galerie.html': '',
-      'contact.html': '',
-      'style.css': ''
-    },
+    starterFiles: getFilesForStep(3),
     check(files) {
       const html = files['index.html'] || '';
       const parser = new DOMParser();
@@ -156,33 +859,7 @@ export const MULTIPAGE_STEPS = [
       "Dans le <header>, ajoute une balise sémantique <nav></nav>.",
       "Insère 4 liens <a> : un vers index.html (Accueil), un vers chroniques.html (Chroniques), un vers galerie.html (Galerie) et un vers contact.html (Contact)."
     ],
-    starterFiles: {
-      'index.html': `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Le Sanctuaire du Savoir</title>
-</head>
-<body>
-
-  <header>
-    <h1>Le Sanctuaire du Savoir</h1>
-    <p>L'académie sacrée où l'art du code pur reprend vie.</p>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="chroniques.html">Chroniques</a>
-      <a href="galerie.html">Galerie</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-</body>
-</html>`,
-      'chroniques.html': '',
-      'galerie.html': '',
-      'contact.html': '',
-      'style.css': ''
-    },
+    starterFiles: getFilesForStep(4),
     check(files) {
       const html = files['index.html'] || '';
       const parser = new DOMParser();
@@ -214,42 +891,7 @@ export const MULTIPAGE_STEPS = [
       "Dans ce main, crée une <section> avec un sous-titre <h2>Présentation du Sanctuaire</h2>.",
       "Rédige un <article> contenant au moins un paragraphe <p> présentant l'éveil du web ouvert."
     ],
-    starterFiles: {
-      'index.html': `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Le Sanctuaire du Savoir</title>
-</head>
-<body>
-
-  <header>
-    <h1>Le Sanctuaire du Savoir</h1>
-    <p>L'académie sacrée où l'art du code pur reprend vie.</p>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="chroniques.html">Chroniques</a>
-      <a href="galerie.html">Galerie</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section>
-      <h2>Présentation du Sanctuaire</h2>
-      <article>
-        <p>Ce lieu fut érigé pour rappeler aux esprits curieux que le Web appartient à ceux qui apprennent à le bâtir par eux-mêmes, brique par brique, sans dépendre d'artifices éphémères.</p>
-      </article>
-    </section>
-  </main>
-
-</body>
-</html>`,
-      'chroniques.html': '',
-      'galerie.html': '',
-      'contact.html': '',
-      'style.css': ''
-    },
+    starterFiles: getFilesForStep(5),
     check(files) {
       const html = files['index.html'] || '';
       const parser = new DOMParser();
@@ -280,46 +922,7 @@ export const MULTIPAGE_STEPS = [
       "Après </main>, ouvre et ferme la balise <footer></footer>.",
       "Ajoute un paragraphe <p> avec la mention : « &copy; 2026 Le Sanctuaire du Savoir — Conçu avec sagesse et code pur. »"
     ],
-    starterFiles: {
-      'index.html': `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Le Sanctuaire du Savoir</title>
-</head>
-<body>
-
-  <header>
-    <h1>Le Sanctuaire du Savoir</h1>
-    <p>L'académie sacrée où l'art du code pur reprend vie.</p>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="chroniques.html">Chroniques</a>
-      <a href="galerie.html">Galerie</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section>
-      <h2>Présentation du Sanctuaire</h2>
-      <article>
-        <p>Ce lieu fut érigé pour rappeler aux esprits curieux que le Web appartient à ceux qui apprennent à le bâtir par eux-mêmes, brique par brique, sans dépendre d'artifices éphémères.</p>
-      </article>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 Le Sanctuaire du Savoir — Conçu avec sagesse et code pur.</p>
-  </footer>
-
-</body>
-</html>`,
-      'chroniques.html': '',
-      'galerie.html': '',
-      'contact.html': '',
-      'style.css': ''
-    },
+    starterFiles: getFilesForStep(6),
     check(files) {
       const html = files['index.html'] || '';
       const parser = new DOMParser();
@@ -350,26 +953,7 @@ export const MULTIPAGE_STEPS = [
       "Ajoute un <head> avec <meta charset=\"UTF-8\"> et <title>Les Chroniques du Web</title>.",
       "Ajoute un <body> contenant un <header> avec <h1>Les Chroniques du Web</h1>."
     ],
-    starterFiles: {
-      'index.html': null, // conserve le code de l'élève
-      'chroniques.html': `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Les Chroniques du Web</title>
-</head>
-<body>
-
-  <header>
-    <h1>Les Chroniques du Web</h1>
-  </header>
-
-</body>
-</html>`,
-      'galerie.html': '',
-      'contact.html': '',
-      'style.css': ''
-    },
+    starterFiles: getFilesForStep(7),
     check(files) {
       if (files['chroniques.html'] === undefined) {
         return { pass: false, message: "Tu n'as pas encore créé le fichier chroniques.html. Clique sur '+ Nouveau fichier' au-dessus de l'éditeur pour ouvrir cette nouvelle salle !" };
@@ -403,32 +987,7 @@ export const MULTIPAGE_STEPS = [
       "Dans le <header> de chroniques.html, insère le bloc <nav></nav>.",
       "Ajoute les 4 liens : index.html, chroniques.html, galerie.html, et contact.html."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Les Chroniques du Web</title>
-</head>
-<body>
-
-  <header>
-    <h1>Les Chroniques du Web</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="chroniques.html">Chroniques</a>
-      <a href="galerie.html">Galerie</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-</body>
-</html>`,
-      'galerie.html': '',
-      'contact.html': '',
-      'style.css': ''
-    },
+    starterFiles: getFilesForStep(8),
     check(files) {
       if (files['chroniques.html'] === undefined) {
         return { pass: false, message: "Tu n'as pas encore créé le fichier chroniques.html. Clique sur '+ Nouveau fichier' au-dessus de l'éditeur pour ouvrir cette nouvelle salle !" };
@@ -462,47 +1021,7 @@ export const MULTIPAGE_STEPS = [
       "Crée une <section> avec un <h2>Les Trois Âges d'Internet</h2>.",
       "Ajoute une liste <ul> avec 3 <li>, chacun contenant une balise <strong> pour l'époque (ex: Le Web 1.0, Le Web 2.0, Le Web Libre)."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Les Chroniques du Web</title>
-</head>
-<body>
-
-  <header>
-    <h1>Les Chroniques du Web</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="chroniques.html">Chroniques</a>
-      <a href="galerie.html">Galerie</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section>
-      <h2>Les Trois Âges d'Internet</h2>
-      <ul>
-        <li><strong>L'Âge des Pionniers :</strong> Le web statique des pages personnelles et du partage désintéressé.</li>
-        <li><strong>L'Âge des Plateformes :</strong> La centralisation des échanges au sein de jardins clos.</li>
-        <li><strong>L'Âge de la Renaissance :</strong> Le retour aux sources où chaque être réapprend à coder son propre sanctuaire.</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 Le Sanctuaire du Savoir.</p>
-  </footer>
-
-</body>
-</html>`,
-      'galerie.html': '',
-      'contact.html': '',
-      'style.css': ''
-    },
+    starterFiles: getFilesForStep(9),
     check(files) {
       if (files['chroniques.html'] === undefined) {
         return { pass: false, message: "Tu n'as pas encore créé le fichier chroniques.html. Clique sur '+ Nouveau fichier' au-dessus de l'éditeur pour ouvrir cette nouvelle salle !" };
@@ -537,42 +1056,7 @@ export const MULTIPAGE_STEPS = [
       "Place le <header> avec <h1>Galerie des Bâtisseurs</h1> et le menu <nav> à 4 liens.",
       "Ouvre la balise <main></main>."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Galerie des Bâtisseurs</title>
-</head>
-<body>
-
-  <header>
-    <h1>Galerie des Bâtisseurs</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="chroniques.html">Chroniques</a>
-      <a href="galerie.html">Galerie</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section>
-      <h2>Portraits des Maîtres Artisans</h2>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 Le Sanctuaire du Savoir.</p>
-  </footer>
-
-</body>
-</html>`,
-      'contact.html': '',
-      'style.css': ''
-    },
+    starterFiles: getFilesForStep(10),
     check(files) {
       const html = files['galerie.html'] || '';
       const parser = new DOMParser();
@@ -601,52 +1085,7 @@ export const MULTIPAGE_STEPS = [
       "Dans la première, mets <img src=\"assets/gallery/tree_dom.png\" alt=\"L'Arbre généalogique du DOM\"> et son <figcaption>.",
       "Dans la seconde, mets <img src=\"assets/gallery/cascades_css.png\" alt=\"Les Cascades de Couleurs CSS\"> et son <figcaption>."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Galerie des Bâtisseurs</title>
-</head>
-<body>
-
-  <header>
-    <h1>Galerie des Bâtisseurs</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="chroniques.html">Chroniques</a>
-      <a href="galerie.html">Galerie</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section>
-      <h2>Fresques du Sanctuaire</h2>
-      <div class="galerie-conteneur">
-        <figure>
-          <img src="assets/gallery/tree_dom.png" alt="L'Arbre généalogique du DOM">
-          <figcaption>La structure arborescente du DOM où chaque balise est une branche vivante.</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/gallery/cascades_css.png" alt="Les Cascades de Couleurs CSS">
-          <figcaption>Les cascades de style irriguant la mise en page d'or et d'azur.</figcaption>
-        </figure>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 Le Sanctuaire du Savoir.</p>
-  </footer>
-
-</body>
-</html>`,
-      'contact.html': '',
-      'style.css': ''
-    },
+    starterFiles: getFilesForStep(11),
     check(files) {
       const html = files['galerie.html'] || '';
       const parser = new DOMParser();
@@ -680,54 +1119,7 @@ export const MULTIPAGE_STEPS = [
       "Ajoute au moins 3 champs (nom, email, message textarea) chacun lié à son <label for=\"...\"> par son identifiant id.",
       "Ajoute le bouton <button type=\"submit\">Envoyer le message</button>."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Contacter le Sanctuaire</title>
-</head>
-<body>
-
-  <header>
-    <h1>Contacter le Sanctuaire</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="chroniques.html">Chroniques</a>
-      <a href="galerie.html">Galerie</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section>
-      <h2>Envoyer un Parchemin à Maître Bodhi</h2>
-      <form action="#" method="post">
-        <label for="nom">Ton Nom de Voyageur :</label>
-        <input type="text" id="nom" name="nom" required>
-
-        <label for="email">Ton Adresse Électronique :</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="message">Ton Message :</label>
-        <textarea id="message" name="message" rows="4" required></textarea>
-
-        <button type="submit">Transmettre le Parchemin</button>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 Le Sanctuaire du Savoir.</p>
-  </footer>
-
-</body>
-</html>`,
-      'style.css': ''
-    },
+    starterFiles: getFilesForStep(12),
     check(files) {
       const html = files['contact.html'] || '';
       const parser = new DOMParser();
@@ -761,13 +1153,7 @@ export const MULTIPAGE_STEPS = [
       "Dans index.html, repère le bloc <head>.",
       "Ajoute la balise de liaison : <link rel=\"stylesheet\" href=\"style.css\">."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': `/* Feuille de style universelle du Sanctuaire */`
-    },
+    starterFiles: getFilesForStep(13),
     check(files) {
       const html = files['index.html'] || '';
       const parser = new DOMParser();
@@ -794,17 +1180,7 @@ export const MULTIPAGE_STEPS = [
       "Déclare box-sizing: border-box;.",
       "Supprime les marges parasites par défaut avec margin: 0; et padding: 0;."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': `* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}`
-    },
+    starterFiles: getFilesForStep(14),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('*')) return { pass: false, message: "Utilise le sélecteur universel astérisque '*' pour cibler tous les éléments." };
@@ -831,24 +1207,7 @@ export const MULTIPAGE_STEPS = [
       "Définis background-color: #0f172a; et color: #f8fafc;.",
       "Ajoute line-height: 1.6; pour la respiration du texte."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': `* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: #0f172a;
-  color: #f8fafc;
-  line-height: 1.6;
-}`
-    },
+    starterFiles: getFilesForStep(15),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('body')) return { pass: false, message: "Crée une règle ciblant le sélecteur 'body' dans style.css." };
@@ -875,33 +1234,7 @@ body {
       "Donne du padding (ex: 28px) et border-radius: 14px;.",
       "Centre les blocs avec max-width: 800px; et margin: 24px auto;."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': `* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: #0f172a;
-  color: #f8fafc;
-  line-height: 1.6;
-}
-
-section {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  padding: 28px;
-  max-width: 800px;
-  margin: 24px auto;
-  border-radius: 14px;
-}`
-    },
+    starterFiles: getFilesForStep(16),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('section')) return { pass: false, message: "Crée une règle ciblant 'section' dans style.css." };
@@ -927,51 +1260,7 @@ section {
       "Cible nav a : applique text-decoration: none;, color: #38bdf8; et font-weight: 600;.",
       "Cible nav a:hover et change sa couleur en or chaleureux : color: #f59e0b;."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': `* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: #0f172a;
-  color: #f8fafc;
-  line-height: 1.6;
-}
-
-header {
-  background-color: #1e293b;
-  padding: 24px 20px;
-  text-align: center;
-  border-bottom: 2px solid #334155;
-}
-
-nav a {
-  color: #38bdf8;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 14px;
-}
-
-nav a:hover {
-  color: #f59e0b;
-}
-
-section {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  padding: 28px;
-  max-width: 800px;
-  margin: 24px auto;
-  border-radius: 14px;
-}`
-    },
+    starterFiles: getFilesForStep(17),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('header')) return { pass: false, message: "Ajoute une règle pour 'header'." };
@@ -997,59 +1286,7 @@ section {
       "Dans la règle section de style.css, ajoute box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);.",
       "Ajoute également un padding et un text-align: center sur footer pour clore l'harmonie."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': `* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: #0f172a;
-  color: #f8fafc;
-  line-height: 1.6;
-}
-
-header {
-  background-color: #1e293b;
-  padding: 24px 20px;
-  text-align: center;
-  border-bottom: 2px solid #334155;
-}
-
-nav a {
-  color: #38bdf8;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 14px;
-}
-
-nav a:hover {
-  color: #f59e0b;
-}
-
-section {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  padding: 28px;
-  max-width: 800px;
-  margin: 24px auto;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-footer {
-  text-align: center;
-  padding: 24px;
-  color: #64748b;
-  font-size: 0.85rem;
-}`
-    },
+    starterFiles: getFilesForStep(18),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('box-shadow')) return { pass: false, message: "Ajoute la propriété 'box-shadow' sur tes sections pour créer du relief." };
@@ -1076,67 +1313,7 @@ footer {
       "Centre les éléments avec justify-content: center; et align-items: center;.",
       "Espace les liens avec gap: 16px; (ou 20px) et ajoute margin-top: 14px;."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': `* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: #0f172a;
-  color: #f8fafc;
-  line-height: 1.6;
-}
-
-header {
-  background-color: #1e293b;
-  padding: 24px 20px;
-  text-align: center;
-  border-bottom: 2px solid #334155;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  margin-top: 14px;
-}
-
-nav a {
-  color: #38bdf8;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 14px;
-}
-
-nav a:hover {
-  color: #f59e0b;
-}
-
-section {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  padding: 28px;
-  max-width: 800px;
-  margin: 24px auto;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-footer {
-  text-align: center;
-  padding: 24px;
-  color: #64748b;
-  font-size: 0.85rem;
-}`
-    },
+    starterFiles: getFilesForStep(19),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('display: flex') && !css.includes('display:flex')) {
@@ -1165,94 +1342,7 @@ footer {
       "Définis les colonnes avec grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));.",
       "Assure-toi que les images occupent toute la largeur de leur carte avec img { max-width: 100%; border-radius: 8px; }."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': `* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: #0f172a;
-  color: #f8fafc;
-  line-height: 1.6;
-}
-
-header {
-  background-color: #1e293b;
-  padding: 24px 20px;
-  text-align: center;
-  border-bottom: 2px solid #334155;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  margin-top: 14px;
-}
-
-nav a {
-  color: #38bdf8;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 14px;
-}
-
-nav a:hover {
-  color: #f59e0b;
-}
-
-section {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  padding: 28px;
-  max-width: 800px;
-  margin: 24px auto;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-.galerie-conteneur {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-figure {
-  background: #0f172a;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #334155;
-}
-
-figure img {
-  width: 100%;
-  border-radius: 8px;
-  display: block;
-}
-
-figcaption {
-  font-size: 0.85rem;
-  color: #94a3b8;
-  margin-top: 8px;
-  text-align: center;
-}
-
-footer {
-  text-align: center;
-  padding: 24px;
-  color: #64748b;
-  font-size: 0.85rem;
-}`
-    },
+    starterFiles: getFilesForStep(20),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('display: grid') && !css.includes('display:grid')) {
@@ -1280,121 +1370,7 @@ footer {
       "Stylise input et textarea avec padding: 12px;, border-radius: 8px;, et font-size: 1rem;.",
       "Stylise button avec background: #f59e0b;, color: #1e293b;, font-weight: 700;, padding: 12px 20px; et cursor: pointer;."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': `* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: #0f172a;
-  color: #f8fafc;
-  line-height: 1.6;
-}
-
-header {
-  background-color: #1e293b;
-  padding: 24px 20px;
-  text-align: center;
-  border-bottom: 2px solid #334155;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  margin-top: 14px;
-}
-
-nav a {
-  color: #38bdf8;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 14px;
-}
-
-nav a:hover {
-  color: #f59e0b;
-}
-
-section {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  padding: 28px;
-  max-width: 800px;
-  margin: 24px auto;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-.galerie-conteneur {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-figure {
-  background: #0f172a;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #334155;
-}
-
-figure img {
-  width: 100%;
-  border-radius: 8px;
-  display: block;
-}
-
-figcaption {
-  font-size: 0.85rem;
-  color: #94a3b8;
-  margin-top: 8px;
-  text-align: center;
-}
-
-form {
-  display: grid;
-  gap: 14px;
-  margin-top: 16px;
-}
-
-input, textarea {
-  background: #0f172a;
-  border: 1px solid #334155;
-  color: #f8fafc;
-  padding: 12px 14px;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 0.95rem;
-}
-
-button {
-  background: #f59e0b;
-  color: #1e293b;
-  font-weight: 800;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-footer {
-  text-align: center;
-  padding: 24px;
-  color: #64748b;
-  font-size: 0.85rem;
-}`
-    },
+    starterFiles: getFilesForStep(21),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('form')) return { pass: false, message: "Ajoute des styles pour le sélecteur 'form'." };
@@ -1417,134 +1393,7 @@ footer {
       "Sur button et figure, ajoute transition: transform 0.2s ease, box-shadow 0.2s ease;.",
       "Crée les règles button:hover et figure:hover avec transform: translateY(-3px); et un surcroît d'ombre."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': `* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: #0f172a;
-  color: #f8fafc;
-  line-height: 1.6;
-}
-
-header {
-  background-color: #1e293b;
-  padding: 24px 20px;
-  text-align: center;
-  border-bottom: 2px solid #334155;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  margin-top: 14px;
-}
-
-nav a {
-  color: #38bdf8;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 14px;
-  transition: color 0.2s;
-}
-
-nav a:hover {
-  color: #f59e0b;
-}
-
-section {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  padding: 28px;
-  max-width: 800px;
-  margin: 24px auto;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-.galerie-conteneur {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-figure {
-  background: #0f172a;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #334155;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-figure:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
-}
-
-figure img {
-  width: 100%;
-  border-radius: 8px;
-  display: block;
-}
-
-figcaption {
-  font-size: 0.85rem;
-  color: #94a3b8;
-  margin-top: 8px;
-  text-align: center;
-}
-
-form {
-  display: grid;
-  gap: 14px;
-  margin-top: 16px;
-}
-
-input, textarea {
-  background: #0f172a;
-  border: 1px solid #334155;
-  color: #f8fafc;
-  padding: 12px 14px;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 0.95rem;
-}
-
-button {
-  background: #f59e0b;
-  color: #1e293b;
-  font-weight: 800;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4);
-}
-
-footer {
-  text-align: center;
-  padding: 24px;
-  color: #64748b;
-  font-size: 0.85rem;
-}`
-    },
+    starterFiles: getFilesForStep(22),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('transition')) return { pass: false, message: "Ajoute la propriété 'transition' pour rendre les animations souples." };
@@ -1570,147 +1419,7 @@ footer {
       "À l'intérieur, ajuste nav avec flex-direction: column; et gap: 8px;.",
       "Ajuste section avec margin: 16px 12px; et padding: 20px; pour préserver l'espace de lecture sur mobile."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': `* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: #0f172a;
-  color: #f8fafc;
-  line-height: 1.6;
-}
-
-header {
-  background-color: #1e293b;
-  padding: 24px 20px;
-  text-align: center;
-  border-bottom: 2px solid #334155;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  margin-top: 14px;
-}
-
-nav a {
-  color: #38bdf8;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 14px;
-  transition: color 0.2s;
-}
-
-nav a:hover {
-  color: #f59e0b;
-}
-
-section {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  padding: 28px;
-  max-width: 800px;
-  margin: 24px auto;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-.galerie-conteneur {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-figure {
-  background: #0f172a;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #334155;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-figure:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
-}
-
-figure img {
-  width: 100%;
-  border-radius: 8px;
-  display: block;
-}
-
-figcaption {
-  font-size: 0.85rem;
-  color: #94a3b8;
-  margin-top: 8px;
-  text-align: center;
-}
-
-form {
-  display: grid;
-  gap: 14px;
-  margin-top: 16px;
-}
-
-input, textarea {
-  background: #0f172a;
-  border: 1px solid #334155;
-  color: #f8fafc;
-  padding: 12px 14px;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 0.95rem;
-}
-
-button {
-  background: #f59e0b;
-  color: #1e293b;
-  font-weight: 800;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4);
-}
-
-footer {
-  text-align: center;
-  padding: 24px;
-  color: #64748b;
-  font-size: 0.85rem;
-}
-
-/* HARMONIE RESPONSIVE MOBILE */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  section {
-    margin: 16px 12px;
-    padding: 20px;
-  }
-}`
-    },
+    starterFiles: getFilesForStep(23),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('@media')) return { pass: false, message: "Ajoute la règle @media (max-width: 768px) à la fin de style.css." };
@@ -1735,13 +1444,7 @@ footer {
       "Déclare les 3 variables : --gold-primary, --bg-main, et --text-main.",
       "Clique sur 'Vérifier mon code' pour ancrer la palette universelle."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': null
-    },
+    starterFiles: getFilesForStep(24),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes(':root')) return { pass: false, message: "Déclare le sélecteur ':root' au début de style.css." };
@@ -1767,13 +1470,7 @@ footer {
       "Ajoute un paragraphe d'introduction avec la classe 'hero-subtitle'.",
       "Clique sur 'Vérifier mon code'."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': null
-    },
+    starterFiles: getFilesForStep(25),
     check(files) {
       const html = (files['index.html'] || '').toLowerCase();
       if (!html.includes('class="hero"') && !html.includes("class='hero'")) {
@@ -1801,13 +1498,7 @@ footer {
       "Ajoute une règle pour .hero-badge avec border, border-radius et du padding.",
       "Admire le rendu dans la fenêtre de droite et clique sur 'Vérifier mon code'."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': null
-    },
+    starterFiles: getFilesForStep(26),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('.hero')) return { pass: false, message: "Ajoute un sélecteur '.hero' dans style.css." };
@@ -1833,13 +1524,7 @@ footer {
       "Donne un titre <h3> et une courte description à chaque carte.",
       "Clique sur 'Vérifier mon code'."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': null
-    },
+    starterFiles: getFilesForStep(27),
     check(files) {
       const html = (files['index.html'] || '').toLowerCase();
       if (!html.includes('card-grid')) return { pass: false, message: "Ajoute un conteneur avec la classe 'card-grid' dans index.html." };
@@ -1864,13 +1549,7 @@ footer {
       "Applique 'display: grid;', un gap entre les cartes, et 'grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));'.",
       "Vérifie que les cartes s'agencent élégamment dans la fenêtre de rendu."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': null
-    },
+    starterFiles: getFilesForStep(28),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('.card-grid')) return { pass: false, message: "Ajoute la classe '.card-grid' dans style.css." };
@@ -1895,13 +1574,7 @@ footer {
       "Inclus la citation et mentionne l'auteur dans une balise <cite>.",
       "Clique sur 'Vérifier mon code'."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': null
-    },
+    starterFiles: getFilesForStep(29),
     check(files) {
       const html = (files['chroniques.html'] || '').toLowerCase();
       if (!html.includes('<blockquote') || !html.includes('</blockquote>')) {
@@ -1930,13 +1603,7 @@ footer {
       "Ajoute 'padding-left' et 'font-style: italic;'.",
       "Clique sur 'Vérifier mon code'."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': null
-    },
+    starterFiles: getFilesForStep(30),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('blockquote')) return { pass: false, message: "Ajoute une règle pour le sélecteur 'blockquote' dans style.css." };
@@ -1961,13 +1628,7 @@ footer {
       "Sur figure:hover img, applique 'transform: scale(1.08);'.",
       "Survole les images dans galerie.html et valide ton code !"
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': null
-    },
+    starterFiles: getFilesForStep(31),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('scale')) return { pass: false, message: "Utilise 'transform: scale(...);' pour créer l'effet d'agrandissement doux." };
@@ -1992,13 +1653,7 @@ footer {
       "Applique une bordure dorée et une 'box-shadow' lumineuse.",
       "Clique dans un champ sur contact.html et clique sur 'Vérifier mon code'."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': null
-    },
+    starterFiles: getFilesForStep(32),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes(':focus')) return { pass: false, message: "Ajoute la pseudo-classe ':focus' sur input et textarea dans style.css." };
@@ -2023,13 +1678,7 @@ footer {
       "Applique 'animation: beaconPulse 3s infinite ease-in-out;' sur la classe .hero-badge.",
       "Admire le battement de cœur du sanctuaire et valide ton code !"
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': null
-    },
+    starterFiles: getFilesForStep(33),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('@keyframes')) return { pass: false, message: "Crée une règle '@keyframes' dans style.css pour animer l'élément." };
@@ -2054,13 +1703,7 @@ footer {
       "Ajoute 'backdrop-filter: blur(10px);' avec un fond semi-transparent et un z-index élevé.",
       "Fais défiler la page dans l'aperçu et clique sur 'Vérifier mon code'."
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': null
-    },
+    starterFiles: getFilesForStep(34),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('sticky')) return { pass: false, message: "Ajoute 'position: sticky;' sur header pour qu'il suive le défilement." };
@@ -2084,13 +1727,7 @@ footer {
       "Ajoute la media query '@media (prefers-reduced-motion: reduce)' pour neutraliser les animations si demandé.",
       "Valide cette étape éthique pour débloquer l'ultime consécration !"
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': null
-    },
+    starterFiles: getFilesForStep(35),
     check(files) {
       const css = (files['style.css'] || '').toLowerCase();
       if (!css.includes('focus-visible')) return { pass: false, message: "Ajoute le sélecteur ':focus-visible' pour garantir l'accessibilité au clavier." };
@@ -2114,13 +1751,7 @@ footer {
       "Navigue entre les pages dans la fenêtre de rendu à droite pour admirer la circulation fluide.",
       "Clique sur 'Vérifier mon code' pour entendre la parole finale de Maître Bodhi !"
     ],
-    starterFiles: {
-      'index.html': null,
-      'chroniques.html': null,
-      'galerie.html': null,
-      'contact.html': null,
-      'style.css': null
-    },
+    starterFiles: getFilesForStep(36),
     check(files) {
       for (const name of ['index.html', 'chroniques.html', 'galerie.html', 'contact.html']) {
         const content = files[name] || '';
