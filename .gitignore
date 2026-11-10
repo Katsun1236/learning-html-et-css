@@ -1,0 +1,11 @@
+# Dependencies & cache
+node_modules/
+.npm/
+
+# Scratch & temporary development scripts
+scratch/
+.vscode/
+
+# OS metadata
+.DS_Store
+Thumbs.db

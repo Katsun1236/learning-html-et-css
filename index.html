@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning HTML &amp; CSS — Sanctuaire du Code avec Maître Bodhi</title>
+  <meta name="description" content="Apprends le HTML et le CSS en bâtissant un véritable sanctuaire web multi-pages pas à pas avec Maître Bodhi.">
+  
+  <!-- Typographie moderne : Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2246%22 fill=%22%23d97706%22/><text x=%2250%22 y=%2260%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22%23fff%22 font-weight=%22bold%22 font-family=%22sans-serif%22>&lt;/&gt;</text></svg>">
+</head>
+<body>
+
+  <!-- =========================================================================
+       BARRE SUPÉRIEURE (HEADER PROPRE ET ÉPURÉ SANS ÉMOJI)
+       ========================================================================= -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="brand-wrapper">
+        <div class="brand-symbol">&lt;/&gt;</div>
+        <span class="brand-title">Learning HTML &amp; CSS</span>
+      </div>
+    </div>
+
+    <!-- CONTRÔLES ÉPURÉS (THÈME ET SON) -->
+    <div class="header-right">
+      <button id="theme-toggle" class="header-control-btn" title="Changer le thème">
+        <span id="theme-icon-text">Thème clair</span>
+      </button>
+      <button id="sound-toggle" class="header-control-btn" title="Activer ou couper le son">
+        <span id="sound-icon-text">Son activé</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       ESPACE DE TRAVAIL PLEIN ÉCRAN : ÉDITEUR MULTI-FICHIERS ET RENDU EN DIRECT
+       ========================================================================= -->
+  <main class="workspace-fullscreen" id="workspace-main">
+
+    <!-- COLONNE GAUCHE : ÉDITEUR DE CODE STYLE VS CODE -->
+    <section class="editor-section" id="editor-section">
+      <div class="editor-toolbar">
+        <div class="code-tabs-wrapper">
+          <div class="code-tabs" id="project-file-tabs">
+            <!-- Rendu dynamique des onglets créés par le joueur -->
+          </div>
+          <button id="create-file-btn" class="create-file-btn" title="Créer un nouveau fichier (.html ou .css)">
+            + Nouveau fichier
+          </button>
+        </div>
+        <div class="editor-actions">
+          <button id="format-code-btn" class="clean-btn" title="Réaligner et indenter le code proprement">
+            Formater
+          </button>
+          <button id="reset-code-btn" class="clean-btn" title="Restaurer le modèle de cette étape si tu es bloqué">
+            Modèle initial
+          </button>
+        </div>
+      </div>
+
+      <div class="editor-body">
+        <div id="editor-container" class="code-editor-wrapper">
+          <div id="editor-line-numbers" class="line-numbers-gutter"></div>
+          <textarea id="editor-textarea" class="code-textarea" spellcheck="false" placeholder="<!-- Rédige le balisage HTML ici... -->"></textarea>
+        </div>
+      </div>
+
+      <div id="editor-status-bar" class="editor-status-bar">
+        index.html • Ln 1, Col 1 • Espaces: 2 • HTML (UTF-8)
+      </div>
+    </section>
+
+    <!-- POIGNÉE DRAGGABLE DE SÉPARATION (REDIMENSIONNEMENT ÉDITEUR / APERÇU) -->
+    <div id="split-resizer" class="split-resizer" title="Glisser pour ajuster la largeur de l'éditeur et de l'aperçu"></div>
+
+    <!-- COLONNE DROITE : RENDU EN DIRECT DU SITE MULTI-PAGES -->
+    <section class="preview-section" id="preview-section">
+      <div class="preview-toolbar">
+        <div class="preview-route-indicator">
+          <span class="preview-title">Rendu en Direct</span>
+          <span class="preview-route-pill" id="preview-active-page-name">index.html</span>
+        </div>
+        <div class="viewport-switcher">
+          <button class="viewport-btn active" data-viewport="desktop">Bureau</button>
+          <button class="viewport-btn" data-viewport="tablet">Tablette</button>
+          <button class="viewport-btn" data-viewport="mobile">Mobile</button>
+        </div>
+        <button id="reload-preview-btn" class="clean-btn" title="Actualiser le rendu">
+          Actualiser
+        </button>
+      </div>
+
+      <div class="preview-stage">
+        <div id="preview-wrapper" class="preview-wrapper viewport-desktop">
+          <iframe id="preview-iframe" class="preview-iframe" title="Rendu en direct du Sanctuaire"></iframe>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       WIDGET FLOTTANT EN BAS À DROITE : MAÎTRE BODHI (STYLE SLIME RANCHER)
+       ========================================================================= -->
+  <aside id="bodhi-widget" class="bodhi-widget-container">
+
+    <!-- BUSTE DE MAÎTRE BODHI (STYLE VISUAL NOVEL & REDIMENSIONNABLE) -->
+    <div class="bodhi-avatar-wrapper" id="bodhi-avatar-wrapper">
+      <div class="bodhi-avatar-controls" id="bodhi-avatar-controls">
+        <button id="bodhi-avatar-zoom-out" class="bodhi-avatar-zoom-btn" title="Réduire Bodhi">−</button>
+        <button id="bodhi-avatar-zoom-reset" class="bodhi-avatar-zoom-btn" title="Taille par défaut">↺</button>
+        <button id="bodhi-avatar-zoom-in" class="bodhi-avatar-zoom-btn" title="Agrandir Bodhi">+</button>
+      </div>
+      <div id="bodhi-avatar-resizer" class="bodhi-avatar-resizer" title="Glisser vers le haut pour agrandir Bodhi à volonté"></div>
+      <div id="bodhi-bust" class="bodhi-bust">
+        <img src="assets/characters/bodhi_neutral.png" alt="Maître Bodhi" class="bodhi-avatar-img">
+      </div>
+    </div>
+
+    <!-- BOÎTE DE DIALOGUE CRÈME ÉLÉGANTE (INSPIRÉE DE SLIME RANCHER) -->
+    <div class="bodhi-dialogue-card">
+      <!-- POIGNÉE DE REDIMENSIONNEMENT DIRECTEMENT SUR LE COIN SUPÉRIEUR GAUCHE DE LA BOÎTE -->
+      <div id="bodhi-resize-handle" class="bodhi-resize-handle" title="Glisser pour redimensionner la boîte de dialogue"></div>
+
+      <div class="bodhi-card-header">
+        <!-- BADGE PILULE BLEU SLIME RANCHER -->
+        <span id="bodhi-name-badge" class="bodhi-name-badge">MAÎTRE BODHI</span>
+        <div class="bodhi-header-right">
+          <button id="bodhi-size-btn" class="bodhi-icon-btn" title="Changer la taille">A+</button>
+          <button id="bodhi-minimize-btn" class="bodhi-icon-btn" title="Réduire ou déployer le dialogue">—</button>
+        </div>
+      </div>
+
+      <!-- DISCOURS ET OBJECTIFS D'ÉTAPE -->
+      <div id="bodhi-speech-container" class="bodhi-speech-container">
+        <!-- Rendu dynamique -->
+      </div>
+
+      <!-- TIROIR DES QUESTIONS INTERACTIVES (MYSTÈRE & TECHNIQUE) -->
+      <div id="bodhi-qa-drawer" class="bodhi-qa-drawer hidden">
+        <div class="qa-drawer-header">
+          <span class="qa-drawer-title">Interroger Maître Bodhi</span>
+          <button id="close-qa-btn" class="qa-close-btn">Fermer</button>
+        </div>
+        <div id="qa-questions-list" class="qa-questions-list"></div>
+      </div>
+
+      <!-- POPOVER DU GLOSSAIRE VIVANT DE BODHI (EXPLICATION IMMÉDIATE AU CLIC SUR UN MOT) -->
+      <div id="glossary-popover" class="glossary-popover hidden" aria-hidden="true">
+        <div class="glossary-popover-header">
+          <span class="glossary-popover-badge" id="glossary-popover-badge">HTML & Sémantique</span>
+          <button id="close-glossary-btn" class="glossary-close-btn" title="Fermer la définition">&times;</button>
+        </div>
+        <div class="glossary-popover-body">
+          <h4 id="glossary-popover-title" class="glossary-popover-title">Balise</h4>
+          <p id="glossary-popover-desc" class="glossary-popover-desc">Définition...</p>
+          <div id="glossary-popover-code-box" class="glossary-code-box">
+            <pre><code id="glossary-popover-code"></code></pre>
+          </div>
+          <div class="glossary-popover-tip">
+            <span class="glossary-tip-label">Conseil de Bodhi :</span>
+            <p id="glossary-popover-tip-text"></p>
+          </div>
+        </div>
+        <div class="glossary-popover-footer">
+          <button id="glossary-view-grimoire-btn" class="btn-glossary-grimoire">Consulter dans l'Internet</button>
+        </div>
+      </div>
+
+      <div class="bodhi-card-actions">
+        <button id="bodhi-validate-btn" class="btn-bodhi-primary">
+          Vérifier mon code
+        </button>
+        <button id="bodhi-hint-btn" class="btn-bodhi-secondary">
+          Conseil secret
+        </button>
+        <button id="bodhi-ask-btn" class="btn-bodhi-secondary">
+          Poser une question
+        </button>
+        <button id="bodhi-grimoire-btn" class="btn-bodhi-secondary" title="Consulter l'encyclopédie Internet et les chroniques du Web">
+          Internet
+        </button>
+      </div>
+
+      <div class="bodhi-card-footer">
+        <button id="bodhi-prev-btn" class="btn-nav-step">Précédent</button>
+        <button id="bodhi-next-btn" class="btn-nav-step" disabled>Suivant</button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- =========================================================================
+       MODALE DE CRÉATION DE NOUVEAU FICHIER (INDEX.HTML, STYLE.CSS, ETC.)
+       ========================================================================= -->
+  <div id="create-file-modal" class="modal-backdrop hidden">
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <h3>Créer un nouveau fichier</h3>
+        <button id="close-create-file-btn" class="close-modal-btn">Fermer</button>
+      </div>
+      <div class="modal-body">
+        <p class="create-file-desc">Donne un nom à ton fichier avec son extension (ex: <code>index.html</code> ou <code>style.css</code>) :</p>
+        <input type="text" id="new-file-input" class="search-input" placeholder="ex: index.html" autocomplete="off" spellcheck="false">
+        <div class="create-file-actions">
+          <button id="confirm-create-file-btn" class="btn-modal-confirm">Créer le fichier</button>
+          <button id="cancel-create-file-btn" class="btn-modal-cancel">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       CINÉMATIQUE D'INTRO AVEC MAÎTRE BODHI (UNIQUEMENT AU PREMIER LANCEMENT)
+       ========================================================================= -->
+  <div id="cinematic-container" class="cinematic-overlay hidden">
+    <div class="cinematic-banner">
+      <span class="cinematic-badge">Le Sanctuaire du Web</span>
+    </div>
+
+    <div class="cinematic-screen">
+      <div class="cinematic-bodhi-avatar">
+        <img src="assets/characters/bodhi_neutral.jpg" alt="Maître Bodhi" class="cinematic-portrait-img">
+      </div>
+      <h1 class="cinematic-quote">La Structure... Le Style... La Réactivité...</h1>
+      <p class="cinematic-sub">Au cœur de l'ère numérique, les anciens sanctuaires du Web avaient sombré dans l'oubli...</p>
+    </div>
+
+    <div class="cinematic-footer">
+      <div class="cinematic-progress-bar-bg">
+        <div class="cinematic-progress-bar"></div>
+      </div>
+      <div class="cinematic-actions">
+        <button id="cinematic-skip-btn" class="btn-ghost-skip">Passer l'introduction</button>
+        <button id="cinematic-next-btn" class="btn-gold">Suivant</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODALE : L'INTERNET DE MAÎTRE BODHI (ENCYCLOPÉDIE & CHRONIQUES DU WEB)
+       ========================================================================= -->
+  <div id="cheatsheet-modal" class="modal-backdrop hidden">
+    <div class="modal-card modal-xl internet-modal-card">
+      <div class="modal-header internet-header">
+        <div class="internet-title-group">
+          <div class="internet-browser-dots">
+            <span class="browser-dot dot-red"></span>
+            <span class="browser-dot dot-yellow"></span>
+            <span class="browser-dot dot-green"></span>
+          </div>
+          <h3>L'Internet de Maître Bodhi</h3>
+          <span class="internet-url-badge">https://sanctuaire.web/archives/internet</span>
+        </div>
+        <button id="close-cheatsheet-btn" class="close-modal-btn">Fermer</button>
+      </div>
+
+      <!-- Navigation d'onglets : Encyclopédie vs Chroniques Historiques -->
+      <div class="internet-nav-tabs">
+        <button type="button" id="internet-tab-btn-encyclopedia" class="internet-nav-tab active">
+          Encyclopédie &amp; Syntaxes (181 fiches)
+        </button>
+        <button type="button" id="internet-tab-btn-chronicles" class="internet-nav-tab">
+          Chroniques &amp; Histoire du Web
+        </button>
+      </div>
+
+      <!-- Contenu Onglet 1 : Encyclopédie 181 termes -->
+      <div id="internet-tab-encyclopedia" class="internet-tab-pane active">
+        <div class="internet-toolbar">
+          <div class="sidebar-search-box internet-search-box">
+            <input type="text" id="cheatsheet-search" class="search-input" placeholder="Rechercher une balise, propriété ou règle (ex: flex, grid, border, padding, input, nav)...">
+            <span id="cheatsheet-counter" class="internet-counter-badge">181 fiches</span>
+          </div>
+          <div class="internet-category-pills" id="internet-category-pills">
+            <!-- Rendu dynamique des filtres de catégories -->
+          </div>
+        </div>
+        <div id="cheatsheet-content" class="modal-body internet-body">
+          <!-- Rendu dynamique des fiches -->
+        </div>
+      </div>
+
+      <!-- Contenu Onglet 2 : Chroniques Historiques illustrées -->
+      <div id="internet-tab-chronicles" class="internet-tab-pane hidden">
+        <div class="internet-chronicles-container">
+          <div class="internet-chronicle-card">
+            <div class="chronicle-media-wrap">
+              <img src="assets/lore/cern_server.jpg" alt="Le Premier Serveur Web au CERN" class="chronicle-img">
+              <span class="chronicle-year-badge">1990 — CERN, Genève</span>
+            </div>
+            <div class="chronicle-content">
+              <h4>Le Premier Serveur du Monde &amp; Le Post-it Sacré</h4>
+              <p class="chronicle-lead">
+                « Cette machine est un serveur. Ne l'éteignez surtout pas ! »
+              </p>
+              <p>
+                Dans un laboratoire souterrain du CERN, Tim Berners-Lee conçoit le premier serveur web de l'histoire sur une station NeXT Cube noire. Pour éviter qu'un collègue ou le personnel d'entretien ne débranche la prise par inadvertance, il colle ce fameux morceau de papier adhésif. C'est ici que sont nés le protocole HTTP, les URL et la toute première spécification de HTML. Si cette machine s'était éteinte, le Web aurait pu ne jamais voir le jour.
+              </p>
+              <div class="chronicle-footer">
+                <span class="chronicle-tag">Premier Serveur NCSA/NeXT</span>
+                <span class="chronicle-tag">Naissance du HTML</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="internet-chronicle-card">
+            <div class="chronicle-media-wrap">
+              <img src="assets/lore/browser_wars.jpg" alt="La Guerre des Navigateurs" class="chronicle-img">
+              <span class="chronicle-year-badge">1995-2001 — La Grande Bataille</span>
+            </div>
+            <div class="chronicle-content">
+              <h4>La Guerre des Navigateurs : Netscape vs Internet Explorer</h4>
+              <p class="chronicle-lead">
+                L'affrontement maritime pour la suprématie des portes du Web.
+              </p>
+              <p>
+                Entre l'armada agile de Netscape Navigator et la forteresse massive d'Internet Explorer, la bataille fit rage pendant une décennie. Chacun inventait ses balises propriétaires pour capturer les utilisateurs, forçant les développeurs à coder des sites en double exemplaire. C'est de cette guerre sanglante qu'est née la nécessité vitale des standards ouverts du W3C et du WHATWG que nous honorons aujourd'hui dans ce Sanctuaire.
+              </p>
+              <div class="chronicle-footer">
+                <span class="chronicle-tag">Netscape Navigator</span>
+                <span class="chronicle-tag">Internet Explorer 6</span>
+                <span class="chronicle-tag">Standards W3C</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="internet-chronicle-card">
+            <div class="chronicle-media-wrap">
+              <img src="assets/lore/web_pioneers.jpg" alt="Bodhi et les Pionniers du Web" class="chronicle-img">
+              <span class="chronicle-year-badge">1991 — L'Aube du Réseau</span>
+            </div>
+            <div class="chronicle-content">
+              <h4>La Confrérie des Pionniers : Le Premier Clic Mondial</h4>
+              <p class="chronicle-lead">
+                Le jour où les écrans cathodiques se sont illuminés pour la première fois.
+              </p>
+              <p>
+                Rassemblés autour d'un moniteur lourd et bourdonnant, Bodhi et les premiers étudiants en informatique voient la première page web s'afficher. Une simple ligne bleue cliquable relie deux documents situés à l'autre bout du continent. Les sourires explosent : l'humanité venait de créer un espace de liberté, sans frontière, où le savoir circule librement. C'est cette promesse originelle que tu perpétues en apprenant chaque balise.
+              </p>
+              <div class="chronicle-footer">
+                <span class="chronicle-tag">Hypertexte</span>
+                <span class="chronicle-tag">Partage Universel</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST FEEDBACK -->
+  <div id="toast" class="toast"></div>
+
+  <!-- APPLICATION PRINCIPALE -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
