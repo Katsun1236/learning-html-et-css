@@ -46,7 +46,8 @@ export class BodhiDialogueEngine {
     onValidate,
     onOpenGrimoire,
     onResetStep,
-    onStepChange
+    onStepChange,
+    onTargetFileClicked
   }) {
     this.widgetContainer = widgetContainer || document.getElementById('bodhi-widget');
     this.avatarContainer = avatarContainer;
@@ -63,6 +64,7 @@ export class BodhiDialogueEngine {
     this.minimizeBtn = minimizeBtn;
     this.sizeBtn = sizeBtn;
     this.resizeHandle = resizeHandle;
+    this.onTargetFileClicked = onTargetFileClicked;
     this.qaDrawer = qaDrawer;
     this.qaQuestionsList = qaQuestionsList;
     this.closeQaBtn = closeQaBtn;
@@ -255,6 +257,9 @@ export class BodhiDialogueEngine {
 
   initResizable() {
     this.speechContainer = document.getElementById('bodhi-speech-container');
+    this.resizeHandle = document.getElementById('bodhi-resize-handle');
+    this.resizeTop = document.getElementById('bodhi-resize-top');
+    this.resizeLeft = document.getElementById('bodhi-resize-left');
 
     // Restaurer les dimensions personnalisées de la boîte de dialogue
     const savedWidth = localStorage.getItem('bodhi_dialogue_width');
@@ -267,44 +272,67 @@ export class BodhiDialogueEngine {
       this.speechContainer.style.maxHeight = 'none';
     }
 
-    if (this.resizeHandle && this.widgetContainer) {
-      let isResizing = false;
-      let startX = 0;
-      let startY = 0;
-      let startWidth = 0;
-      let startSpeechHeight = 0;
+    const setupDrag = (handleEl, mode, cursorStyle) => {
+      if (!handleEl || !this.widgetContainer) return;
 
-      const onMouseDown = (e) => {
+      handleEl.addEventListener('mousedown', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        isResizing = true;
-        startX = e.clientX;
-        startY = e.clientY;
-        startWidth = this.widgetContainer.getBoundingClientRect().width;
-        startSpeechHeight = this.speechContainer ? this.speechContainer.getBoundingClientRect().height : 200;
-        document.body.style.userSelect = 'none';
-        document.body.style.cursor = 'nwse-resize';
+
+        const iframes = document.querySelectorAll('iframe');
+        iframes.forEach(f => f.style.pointerEvents = 'none');
+        document.body.classList.add('dialogue-resizing');
+        document.body.style.cursor = cursorStyle;
+
+        const startX = e.clientX;
+        const startY = e.clientY;
+        const startWidth = this.widgetContainer.getBoundingClientRect().width;
+        const startSpeechHeight = this.speechContainer
+          ? this.speechContainer.getBoundingClientRect().height
+          : 180;
+
+        let latestX = startX;
+        let latestY = startY;
+        let isDragging = true;
+        let rafPending = false;
 
         const onMouseMove = (moveEvt) => {
-          if (!isResizing) return;
-          const deltaX = startX - moveEvt.clientX;
-          const deltaY = startY - moveEvt.clientY;
+          if (!isDragging) return;
+          latestX = moveEvt.clientX;
+          latestY = moveEvt.clientY;
 
-          const newWidth = Math.min(Math.max(startWidth + deltaX, 360), window.innerWidth - 40);
-          this.widgetContainer.style.width = `${newWidth}px`;
+          if (!rafPending) {
+            rafPending = true;
+            requestAnimationFrame(() => {
+              rafPending = false;
+              if (!isDragging) return;
 
-          if (this.speechContainer) {
-            const newHeight = Math.min(Math.max(startSpeechHeight + deltaY, 110), window.innerHeight - 240);
-            this.speechContainer.style.height = `${newHeight}px`;
-            this.speechContainer.style.maxHeight = 'none';
+              if (mode === 'both' || mode === 'horizontal') {
+                const deltaX = startX - latestX;
+                const newWidth = Math.min(Math.max(startWidth + deltaX, 320), window.innerWidth - 32);
+                this.widgetContainer.style.width = `${newWidth}px`;
+              }
+
+              if (mode === 'both' || mode === 'vertical') {
+                const deltaY = startY - latestY;
+                const newHeight = Math.min(Math.max(startSpeechHeight + deltaY, 90), window.innerHeight - 180);
+                if (this.speechContainer) {
+                  this.speechContainer.style.height = `${newHeight}px`;
+                  this.speechContainer.style.maxHeight = 'none';
+                }
+              }
+            });
           }
         };
 
         const onMouseUp = () => {
-          if (!isResizing) return;
-          isResizing = false;
-          document.body.style.userSelect = '';
+          if (!isDragging) return;
+          isDragging = false;
+          rafPending = false;
+          document.body.classList.remove('dialogue-resizing');
           document.body.style.cursor = '';
+          iframes.forEach(f => f.style.pointerEvents = '');
+
           window.removeEventListener('mousemove', onMouseMove);
           window.removeEventListener('mouseup', onMouseUp);
 
@@ -318,13 +346,34 @@ export class BodhiDialogueEngine {
 
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mouseup', onMouseUp);
-      };
+      });
 
-      this.resizeHandle.addEventListener('mousedown', onMouseDown);
-    }
+      // Double-clic pour restaurer les dimensions d'origine
+      handleEl.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.resetDialogueSize();
+      });
+    };
+
+    setupDrag(this.resizeHandle, 'both', 'nwse-resize');
+    setupDrag(this.resizeTop, 'vertical', 'ns-resize');
+    setupDrag(this.resizeLeft, 'horizontal', 'ew-resize');
 
     // Initialisation du redimensionnement libre de l'avatar de Bodhi
     this.initAvatarResizable();
+  }
+
+  resetDialogueSize() {
+    if (this.widgetContainer) {
+      this.widgetContainer.style.width = '';
+      localStorage.removeItem('bodhi_dialogue_width');
+    }
+    if (this.speechContainer) {
+      this.speechContainer.style.height = '';
+      this.speechContainer.style.maxHeight = '';
+      localStorage.removeItem('bodhi_dialogue_height');
+    }
   }
 
   initAvatarResizable() {
@@ -361,33 +410,47 @@ export class BodhiDialogueEngine {
       });
     }
 
-    // Glisser-déposer sur le haut du buste de Bodhi
+    // Glisser-déposer fluide sur le haut du buste de Bodhi
     if (this.avatarResizer) {
-      let isAvatarResizing = false;
-      let startY = 0;
-      let startSize = 200;
-
-      const onMouseDown = (e) => {
+      this.avatarResizer.addEventListener('mousedown', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        isAvatarResizing = true;
-        startY = e.clientY;
-        startSize = this.currentAvatarSize || 200;
-        document.body.style.userSelect = 'none';
+
+        const iframes = document.querySelectorAll('iframe');
+        iframes.forEach(f => f.style.pointerEvents = 'none');
+        document.body.classList.add('dialogue-resizing');
         document.body.style.cursor = 'ns-resize';
 
+        const startY = e.clientY;
+        const startSize = this.currentAvatarSize || 200;
+        let latestY = startY;
+        let isDragging = true;
+        let rafPending = false;
+
         const onMouseMove = (moveEvt) => {
-          if (!isAvatarResizing) return;
-          const deltaY = startY - moveEvt.clientY;
-          const newSize = Math.max(100, Math.min(550, startSize + deltaY));
-          this.setAvatarSize(newSize);
+          if (!isDragging) return;
+          latestY = moveEvt.clientY;
+
+          if (!rafPending) {
+            rafPending = true;
+            requestAnimationFrame(() => {
+              rafPending = false;
+              if (!isDragging) return;
+              const deltaY = startY - latestY;
+              const newSize = Math.max(100, Math.min(550, startSize + deltaY));
+              this.setAvatarSize(newSize);
+            });
+          }
         };
 
         const onMouseUp = () => {
-          if (!isAvatarResizing) return;
-          isAvatarResizing = false;
-          document.body.style.userSelect = '';
+          if (!isDragging) return;
+          isDragging = false;
+          rafPending = false;
+          document.body.classList.remove('dialogue-resizing');
           document.body.style.cursor = '';
+          iframes.forEach(f => f.style.pointerEvents = '');
+
           window.removeEventListener('mousemove', onMouseMove);
           window.removeEventListener('mouseup', onMouseUp);
           localStorage.setItem('bodhi_avatar_size', this.currentAvatarSize);
@@ -395,9 +458,7 @@ export class BodhiDialogueEngine {
 
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mouseup', onMouseUp);
-      };
-
-      this.avatarResizer.addEventListener('mousedown', onMouseDown);
+      });
     }
   }
 
@@ -708,13 +769,22 @@ export class BodhiDialogueEngine {
         <div class="bodhi-task-box">
           <div class="bodhi-task-header">
             <span class="bodhi-task-label">Mission :</span>
-            <span class="bodhi-target-badge">${step.targetFile || 'index.html'}</span>
+            <span class="bodhi-target-badge" id="bodhi-target-badge" title="Cliquer pour basculer vers ${step.targetFile || 'index.html'} dans l'éditeur">${step.targetFile || 'index.html'}</span>
           </div>
           <ul class="bodhi-task-list">
             ${instructionsHtml}
           </ul>
         </div>
       `;
+
+      const targetBadgeEl = this.speechContainer.querySelector('#bodhi-target-badge');
+      if (targetBadgeEl) {
+        targetBadgeEl.addEventListener('click', () => {
+          if (typeof this.onTargetFileClicked === 'function') {
+            this.onTargetFileClicked(step.targetFile || 'index.html');
+          }
+        });
+      }
     }
 
     if (this.hintBtn) {

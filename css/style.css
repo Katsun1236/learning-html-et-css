@@ -544,18 +544,150 @@ body {
 [data-theme="light"] .token-selector { color: #800000; }
 [data-theme="light"] .token-value { color: #0451a5; }
 
+/* =============================================================================
+   BARRE DE RECHERCHE FLOTTANTE DE L'ÉDITEUR (STYLE VS CODE CTRL+F)
+   ============================================================================= */
+.editor-search-widget {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.editor-search-widget.hidden {
+  display: none;
+}
+
+#editor-search-input {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #f8fafc;
+  padding: 4px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  border-radius: 4px;
+  outline: none;
+  width: 170px;
+}
+
+#editor-search-input:focus {
+  border-color: var(--amber-primary);
+}
+
+.editor-search-count {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-family: var(--font-mono);
+  min-width: 32px;
+}
+
+.editor-search-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-search-btn:hover {
+  background: #334155;
+  color: #f8fafc;
+}
+
+.token-search-match {
+  background: rgba(245, 158, 11, 0.4);
+  border-bottom: 2px solid var(--amber-primary);
+  border-radius: 2px;
+}
+
+.token-search-match.current {
+  background: rgba(56, 189, 248, 0.7);
+  border-bottom: 2px solid #38bdf8;
+}
+
+/* Ligne active & indicateur de diagnostic dans la gouttière */
+.line-num.active-line {
+  color: var(--amber-primary);
+  font-weight: 700;
+}
+
+.line-num.has-error {
+  color: #f43f5e;
+  font-weight: 700;
+  position: relative;
+}
+
+.line-num.has-error::after {
+  content: '';
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #f43f5e;
+}
+
 .editor-status-bar {
   height: 24px;
   background: #007acc;
   color: #ffffff;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 0 14px;
   font-size: 0.72rem;
   font-family: var(--font-mono);
   font-weight: 500;
   flex-shrink: 0;
+}
+
+.editor-diagnostic-valid {
+  color: #a7f3d0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.editor-diagnostic-warning {
+  color: #fef08a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.editor-diagnostic-error {
+  color: #fecdd3;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.status-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-sep {
+  opacity: 0.4;
 }
 
 /* SECTION DROITE : RENDU */
@@ -863,15 +995,36 @@ body {
   }
 }
 
-/* POIGNÉE DE REDIMENSIONNEMENT DIRECTEMENT SUR LE COIN DE LA CARTE DE DIALOGUE */
+/* =============================================================================
+   POIGNÉES DE REDIMENSIONNEMENT FLUIDES DU DIALOGUE DE BODHI
+   ============================================================================= */
+
+/* Mode redimensionnement actif : suspension des transitions et capture de souris */
+body.dialogue-resizing,
+body.dialogue-resizing * {
+  user-select: none !important;
+}
+
+body.dialogue-resizing iframe {
+  pointer-events: none !important;
+}
+
+body.dialogue-resizing .bodhi-widget-container,
+body.dialogue-resizing .bodhi-dialogue-card,
+body.dialogue-resizing .bodhi-speech-container {
+  transition: none !important;
+  will-change: width, height;
+}
+
+/* Poignée d'angle supérieur-gauche (NWSE) */
 .bodhi-resize-handle {
   position: absolute;
   top: 0;
   left: 0;
-  width: 26px;
-  height: 26px;
+  width: 32px;
+  height: 32px;
   cursor: nwse-resize;
-  z-index: 20;
+  z-index: 30;
   pointer-events: auto;
   border-top-left-radius: 24px;
 }
@@ -879,15 +1032,75 @@ body {
 .bodhi-resize-handle::after {
   content: '';
   position: absolute;
-  top: 7px;
-  left: 7px;
-  width: 11px;
-  height: 11px;
-  border-top: 2.5px solid #d97706;
-  border-left: 2.5px solid #d97706;
-  border-radius: 3px 0 0 0;
+  top: 8px;
+  left: 8px;
+  width: 13px;
+  height: 13px;
+  border-top: 3px solid #d97706;
+  border-left: 3px solid #d97706;
+  border-radius: 4px 0 0 0;
+  transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
+.bodhi-resize-handle:hover::after,
+body.dialogue-resizing .bodhi-resize-handle::after {
+  transform: scale(1.2);
+  border-color: #b45309;
+}
+
+/* Poignée de bord supérieur (N : ajustement hauteur) */
+.bodhi-resize-edge-top {
+  position: absolute;
+  top: -4px;
+  left: 32px;
+  right: 64px;
+  height: 14px;
+  cursor: ns-resize;
+  z-index: 28;
+  pointer-events: auto;
+}
+
+.bodhi-resize-edge-top:hover {
+  background: rgba(217, 119, 6, 0.15);
+  border-radius: 6px;
+}
+
+/* Poignée de bord gauche (W : ajustement largeur) */
+.bodhi-resize-edge-left {
+  position: absolute;
+  top: 32px;
+  left: -4px;
+  bottom: 16px;
+  width: 14px;
+  cursor: ew-resize;
+  z-index: 28;
+  pointer-events: auto;
+}
+
+.bodhi-resize-edge-left:hover {
+  background: rgba(217, 119, 6, 0.15);
+  border-radius: 6px;
+}
+
+/* Badge cible cliquable pour changer de fichier en 1 clic */
+.bodhi-target-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  background: #1e293b;
+  color: #38bdf8;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+  user-select: none;
+}
+
+.bodhi-target-badge:hover {
+  background: #0284c7;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
 
 /* BOÎTE DE DIALOGUE CRÈME ÉLÉGANTE (STYLE SLIME RANCHER & VISUAL NOVEL) */
 .bodhi-dialogue-card {

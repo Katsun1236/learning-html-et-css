@@ -5,6 +5,7 @@
 
 import { IntelliSenseEngine } from './intellisense.js';
 import { highlightCode } from './syntax-highlighter.js';
+import { analyzeCode } from './linter.js';
 
 export class VSCodeEditor {
   constructor({
@@ -36,7 +37,12 @@ export class VSCodeEditor {
     this.isUndoingOrRedoing = false;
     this.historyDebounce = null;
 
+    // État de recherche Ctrl+F
+    this.currentSearchMatches = [];
+    this.searchMatchIndex = -1;
+
     this.initEditor();
+    this.initSearchWidget();
     this.intellisense = new IntelliSenseEngine(this);
   }
 
@@ -244,27 +250,80 @@ export class VSCodeEditor {
       this.lineNumbers.innerHTML = '<span class="line-num">1</span>\n';
       return;
     }
-    const linesCount = this.textarea.value.split('\n').length;
+    const val = this.textarea.value;
+    const linesCount = val.split('\n').length;
+
+    // Détection des erreurs syntaxiques en temps réel (linter)
+    const lintResult = analyzeCode(val, this.activeFile);
+    const errorLines = new Set(lintResult.issues.map(i => i.line));
+
     let numbers = '';
     for (let i = 1; i <= linesCount; i++) {
-      numbers += `<span class="line-num">${i}</span>\n`;
+      const errClass = errorLines.has(i) ? ' has-error' : '';
+      numbers += `<span class="line-num${errClass}" data-line="${i}">${i}</span>\n`;
     }
     this.lineNumbers.innerHTML = numbers;
+
+    this.updateDiagnostic(lintResult);
+    this.highlightActiveLine();
+  }
+
+  updateDiagnostic(lintResult) {
+    const diagEl = document.getElementById('editor-diagnostic');
+    if (!diagEl) return;
+
+    if (!lintResult || lintResult.status === 'valid' || lintResult.issues.length === 0) {
+      diagEl.className = 'editor-diagnostic-valid';
+      diagEl.innerHTML = '<span>✓ Code valide</span>';
+      diagEl.title = 'Toutes les balises et règles syntaxiques sont bien formées.';
+    } else if (lintResult.status === 'error') {
+      const first = lintResult.issues.find(i => i.type === 'error');
+      diagEl.className = 'editor-diagnostic-error';
+      diagEl.innerHTML = `<span>✕ L.${first.line} : ${first.message}</span>`;
+      diagEl.title = lintResult.issues.map(i => `L.${i.line}: ${i.message}`).join('\n');
+    } else {
+      const first = lintResult.issues[0];
+      diagEl.className = 'editor-diagnostic-warning';
+      diagEl.innerHTML = `<span>▲ L.${first.line} : ${first.message}</span>`;
+      diagEl.title = lintResult.issues.map(i => `L.${i.line}: ${i.message}`).join('\n');
+    }
   }
 
   updateCursorPosition() {
-    if (!this.statusBarInfo || !this.textarea) return;
-    if (!this.activeFile) {
-      this.statusBarInfo.textContent = "Aucun fichier • Création requise";
-      return;
-    }
+    if (!this.textarea) return;
     const start = this.textarea.selectionStart;
     const val = this.textarea.value.substring(0, start);
     const lines = val.split('\n');
-    const line = lines.length;
+    const currentLine = lines.length;
     const col = lines[lines.length - 1].length + 1;
-    const modeLabel = this.getMode().toUpperCase();
-    this.statusBarInfo.textContent = `${this.activeFile} • Ln ${line}, Col ${col} • Espaces: 2 • ${modeLabel} (UTF-8)`;
+
+    const cursorPosEl = document.getElementById('editor-cursor-pos');
+    if (cursorPosEl) {
+      cursorPosEl.textContent = `Ln ${currentLine}, Col ${col}`;
+    }
+    const fileBadgeEl = document.getElementById('editor-file-badge');
+    if (fileBadgeEl) {
+      fileBadgeEl.textContent = this.activeFile || 'Aucun fichier';
+    }
+
+    this.highlightActiveLine(currentLine);
+  }
+
+  highlightActiveLine(targetLine = null) {
+    if (!this.lineNumbers || !this.textarea) return;
+    let line = targetLine;
+    if (!line) {
+      const start = this.textarea.selectionStart;
+      line = this.textarea.value.substring(0, start).split('\n').length;
+    }
+    const lineEls = this.lineNumbers.querySelectorAll('.line-num');
+    lineEls.forEach((el, idx) => {
+      if (idx + 1 === line) {
+        el.classList.add('active-line');
+      } else {
+        el.classList.remove('active-line');
+      }
+    });
   }
 
   recordHistorySnapshot(force = false) {
@@ -436,6 +495,17 @@ export class VSCodeEditor {
         this.duplicateCurrentLine();
         return;
       }
+      if (k === 'f') {
+        e.preventDefault();
+        this.toggleSearch(true);
+        return;
+      }
+    }
+
+    if (e.key === 'Escape' && this.searchWidget && !this.searchWidget.classList.contains('hidden')) {
+      e.preventDefault();
+      this.closeSearch();
+      return;
     }
 
     const start = textarea.selectionStart;
@@ -443,9 +513,12 @@ export class VSCodeEditor {
     const value = textarea.value;
     const mode = this.getMode();
 
-    // 1. Touche Tab (Indentation 2 espaces)
+    // 1. Touche Tab (Emmet ou indentation 2 espaces)
     if (e.key === 'Tab') {
       e.preventDefault();
+      if (!e.shiftKey && this.tryExpandEmmet()) {
+        return;
+      }
       this.recordHistorySnapshot(true);
       if (!e.shiftKey) {
         textarea.value = value.substring(0, start) + '  ' + value.substring(end);
@@ -800,6 +873,220 @@ ${pageHtml}
       });
     } catch {
       this.previewIframe.srcdoc = documentContent;
+    }
+  }
+
+  // =========================================================================
+  // MODULE EMMET INTELLIGENT (EXPANSION RAPIDE SUR TOUCHE TAB)
+  // =========================================================================
+  tryExpandEmmet() {
+    if (this.getMode() !== 'html' || !this.textarea) return false;
+    const textarea = this.textarea;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    if (start !== end) return false;
+
+    const value = textarea.value;
+    const match = value.substring(0, start).match(/([a-zA-Z0-9:\-_!]+)$/);
+    if (!match) return false;
+
+    const word = match[1].toLowerCase();
+    const wordStart = start - word.length;
+
+    const snippets = {
+      '!': '<!DOCTYPE html>\n<html lang="fr">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>Document</title>\n</head>\n<body>\n  \n</body>\n</html>',
+      'html:5': '<!DOCTYPE html>\n<html lang="fr">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>Document</title>\n</head>\n<body>\n  \n</body>\n</html>',
+      'a': '<a href=""></a>',
+      'img': '<img src="" alt="">',
+      'link': '<link rel="stylesheet" href="style.css">',
+      'link:css': '<link rel="stylesheet" href="style.css">',
+      'meta:vp': '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+      'meta:utf': '<meta charset="UTF-8">',
+      'input': '<input type="text">',
+      'input:text': '<input type="text">',
+      'input:email': '<input type="email">',
+      'input:password': '<input type="password">',
+      'input:submit': '<input type="submit" value="Envoyer">',
+      'btn': '<button type="button"></button>',
+      'button': '<button type="button"></button>',
+      'ul': '<ul>\n  <li></li>\n</ul>',
+      'ol': '<ol>\n  <li></li>\n</ol>',
+      'li': '<li></li>',
+      'form': '<form action="" method="post">\n  \n</form>',
+      'style': '<style>\n  \n</style>',
+      'script': '<script>\n  \n</script>'
+    };
+
+    let expansion = null;
+    let cursorOffset = null;
+
+    if (snippets[word]) {
+      expansion = snippets[word];
+      if (word === 'a') cursorOffset = 9;
+      else if (word === 'img') cursorOffset = 10;
+      else if (word === '!' || word === 'html:5') cursorOffset = expansion.indexOf('<body>\n  ') + 10;
+      else if (word === 'ul' || word === 'ol') cursorOffset = expansion.indexOf('<li>') + 4;
+      else if (word === 'form') cursorOffset = expansion.indexOf('post">\n  ') + 8;
+      else if (word === 'btn' || word === 'button') cursorOffset = expansion.indexOf('></') + 1;
+      else if (word === 'style' || word === 'script') cursorOffset = expansion.indexOf('\n  ') + 3;
+    } else {
+      const knownTags = [
+        'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span', 'b', 'strong',
+        'i', 'em', 'header', 'footer', 'nav', 'main', 'section', 'article',
+        'aside', 'title', 'head', 'body', 'table', 'tr', 'td', 'th',
+        'tbody', 'thead', 'label', 'textarea', 'select', 'option'
+      ];
+      if (knownTags.includes(word)) {
+        expansion = `<${word}></${word}>`;
+        cursorOffset = word.length + 2;
+      }
+    }
+
+    if (expansion) {
+      this.recordHistorySnapshot(true);
+      textarea.value = value.substring(0, wordStart) + expansion + value.substring(start);
+      const finalCursor = wordStart + (cursorOffset !== null ? cursorOffset : expansion.length);
+      textarea.selectionStart = textarea.selectionEnd = finalCursor;
+      this.syncActiveBuffer();
+      this.updateLineNumbers();
+      this.triggerChange();
+      this.recordHistorySnapshot(true);
+      return true;
+    }
+
+    return false;
+  }
+
+  // =========================================================================
+  // RECHERCHE DANS LE CODE (CTRL + F / WIDGET INTÉGRÉ)
+  // =========================================================================
+  initSearchWidget() {
+    this.searchWidget = document.getElementById('editor-search-widget');
+    this.searchInput = document.getElementById('editor-search-input');
+    this.searchCount = document.getElementById('editor-search-count');
+    this.searchPrevBtn = document.getElementById('editor-search-prev');
+    this.searchNextBtn = document.getElementById('editor-search-next');
+    this.searchCloseBtn = document.getElementById('editor-search-close');
+
+    if (!this.searchWidget || !this.searchInput) return;
+
+    this.searchInput.addEventListener('input', () => {
+      this.runSearch(this.searchInput.value);
+    });
+
+    this.searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (e.shiftKey) {
+          this.navigateSearch(-1);
+        } else {
+          this.navigateSearch(1);
+        }
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        this.closeSearch();
+      }
+    });
+
+    if (this.searchPrevBtn) {
+      this.searchPrevBtn.addEventListener('click', () => this.navigateSearch(-1));
+    }
+    if (this.searchNextBtn) {
+      this.searchNextBtn.addEventListener('click', () => this.navigateSearch(1));
+    }
+    if (this.searchCloseBtn) {
+      this.searchCloseBtn.addEventListener('click', () => this.closeSearch());
+    }
+  }
+
+  toggleSearch(openOnly = false) {
+    if (!this.searchWidget) return;
+    const isHidden = this.searchWidget.classList.contains('hidden');
+
+    if (openOnly || isHidden) {
+      this.searchWidget.classList.remove('hidden');
+      if (this.textarea) {
+        const start = this.textarea.selectionStart;
+        const end = this.textarea.selectionEnd;
+        if (start !== end) {
+          const selected = this.textarea.value.substring(start, end);
+          if (selected.trim().length > 0 && !selected.includes('\n')) {
+            this.searchInput.value = selected;
+          }
+        }
+      }
+      this.searchInput.focus();
+      this.searchInput.select();
+      this.runSearch(this.searchInput.value);
+    } else {
+      this.closeSearch();
+    }
+  }
+
+  closeSearch() {
+    if (!this.searchWidget) return;
+    this.searchWidget.classList.add('hidden');
+    this.currentSearchMatches = [];
+    this.searchMatchIndex = -1;
+    if (this.textarea) {
+      this.textarea.focus();
+    }
+  }
+
+  runSearch(query) {
+    if (!this.textarea) return;
+    const val = this.textarea.value;
+    this.currentSearchMatches = [];
+    this.searchMatchIndex = -1;
+
+    if (!query || query.length === 0) {
+      if (this.searchCount) this.searchCount.textContent = '0/0';
+      return;
+    }
+
+    const lowerVal = val.toLowerCase();
+    const lowerQuery = query.toLowerCase();
+    let pos = 0;
+    while ((pos = lowerVal.indexOf(lowerQuery, pos)) !== -1) {
+      this.currentSearchMatches.push({ start: pos, end: pos + query.length });
+      pos += lowerQuery.length;
+    }
+
+    if (this.currentSearchMatches.length > 0) {
+      const cursor = this.textarea.selectionStart;
+      let closestIdx = 0;
+      for (let i = 0; i < this.currentSearchMatches.length; i++) {
+        if (this.currentSearchMatches[i].start >= cursor) {
+          closestIdx = i;
+          break;
+        }
+      }
+      this.searchMatchIndex = closestIdx;
+      this.goToMatch(this.searchMatchIndex);
+    } else {
+      if (this.searchCount) this.searchCount.textContent = '0/0';
+    }
+  }
+
+  navigateSearch(delta) {
+    if (!this.currentSearchMatches.length) return;
+    this.searchMatchIndex = (this.searchMatchIndex + delta + this.currentSearchMatches.length) % this.currentSearchMatches.length;
+    this.goToMatch(this.searchMatchIndex);
+  }
+
+  goToMatch(index) {
+    if (!this.currentSearchMatches[index] || !this.textarea) return;
+    const match = this.currentSearchMatches[index];
+    this.textarea.focus();
+    this.textarea.setSelectionRange(match.start, match.end);
+
+    const textBefore = this.textarea.value.substring(0, match.start);
+    const lineIndex = textBefore.split('\n').length - 1;
+    const approxLineHeight = 22;
+    this.textarea.scrollTop = Math.max(0, (lineIndex - 4) * approxLineHeight);
+
+    if (this.searchCount) {
+      this.searchCount.textContent = `${index + 1}/${this.currentSearchMatches.length}`;
     }
   }
 }

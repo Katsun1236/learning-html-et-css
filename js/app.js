@@ -273,7 +273,16 @@ class SanctuaireApp {
       onValidate: () => this.validateCurrentStep(),
       onOpenGrimoire: (term = '') => this.openCheatsheet(term),
       onResetStep: () => this.resetStepBaseline(),
-      onStepChange: (delta) => this.navigateStep(delta)
+      onStepChange: (delta) => this.navigateStep(delta),
+      onTargetFileClicked: (fileName) => {
+        if (!fileName) return;
+        if (this.editor.files[fileName] === undefined) {
+          this.editor.createFile(fileName);
+        } else {
+          this.editor.switchFile(fileName);
+        }
+        this.showToast(`Édition de ${fileName}`, 'info');
+      }
     });
   }
 
@@ -594,12 +603,33 @@ class SanctuaireApp {
       });
     }
 
-    // Format & Reset
+    // Format & Reset & Search & Copy
     if (this.el.formatCodeBtn) {
       this.el.formatCodeBtn.addEventListener('click', () => {
         sound.playClick();
         this.editor.formatCurrentFile();
         this.showToast("Code réaligné proprement.", "info");
+      });
+    }
+
+    const searchCodeBtn = document.getElementById('search-code-btn');
+    if (searchCodeBtn) {
+      searchCodeBtn.addEventListener('click', () => {
+        sound.playClick();
+        this.editor.toggleSearch();
+      });
+    }
+
+    const copyCodeBtn = document.getElementById('copy-code-btn');
+    if (copyCodeBtn) {
+      copyCodeBtn.addEventListener('click', () => {
+        sound.playClick();
+        const activeText = this.editor.textarea ? this.editor.textarea.value : '';
+        navigator.clipboard.writeText(activeText).then(() => {
+          this.showToast("Code copié dans le presse-papiers !", "success");
+        }).catch(() => {
+          this.showToast("Impossible d'accéder au presse-papiers.", "warning");
+        });
       });
     }
 
