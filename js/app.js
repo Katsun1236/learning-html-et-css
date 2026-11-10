@@ -1048,32 +1048,32 @@ export class SanctuaireApp {
       this.teleportToStep(0, "Acte I : Le Commencement");
       return true;
     }
-    if (c === 'ACTE2' || c === 'PAGES' || c === 'S8') {
-      this.teleportToStep(7, "Acte II : La Toile Multi-pages");
+    if (c === 'ACTE2' || c === 'PAGES' || c === 'S9') {
+      this.teleportToStep(8, "Acte II : La Toile Multi-pages (Étape 9)");
       return true;
     }
-    if (c === 'ACTE3' || c === 'CSS' || c === 'S13') {
-      this.teleportToStep(12, "Acte III : L'Harmonie CSS");
+    if (c === 'ACTE3' || c === 'CSS' || c === 'S19') {
+      this.teleportToStep(18, "Acte III : L'Harmonie CSS (Étape 19)");
       return true;
     }
-    if (c === 'ACTE4' || c === 'GRID' || c === 'S25') {
-      this.teleportToStep(24, "Acte IV : CSS Grid & Layout");
+    if (c === 'ACTE4' || c === 'GRID' || c === 'S29') {
+      this.teleportToStep(28, "Acte IV : CSS Grid & Layouts (Étape 29)");
       return true;
     }
-    if (c === 'ACTE5' || c === 'MAITRISE' || c === 'S34') {
-      this.teleportToStep(33, "Acte V : Haute Maîtrise & Accessibilité");
+    if (c === 'ACTE5' || c === 'MAITRISE' || c === 'S37') {
+      this.teleportToStep(36, "Acte V : Haute Maîtrise & Artisanat Avancé (Étape 37)");
       return true;
     }
-    if (c === 'ADA' || c === 'ACTE6' || c === 'JS' || c === 'S37') {
-      this.teleportToStep(36, "Acte VI : L'Atelier du Runtime avec Ada (JavaScript)");
+    if (c === 'ADA' || c === 'ACTE6' || c === 'JS' || c === 'S44') {
+      this.teleportToStep(43, "Acte VI : L'Atelier du Runtime avec Ada (Étape 44)");
       return true;
     }
-    if (c === 'LOCALSTORAGE' || c === 'S39') {
-      this.teleportToStep(38, "Étape 39 : L'Exode de la Mémoire (localStorage)");
+    if (c === 'LOCALSTORAGE' || c === 'S49') {
+      this.teleportToStep(48, "Étape 49 : L'Exode de la Mémoire (localStorage)");
       return true;
     }
-    if (c === 'FINALE' || c === 'APOTHEOSE' || c === 'S40') {
-      this.teleportToStep(39, "Étape 40 : L'Apothéose & L'Ascension Éternelle");
+    if (c === 'FINALE' || c === 'APOTHEOSE' || c === 'S50' || c === 'S40') {
+      this.teleportToStep(49, "Étape 50 : L'Apothéose & L'Ascension Éternelle");
       return true;
     }
 
@@ -1113,7 +1113,7 @@ export class SanctuaireApp {
       storage.setHighestUnlockedStep(this.highestUnlockedStep);
       this.loadStep(this.highestUnlockedStep);
       this.closeSecretCodesModal();
-      this.showToast("Accès Grand Architecte accordé ! Toutes les 40 étapes sont déverrouillées.", "success");
+      this.showToast("Accès Grand Architecte accordé ! Toutes les 50 étapes sont déverrouillées.", "success");
       return true;
     }
 

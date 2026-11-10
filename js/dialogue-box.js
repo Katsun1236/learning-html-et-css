@@ -818,8 +818,9 @@ export class BodhiDialogueEngine {
     let img = this.avatarContainer.querySelector('.bodhi-avatar-img');
     if (!img) {
       this.avatarContainer.innerHTML = `<img src="${src}" alt="${charData.name}" class="bodhi-avatar-img">`;
-    } else if (img.getAttribute('src') !== src) {
+    } else {
       img.src = src;
+      img.setAttribute('src', src);
       img.alt = charData.name;
     }
 
@@ -828,8 +829,19 @@ export class BodhiDialogueEngine {
     this.avatarContainer.classList.add('bodhi-pop');
   }
 
-  setSpeaker(name, poseName, character = 'bodhi') {
-    this.currentCharacter = character || 'bodhi';
+  setSpeaker(name, poseName, character = null) {
+    if (character) {
+      this.currentCharacter = character;
+    } else if (name && name.toLowerCase().includes('ada')) {
+      this.currentCharacter = 'ada';
+    } else if (name && (name.toLowerCase().includes('null') || name.toLowerCase().includes('système') || name.toLowerCase().includes('alerte'))) {
+      this.currentCharacter = 'null';
+    } else if (name && name.toLowerCase().includes('bodhi')) {
+      this.currentCharacter = 'bodhi';
+    } else if (!this.currentCharacter) {
+      this.currentCharacter = 'bodhi';
+    }
+
     if (this.nameBadge && name) {
       this.nameBadge.textContent = name;
     }

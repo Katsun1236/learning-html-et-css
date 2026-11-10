@@ -1,15 +1,7 @@
 // =============================================================================
-// PARCOURS INITIATIQUE : L'ÉDIFICATION DU GRAND SANCTUAIRE MULTI-PAGES
-// 24 ÉTAPES PROGRESSIVES DU NÉANT ABSOLU AU CHEF-D'ŒUVRE COMPLET
+// MODÈLES CANONIQUES DU SANCTUAIRE DU SAVOIR (1 À 50)
 // =============================================================================
 
-// =============================================================================
-// MODÈLES CANONIQUES CUMULATIFS COMPLETS POUR CHAQUE ÉTAPE (1 À 36)
-// =============================================================================
-
-// We define the canonical progression of all 5 files across the 36 steps.
-
-// === 1. INDEX.HTML PROGRESSION ===
 const INDEX_S1 = `<!DOCTYPE html>
 <html lang="fr">
 </html>`;
@@ -26,6 +18,18 @@ const INDEX_S3 = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Le Sanctuaire du Savoir : académie sacrée d'apprentissage du Web, du code pur et des standards ouverts.">
+  <title>Le Sanctuaire du Savoir</title>
+</head>
+</html>`;
+
+const INDEX_S4 = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Le Sanctuaire du Savoir : académie sacrée d'apprentissage du Web, du code pur et des standards ouverts.">
   <title>Le Sanctuaire du Savoir</title>
 </head>
 <body>
@@ -38,10 +42,12 @@ const INDEX_S3 = `<!DOCTYPE html>
 </body>
 </html>`;
 
-const INDEX_S4 = `<!DOCTYPE html>
+const INDEX_S5 = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Le Sanctuaire du Savoir : académie sacrée d'apprentissage du Web, du code pur et des standards ouverts.">
   <title>Le Sanctuaire du Savoir</title>
 </head>
 <body>
@@ -60,10 +66,12 @@ const INDEX_S4 = `<!DOCTYPE html>
 </body>
 </html>`;
 
-const INDEX_S5 = `<!DOCTYPE html>
+const INDEX_S6 = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Le Sanctuaire du Savoir : académie sacrée d'apprentissage du Web, du code pur et des standards ouverts.">
   <title>Le Sanctuaire du Savoir</title>
 </head>
 <body>
@@ -91,10 +99,12 @@ const INDEX_S5 = `<!DOCTYPE html>
 </body>
 </html>`;
 
-const INDEX_S6 = `<!DOCTYPE html>
+const INDEX_S7 = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Le Sanctuaire du Savoir : académie sacrée d'apprentissage du Web, du code pur et des standards ouverts.">
   <title>Le Sanctuaire du Savoir</title>
 </head>
 <body>
@@ -114,7 +124,40 @@ const INDEX_S6 = `<!DOCTYPE html>
     <section>
       <h2>Présentation du Sanctuaire</h2>
       <article>
-        <p>Ce lieu fut érigé pour rappeler aux esprits curieux que le Web appartient à ceux qui apprennent à le bâtir par eux-mêmes, brique par brique, sans dépendre d'artifices éphémères.</p>
+        <p>Ce lieu fut érigé pour rappeler aux esprits curieux que le <strong>Web</strong> appartient à ceux qui apprennent à le bâtir par eux-mêmes, brique par brique, avec du code <code>HTML5</code> pur et une <em>véritable intention sémantique</em>.</p>
+      </article>
+    </section>
+  </main>
+
+</body>
+</html>`;
+
+const INDEX_S8 = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Le Sanctuaire du Savoir : académie sacrée d'apprentissage du Web, du code pur et des standards ouverts.">
+  <title>Le Sanctuaire du Savoir</title>
+</head>
+<body>
+
+  <header>
+    <h1>Le Sanctuaire du Savoir</h1>
+    <p>L'académie sacrée où l'art du code pur reprend vie.</p>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="chroniques.html">Chroniques</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Présentation du Sanctuaire</h2>
+      <article>
+        <p>Ce lieu fut érigé pour rappeler aux esprits curieux que le <strong>Web</strong> appartient à ceux qui apprennent à le bâtir par eux-mêmes, brique par brique, avec du code <code>HTML5</code> pur et une <em>véritable intention sémantique</em>.</p>
       </article>
     </section>
   </main>
@@ -126,12 +169,12 @@ const INDEX_S6 = `<!DOCTYPE html>
 </body>
 </html>`;
 
-const INDEX_S13 = INDEX_S6.replace(
+const INDEX_S19 = INDEX_S8.replace(
   '<title>Le Sanctuaire du Savoir</title>',
   '<title>Le Sanctuaire du Savoir</title>\n  <link rel="stylesheet" href="style.css">'
 );
 
-const INDEX_S25 = INDEX_S13.replace(
+const INDEX_S31 = INDEX_S19.replace(
   '<main>',
   `<main>
     <div class="hero">
@@ -141,7 +184,7 @@ const INDEX_S25 = INDEX_S13.replace(
     </div>`
 );
 
-const INDEX_S27 = INDEX_S25.replace(
+const INDEX_S32 = INDEX_S31.replace(
   '    </section>',
   `    </section>
 
@@ -161,52 +204,17 @@ const INDEX_S27 = INDEX_S25.replace(
     </div>`
 );
 
-const INDEX_S37 = INDEX_S27.replace(
+const INDEX_S44 = INDEX_S32.replace(
   '</head>',
   '  <script src="script.js" defer></script>\n</head>'
 );
 
-// === 1.1 SCRIPT.JS PROGRESSION (ACTE VI : JAVASCRIPT & RUNTIME) ===
-const SCRIPT_S37 = `// =============================================================================
-// L'ATELIER DU RUNTIME — SCRIPT PRINCIPAL DU SANCTUAIRE
-// =============================================================================
-
-console.log("Le Sanctuaire du Savoir s'éveille dans le runtime !");
-const SANCTUARY_NAME = "Le Sanctuaire du Savoir";
-`;
-
-const SCRIPT_S38 = SCRIPT_S37 + `\n// Interaction sensorielle : écoute des événements utilisateurs
-document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.querySelector('button') || document.querySelector('a');
-  if (btn) {
-    btn.addEventListener('click', () => {
-      console.log("Le Sanctuaire répond au contact du voyageur !");
-    });
-  }
-});
-`;
-
-const SCRIPT_S39 = SCRIPT_S38 + `\n// Déportation de la mémoire de Bodhi dans le navigateur local (localStorage)
-const bodhiMemory = {
-  name: "Maître Bodhi",
-  status: "immortel",
-  origin: "CERN 1991",
-  disciples: 1,
-  sanctuaryState: "restauré",
-  savedAt: new Date().toISOString()
-};
-
-localStorage.setItem('bodhi_memory_sanctuary', JSON.stringify(bodhiMemory));
-console.log("Mémoire de Bodhi ancrée dans localStorage :", bodhiMemory);
-`;
-
-const SCRIPT_S40 = SCRIPT_S39;
-
 // === 2. CHRONIQUES.HTML PROGRESSION ===
-const CHRONIQUES_S7 = `<!DOCTYPE html>
+const CHRONIQUES_S9 = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Les Chroniques du Web</title>
 </head>
 <body>
@@ -218,10 +226,11 @@ const CHRONIQUES_S7 = `<!DOCTYPE html>
 </body>
 </html>`;
 
-const CHRONIQUES_S8 = `<!DOCTYPE html>
+const CHRONIQUES_S10 = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Les Chroniques du Web</title>
 </head>
 <body>
@@ -239,10 +248,11 @@ const CHRONIQUES_S8 = `<!DOCTYPE html>
 </body>
 </html>`;
 
-const CHRONIQUES_S9 = `<!DOCTYPE html>
+const CHRONIQUES_S11 = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Les Chroniques du Web</title>
 </head>
 <body>
@@ -275,25 +285,63 @@ const CHRONIQUES_S9 = `<!DOCTYPE html>
 </body>
 </html>`;
 
-const CHRONIQUES_S13 = CHRONIQUES_S9.replace(
+const CHRONIQUES_S12 = CHRONIQUES_S11.replace(
+  '    </section>',
+  `    </section>
+
+    <section>
+      <h2>Les Trois Fondations Sacrées</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Technologie</th>
+            <th>Année de Création</th>
+            <th>Rôle Sacré</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>HTML</td>
+            <td>1991</td>
+            <td>Squelette sémantique et contenu</td>
+          </tr>
+          <tr>
+            <td>CSS</td>
+            <td>1996</td>
+            <td>Présentation visuelle et harmonie</td>
+          </tr>
+          <tr>
+            <td>JavaScript</td>
+            <td>1995</td>
+            <td>Logique vivante et interactivité</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>`
+);
+
+const CHRONIQUES_S19 = CHRONIQUES_S12.replace(
   '<title>Les Chroniques du Web</title>',
   '<title>Les Chroniques du Web</title>\n  <link rel="stylesheet" href="style.css">'
 );
 
-const CHRONIQUES_S29 = CHRONIQUES_S13.replace(
-  '    </section>',
+const CHRONIQUES_S34 = CHRONIQUES_S19.replace(
+  '    </section>\n\n    <section>',
   `      <blockquote>
         « Le code n'appartient à personne et appartient à tous. C'est en le partageant sans barrières que nous élevons l'humanité. »
         <cite>— Le Premier Architecte du Web (1991)</cite>
       </blockquote>
-    </section>`
+    </section>
+
+    <section>`
 );
 
 // === 3. GALERIE.HTML PROGRESSION ===
-const GALERIE_S10 = `<!DOCTYPE html>
+const GALERIE_S13 = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Galerie des Bâtisseurs</title>
 </head>
 <body>
@@ -314,29 +362,16 @@ const GALERIE_S10 = `<!DOCTYPE html>
     </section>
   </main>
 
+  <footer>
+    <p>&copy; 2026 Le Sanctuaire du Savoir — Conçu avec sagesse et code pur.</p>
+  </footer>
+
 </body>
 </html>`;
 
-const GALERIE_S11 = `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Galerie des Bâtisseurs</title>
-</head>
-<body>
-
-  <header>
-    <h1>Galerie des Bâtisseurs</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="chroniques.html">Chroniques</a>
-      <a href="galerie.html">Galerie</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section>
+const GALERIE_S14 = GALERIE_S13.replace(
+  '    <section>\n      <h2>Fresques du Premier Siècle</h2>\n    </section>',
+  `    <section>
       <h2>Fresques du Premier Siècle</h2>
       <div class="galerie-conteneur">
         <figure>
@@ -356,26 +391,20 @@ const GALERIE_S11 = `<!DOCTYPE html>
           <figcaption>L'Envoyé du Réseau : délivrant les formulaires au serveur.</figcaption>
         </figure>
       </div>
-    </section>
-  </main>
+    </section>`
+);
 
-  <footer>
-    <p>&copy; 2026 Le Sanctuaire du Savoir — Conçu avec sagesse et code pur.</p>
-  </footer>
-
-</body>
-</html>`;
-
-const GALERIE_S13 = GALERIE_S11.replace(
+const GALERIE_S19 = GALERIE_S14.replace(
   '<title>Galerie des Bâtisseurs</title>',
   '<title>Galerie des Bâtisseurs</title>\n  <link rel="stylesheet" href="style.css">'
 );
 
 // === 4. CONTACT.HTML PROGRESSION ===
-const CONTACT_S12 = `<!DOCTYPE html>
+const CONTACT_S15 = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacter le Sanctuaire</title>
 </head>
 <body>
@@ -394,16 +423,6 @@ const CONTACT_S12 = `<!DOCTYPE html>
     <section>
       <h2>Envoyer un Parchemin à Maître Bodhi</h2>
       <form action="#" method="post">
-        <label for="nom">Ton nom d'apprenti :</label>
-        <input type="text" id="nom" name="nom" placeholder="Ex: Scribe du Web">
-
-        <label for="email">Ton adresse de contact :</label>
-        <input type="email" id="email" name="email" placeholder="nom@domaine.org">
-
-        <label for="message">Ton message pour le sanctuaire :</label>
-        <textarea id="message" name="message" rows="5" placeholder="Écris ton message ici..."></textarea>
-
-        <button type="submit">Envoyer le message</button>
       </form>
     </section>
   </main>
@@ -415,21 +434,52 @@ const CONTACT_S12 = `<!DOCTYPE html>
 </body>
 </html>`;
 
-const CONTACT_S13 = CONTACT_S12.replace(
+const CONTACT_S16 = CONTACT_S15.replace(
+  '      <form action="#" method="post">\n      </form>',
+  `      <form action="#" method="post">
+        <label for="nom">Ton nom d'apprenti :</label>
+        <input type="text" id="nom" name="nom" required placeholder="Ex: Scribe du Web">
+
+        <label for="email">Ton adresse de contact :</label>
+        <input type="email" id="email" name="email" required placeholder="nom@domaine.org">
+      </form>`
+);
+
+const CONTACT_S17 = CONTACT_S16.replace(
+  '      </form>',
+  `        <label for="sujet">Objet de la missive :</label>
+        <select id="sujet" name="sujet">
+          <option value="question">Question sur le code</option>
+          <option value="salutation">Salutation à Maître Bodhi</option>
+          <option value="runtime">Requête pour Ada</option>
+        </select>
+
+        <label for="message">Ton message pour le sanctuaire :</label>
+        <textarea id="message" name="message" rows="5" required placeholder="Écris ton message ici..."></textarea>
+      </form>`
+);
+
+const CONTACT_S18 = CONTACT_S17.replace(
+  '      </form>',
+  `        <button type="submit">Envoyer la missive</button>
+      </form>`
+);
+
+const CONTACT_S19 = CONTACT_S18.replace(
   '<title>Contacter le Sanctuaire</title>',
   '<title>Contacter le Sanctuaire</title>\n  <link rel="stylesheet" href="style.css">'
 );
 
 // === 5. STYLE.CSS PROGRESSION ===
-const STYLE_S13 = `/* Feuille de style du Sanctuaire */`;
+const STYLE_S19 = `/* Feuille de style du Sanctuaire */`;
 
-const STYLE_S14 = `* {
+const STYLE_S20 = `* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }`;
 
-const STYLE_S15 = STYLE_S14 + `\n
+const STYLE_S21 = STYLE_S20 + `\n
 body {
   font-family: system-ui, -apple-system, sans-serif;
   background-color: #0f172a;
@@ -437,7 +487,7 @@ body {
   line-height: 1.6;
 }`;
 
-const STYLE_S16 = STYLE_S15 + `\n
+const STYLE_S22 = STYLE_S21 + `\n
 section {
   background-color: #1e293b;
   border: 1px solid #334155;
@@ -447,7 +497,14 @@ section {
   border-radius: 14px;
 }`;
 
-const STYLE_S17 = STYLE_S16 + `\n
+const STYLE_S23 = STYLE_S22 + `\n
+h1, h2, h3 {
+  color: #f8fafc;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}`;
+
+const STYLE_S24 = STYLE_S23 + `\n
 header {
   background-color: #1e293b;
   padding: 24px 20px;
@@ -466,12 +523,85 @@ nav a:hover {
   color: #f59e0b;
 }`;
 
-const STYLE_S18 = STYLE_S17.replace(
+const STYLE_S25 = STYLE_S24 + `\n
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+th, td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #334155;
+}
+
+th {
+  background-color: #0f172a;
+  color: #f59e0b;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}`;
+
+const STYLE_S26 = STYLE_S25.replace(
   'border-radius: 14px;',
   'border-radius: 14px;\n  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);'
 );
 
-const STYLE_S19 = STYLE_S18.replace(
+const STYLE_S27 = STYLE_S26 + `\n
+form {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+input, select, textarea {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #f8fafc;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+label {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  font-weight: 600;
+}`;
+
+const STYLE_S28 = STYLE_S27 + `\n
+button {
+  background: #f59e0b;
+  color: #1e293b;
+  font-weight: 800;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background: #d97706;
+}
+
+button:active {
+  transform: scale(0.98);
+}`;
+
+const STYLE_S29 = `:root {
+  --gold-primary: #f59e0b;
+  --bg-main: #0f172a;
+  --text-main: #f8fafc;
+}
+
+` + STYLE_S28;
+
+const STYLE_S30 = STYLE_S29.replace(
   'header {',
   `nav {
   display: flex;
@@ -484,7 +614,51 @@ const STYLE_S19 = STYLE_S18.replace(
 header {`
 );
 
-const STYLE_S20 = STYLE_S19 + `\n
+const STYLE_S31 = STYLE_S30 + `\n
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  border-bottom: 1px solid #334155;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid var(--gold-primary, #f59e0b);
+  border-radius: 20px;
+  color: var(--gold-primary, #f59e0b);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}`;
+
+const STYLE_S32 = STYLE_S31 + `\n
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 960px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+.card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-primary, #f59e0b);
+}`;
+
+const STYLE_S33 = STYLE_S32 + `\n
 .galerie-conteneur {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -512,132 +686,7 @@ figcaption {
   text-align: center;
 }`;
 
-const STYLE_S21 = STYLE_S20 + `\n
-form {
-  display: grid;
-  gap: 14px;
-  margin-top: 16px;
-}
-
-input, textarea {
-  background: #0f172a;
-  border: 1px solid #334155;
-  color: #f8fafc;
-  padding: 12px 14px;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 0.95rem;
-}
-
-button {
-  background: #f59e0b;
-  color: #1e293b;
-  font-weight: 800;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-}`;
-
-const STYLE_S22 = STYLE_S21.replace(
-  'nav a {',
-  'nav a {\n  transition: color 0.2s;'
-).replace(
-  'border: 1px solid #334155;\n}',
-  `border: 1px solid #334155;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-figure:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
-}`
-).replace(
-  'font-size: 1rem;\n}',
-  `font-size: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4);
-}`
-);
-
-const STYLE_S23 = STYLE_S22 + `\n
-footer {
-  text-align: center;
-  padding: 24px;
-  color: #64748b;
-  font-size: 0.85rem;
-}
-
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  section {
-    margin: 16px 12px;
-    padding: 20px;
-  }
-}`;
-
-const STYLE_S24 = `:root {
-  --gold-primary: #f59e0b;
-  --bg-main: #0f172a;
-  --text-main: #f8fafc;
-}
-
-` + STYLE_S23;
-
-const STYLE_S26 = STYLE_S24 + `\n
-.hero {
-  text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-  border-bottom: 1px solid #334155;
-}
-
-.hero-badge {
-  display: inline-block;
-  padding: 6px 16px;
-  border: 1px solid var(--gold-primary, #f59e0b);
-  border-radius: 20px;
-  color: var(--gold-primary, #f59e0b);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 16px;
-}`;
-
-const STYLE_S28 = STYLE_S26 + `\n
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-  max-width: 960px;
-  margin: 32px auto;
-  padding: 0 16px;
-}
-
-.card {
-  background: #1e293b;
-  border: 1px solid #334155;
-  border-radius: 12px;
-  padding: 24px;
-  transition: transform 0.25s ease, border-color 0.25s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: var(--gold-primary, #f59e0b);
-}`;
-
-const STYLE_S30 = STYLE_S28 + `\n
+const STYLE_S34 = STYLE_S33 + `\n
 blockquote {
   border-left: 4px solid var(--gold-primary, #f59e0b);
   padding: 18px 24px;
@@ -658,16 +707,75 @@ blockquote cite {
   font-weight: 700;
 }`;
 
-const STYLE_S31 = STYLE_S30.replace(
+const STYLE_S35 = STYLE_S34 + `\n
+footer {
+  text-align: center;
+  padding: 24px;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  section {
+    margin: 16px 12px;
+    padding: 20px;
+  }
+}`;
+
+const STYLE_S36 = STYLE_S35.replace(
+  'h1, h2, h3 {',
+  `h1 {
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+}
+
+h1, h2, h3 {`
+);
+
+const STYLE_S37 = STYLE_S36.replace(
+  'nav a {',
+  'nav a {\n  transition: color 0.2s;'
+).replace(
+  'border: 1px solid #334155;\n}',
+  `border: 1px solid #334155;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}`
+).replace(
+  'font-size: 1rem;\n}',
+  `font-size: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}`
+);
+
+const STYLE_S38 = STYLE_S37.replace(
   'figure {',
   'figure {\n  overflow: hidden;'
 ).replace(
-  'figure:hover {',
-  'figure:hover img {\n  transform: scale(1.08);\n}\n\nfigure:hover {'
+  'figure img {',
+  `figure:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+
+figure:hover img {
+  transform: scale(1.08);
+}
+
+figure img {
+  transition: transform 0.3s ease;`
+).replace(
+  'button:hover {',
+  `button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4);`
 );
 
-const STYLE_S32 = STYLE_S31 + `\n
-input:focus, textarea:focus {
+const STYLE_S39 = STYLE_S38 + `\n
+input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--gold-primary, #f59e0b);
   box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);
@@ -677,7 +785,7 @@ form:focus-within {
   border-color: var(--gold-primary, #f59e0b);
 }`;
 
-const STYLE_S33 = STYLE_S32 + `\n
+const STYLE_S40 = STYLE_S39 + `\n
 @keyframes beaconPulse {
   0%, 100% {
     transform: scale(1);
@@ -693,7 +801,7 @@ const STYLE_S33 = STYLE_S32 + `\n
   animation: beaconPulse 3s infinite ease-in-out;
 }`;
 
-const STYLE_S34 = STYLE_S33.replace(
+const STYLE_S41 = STYLE_S40.replace(
   'header {',
   `header {
   position: sticky;
@@ -704,7 +812,18 @@ const STYLE_S34 = STYLE_S33.replace(
   z-index: 100;`
 );
 
-const STYLE_S35 = STYLE_S34 + `\n
+const STYLE_S42 = STYLE_S41 + `\n
+.hero-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--gold-primary, #f59e0b);
+  margin: 12px auto 0;
+  border-radius: 2px;
+}`;
+
+const STYLE_S43 = STYLE_S42 + `\n
 :focus-visible {
   outline: 2px solid var(--gold-primary, #f59e0b);
   outline-offset: 3px;
@@ -719,1111 +838,1704 @@ const STYLE_S35 = STYLE_S34 + `\n
   }
 }`;
 
-const STYLE_S36 = STYLE_S35;
+// === 6. SCRIPT.JS PROGRESSION (ACTE VI : JAVASCRIPT & RUNTIME AVEC ADA) ===
+const SCRIPT_S44 = `// =============================================================================
+// L'ATELIER DU RUNTIME — SCRIPT PRINCIPAL DU SANCTUAIRE
+// =============================================================================
 
-// Construct map for each step 1..36
+console.log("Le Sanctuaire du Savoir s'éveille dans le runtime !");
+const SANCTUARY_NAME = "Le Sanctuaire du Savoir";
+`;
+
+const SCRIPT_S45 = SCRIPT_S44 + `\n// 1. Observation du DOM compilé par le navigateur
+const mainTitle = document.querySelector('h1');
+const allCards = document.querySelectorAll('.card');
+console.log("Titre actif détecté :", mainTitle ? mainTitle.textContent : "Sanctuaire");
+console.log("Nombre de piliers architecturaux détectés :", allCards.length);
+`;
+
+const SCRIPT_S46 = SCRIPT_S45 + `\n// 2. Interaction sensorielle : écoute des événements utilisateurs
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('button') || document.querySelector('a');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      console.log("Le Sanctuaire répond au contact du voyageur !");
+    });
+  }
+});
+`;
+
+const SCRIPT_S47 = SCRIPT_S46 + `\n// 3. Bascule dynamique de classe pour animer un élément
+document.addEventListener('DOMContentLoaded', () => {
+  const heroBadge = document.querySelector('.hero-badge');
+  if (heroBadge) {
+    heroBadge.addEventListener('click', () => {
+      heroBadge.classList.toggle('pulse-fast');
+      console.log("Fréquence du phare modifiée par l'Architecte !");
+    });
+  }
+});
+`;
+
+const SCRIPT_S48 = SCRIPT_S47 + `\n// 4. Génération dynamique de contenu dans le DOM
+function ajouterAnnonceSanctuaire(texte) {
+  const main = document.querySelector('main');
+  if (!main) return;
+  const note = document.createElement('p');
+  note.className = 'runtime-note';
+  note.textContent = texte;
+  main.appendChild(note);
+}
+ajouterAnnonceSanctuaire("L'énergie du runtime circule désormais librement dans chaque recoin du sanctuaire.");
+`;
+
+const SCRIPT_S49 = SCRIPT_S48 + `\n// 5. Déportation de la mémoire de Bodhi dans le navigateur local (localStorage)
+const bodhiMemory = {
+  name: "Maître Bodhi",
+  status: "immortel",
+  origin: "CERN 1991",
+  disciples: 1,
+  sanctuaryState: "restauré",
+  savedAt: new Date().toISOString()
+};
+
+localStorage.setItem('bodhi_memory_sanctuary', JSON.stringify(bodhiMemory));
+console.log("Mémoire de Bodhi ancrée dans localStorage :", bodhiMemory);
+`;
+
+const SCRIPT_S50 = SCRIPT_S49;
+
 function getFilesForStep(stepNum) {
   const files = {};
   
-  // INDEX
+  // INDEX.HTML
   if (stepNum === 1) files['index.html'] = INDEX_S1;
   else if (stepNum === 2) files['index.html'] = INDEX_S2;
   else if (stepNum === 3) files['index.html'] = INDEX_S3;
   else if (stepNum === 4) files['index.html'] = INDEX_S4;
   else if (stepNum === 5) files['index.html'] = INDEX_S5;
-  else if (stepNum >= 6 && stepNum <= 12) files['index.html'] = INDEX_S6;
-  else if (stepNum >= 13 && stepNum <= 24) files['index.html'] = INDEX_S13;
-  else if (stepNum === 25 || stepNum === 26) files['index.html'] = INDEX_S25;
-  else if (stepNum >= 27 && stepNum <= 36) files['index.html'] = INDEX_S27;
-  else files['index.html'] = INDEX_S37; // 37..40
+  else if (stepNum === 6) files['index.html'] = INDEX_S6;
+  else if (stepNum === 7) files['index.html'] = INDEX_S7;
+  else if (stepNum >= 8 && stepNum <= 18) files['index.html'] = INDEX_S8;
+  else if (stepNum >= 19 && stepNum <= 30) files['index.html'] = INDEX_S19;
+  else if (stepNum === 31) files['index.html'] = INDEX_S31;
+  else if (stepNum >= 32 && stepNum <= 43) files['index.html'] = INDEX_S32;
+  else files['index.html'] = INDEX_S44; // 44..50
 
-  // CHRONIQUES
-  if (stepNum === 7) files['chroniques.html'] = CHRONIQUES_S7;
-  else if (stepNum === 8) files['chroniques.html'] = CHRONIQUES_S8;
-  else if (stepNum >= 9 && stepNum <= 12) files['chroniques.html'] = CHRONIQUES_S9;
-  else if (stepNum >= 13 && stepNum <= 28) files['chroniques.html'] = CHRONIQUES_S13;
-  else if (stepNum >= 29) files['chroniques.html'] = CHRONIQUES_S29;
+  // CHRONIQUES.HTML
+  if (stepNum === 9) files['chroniques.html'] = CHRONIQUES_S9;
+  else if (stepNum === 10) files['chroniques.html'] = CHRONIQUES_S10;
+  else if (stepNum === 11) files['chroniques.html'] = CHRONIQUES_S11;
+  else if (stepNum >= 12 && stepNum <= 18) files['chroniques.html'] = CHRONIQUES_S12;
+  else if (stepNum >= 19 && stepNum <= 33) files['chroniques.html'] = CHRONIQUES_S19;
+  else if (stepNum >= 34) files['chroniques.html'] = CHRONIQUES_S34;
 
-  // GALERIE
-  if (stepNum === 10) files['galerie.html'] = GALERIE_S10;
-  else if (stepNum === 11 || stepNum === 12) files['galerie.html'] = GALERIE_S11;
-  else if (stepNum >= 13) files['galerie.html'] = GALERIE_S13;
+  // GALERIE.HTML
+  if (stepNum === 13) files['galerie.html'] = GALERIE_S13;
+  else if (stepNum >= 14 && stepNum <= 18) files['galerie.html'] = GALERIE_S14;
+  else if (stepNum >= 19) files['galerie.html'] = GALERIE_S19;
 
-  // CONTACT
-  if (stepNum === 12) files['contact.html'] = CONTACT_S12;
-  else if (stepNum >= 13) files['contact.html'] = CONTACT_S13;
+  // CONTACT.HTML
+  if (stepNum === 15) files['contact.html'] = CONTACT_S15;
+  else if (stepNum === 16) files['contact.html'] = CONTACT_S16;
+  else if (stepNum === 17) files['contact.html'] = CONTACT_S17;
+  else if (stepNum === 18) files['contact.html'] = CONTACT_S18;
+  else if (stepNum >= 19) files['contact.html'] = CONTACT_S19;
 
   // STYLE.CSS
-  if (stepNum === 13) files['style.css'] = STYLE_S13;
-  else if (stepNum === 14) files['style.css'] = STYLE_S14;
-  else if (stepNum === 15) files['style.css'] = STYLE_S15;
-  else if (stepNum === 16) files['style.css'] = STYLE_S16;
-  else if (stepNum === 17) files['style.css'] = STYLE_S17;
-  else if (stepNum === 18) files['style.css'] = STYLE_S18;
-  else if (stepNum === 19) files['style.css'] = STYLE_S19;
+  if (stepNum === 19) files['style.css'] = STYLE_S19;
   else if (stepNum === 20) files['style.css'] = STYLE_S20;
   else if (stepNum === 21) files['style.css'] = STYLE_S21;
   else if (stepNum === 22) files['style.css'] = STYLE_S22;
   else if (stepNum === 23) files['style.css'] = STYLE_S23;
-  else if (stepNum === 24 || stepNum === 25) files['style.css'] = STYLE_S24;
-  else if (stepNum === 26 || stepNum === 27) files['style.css'] = STYLE_S26;
-  else if (stepNum === 28 || stepNum === 29) files['style.css'] = STYLE_S28;
+  else if (stepNum === 24) files['style.css'] = STYLE_S24;
+  else if (stepNum === 25) files['style.css'] = STYLE_S25;
+  else if (stepNum === 26) files['style.css'] = STYLE_S26;
+  else if (stepNum === 27) files['style.css'] = STYLE_S27;
+  else if (stepNum === 28) files['style.css'] = STYLE_S28;
+  else if (stepNum === 29) files['style.css'] = STYLE_S29;
   else if (stepNum === 30) files['style.css'] = STYLE_S30;
   else if (stepNum === 31) files['style.css'] = STYLE_S31;
   else if (stepNum === 32) files['style.css'] = STYLE_S32;
   else if (stepNum === 33) files['style.css'] = STYLE_S33;
   else if (stepNum === 34) files['style.css'] = STYLE_S34;
-  else if (stepNum >= 35) files['style.css'] = STYLE_S35;
+  else if (stepNum === 35) files['style.css'] = STYLE_S35;
+  else if (stepNum === 36) files['style.css'] = STYLE_S36;
+  else if (stepNum === 37) files['style.css'] = STYLE_S37;
+  else if (stepNum === 38) files['style.css'] = STYLE_S38;
+  else if (stepNum === 39) files['style.css'] = STYLE_S39;
+  else if (stepNum === 40) files['style.css'] = STYLE_S40;
+  else if (stepNum === 41) files['style.css'] = STYLE_S41;
+  else if (stepNum === 42) files['style.css'] = STYLE_S42;
+  else if (stepNum >= 43) files['style.css'] = STYLE_S43;
 
-  // SCRIPT.JS (ACTE VI)
-  if (stepNum === 37) files['script.js'] = SCRIPT_S37;
-  else if (stepNum === 38) files['script.js'] = SCRIPT_S38;
-  else if (stepNum === 39) files['script.js'] = SCRIPT_S39;
-  else if (stepNum >= 40) files['script.js'] = SCRIPT_S40;
+  // SCRIPT.JS (ACTE VI : JAVASCRIPT & RUNTIME AVEC ADA)
+  if (stepNum === 44) files['script.js'] = SCRIPT_S44;
+  else if (stepNum === 45) files['script.js'] = SCRIPT_S45;
+  else if (stepNum === 46) files['script.js'] = SCRIPT_S46;
+  else if (stepNum === 47) files['script.js'] = SCRIPT_S47;
+  else if (stepNum === 48) files['script.js'] = SCRIPT_S48;
+  else if (stepNum === 49) files['script.js'] = SCRIPT_S49;
+  else if (stepNum >= 50) files['script.js'] = SCRIPT_S50;
 
   return files;
 }
 
 export { getFilesForStep as getStepCanonicalFiles };
 
+
 export const MULTIPAGE_STEPS = [
-  // ===========================================================================
-  // ACTE I : LE COMMENCEMENT DANS LE NÉANT (index.html)
-  // ===========================================================================
   {
     id: 'step-1',
     number: 1,
-    act: "Acte I : Le Commencement",
+    character: 'bodhi',
+    pose: 'neutral',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte I : Le Commencement dans le Néant",
     targetFile: 'index.html',
     title: "Le Grand Silence du Fichier Vide",
     proverb: "« Le néant n'est pas le vide ; c'est l'espace infini où tout peut advenir. »",
     mentorSpeech: "Approche, voyageur. Ouvre les yeux : ton atelier est totalement vierge. Pas un seul fichier n'existe encore. Avant d'écrire la moindre ligne de code, un véritable bâtisseur doit d'abord faire naître son support. Crée toi-même le tout premier fichier de ton univers, puis proclame l'incantation sacrée du HTML5.",
-    riddle: "Clique sur '+ Nouveau fichier' pour créer index.html. Puis déclare le DOCTYPE moderne et ouvre la balise racine en langue française.",
-    secretTip: "Clique sur le bouton '+ Nouveau fichier' en haut à gauche de l'éditeur, saisis 'index.html', puis valide. Ton premier parchemin sera prêt !",
+    riddle: "Crée le fichier 'index.html', proclame le DOCTYPE et ouvre la balise racine html en français.",
+    secretTip: "Clique sur '+ Nouveau fichier', tape 'index.html', puis écris : <!DOCTYPE html><html lang=\"fr\"></html>",
     instructions: [
-      "Clique sur '+ Nouveau fichier' au-dessus de l'éditeur et crée le fichier index.html.",
-      "Dans index.html, écris à la première ligne la déclaration <!DOCTYPE html>.",
-      "Ouvre et ferme la balise racine <html lang=\"fr\"></html>."
-    ],
+      "Clique sur le bouton '+ Nouveau fichier' au-dessus de l'éditeur.",
+      "Nomme ton fichier : index.html",
+      "Écris la première ligne absolue du Web moderne : <!DOCTYPE html>",
+      "Ouvre et referme la racine sémantique : <html lang=\"fr\"></html>",
+      "Clique sur 'Vérifier mon code' pour voir le Sanctuaire s'éveiller."
+],
     starterFiles: getFilesForStep(1),
-    check(files) {
+    check: function(files) {
       if (files['index.html'] === undefined) {
-        return { pass: false, message: "Tu n'as pas encore créé le fichier index.html. Clique sur '+ Nouveau fichier' au-dessus de l'éditeur pour donner naissance à ton premier parchemin !" };
+        return { pass: false, message: "Ton atelier est encore silencieux. Tu dois créer le fichier 'index.html' en cliquant sur '+ Nouveau fichier' !" };
       }
-      const html = (files['index.html'] || '').toLowerCase();
-      if (!html.includes('<!doctype html>')) {
-        return { pass: false, message: "Regarde au tout sommet de ton fichier index.html : le navigateur a besoin de savoir qu'il lit du HTML moderne. Déclare <!DOCTYPE html>." };
+      const raw = files['index.html'].trim();
+      if (!raw) {
+        return { pass: false, message: "Le fichier 'index.html' existe, mais il est vide. Rédige le DOCTYPE et la balise racine html." };
       }
-      if (!html.includes('<html') || !html.includes('</html>')) {
-        return { pass: false, message: "La balise racine <html> doit entourer tout ton document. N'oublie pas de préciser lang=\"fr\" !" };
+      if (!/<!doctype\s+html>/i.test(raw)) {
+        return { pass: false, message: "Il te manque la déclaration sacrée <!DOCTYPE html> sur la première ligne pour avertir le navigateur." };
       }
-      return { pass: true };
+      if (!/<html[^>]*lang=["']fr["'][^>]*>/i.test(raw)) {
+        return { pass: false, message: "La balise racine <html> doit déclarer la langue française avec l'attribut lang=\"fr\"." };
+      }
+      if (!/<\/html>/i.test(raw)) {
+        return { pass: false, message: "N'oublie pas de refermer la racine avec </html> à la fin de ton fichier." };
+      }
+      return { pass: true, message: "Le silence est rompu ! La première pierre de ton sanctuaire est scellée." };
     }
-
   },
 
   {
     id: 'step-2',
     number: 2,
-    act: "Acte I : Le Commencement",
+    character: 'bodhi',
+    pose: 'thinking',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte I : Le Commencement dans le Néant",
     targetFile: 'index.html',
     title: "L'Esprit Invisible du Document (head, charset & title)",
-    proverb: "« Ce qui est invisible aux yeux gouverne ce qui apparaît au grand jour. »",
-    mentorSpeech: "Bien. L'enceinte est tracée. Maintenant, un document HTML a besoin d'une conscience invisible : la balise <head>. C'est là que résident les métadonnées techniques. Comment s'assurer que les accents français s'affichent sans se transformer en symboles brisés ? Et comment donner un nom à l'onglet du navigateur ?",
-    riddle: "Ajoute la tête invisible du document. Insère le jeu de caractères universel UTF-8 et nomme ton sanctuaire.",
-    secretTip: "Dans le <head>, utilise <meta charset=\"UTF-8\"> pour l'encodage, puis <title>Le Sanctuaire du Savoir</title>.",
+    proverb: "« Ce qui est invisible aux yeux des visiteurs guide la clarté du monde. »",
+    mentorSpeech: "Regarde bien la structure : une page web possède deux royaumes. Le premier est le <head>, le sanctuaire de l'esprit invisible où reposent les métadonnées, l'encodage et le nom véritable de ton œuvre dans l'onglet du navigateur.",
+    riddle: "Glisse un élément <head> dans <html> avec l'encodage universel UTF-8 et un titre digne.",
+    secretTip: "Entre <html> et </html>, ajoute : <head><meta charset=\"UTF-8\"><title>Le Sanctuaire du Savoir</title></head>",
     instructions: [
-      "À l'intérieur de <html>, insère le bloc <head></head>.",
-      "Définis l'encodage des caractères avec <meta charset=\"UTF-8\">.",
-      "Donne un titre à l'onglet avec <title>Le Sanctuaire du Savoir</title>."
-    ],
+      "Dans index.html, ouvre la balise <head> juste après <html lang=\"fr\">.",
+      "Déclare l'encodage universel des caractères : <meta charset=\"UTF-8\">.",
+      "Donne un titre à ta création : <title>Le Sanctuaire du Savoir</title>.",
+      "Referme scrupuleusement avec </head>."
+],
     starterFiles: getFilesForStep(2),
-    check(files) {
-      const html = (files['index.html'] || '').toLowerCase();
-      if (!html.includes('<head>') || !html.includes('</head>')) {
-        return { pass: false, message: "Il manque le bloc <head></head> à l'intérieur de la balise <html>." };
+    check: function(files) {
+      const code = (files['index.html'] || '').toLowerCase();
+      if (!code.includes('<head>') || !code.includes('</head>')) {
+        return { pass: false, message: "Il te manque le bloc <head>...</head> à l'intérieur de <html>." };
       }
-      if (!html.includes('charset="utf-8"') && !html.includes("charset='utf-8'")) {
-        return { pass: false, message: "Ajoute <meta charset=\"UTF-8\"> dans le head pour immuniser tes textes contre les bugs d'accents !" };
+      if (!code.includes('charset="utf-8"') && !code.includes("charset='utf-8'") && !code.includes('charset=utf-8')) {
+        return { pass: false, message: "Ajoute la balise <meta charset=\"UTF-8\"> dans le <head> pour que les accents s'affichent sans corruption." };
       }
-      if (!html.includes('<title>') || !html.includes('</title>')) {
-        return { pass: false, message: "Pose une balise <title> dans le head pour donner un nom officiel à ce lieu dans l'onglet du navigateur." };
+      if (!/<title>[\s\S]*?le sanctuaire[\s\S]*?<\/title>/i.test(files['index.html'] || '')) {
+        return { pass: false, message: "Ajoute la balise <title>Le Sanctuaire du Savoir</title> dans ton <head>." };
       }
-      return { pass: true };
+      return { pass: true, message: "L'esprit du sanctuaire est baptisé ! Regarde le titre flotter fièrement dans l'onglet du mini-navigateur." };
     }
   },
 
   {
     id: 'step-3',
     number: 3,
-    act: "Acte I : Le Commencement",
+    character: 'bodhi',
+    pose: 'zen',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte I : Le Commencement dans le Néant",
     targetFile: 'index.html',
-    title: "Le Monde Visible & Le Fronton (body, header & h1)",
-    proverb: "« Le monde existe dès lors qu'il se donne à voir. Un seul soleil dans le ciel, un seul h1 sur la page. »",
-    mentorSpeech: "L'esprit de la page est prêt. Ouvrons à présent le monde visible avec la balise <body>. Tout ce que tes camarades verront sur l'écran habitera ici : les textes, les images, les boutons et les liens. Tout ce qui a du sens dans le Web naît et rayonne sous nos yeux dans le body. Sur le fronton du sanctuaire, place un beau bloc sémantique <header> avec notre titre royal <h1>.",
-    riddle: "Ouvre le <body> après le </head>. Place un <header> contenant le titre suprême <h1> et un paragraphe d'accueil <p>.",
-    secretTip: "Rappelle-toi : la règle d'or de l'accessibilité veut qu'il n'y ait qu'un seul <h1> par page. Les sous-titres viendront plus bas.",
+    title: "Le Don d'Ubiquité Responsive & Métadonnées",
+    proverb: "« Le roseau qui plie sous la brise embrasse toutes les tailles d'écrans. »",
+    mentorSpeech: "Un document digne de traverser les âges ne doit ignorer aucun voyageur, qu'il consulte le réseau depuis un écran géant ou une vitre de poche. Pour cela, le viewport ordonne au navigateur d'ajuster l'échelle à la largeur de l'appareil. Ajoutons aussi une description pour que les indexeurs du monde entier comprennent ton intention.",
+    riddle: "Insère la balise viewport et une description dans ton <head>.",
+    secretTip: "Dans le <head>, ajoute : <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> et <meta name=\"description\" content=\"...\">",
     instructions: [
-      "Après la fermeture de </head>, ouvre et ferme la balise <body></body>.",
-      "Dans le body, ajoute la balise sémantique <header></header>.",
-      "Dans le header, pose le titre principal <h1>Le Sanctuaire du Savoir</h1> et un paragraphe <p> présentant la devise."
-    ],
+      "Dans le <head> de index.html, ajoute la balise : <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">.",
+      "Ajoute également une métadonnée descriptive : <meta name=\"description\" content=\"Le Sanctuaire du Savoir : académie sacrée d'apprentissage du Web, du code pur et des standards ouverts.\">.",
+      "Vérifie que toutes tes métadonnées sont bien abritées dans le <head>."
+],
     starterFiles: getFilesForStep(3),
-    check(files) {
-      const html = files['index.html'] || '';
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const body = doc.querySelector('body');
-      if (!body) {
-        return { pass: false, message: "Ouvre la balise <body> après le </head> pour faire entrer la lumière dans le monde visible." };
+    check: function(files) {
+      const code = (files['index.html'] || '').toLowerCase();
+      if (!code.includes('name="viewport"') && !code.includes("name='viewport'")) {
+        return { pass: false, message: "Il manque la balise <meta name=\"viewport\" ...> dans le <head>." };
       }
-      const header = body.querySelector('header');
-      if (!header) {
-        return { pass: false, message: "Place un bloc sémantique <header> dans le body pour marquer le fronton du sanctuaire." };
+      if (!code.includes('width=device-width')) {
+        return { pass: false, message: "La balise viewport doit contenir content=\"width=device-width, initial-scale=1.0\" pour s'adapter aux mobiles." };
       }
-      const h1 = header.querySelector('h1');
-      if (!h1 || !h1.textContent.trim()) {
-        return { pass: false, message: "Grave le titre principal avec la balise <h1> dans ton header." };
+      if (!code.includes('name="description"') && !code.includes("name='description'")) {
+        return { pass: false, message: "Ajoute également <meta name=\"description\" content=\"...\"> pour renseigner les moteurs de recherche." };
       }
-      const p = header.querySelector('p');
-      if (!p || !p.textContent.trim()) {
-        return { pass: false, message: "Ajoute un paragraphe <p> sous le h1 pour décrire la vocation de ce lieu." };
-      }
-      return { pass: true };
+      return { pass: true, message: "Ton document est prêt pour tous les appareils de la terre ! L'ubiquité est assurée." };
     }
   },
 
   {
     id: 'step-4',
     number: 4,
-    act: "Acte I : Le Commencement",
+    character: 'bodhi',
+    pose: 'thumbs_up',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte I : Le Commencement dans le Néant",
     targetFile: 'index.html',
-    title: "Le Réseau des Routes (nav & liens relatifs)",
-    proverb: "« Une page isolée est une île perdue. Le lien hypertexte est la barque qui relie les terres. »",
-    mentorSpeech: "Notre sanctuaire ne sera pas une simple page isolée : ce sera un vaste domaine composé de 4 pavillons majeurs : l'Accueil (index.html), les Chroniques du Savoir (chroniques.html), la Galerie d'Art (galerie.html) et le Messager (contact.html). Réfléchis : comment construire la barre de navigation <nav> avec les 4 liens relatifs exacts ?",
-    riddle: "Dans le header, pose la balise <nav> contenant les 4 liens hypertextes reliant les 4 fichiers du site.",
-    secretTip: "Puisque les 4 fichiers sont au même niveau dans le dossier, leurs chemins s'écrivent simplement href=\"index.html\", href=\"chroniques.html\", etc.",
+    title: "Le Monde Visible & Le Fronton (body, header & h1)",
+    proverb: "« Ce qui était pensé dans l'ombre doit maintenant rayonner dans la clarté. »",
+    mentorSpeech: "Le monde invisible est en ordre. Il est temps d'ouvrir le second royaume : le <body>, le lieu où naît toute forme perçue par l'œil humain. Érigeons-y le fronton du temple : un <header> majestueux couronné par le titre suprême <h1>.",
+    riddle: "Ouvre <body>, dresse un <header> avec un <h1> et un paragraphe d'accueil.",
+    secretTip: "Après </head>, ouvre <body>. À l'intérieur, place un <header> contenant un <h1> et un <p>, puis referme </header> et </body>.",
     instructions: [
-      "Dans le <header>, ajoute une balise sémantique <nav></nav>.",
-      "Insère 4 liens <a> : un vers index.html (Accueil), un vers chroniques.html (Chroniques), un vers galerie.html (Galerie) et un vers contact.html (Contact)."
-    ],
+      "Après </head>, ouvre la balise <body> et referme-la avant </html>.",
+      "À l'intérieur de <body>, ouvre un <header> et referme-le avec </header>.",
+      "Dans ce header, écris le titre principal : <h1>Le Sanctuaire du Savoir</h1>.",
+      "Ajoute juste en dessous un sous-titre dans un paragraphe : <p>L'académie sacrée où l'art du code pur reprend vie.</p>."
+],
     starterFiles: getFilesForStep(4),
-    check(files) {
-      const html = files['index.html'] || '';
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const nav = doc.querySelector('nav');
-      if (!nav) return { pass: false, message: "Ajoute la balise <nav> dans ton header pour abriter les voies de circulation." };
-      const links = nav.querySelectorAll('a');
-      if (links.length < 4) return { pass: false, message: `Je compte ${links.length} lien(s). Il en faut 4 pour relier index.html, chroniques.html, galerie.html et contact.html.` };
-      const hrefs = Array.from(links).map(a => a.getAttribute('href') || '');
-      if (!hrefs.includes('chroniques.html')) return { pass: false, message: "Il manque le lien relatif vers 'chroniques.html'." };
-      if (!hrefs.includes('galerie.html')) return { pass: false, message: "Il manque le lien relatif vers 'galerie.html'." };
-      if (!hrefs.includes('contact.html')) return { pass: false, message: "Il manque le lien relatif vers 'contact.html'." };
-      return { pass: true };
+    check: function(files) {
+      const code = (files['index.html'] || '').toLowerCase();
+      if (!code.includes('<body>') || !code.includes('</body>')) {
+        return { pass: false, message: "Il te manque le corps visible du document : <body>...</body>." };
+      }
+      if (!code.includes('<header>') || !code.includes('</header>')) {
+        return { pass: false, message: "N'oublie pas d'envelopper ton en-tête dans les balises sémantiques <header>...</header>." };
+      }
+      if (!/<h1>[\s\S]*?le sanctuaire[\s\S]*?<\/h1>/i.test(files['index.html'] || '')) {
+        return { pass: false, message: "Écris le grand titre <h1>Le Sanctuaire du Savoir</h1> dans ton header." };
+      }
+      if (!/<header>[\s\S]*?<p>[\s\S]*?<\/p>[\s\S]*?<\/header>/i.test(files['index.html'] || '')) {
+        return { pass: false, message: "Ajoute un paragraphe <p> dans ton header pour servir de devise d'introduction." };
+      }
+      return { pass: true, message: "Le fronton s'illumine ! Regarde ton titre s'afficher enfin sur la toile blanche de l'aperçu." };
     }
   },
 
   {
     id: 'step-5',
     number: 5,
-    act: "Acte I : Le Commencement",
+    character: 'bodhi',
+    pose: 'pointing',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte I : Le Commencement dans le Néant",
     targetFile: 'index.html',
-    title: "Le Cœur de l'Édifice (main & section)",
-    proverb: "« Le visiteur ne vient pas contempler les portes, mais ce que le sanctuaire abrite en son cœur. »",
-    mentorSpeech: "Après l'en-tête, quelle est la balise maîtresse qui délimite le contenu principal d'une page ? C'est la balise <main>. À l'intérieur, nous découpons l'espace en chapitres avec <section>, et nous posons un titre <h2> ainsi qu'un récit dans un <article>.",
-    riddle: "Ouvre le <main> après le </header>. Crée une section avec un titre <h2> et un paragraphe expliquant la mission des bâtisseurs.",
-    secretTip: "La balise <main> ne doit apparaître qu'une seule fois par page, et ne doit jamais être emboîtée dans un header ou un footer.",
+    title: "Le Réseau des Routes (nav & liens relatifs)",
+    proverb: "« Une maison sans porte est une prison ; un site sans liens est une île perdue. »",
+    mentorSpeech: "La magie originelle du Web réside dans l'hyperlien : la faculté de franchir les distances d'un simple effleurement. Traçons dans notre <header> la carte des 4 pavillons que nous allons bâtir ensemble.",
+    riddle: "Crée un élément <nav> dans ton <header> contenant 4 liens relatifs.",
+    secretTip: "Dans le <header>, ajoute <nav><a href=\"index.html\">Accueil</a><a href=\"chroniques.html\">Chroniques</a><a href=\"galerie.html\">Galerie</a><a href=\"contact.html\">Contact</a></nav>",
     instructions: [
-      "Après </header>, ouvre et ferme la balise sémantique <main></main>.",
-      "Dans ce main, crée une <section> avec un sous-titre <h2>Présentation du Sanctuaire</h2>.",
-      "Rédige un <article> contenant au moins un paragraphe <p> présentant l'éveil du web ouvert."
-    ],
+      "Dans le <header> de index.html, ajoute une balise sémantique <nav>...</nav> après le paragraphe.",
+      "Crée le lien vers l'accueil : <a href=\"index.html\">Accueil</a>.",
+      "Crée le lien vers les chroniques : <a href=\"chroniques.html\">Chroniques</a>.",
+      "Crée le lien vers la galerie : <a href=\"galerie.html\">Galerie</a>.",
+      "Crée le lien vers le contact : <a href=\"contact.html\">Contact</a>."
+],
     starterFiles: getFilesForStep(5),
-    check(files) {
-      const html = files['index.html'] || '';
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const main = doc.querySelector('main');
-      if (!main) return { pass: false, message: "Ajoute la balise sémantique <main> après la fermeture de ton </header>." };
-      const section = main.querySelector('section');
-      if (!section) return { pass: false, message: "Organise ton contenu dans une <section> à l'intérieur du main." };
-      const h2 = section.querySelector('h2');
-      if (!h2 || !h2.textContent.trim()) return { pass: false, message: "Donne un titre de second niveau <h2> à cette section." };
-      const p = section.querySelector('p');
-      if (!p || !p.textContent.trim()) return { pass: false, message: "Ajoute au moins un paragraphe rédigé pour accueillir les pèlerins." };
-      return { pass: true };
+    check: function(files) {
+      const code = (files['index.html'] || '').toLowerCase();
+      if (!code.includes('<nav>') || !code.includes('</nav>')) {
+        return { pass: false, message: "Ajoute la balise sémantique <nav>...</nav> à l'intérieur de ton <header>." };
+      }
+      const links = ['index.html', 'chroniques.html', 'galerie.html', 'contact.html'];
+      for (let i = 0; i < links.length; i++) {
+        const link = links[i];
+        if (!code.includes('href="' + link + '"') && !code.includes("href='" + link + "'")) {
+          return { pass: false, message: "Il manque le lien relatif vers " + link + " dans ta barre de navigation." };
+        }
+      }
+      return { pass: true, message: "Les voies de passage sont tracées ! Les 4 pavillons du Sanctuaire sont désormais reliés." };
     }
   },
 
   {
     id: 'step-6',
     number: 6,
-    act: "Acte I : Le Commencement",
+    character: 'bodhi',
+    pose: 'scroll',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte I : Le Commencement dans le Néant",
     targetFile: 'index.html',
-    title: "Le Sceau de Clôture (footer)",
-    proverb: "« Tout voyage qui a un départ mérite une conclusion honorable. Le pied de page scelle la promesse. »",
-    mentorSpeech: "Quelle balise sémantique termine traditionnellement le document pour abriter les mentions de copyright, la date et la devise des artisans ? C'est la balise <footer>. Posons le sceau final de notre première page.",
-    riddle: "Après la fermeture de </main>, ajoute un <footer> contenant un paragraphe rappelant que ce site est libre et respectueux des standards.",
-    secretTip: "Dans le footer, on utilise souvent l'entité &copy; pour afficher le symbole © de copyright.",
+    title: "Le Cœur de l'Édifice (main, section & h2)",
+    proverb: "« Le corps a son cœur, le navire a sa quille, le document a son main. »",
+    mentorSpeech: "Après l'en-tête vient le cœur battant de la page : l'élément <main>. Il ne doit exister qu'une seule fois par page pour accueillir le contenu unique et précieux de ce lieu. Divisons-le avec une <section> thématique et un titre de second niveau <h2>.",
+    riddle: "Ajoute un <main> après le header, contenant une <section>, un <h2> et un <article>.",
+    secretTip: "Après </header>, ajoute <main><section><h2>Présentation du Sanctuaire</h2><article><p>...</p></article></section></main>",
     instructions: [
-      "Après </main>, ouvre et ferme la balise <footer></footer>.",
-      "Ajoute un paragraphe <p> avec la mention : « &copy; 2026 Le Sanctuaire du Savoir — Conçu avec sagesse et code pur. »"
-    ],
+      "Après </header>, ouvre la balise sémantique <main> et referme-la avant </body>.",
+      "À l'intérieur de <main>, ouvre une balise <section>...</section>.",
+      "Dans cette section, pose un titre de niveau 2 : <h2>Présentation du Sanctuaire</h2>.",
+      "Place ensuite un bloc <article> contenant un paragraphe <p> expliquant la mission du lieu."
+],
     starterFiles: getFilesForStep(6),
-    check(files) {
-      const html = files['index.html'] || '';
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const footer = doc.querySelector('footer');
-      if (!footer) return { pass: false, message: "Ajoute la balise <footer> après le </main> pour clore dignement le corps du document." };
-      const p = footer.querySelector('p');
-      if (!p || !p.textContent.trim()) return { pass: false, message: "Place un paragraphe <p> dans le footer avec la mention de copyright." };
-      return { pass: true };
+    check: function(files) {
+      const code = (files['index.html'] || '').toLowerCase();
+      if (!code.includes('<main>') || !code.includes('</main>')) {
+        return { pass: false, message: "Il te manque la balise sémantique <main>...</main> pour abriter le contenu principal." };
+      }
+      if (!code.includes('<section>') || !code.includes('</section>')) {
+        return { pass: false, message: "Structure ton contenu principal avec une <section>...</section>." };
+      }
+      if (!/<h2>[\s\S]*?présentation[\s\S]*?<\/h2>/i.test(files['index.html'] || '')) {
+        return { pass: false, message: "Ajoute un titre <h2>Présentation du Sanctuaire</h2> dans ta section." };
+      }
+      if (!code.includes('<article>') || !code.includes('</article>')) {
+        return { pass: false, message: "Enveloppe le récit de ta présentation dans une balise sémantique autonome <article>." };
+      }
+      return { pass: true, message: "Le cœur de l'édifice est scellé ! La hiérarchie des titres h1 -> h2 est respectée à la perfection." };
     }
   },
 
-  // ===========================================================================
-  // ACTE II : L'OUVERTURE DES NOUVELLES PAGES (chroniques, galerie, contact)
-  // ===========================================================================
   {
     id: 'step-7',
     number: 7,
-    act: "Acte II : L'Expansion Multi-Pages",
-    targetFile: 'chroniques.html',
-    title: "L'Éveil du Deuxième Pavillon (chroniques.html)",
-    proverb: "« Un sage sait quand reproduire les fondations et quand inventer de nouvelles salles. »",
-    mentorSpeech: "Regarde dans l'éditeur : bascule sur l'onglet chroniques.html. Il est vide ! C'est ta deuxième page. Tu connais maintenant le rituel sacré : DOCTYPE, html avec lang=\"fr\", head avec charset et title spécifique, et body. À toi de bâtir le squelette complet de chroniques.html de tes propres mains !",
-    riddle: "Crée de zéro le document chroniques.html avec son titre d'onglet <title>Les Chroniques du Web</title>, son header et un <h1>.",
-    secretTip: "Chaque page HTML est un monde indépendant : elle doit avoir son propre DOCTYPE, son propre head et son propre body.",
+    character: 'bodhi',
+    pose: 'code_magic',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte I : Le Commencement dans le Néant",
+    targetFile: 'index.html',
+    title: "L'Art de l'Emphase & Du Texte Sémantique (strong, em & code)",
+    proverb: "« Le sage ne crie pas pour être entendu ; il choisit le mot juste qui porte son poids d'or. »",
+    mentorSpeech: "Autrefois, des scribes égarés utilisaient des balises purement graphiques comme b ou i. Mais un véritable artisan s'adresse aussi bien aux yeux qu'aux liseuses d'écran des malvoyants et aux robots d'indexation. Utilisons <strong> pour une importance capitale, <em> pour une nuance spirituelle et <code> pour citer le langage des machines.",
+    riddle: "Enrichis ton paragraphe avec les balises <strong>, <em> et <code>.",
+    secretTip: "Dans l'article de index.html, entoure 'Web' de <strong>, 'HTML5' de <code>, et 'véritable intention sémantique' de <em>.",
     instructions: [
-      "Dans chroniques.html, pose <!DOCTYPE html> et <html lang=\"fr\">.",
-      "Ajoute un <head> avec <meta charset=\"UTF-8\"> et <title>Les Chroniques du Web</title>.",
-      "Ajoute un <body> contenant un <header> avec <h1>Les Chroniques du Web</h1>."
-    ],
+      "Dans index.html, repère le paragraphe <p> situé dans ton <article>.",
+      "Mets en valeur le mot 'Web' avec la balise de haute importance : <strong>Web</strong>.",
+      "Marque la technologie avec la balise de fragment de code : <code>HTML5</code>.",
+      "Ajoute une emphase sur l'esprit du code avec la balise : <em>véritable intention sémantique</em>."
+],
     starterFiles: getFilesForStep(7),
-    check(files) {
-      if (files['chroniques.html'] === undefined) {
-        return { pass: false, message: "Tu n'as pas encore créé le fichier chroniques.html. Clique sur '+ Nouveau fichier' au-dessus de l'éditeur pour ouvrir cette nouvelle salle !" };
+    check: function(files) {
+      const code = (files['index.html'] || '').toLowerCase();
+      if (!code.includes('<strong>') || !code.includes('</strong>')) {
+        return { pass: false, message: "Ajoute la balise sémantique <strong>Web</strong> pour donner du poids au mot essentiel." };
       }
-      const html = files['chroniques.html'] || '';
-
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      if (!html.toLowerCase().includes('<!doctype html>')) return { pass: false, message: "Déclare <!DOCTYPE html> au sommet de chroniques.html." };
-      const head = doc.querySelector('head');
-      if (!head) return { pass: false, message: "Il manque le bloc <head> dans chroniques.html." };
-      const title = doc.querySelector('title');
-      if (!title || !title.textContent.trim()) return { pass: false, message: "Donne un titre à l'onglet dans le <title> de chroniques.html." };
-      const h1 = doc.querySelector('h1');
-      if (!h1 || !h1.textContent.trim()) return { pass: false, message: "Grave un titre <h1> dans le <header> de chroniques.html." };
-      return { pass: true };
+      if (!code.includes('<code>') || !code.includes('</code>')) {
+        return { pass: false, message: "Ajoute la balise <code>HTML5</code> pour signaler qu'il s'agit d'un terme informatique pur." };
+      }
+      if (!code.includes('<em>') || !code.includes('</em>')) {
+        return { pass: false, message: "Ajoute la balise d'accentuation <em>...</em> pour souligner l'intention sémantique." };
+      }
+      return { pass: true, message: "Splendide ! Chaque mot porte désormais son sens profond dans l'arbre du document." };
     }
   },
 
   {
     id: 'step-8',
     number: 8,
-    act: "Acte II : L'Expansion Multi-Pages",
-    targetFile: 'chroniques.html',
-    title: "Le Pont Réciproque (Navigation Bidirectionnelle)",
-    proverb: "« Quand tu bâtis un pont d'une rive à l'autre, veille à ce qu'on puisse aussi revenir sur ses pas. »",
-    mentorSpeech: "Si un voyageur clique sur 'Chroniques' depuis l'accueil, il arrive ici. Mais comment fait-il pour revenir à l'Accueil ou se rendre à la Galerie ? Il a besoin du même menu de navigation <nav> ! Reproduis le menu de navigation dans chroniques.html avec les 4 liens relatifs.",
-    riddle: "Ajoute la balise <nav> dans le header de chroniques.html pour permettre la circulation libre entre toutes les pages.",
-    secretTip: "Tous nos fichiers vivent côte à côte : href=\"index.html\" ramène directement à l'accueil !",
+    character: 'bodhi',
+    pose: 'zen',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte I : Le Commencement dans le Néant",
+    targetFile: 'index.html',
+    title: "Le Sceau de Clôture (footer & entités)",
+    proverb: "« Tout cycle qui s'achève avec grâce prépare le lever du jour suivant. »",
+    mentorSpeech: "Une œuvre accomplie porte toujours la signature de son créateur. Tout en bas de la page, après <main>, déposons l'élément <footer>. Nous y inscrirons l'année et l'entité sacrée &copy; pour sceller les droits du bâtisseur.",
+    riddle: "Ajoute un <footer> contenant un paragraphe avec l'entité &copy; et la mention du Sanctuaire.",
+    secretTip: "Après </main> et avant </body>, ajoute : <footer><p>&copy; 2026 Le Sanctuaire du Savoir — Conçu avec sagesse et code pur.</p></footer>",
     instructions: [
-      "Dans le <header> de chroniques.html, insère le bloc <nav></nav>.",
-      "Ajoute les 4 liens : index.html, chroniques.html, galerie.html, et contact.html."
-    ],
+      "Dans index.html, juste après la fermeture de </main>, ouvre la balise sémantique <footer>.",
+      "À l'intérieur, écris un paragraphe avec l'entité de copyright : <p>&copy; 2026 Le Sanctuaire du Savoir — Conçu avec sagesse et code pur.</p>.",
+      "Referme le footer avec </footer> avant la balise de fin </body>."
+],
     starterFiles: getFilesForStep(8),
-    check(files) {
-      if (files['chroniques.html'] === undefined) {
-        return { pass: false, message: "Tu n'as pas encore créé le fichier chroniques.html. Clique sur '+ Nouveau fichier' au-dessus de l'éditeur pour ouvrir cette nouvelle salle !" };
+    check: function(files) {
+      const code = (files['index.html'] || '').toLowerCase();
+      if (!code.includes('<footer>') || !code.includes('</footer>')) {
+        return { pass: false, message: "Il te manque le pied de page sémantique <footer>...</footer>." };
       }
-      const html = files['chroniques.html'] || '';
-
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const nav = doc.querySelector('nav');
-      if (!nav) return { pass: false, message: "Ajoute le menu <nav> dans le header de chroniques.html." };
-      const links = nav.querySelectorAll('a');
-      if (links.length < 4) return { pass: false, message: "Insère les 4 liens de navigation dans chroniques.html pour relier tout le domaine." };
-      const hrefs = Array.from(links).map(a => a.getAttribute('href') || '');
-      if (!hrefs.includes('index.html')) return { pass: false, message: "N'oublie pas le lien vers 'index.html' pour permettre le retour à l'accueil !" };
-      return { pass: true };
+      if (!code.includes('&copy;') && !code.includes('©')) {
+        return { pass: false, message: "Utilise l'entité HTML sacrée &copy; dans ton footer pour afficher le symbole de copyright." };
+      }
+      if (!code.includes('le sanctuaire du savoir')) {
+        return { pass: false, message: "Mentionne 'Le Sanctuaire du Savoir' dans le paragraphe de ton footer." };
+      }
+      return { pass: true, message: "L'Acte I est accompli ! Le premier pavillon du Sanctuaire se dresse fièrement sur la toile." };
     }
   },
 
   {
     id: 'step-9',
     number: 9,
-    act: "Acte II : L'Expansion Multi-Pages",
+    character: 'bodhi',
+    pose: 'scroll',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte II : L'Expansion Multi-Pages & Formulaires",
     targetFile: 'chroniques.html',
-    title: "La Bibliothèque des Ères (Listes & Emphase sémantique)",
-    proverb: "« L'écriture transmet le savoir ; le gras sémantique <strong> guide l'esprit vers l'essentiel. »",
-    mentorSpeech: "Remplissons la nef de chroniques.html. Dans le <main>, nous allons coucher par écrit les trois âges du web sous la forme d'une liste non-ordonnée <ul>. Utilise <strong> pour mettre en valeur les dates ou les concepts clés, et <em> pour donner une tonalité philosophique.",
-    riddle: "Ouvre <main>, insère une section avec un <h2> et une liste <ul> contenant au moins 3 éléments <li> enrichis de balises <strong>.",
-    secretTip: "<strong> indique une réelle importance sémantique (comprise par Google et les lecteurs d'écran), contrairement à une simple balise <b> purement visuelle.",
+    title: "L'Éveil du Deuxième Pavillon (chroniques.html)",
+    proverb: "« Un voyageur qui ne lit pas les chroniques d'hier bâtit sur des sables mouvants. »",
+    mentorSpeech: "Notre accueil est debout. Mais le Web est une toile immense ! Donnons naissance au deuxième fichier de notre réseau : 'chroniques.html'. C'est ici que nous consignerons la grande histoire des pionniers du réseau.",
+    riddle: "Crée le fichier 'chroniques.html' avec son DOCTYPE, head, title et header.",
+    secretTip: "Crée 'chroniques.html' et colle la structure de base avec <title>Les Chroniques du Web</title> et un header contenant un <h1>.",
     instructions: [
-      "Dans chroniques.html, ouvre <main></main> après le header.",
-      "Crée une <section> avec un <h2>Les Trois Âges d'Internet</h2>.",
-      "Ajoute une liste <ul> avec 3 <li>, chacun contenant une balise <strong> pour l'époque (ex: Le Web 1.0, Le Web 2.0, Le Web Libre)."
-    ],
+      "Clique sur '+ Nouveau fichier' et nomme-le : chroniques.html",
+      "Écris le DOCTYPE et ouvre <html lang=\"fr\">.",
+      "Ajoute un <head> avec charset UTF-8, viewport et le titre : <title>Les Chroniques du Web</title>.",
+      "Dans le <body>, crée un <header> avec <h1>Les Chroniques du Web</h1>."
+],
     starterFiles: getFilesForStep(9),
-    check(files) {
+    check: function(files) {
       if (files['chroniques.html'] === undefined) {
-        return { pass: false, message: "Tu n'as pas encore créé le fichier chroniques.html. Clique sur '+ Nouveau fichier' au-dessus de l'éditeur pour ouvrir cette nouvelle salle !" };
+        return { pass: false, message: "Le fichier 'chroniques.html' n'existe pas encore. Clique sur '+ Nouveau fichier' pour le créer !" };
       }
-      const html = files['chroniques.html'] || '';
-
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const ul = doc.querySelector('ul');
-      if (!ul) return { pass: false, message: "Insère une liste <ul> dans la section de chroniques.html." };
-      const lis = ul.querySelectorAll('li');
-      if (lis.length < 3) return { pass: false, message: "Raconte au moins 3 époques dans ta liste avec <li>." };
-      const strongs = ul.querySelectorAll('strong');
-      if (strongs.length < 2) return { pass: false, message: "Utilise <strong> pour accentuer l'importance des noms d'époques." };
-      return { pass: true };
+      const code = (files['chroniques.html'] || '').toLowerCase();
+      if (!code.includes('<!doctype html>')) {
+        return { pass: false, message: "N'oublie pas le <!DOCTYPE html> sur la première ligne de chroniques.html." };
+      }
+      if (!code.includes('<title>les chroniques du web</title>')) {
+        return { pass: false, message: "Donne le titre <title>Les Chroniques du Web</title> dans le <head> de chroniques.html." };
+      }
+      if (!/<h1>[\s\S]*?chroniques[\s\S]*?<\/h1>/i.test(files['chroniques.html'] || '')) {
+        return { pass: false, message: "Ajoute le titre principal <h1>Les Chroniques du Web</h1> dans le header." };
+      }
+      return { pass: true, message: "Le second pavillon a ouvert ses portes ! L'histoire peut désormais s'écrire." };
     }
   },
 
   {
     id: 'step-10',
     number: 10,
-    act: "Acte II : L'Expansion Multi-Pages",
-    targetFile: 'galerie.html',
-    title: "Le Pavillon des Arts Visuels (galerie.html)",
-    proverb: "« Ce que les mots peinent à dire, la fresque le révèle au premier coup d'œil. »",
-    mentorSpeech: "Bascule sur galerie.html. Ce sera le pavillon visuel du sanctuaire, là où nous exposerons les portraits des bâtisseurs. Bâtis son squelette avec DOCTYPE, head, title, header et menu nav, puis ouvre un <main>.",
-    riddle: "Construis la structure de base de galerie.html et insère le menu de navigation.",
-    secretTip: "Prends l'habitude de garder la même structure de header sur toutes tes pages : c'est ce qui crée l'harmonie d'un vrai site pro.",
+    character: 'bodhi',
+    pose: 'pointing',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte II : L'Expansion Multi-Pages & Formulaires",
+    targetFile: 'chroniques.html',
+    title: "Le Pont Réciproque (Navigation Bidirectionnelle)",
+    proverb: "« Tout chemin qui mène quelque part doit offrir la promesse d'un retour. »",
+    mentorSpeech: "Si un visiteur arrive sur les Chroniques mais ne peut pas revenir à l'Accueil, il se retrouve piégé dans un cul-de-sac. Dupliquons notre barre de navigation dans 'chroniques.html' pour tisser un réseau indestructible.",
+    riddle: "Insère la balise <nav> avec les 4 liens dans chroniques.html.",
+    secretTip: "Dans le <header> de chroniques.html, insère le même bloc <nav> contenant les liens vers index.html, chroniques.html, galerie.html et contact.html.",
     instructions: [
-      "Dans galerie.html, écris le squelette HTML complet.",
-      "Donne-lui le titre <title>Galerie des Bâtisseurs</title>.",
-      "Place le <header> avec <h1>Galerie des Bâtisseurs</h1> et le menu <nav> à 4 liens.",
-      "Ouvre la balise <main></main>."
-    ],
+      "Ouvre le fichier chroniques.html dans l'éditeur.",
+      "À l'intérieur du <header>, sous le <h1>, insère la balise <nav>...</nav>.",
+      "Ajoute les 4 liens : index.html, chroniques.html, galerie.html, contact.html.",
+      "Clique sur les liens dans l'aperçu pour tester la navigation en direct !"
+],
     starterFiles: getFilesForStep(10),
-    check(files) {
-      const html = files['galerie.html'] || '';
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      if (!html.toLowerCase().includes('<!doctype html>')) return { pass: false, message: "Déclare <!DOCTYPE html> au sommet de galerie.html." };
-      const nav = doc.querySelector('nav');
-      if (!nav || nav.querySelectorAll('a').length < 4) return { pass: false, message: "Place le menu de navigation à 4 liens dans le header de galerie.html." };
-      const main = doc.querySelector('main');
-      if (!main) return { pass: false, message: "Ouvre le <main> dans galerie.html." };
-      return { pass: true };
+    check: function(files) {
+      const code = (files['chroniques.html'] || '').toLowerCase();
+      if (!code.includes('<nav>') || !code.includes('</nav>')) {
+        return { pass: false, message: "Ajoute la balise <nav> dans le <header> de chroniques.html." };
+      }
+      const links = ['index.html', 'chroniques.html', 'galerie.html', 'contact.html'];
+      for (let i = 0; i < links.length; i++) {
+        const link = links[i];
+        if (!code.includes('href="' + link + '"') && !code.includes("href='" + link + "'")) {
+          return { pass: false, message: "Il manque le lien relatif vers " + link + " dans la navigation de chroniques.html." };
+        }
+      }
+      return { pass: true, message: "Le pont réciproque est scellé ! Le voyageur peut aller et venir entre les mondes sans encombre." };
     }
   },
 
   {
     id: 'step-11',
     number: 11,
-    act: "Acte II : L'Expansion Multi-Pages",
-    targetFile: 'galerie.html',
-    title: "L'Exposition des Œuvres (figure, img & figcaption)",
-    proverb: "« Encadrer une image dans un <figure> avec sa légende <figcaption>, c'est lui accorder la dignité d'un tableau de maître. »",
-    mentorSpeech: "Dans la section de la galerie, exposons les fresques fondatrices du Web. Utilise les magnifiques illustrations créées pour le sanctuaire : assets/gallery/tree_dom.png (L'Arbre du DOM) et assets/gallery/cascades_css.png (Les Cascades de Couleurs). N'oublie jamais l'attribut d'accessibilité alt !",
-    riddle: "Insère au moins deux blocs <figure> complets contenant chacun un <img> avec son attribut alt et un <figcaption> légendé.",
-    secretTip: "Chemins disponibles : assets/gallery/tree_dom.png et assets/gallery/cascades_css.png.",
+    character: 'bodhi',
+    pose: 'scroll',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte II : L'Expansion Multi-Pages & Formulaires",
+    targetFile: 'chroniques.html',
+    title: "La Bibliothèque des Ères (Listes & Éléments de Liste)",
+    proverb: "« L'ordre est le rempart secret contre le chaos de l'oubli. »",
+    mentorSpeech: "Les Chroniques ont besoin de substance. Pour énumérer les grands âges du Web sans les perdre dans un bloc de texte indigeste, les listes non ordonnées <ul> et leurs éléments <li> sont l'outil sémantique idéal.",
+    riddle: "Ajoute un <main> avec une <section>, un <h2> et une liste <ul> de 3 éléments <li>.",
+    secretTip: "Dans chroniques.html, ajoute <main><section><h2>Les Âges du Réseau</h2><ul><li>...</li><li>...</li><li>...</li></ul></section></main> suivi du footer.",
     instructions: [
-      "Dans le <main> de galerie.html, crée au moins deux balises <figure></figure>.",
-      "Dans la première, mets <img src=\"assets/gallery/tree_dom.png\" alt=\"L'Arbre généalogique du DOM\"> et son <figcaption>.",
-      "Dans la seconde, mets <img src=\"assets/gallery/cascades_css.png\" alt=\"Les Cascades de Couleurs CSS\"> et son <figcaption>."
-    ],
+      "Dans chroniques.html, crée un <main> après le header.",
+      "Ouvre une <section> avec le titre <h2>Les Âges du Réseau</h2>.",
+      "Ouvre une liste non ordonnée <ul> et insère 3 éléments <li> détaillant les grandes dates du Web.",
+      "N'oublie pas d'ajouter le <footer> en bas de page pour harmoniser le document."
+],
     starterFiles: getFilesForStep(11),
-    check(files) {
-      const html = files['galerie.html'] || '';
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const figures = doc.querySelectorAll('figure');
-      if (figures.length < 2) return { pass: false, message: "Place au moins deux œuvres avec la balise <figure> dans galerie.html." };
-      for (const fig of figures) {
-        const img = fig.querySelector('img');
-        if (!img || !img.getAttribute('src')) return { pass: false, message: "Chaque figure doit contenir une balise <img> avec un src valide." };
-        if (!img.getAttribute('alt')) return { pass: false, message: "Chaque image doit posséder un texte alternatif 'alt' descriptif." };
-        const cap = fig.querySelector('figcaption');
-        if (!cap || !cap.textContent.trim()) return { pass: false, message: "Chaque œuvre a besoin de sa légende descriptive <figcaption>." };
+    check: function(files) {
+      const code = (files['chroniques.html'] || '').toLowerCase();
+      if (!code.includes('<main>') || !code.includes('</main>')) {
+        return { pass: false, message: "Ajoute la balise <main> dans chroniques.html." };
       }
-      return { pass: true };
+      if (!code.includes('<ul>') || !code.includes('</ul>')) {
+        return { pass: false, message: "Utilise une liste à puces sémantique <ul>...</ul> pour ordonner les ères." };
+      }
+      const liMatches = code.match(/<li>/g) || [];
+      if (liMatches.length < 3) {
+        return { pass: false, message: "Rédige au moins 3 éléments <li> dans ta liste pour évoquer 3 âges différents du Web." };
+      }
+      return { pass: true, message: "Les archives du Web prennent vie sous les yeux de tes visiteurs !" };
     }
   },
 
   {
     id: 'step-12',
     number: 12,
-    act: "Acte II : L'Expansion Multi-Pages",
-    targetFile: 'contact.html',
-    title: "Le Pavillon du Messager (contact.html & form)",
-    proverb: "« Quand les portes s'ouvrent au visiteur, son message doit trouver une boîte aux lettres scellée. »",
-    mentorSpeech: "Dernière pièce de notre réseau de pages : contact.html ! Bâtis la structure complète de cette quatrième page, et intègre un formulaire complet avec des champs nom, email, un <textarea> pour le message, et le bouton de soumission.",
-    riddle: "Construis de zéro contact.html avec sa navigation et son formulaire complet accessible.",
-    secretTip: "Utilise <textarea id=\"message\" rows=\"4\"></textarea> pour permettre au visiteur d'écrire un message long sur plusieurs lignes !",
+    character: 'bodhi',
+    pose: 'thinking',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte II : L'Expansion Multi-Pages & Formulaires",
+    targetFile: 'chroniques.html',
+    title: "Les Annales Tabulaires (table, thead, tbody, tr, th, td)",
+    proverb: "« Quand les données s'alignent en colonnes et rangées, la vérité se dévoile d'un seul regard. »",
+    mentorSpeech: "Certaines vérités nécessitent une rigueur géométrique. Lorsqu'il s'agit de comparer des faits, un tableau sémantique <table> avec son en-tête <thead> et son corps <tbody> surpasse tous les discours. Dressons le tableau des 3 technologies fondatrices du Web : HTML, CSS et JavaScript.",
+    riddle: "Ajoute un tableau <table> avec <thead>, <tbody>, <tr>, <th> et <td> dans une seconde section.",
+    secretTip: "Dans chroniques.html, ajoute une section contenant : <table><thead><tr><th>Technologie</th><th>Année</th><th>Rôle</th></tr></thead><tbody><tr><td>HTML</td><td>1991</td><td>Squelette</td></tr>...</tbody></table>",
     instructions: [
-      "Dans contact.html, bâtis le document complet avec DOCTYPE, head, title, header et nav.",
-      "Dans le <main>, crée une <section> avec un formulaire <form action=\"#\" method=\"post\">.",
-      "Ajoute au moins 3 champs (nom, email, message textarea) chacun lié à son <label for=\"...\"> par son identifiant id.",
-      "Ajoute le bouton <button type=\"submit\">Envoyer le message</button>."
-    ],
+      "Dans chroniques.html, ajoute une seconde <section> avec le titre <h2>Les Trois Fondations Sacrées</h2>.",
+      "Ouvre la balise <table> et son en-tête <thead>.",
+      "Dans thead, crée une ligne <tr> contenant 3 en-têtes de colonnes <th> (Technologie, Année, Rôle).",
+      "Ouvre le corps <tbody> et crée au moins 3 lignes <tr> avec leurs cellules <td> pour HTML, CSS et JavaScript."
+],
     starterFiles: getFilesForStep(12),
-    check(files) {
-      const html = files['contact.html'] || '';
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const form = doc.querySelector('form');
-      if (!form) return { pass: false, message: "Ajoute un <form> dans contact.html." };
-      const inputs = Array.from(form.querySelectorAll('input, textarea'));
-      if (inputs.length < 3) return { pass: false, message: "Place au moins 3 champs (nom, email, message textarea) dans le formulaire." };
-      const labels = form.querySelectorAll('label');
-      if (labels.length < 3) return { pass: false, message: "Associe chaque champ à son étiquette <label for=\"...\">." };
-      const btn = form.querySelector('button[type="submit"], input[type="submit"], button:not([type])');
-      if (!btn) return { pass: false, message: "N'oublie pas le bouton de validation du formulaire !" };
-      return { pass: true };
+    check: function(files) {
+      const code = (files['chroniques.html'] || '').toLowerCase();
+      if (!code.includes('<table>') || !code.includes('</table>')) {
+        return { pass: false, message: "Il te manque l'élément sémantique <table>...</table> dans chroniques.html." };
+      }
+      if (!code.includes('<thead>') || !code.includes('<tbody>')) {
+        return { pass: false, message: "Structure ton tableau avec <thead> pour l'en-tête et <tbody> pour les données." };
+      }
+      if (!code.includes('<th>') || !code.includes('<td>')) {
+        return { pass: false, message: "Utilise <th> pour les titres de colonnes et <td> pour les cellules de contenu." };
+      }
+      if (!code.includes('html') || !code.includes('css') || !code.includes('javascript')) {
+        return { pass: false, message: "Mentionne les 3 piliers dans ton tableau : HTML, CSS et JavaScript !" };
+      }
+      return { pass: true, message: "Un tableau d'une clarté exemplaire ! Les moteurs de recherche et les lecteurs d'écran te remercient." };
     }
   },
 
-  // ===========================================================================
-  // ACTE III : L'HARMONIE VISUELLE PARTAGÉE (style.css)
-  // ===========================================================================
   {
     id: 'step-13',
     number: 13,
-    act: "Acte III : L'Harmonie Visuelle",
-    targetFile: 'index.html',
-    title: "Le Câblage Universel (link rel=\"stylesheet\")",
-    proverb: "« Le phare le plus éclatant ne sert à rien si les câbles d'énergie ne sont pas reliés à la tour. »",
-    mentorSpeech: "Tes 4 pages sont parfaitement structurées et reliées entre elles. Mais elles n'ont encore aucune couleur partagée. Comment informe-t-on le navigateur qu'un fichier externe style.css existe et doit habiller nos pages ? Réfléchis : quelle balise d'en-tête permet cette liaison magique ?",
-    riddle: "Dans le <head> de index.html, ajoute la balise <link rel=\"stylesheet\" href=\"style.css\"> pour connecter la feuille de style.",
-    secretTip: "La balise <link> est auto-fermante et se place toujours dans le <head>, jamais dans le body.",
+    character: 'bodhi',
+    pose: 'thumbs_up',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte II : L'Expansion Multi-Pages & Formulaires",
+    targetFile: 'galerie.html',
+    title: "Le Pavillon des Arts Visuels (galerie.html)",
+    proverb: "« Une fresque sans cadre s'effrite ; un tableau sans lieu d'exposition reste dans l'ombre. »",
+    mentorSpeech: "Le troisième pavillon sera le sanctuaire de l'image : 'galerie.html'. Nous allons y exposer les fresques antiques du Web. Bâtissons d'abord ses fondations complètes avec son header, son nav et son espace d'exposition.",
+    riddle: "Crée 'galerie.html' avec la structure complète, header, nav et section d'exposition.",
+    secretTip: "Crée 'galerie.html' avec le titre <title>Galerie des Bâtisseurs</title>, le même nav et une section avec <h2>Fresques du Premier Siècle</h2>.",
     instructions: [
-      "Dans index.html, repère le bloc <head>.",
-      "Ajoute la balise de liaison : <link rel=\"stylesheet\" href=\"style.css\">."
-    ],
+      "Clique sur '+ Nouveau fichier' et nomme-le : galerie.html",
+      "Rédige le DOCTYPE et la structure HTML5 complète.",
+      "Définis le titre : <title>Galerie des Bâtisseurs</title>.",
+      "Insère le <header> avec son <h1>, sa barre de navigation <nav> (les 4 liens) et un <footer>."
+],
     starterFiles: getFilesForStep(13),
-    check(files) {
-      const html = files['index.html'] || '';
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const link = doc.querySelector('link[rel="stylesheet"]');
-      if (!link) return { pass: false, message: "Ajoute la balise <link rel=\"stylesheet\" href=\"style.css\"> dans le <head> de index.html." };
-      if (link.getAttribute('href') !== 'style.css') return { pass: false, message: "Vérifie l'attribut href : il doit pointer exactement vers 'style.css'." };
-      return { pass: true };
+    check: function(files) {
+      if (files['galerie.html'] === undefined) {
+        return { pass: false, message: "Le fichier 'galerie.html' n'existe pas encore. Crée-le avec '+ Nouveau fichier' !" };
+      }
+      const code = (files['galerie.html'] || '').toLowerCase();
+      if (!code.includes('<title>galerie des bâtisseurs</title>')) {
+        return { pass: false, message: "Donne le titre <title>Galerie des Bâtisseurs</title> dans galerie.html." };
+      }
+      if (!code.includes('<nav>') || !code.includes('chroniques.html')) {
+        return { pass: false, message: "Assure-toi que la barre <nav> avec les 4 liens relatifs est bien présente dans galerie.html." };
+      }
+      return { pass: true, message: "Le Pavillon des Arts est érigé ! Les cadres sont prêts à accueillir les œuvres." };
     }
   },
 
   {
     id: 'step-14',
     number: 14,
-    act: "Acte III : L'Harmonie Visuelle",
-    targetFile: 'style.css',
-    title: "Le Grand Reset Universel & Box-Sizing",
-    proverb: "« Avant de tracer la calligraphie sur la soie, lisse le tissu pour effacer tout pli parasite. »",
-    mentorSpeech: "Bascule sur l'onglet style.css. Chaque navigateur applique des marges secrètes par défaut qui faussent les calculs. Quel sélecteur magique permet de viser absolument tous les éléments de la création pour réinitialiser les marges et appliquer le modèle de boîte universel ?",
-    riddle: "Dans style.css, utilise le sélecteur universel * pour éliminer les marges par défaut et imposer box-sizing: border-box.",
-    secretTip: "box-sizing: border-box garantit que le padding et les bordures sont calculés à l'intérieur de la largeur, évitant tout débordement accidentel.",
+    character: 'bodhi',
+    pose: 'code_magic',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte II : L'Expansion Multi-Pages & Formulaires",
+    targetFile: 'galerie.html',
+    title: "L'Exposition des Œuvres (figure, img & figcaption)",
+    proverb: "« Une image sans légende est une énigme ; une image sans texte alternatif est aveugle. »",
+    mentorSpeech: "En HTML5 moderne, on n'abandonne jamais une balise <img> seule dans la nature. On l'abrite dans un conteneur sémantique <figure>, accompagné de sa légende <figcaption>, et on n'oublie jamais l'attribut alt pour les esprits qui naviguent par la voix.",
+    riddle: "Ajoute 4 éléments <figure> contenant <img> (avec src et alt) et <figcaption>.",
+    secretTip: "Dans galerie.html, crée un conteneur avec <div class=\"galerie-conteneur\"> contenant 4 <figure> avec les images du sanctuaire.",
     instructions: [
-      "Dans style.css, écris la règle avec le sélecteur universel : * { ... }.",
-      "Déclare box-sizing: border-box;.",
-      "Supprime les marges parasites par défaut avec margin: 0; et padding: 0;."
-    ],
+      "Dans galerie.html, dans la section d'exposition, crée un conteneur : <div class=\"galerie-conteneur\">.",
+      "À l'intérieur, insère au moins 3 ou 4 blocs <figure>...</figure>.",
+      "Dans chaque figure, place une balise <img src=\"assets/gallery/...\" alt=\"...\">.",
+      "Ajoute juste sous chaque image sa légende sémantique : <figcaption>Description de l'œuvre...</figcaption>."
+],
     starterFiles: getFilesForStep(14),
-    check(files) {
-      const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('*')) return { pass: false, message: "Utilise le sélecteur universel astérisque '*' pour cibler tous les éléments." };
-      if (!css.includes('box-sizing: border-box') && !css.includes('box-sizing:border-box')) {
-        return { pass: false, message: "Déclare impérativement 'box-sizing: border-box;' pour stabiliser le calcul des boîtes." };
+    check: function(files) {
+      const code = (files['galerie.html'] || '').toLowerCase();
+      if (!code.includes('<figure>') || !code.includes('</figure>')) {
+        return { pass: false, message: "Utilise la balise sémantique <figure>...</figure> pour envelopper chaque œuvre." };
       }
-      return { pass: true };
+      if (!code.includes('<figcaption>') || !code.includes('</figcaption>')) {
+        return { pass: false, message: "Accompagne chaque figure d'une légende <figcaption>...</figcaption>." };
+      }
+      const figMatches = code.match(/<figure>/g) || [];
+      if (figMatches.length < 3) {
+        return { pass: false, message: "Expose au moins 3 œuvres distinctes dans ta galerie pour créer une vraie collection." };
+      }
+      if (!code.includes('alt="') && !code.includes("alt='")) {
+        return { pass: false, message: "N'oublie jamais l'attribut alt=\"...\" sur chaque balise <img> pour l'accessibilité !" };
+      }
+      return { pass: true, message: "La galerie s'illumine de mille feux visuels ! L'art et la sémantique s'épousent parfaitement." };
     }
   },
 
   {
     id: 'step-15',
     number: 15,
-    act: "Acte III : L'Harmonie Visuelle",
-    targetFile: 'style.css',
-    title: "La Teinte Profonde & La Typographie Système (body)",
-    proverb: "« La nuit noire fait resplendir la plus humble des bougies. Un fond sombre et contrasté apaise le regard. »",
-    mentorSpeech: "Donnons son atmosphère nocturne et spirituelle à notre sanctuaire. Cible le sélecteur body dans style.css : offre-lui une police native et rapide, un fond sombre profond (#0f172a), une couleur claire (#f8fafc) et un interlignage aéré.",
-    riddle: "Stylise l'élément body pour définir la typographie globale et la couleur de fond de tout le domaine.",
-    secretTip: "line-height: 1.6 donne l'espace nécessaire entre les lignes de texte pour que les yeux ne fatiguent jamais.",
+    character: 'bodhi',
+    pose: 'pointing',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte II : L'Expansion Multi-Pages & Formulaires",
+    targetFile: 'contact.html',
+    title: "Le Pavillon du Messager (contact.html & form)",
+    proverb: "« Le voyageur qui ne peut transmettre sa pensée reste un fantôme silencieux. »",
+    mentorSpeech: "Le quatrième et dernier pavillon est le plus interactif de tous : 'contact.html'. C'est le portail par lequel les visiteurs de ton univers pourront t'envoyer leurs missives. Érigeons le pavillon et son élément central : la balise <form>.",
+    riddle: "Crée 'contact.html' avec la structure complète et un élément <form action=\"#\" method=\"post\">.",
+    secretTip: "Crée contact.html avec le titre <title>Contacter le Sanctuaire</title>, le nav, un main, et un <form action=\"#\" method=\"post\"></form>.",
     instructions: [
-      "Cible le sélecteur body dans style.css.",
-      "Applique font-family: system-ui, -apple-system, sans-serif;.",
-      "Définis background-color: #0f172a; et color: #f8fafc;.",
-      "Ajoute line-height: 1.6; pour la respiration du texte."
-    ],
+      "Clique sur '+ Nouveau fichier' et nomme-le : contact.html",
+      "Mets en place la structure HTML5 complète avec <title>Contacter le Sanctuaire</title>.",
+      "Ajoute le header et la barre de navigation avec les 4 liens.",
+      "Dans le <main>, crée une <section> avec le titre <h2>Envoyer un Parchemin à Maître Bodhi</h2> et la balise <form action=\"#\" method=\"post\">...</form>."
+],
     starterFiles: getFilesForStep(15),
-    check(files) {
-      const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('body')) return { pass: false, message: "Crée une règle ciblant le sélecteur 'body' dans style.css." };
-      if (!css.includes('font-family')) return { pass: false, message: "Définis une police moderne avec 'font-family'." };
-      if (!css.includes('background')) return { pass: false, message: "Applique une couleur de fond sombre avec 'background-color'." };
-      if (!css.includes('color:') && !css.includes('color :')) return { pass: false, message: "Définis la couleur du texte avec 'color'." };
-      return { pass: true };
+    check: function(files) {
+      if (files['contact.html'] === undefined) {
+        return { pass: false, message: "Le fichier 'contact.html' n'existe pas encore. Crée-le avec '+ Nouveau fichier' !" };
+      }
+      const code = (files['contact.html'] || '').toLowerCase();
+      if (!code.includes('<form') || !code.includes('</form>')) {
+        return { pass: false, message: "Il te manque la balise <form action=\"#\" method=\"post\">...</form> dans contact.html." };
+      }
+      if (!code.includes('method="post"') && !code.includes("method='post'")) {
+        return { pass: false, message: "Ajoute method=\"post\" sur ton formulaire pour indiquer que les données seront envoyées au serveur." };
+      }
+      return { pass: true, message: "Le portail du messager est ouvert ! Il ne nous reste plus qu'à forger ses commandes." };
     }
   },
 
   {
     id: 'step-16',
     number: 16,
-    act: "Acte III : L'Harmonie Visuelle",
-    targetFile: 'style.css',
-    title: "Le Modèle de Boîte des Cartes (section & border-radius)",
-    proverb: "« Des murs bruts blessent le regard ; des angles adoucis accueillent l'âme. »",
-    mentorSpeech: "Sur toutes nos pages, le contenu est encadré dans des balises <section>. Transformons-les en magnifiques cartes de parchemin avec un fond ardoise (#1e293b), du padding généreux pour faire respirer le texte, une largeur maximale centrée avec margin: auto, et des angles arrondis.",
-    riddle: "Applique le Box Model sur les balises section pour en faire des cartes de lecture soignées et centrées.",
-    secretTip: "L'astuce magique pour centrer un bloc : une largeur définie (ex: max-width: 800px) et des marges horizontales automatiques (margin: 24px auto) !",
+    character: 'bodhi',
+    pose: 'thinking',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte II : L'Expansion Multi-Pages & Formulaires",
+    targetFile: 'contact.html',
+    title: "Les Écrous du Formulaire (label for, input text & email)",
+    proverb: "« Un champ sans étiquette est une porte sans poignée. »",
+    mentorSpeech: "Attention, apprenti : lier une étiquette <label> à son champ <input> grâce à l'attribut for qui répond à l'id du champ est une règle absolue d'accessibilité. Quand un utilisateur clique sur le texte du label, le curseur doit se poser instantanément dans le champ.",
+    riddle: "Ajoute deux paires label / input (nom et email) avec l'attribut required.",
+    secretTip: "Dans le formulaire de contact.html, ajoute <label for=\"nom\">...</label><input type=\"text\" id=\"nom\" required> et <label for=\"email\">...</label><input type=\"email\" id=\"email\" required>.",
     instructions: [
-      "Cible le sélecteur section dans style.css.",
-      "Applique background-color: #1e293b; et border: 1px solid #334155;.",
-      "Donne du padding (ex: 28px) et border-radius: 14px;.",
-      "Centre les blocs avec max-width: 800px; et margin: 24px auto;."
-    ],
+      "Dans le formulaire de contact.html, ajoute un <label for=\"nom\">Ton nom d'apprenti :</label>.",
+      "Juste en dessous, place le champ texte : <input type=\"text\" id=\"nom\" name=\"nom\" required placeholder=\"Ex: Scribe du Web\">.",
+      "Ajoute un <label for=\"email\">Ton adresse de contact :</label>.",
+      "Et son champ spécialisé : <input type=\"email\" id=\"email\" name=\"email\" required placeholder=\"nom@domaine.org\">."
+],
     starterFiles: getFilesForStep(16),
-    check(files) {
-      const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('section')) return { pass: false, message: "Crée une règle ciblant 'section' dans style.css." };
-      if (!css.includes('padding')) return { pass: false, message: "Donne du padding intérieur à tes sections." };
-      if (!css.includes('border-radius')) return { pass: false, message: "Arrondis les angles avec 'border-radius'." };
-      if (!css.includes('margin')) return { pass: false, message: "Espace et centre tes sections avec 'margin'." };
-      return { pass: true };
+    check: function(files) {
+      const code = (files['contact.html'] || '').toLowerCase();
+      if (!code.includes('for="nom"') && !code.includes("for='nom'")) {
+        return { pass: false, message: "Lie ton premier label au champ avec l'attribut for=\"nom\"." };
+      }
+      if (!code.includes('id="nom"') && !code.includes("id='nom'")) {
+        return { pass: false, message: "Donne l'id=\"nom\" à ton champ texte pour correspondre au label." };
+      }
+      if (!code.includes('type="email"') && !code.includes("type='email'")) {
+        return { pass: false, message: "Utilise le type natif type=\"email\" pour le champ d'adresse électronique." };
+      }
+      if (!code.includes('required')) {
+        return { pass: false, message: "Ajoute l'attribut required sur tes champs obligatoires pour activer la validation native du navigateur." };
+      }
+      return { pass: true, message: "Parfait ! Tes champs sont reliés à leurs étiquettes avec une rigueur exemplaire." };
     }
   },
 
   {
     id: 'step-17',
     number: 17,
-    act: "Acte III : L'Harmonie Visuelle",
-    targetFile: 'style.css',
-    title: "La Grâce des Liens & Le Survol (nav a & :hover)",
-    proverb: "« Le visiteur doit savoir où son doigt se pose sans jamais trébucher sur un trait rugueux. »",
-    mentorSpeech: "Regarde l'en-tête de nos pages : les liens sont encore nus. Stylisons le <header> avec un fond sombre, et surtout ciblons les liens du menu 'nav a' pour supprimer le trait de soulignement avec text-decoration: none, et ajouter une couleur vive au survol avec la pseudo-classe :hover.",
-    riddle: "Stylise header, débarrasse nav a du soulignement, et change sa couleur au survol avec nav a:hover.",
-    secretTip: "La pseudo-classe :hover s'applique instantanément dès que le curseur survole l'élément. Elle donne vie à la navigation.",
+    character: 'bodhi',
+    pose: 'scroll',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte II : L'Expansion Multi-Pages & Formulaires",
+    targetFile: 'contact.html',
+    title: "Le Choix des Bâtisseurs & Le Message (select & textarea)",
+    proverb: "« Quand le choix est offert, le chemin se précise ; quand le parchemin s'élargit, l'âme s'exprime. »",
+    mentorSpeech: "Un simple champ de texte à ligne unique est trop étroit pour les grandes missives de l'esprit. Offrons au voyageur un menu déroulant <select> pour catégoriser sa demande, ainsi qu'une vaste zone de texte <textarea> pour rédiger son message.",
+    riddle: "Ajoute un <select> avec plusieurs <option>, puis un <textarea> pour le message.",
+    secretTip: "Dans contact.html, ajoute <label for=\"sujet\">...</label><select id=\"sujet\" name=\"sujet\"><option value=\"question\">Question</option>...</select> et <textarea id=\"message\" name=\"message\" rows=\"5\" required></textarea>.",
     instructions: [
-      "Dans style.css, stylise header avec background-color: #1e293b; et padding: 24px 20px;.",
-      "Cible nav a : applique text-decoration: none;, color: #38bdf8; et font-weight: 600;.",
-      "Cible nav a:hover et change sa couleur en or chaleureux : color: #f59e0b;."
-    ],
+      "Dans le formulaire de contact.html, ajoute un <label for=\"sujet\">Objet de la missive :</label>.",
+      "Ajoute le menu déroulant : <select id=\"sujet\" name=\"sujet\"> avec au moins 3 balises <option>.",
+      "Ajoute ensuite un <label for=\"message\">Ton message pour le sanctuaire :</label>.",
+      "Insère la zone multiligne : <textarea id=\"message\" name=\"message\" rows=\"5\" required placeholder=\"Écris ton message ici...\"></textarea>."
+],
     starterFiles: getFilesForStep(17),
-    check(files) {
-      const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('header')) return { pass: false, message: "Ajoute une règle pour 'header'." };
-      if (!css.includes('text-decoration: none') && !css.includes('text-decoration:none')) {
-        return { pass: false, message: "Retire le soulignement des liens avec 'text-decoration: none;' sur nav a." };
+    check: function(files) {
+      const code = (files['contact.html'] || '').toLowerCase();
+      if (!code.includes('<select') || !code.includes('</select>')) {
+        return { pass: false, message: "Ajoute un menu déroulant <select id=\"sujet\" name=\"sujet\"> dans ton formulaire." };
       }
-      if (!css.includes(':hover')) return { pass: false, message: "Ajoute un effet interactif avec la pseudo-classe 'nav a:hover'." };
-      return { pass: true };
+      const optCount = (code.match(/<option/g) || []).length;
+      if (optCount < 2) {
+        return { pass: false, message: "Insère au moins 2 choix distincts avec la balise <option> dans ton select." };
+      }
+      if (!code.includes('<textarea') || !code.includes('</textarea>')) {
+        return { pass: false, message: "Ajoute la zone de texte multiligne <textarea id=\"message\" ...></textarea>." };
+      }
+      return { pass: true, message: "Les commandes de saisie sont complètes ! Le voyageur peut maintenant formuler sa pensée." };
     }
   },
 
   {
     id: 'step-18',
     number: 18,
-    act: "Acte III : L'Harmonie Visuelle",
-    targetFile: 'style.css',
-    title: "Le Relief de la Pierre (box-shadow)",
-    proverb: "« L'ombre n'est pas l'ennemie de la lumière ; elle est la preuve que le bâtiment existe dans l'espace. »",
-    mentorSpeech: "Nos cartes sont belles, mais elles paraissent encore plaquées à plat sur le fond d'écran. Comment donner une impression de relief et de flottement tridimensionnel ? C'est le pouvoir de la propriété box-shadow.",
-    riddle: "Ajoute une ombre portée douce sur les sections avec la propriété box-shadow.",
-    secretTip: "box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) projette une ombre diffuse vers le bas qui détache élégamment le bloc.",
+    character: 'bodhi',
+    pose: 'thumbs_up',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte II : L'Expansion Multi-Pages & Formulaires",
+    targetFile: 'contact.html',
+    title: "L'Envoi Sacré & Le Bouton Submit",
+    proverb: "« Une flèche encochée ne sert à rien si la corde ne la libère jamais. »",
+    mentorSpeech: "Tous les champs sont en place, mais comment le visiteur déclenche-t-il l'envoi vers le serveur ? Avec la balise reine de l'action : <button type=\"submit\">. Scellons notre formulaire avec ce bouton décisif !",
+    riddle: "Ajoute le bouton de soumission <button type=\"submit\">Envoyer la missive</button> dans ton formulaire.",
+    secretTip: "À la fin de ton formulaire dans contact.html, juste avant </form>, ajoute : <button type=\"submit\">Envoyer la missive</button>",
     instructions: [
-      "Dans la règle section de style.css, ajoute box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);.",
-      "Ajoute également un padding et un text-align: center sur footer pour clore l'harmonie."
-    ],
+      "Ouvre contact.html dans l'éditeur.",
+      "Juste avant la fermeture de </form>, ajoute le bouton de soumission :",
+      "<button type=\"submit\">Envoyer la missive</button>",
+      "Teste le clic dans l'aperçu : admire le navigateur vérifier automatiquement les champs requis !"
+],
     starterFiles: getFilesForStep(18),
-    check(files) {
-      const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('box-shadow')) return { pass: false, message: "Ajoute la propriété 'box-shadow' sur tes sections pour créer du relief." };
-      return { pass: true };
+    check: function(files) {
+      const code = (files['contact.html'] || '').toLowerCase();
+      if (!code.includes('<button') || !code.includes('</button>')) {
+        return { pass: false, message: "Il te manque la balise <button> dans le formulaire de contact.html." };
+      }
+      if (!code.includes('type="submit"') && !code.includes("type='submit'")) {
+        return { pass: false, message: "Précise explicitement type=\"submit\" sur ton bouton pour valider l'action d'envoi." };
+      }
+      return { pass: true, message: "Gloire aux bâtisseurs ! L'architecture HTML multi-pages est totalement achevée !" };
     }
   },
 
-  // ===========================================================================
-  // ACTE IV : LES ARCANES SUPÉRIEURS (Flexbox, Grid & Responsive)
-  // ===========================================================================
   {
     id: 'step-19',
     number: 19,
-    act: "Acte IV : La Maîtrise Suprême",
-    targetFile: 'style.css',
-    title: "Le Menu Flottant (Flexbox & gap)",
-    proverb: "« Le fleuve coule d'une traite sans que les gouttes ne s'entrechoquent. Flexbox ordonne la ligne. »",
-    mentorSpeech: "Nos liens de menu sont actuellement côte à côte sans véritable contrôle. Déployons la magie de Flexbox sur la balise nav. Avec display: flex, justify-content: center et gap, nous allons transformer notre menu en une véritable barre d'application fluide.",
-    riddle: "Active display: flex sur la balise nav, centre les liens et espace-les avec la propriété moderne gap.",
-    secretTip: "gap remplace avantageusement les marges manuelles en assurant un espacement régulier entre les enfants d'un flex container.",
+    character: 'bodhi',
+    pose: 'code_magic',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte III : L'Harmonie Visuelle & CSS Fondamental",
+    targetFile: 'index.html',
+    title: "Le Câblage Universel (link rel=\"stylesheet\")",
+    proverb: "« Le squelette d'albâtre attend la robe de pourpre et d'or. »",
+    mentorSpeech: "Nos 4 pavillons HTML sont solides comme du granit, mais leurs murs sont encore bruts et nus. Nous allons forger le deuxième grand pilier du Web : les Cascading Style Sheets (CSS). La première étape consiste à relier chaque page à la future feuille universelle 'style.css'.",
+    riddle: "Ajoute la balise <link rel=\"stylesheet\" href=\"style.css\"> dans le <head> de index.html.",
+    secretTip: "Dans le <head> de index.html, ajoute : <link rel=\"stylesheet\" href=\"style.css\">",
     instructions: [
-      "Dans style.css, crée une règle ciblant nav.",
-      "Active Flexbox avec display: flex;.",
-      "Centre les éléments avec justify-content: center; et align-items: center;.",
-      "Espace les liens avec gap: 16px; (ou 20px) et ajoute margin-top: 14px;."
-    ],
+      "Dans index.html, repère le bloc <head>.",
+      "Juste après la balise <title>, ajoute la liaison : <link rel=\"stylesheet\" href=\"style.css\">.",
+      "Assure-toi que rel=\"stylesheet\" et href=\"style.css\" sont écrits sans faute."
+],
     starterFiles: getFilesForStep(19),
-    check(files) {
-      const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('display: flex') && !css.includes('display:flex')) {
-        return { pass: false, message: "Active Flexbox avec 'display: flex;' dans la règle de ton menu nav." };
+    check: function(files) {
+      const code = (files['index.html'] || '').toLowerCase();
+      if (!code.includes('rel="stylesheet"') && !code.includes("rel='stylesheet'")) {
+        return { pass: false, message: "Ajoute la balise <link rel=\"stylesheet\" ...> dans le <head> de index.html." };
       }
-      if (!css.includes('gap:')) {
-        return { pass: false, message: "Utilise la propriété moderne 'gap' pour espacer les liens du menu." };
+      if (!code.includes('href="style.css"') && !code.includes("href='style.css'")) {
+        return { pass: false, message: "La balise link doit pointer vers href=\"style.css\"." };
       }
-      return { pass: true };
+      return { pass: true, message: "Le câble mystique est branché ! index.html est prêt à recevoir la lumière du CSS." };
     }
   },
 
   {
     id: 'step-20',
     number: 20,
-    act: "Acte IV : La Maîtrise Suprême",
+    character: 'bodhi',
+    pose: 'zen',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte III : L'Harmonie Visuelle & CSS Fondamental",
     targetFile: 'style.css',
-    title: "La Grille Magique de la Galerie (CSS Grid auto-fit)",
-    proverb: "« Quand le plan s'étend en largeur et en hauteur, seule la Grille sait ordonner le monde. »",
-    mentorSpeech: "Va contempler la page galerie.html dans la prévisualisation : pour l'instant, les figures s'empilent bêtement l'une sous l'autre. Comment les disposer côte à côte en colonnes automatiques ? C'est l'art suprême de CSS Grid. Utilisons la formule sacrée : display: grid avec repeat(auto-fit, minmax(260px, 1fr)).",
-    riddle: "Cible le conteneur de la galerie (.galerie-conteneur ou figure) pour former une grille réactive en deux dimensions.",
-    secretTip: "repeat(auto-fit, minmax(260px, 1fr)) est la formule la plus élégante du CSS : elle crée autant de colonnes de 260px que l'écran peut en contenir, sans aucune media query !",
+    title: "Le Grand Reset Universel & Box-Sizing",
+    proverb: "« Pour bâtir un palais droit, il faut d'abord niveler le sol jusqu'à la racine. »",
+    mentorSpeech: "Chaque navigateur applique des marges et des espacements arbitraires par défaut. Tout grand artisan commence par un reset universel grâce au sélecteur astérisque *, en forçant le calcul moderne box-sizing: border-box.",
+    riddle: "Crée le fichier 'style.css' et déclare la règle universelle * { box-sizing: border-box; margin: 0; padding: 0; }.",
+    secretTip: "Crée le fichier style.css et écris : * { box-sizing: border-box; margin: 0; padding: 0; }",
     instructions: [
-      "Dans style.css, cible .galerie-conteneur (ou les balises figure dans la section).",
-      "Active la grille avec display: grid; et ajoute gap: 20px;.",
-      "Définis les colonnes avec grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));.",
-      "Assure-toi que les images occupent toute la largeur de leur carte avec img { max-width: 100%; border-radius: 8px; }."
-    ],
+      "Clique sur '+ Nouveau fichier' et nomme-le : style.css",
+      "Écris le sélecteur universel : * {",
+      "Définis la boîte moderne : box-sizing: border-box;",
+      "Remets à zéro les marges par défaut : margin: 0; padding: 0;",
+      "Ferme avec }"
+],
     starterFiles: getFilesForStep(20),
-    check(files) {
+    check: function(files) {
+      if (files['style.css'] === undefined) {
+        return { pass: false, message: "Le fichier 'style.css' n'existe pas encore. Crée-le avec '+ Nouveau fichier' !" };
+      }
       const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('display: grid') && !css.includes('display:grid')) {
-        return { pass: false, message: "Active la disposition en grille avec 'display: grid;'." };
+      if (!css.includes('*')) {
+        return { pass: false, message: "Utilise le sélecteur universel * dans style.css." };
       }
-      if (!css.includes('grid-template-columns')) {
-        return { pass: false, message: "Définis la répartition des colonnes avec 'grid-template-columns'." };
+      if (!css.includes('box-sizing') || !css.includes('border-box')) {
+        return { pass: false, message: "Inscris 'box-sizing: border-box;' pour que padding et bordures soient inclus dans la largeur des éléments." };
       }
-      return { pass: true };
+      if (!css.includes('margin: 0') && !css.includes('margin:0')) {
+        return { pass: false, message: "Réinitialise la marge extérieure avec 'margin: 0;'." };
+      }
+      return { pass: true, message: "Le sol est nivelé ! Les marges sauvages des navigateurs sont domptées." };
     }
   },
 
   {
     id: 'step-21',
     number: 21,
-    act: "Acte IV : La Maîtrise Suprême",
+    character: 'bodhi',
+    pose: 'thinking',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte III : L'Harmonie Visuelle & CSS Fondamental",
     targetFile: 'style.css',
-    title: "Le Portique des Messages (Formulaire & Bouton)",
-    proverb: "« Quand le voyageur s'apprête à sceller son message, le bouton doit briller d'une lumière sûre. »",
-    mentorSpeech: "Bascule sur la page contact.html dans la prévisualisation : le formulaire est encore brut. Stylisons les champs input, le textarea et le bouton avec display: grid sur le form, du padding confortable, et un bouton ambré étincelant avec cursor: pointer.",
-    riddle: "Ordonne le formulaire en grille et donne au bouton son éclat doré.",
-    secretTip: "input, textarea { background: #0f172a; color: #fff; border: 1px solid #334155; } intègre parfaitement les champs dans le thème sombre.",
+    title: "La Teinte Profonde & La Typographie Système (body)",
+    proverb: "« Le fond sombre apaise le regard ; la police claire guide l'esprit dans la sérénité. »",
+    mentorSpeech: "Donnons une âme nocturne et noble à notre Sanctuaire. Appliquons à l'élément <body> un fond bleu nuit obscur (#0f172a), un texte blanc cassé doux (#f8fafc), une hauteur de ligne aérée (1.6) et la police système moderne.",
+    riddle: "Stylise l'élément body avec font-family, background-color: #0f172a, color: #f8fafc et line-height: 1.6.",
+    secretTip: "Dans style.css, ajoute : body { font-family: system-ui, -apple-system, sans-serif; background-color: #0f172a; color: #f8fafc; line-height: 1.6; }",
     instructions: [
-      "Dans style.css, cible form avec display: grid; et gap: 14px;.",
-      "Stylise input et textarea avec padding: 12px;, border-radius: 8px;, et font-size: 1rem;.",
-      "Stylise button avec background: #f59e0b;, color: #1e293b;, font-weight: 700;, padding: 12px 20px; et cursor: pointer;."
-    ],
+      "Dans style.css, ajoute la règle pour l'élément body : body { ... }",
+      "Définis la typographie système : font-family: system-ui, -apple-system, sans-serif;",
+      "Applique le fond sombre : background-color: #0f172a;",
+      "Définis la couleur du texte : color: #f8fafc;",
+      "Aère la lecture avec un interligne : line-height: 1.6;"
+],
     starterFiles: getFilesForStep(21),
-    check(files) {
+    check: function(files) {
       const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('form')) return { pass: false, message: "Ajoute des styles pour le sélecteur 'form'." };
-      if (!css.includes('button')) return { pass: false, message: "Stylise ton bouton d'envoi avec une couleur d'arrière-plan et un padding." };
-      return { pass: true };
+      if (!css.includes('body')) {
+        return { pass: false, message: "Ajoute la règle de style pour l'élément body dans style.css." };
+      }
+      if (!css.includes('background') || (!css.includes('#0f172a') && !css.includes('rgb(15, 23, 42)'))) {
+        return { pass: false, message: "Applique la couleur de fond sombre background-color: #0f172a; sur le body." };
+      }
+      if (!css.includes('color') || (!css.includes('#f8fafc') && !css.includes('#fff') && !css.includes('#ffffff'))) {
+        return { pass: false, message: "Définis la couleur de texte color: #f8fafc; pour un contraste lisible." };
+      }
+      if (!css.includes('line-height')) {
+        return { pass: false, message: "Définis un interligne agréable avec line-height: 1.6;." };
+      }
+      return { pass: true, message: "L'ambiance nocturne s'installe ! Regarde le contraste saisissant dans l'aperçu." };
     }
   },
 
   {
     id: 'step-22',
     number: 22,
-    act: "Acte IV : La Maîtrise Suprême",
+    character: 'bodhi',
+    pose: 'scroll',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte III : L'Harmonie Visuelle & CSS Fondamental",
     targetFile: 'style.css',
-    title: "Le Souffle Animé (transition & transform)",
-    proverb: "« Quand la matière s'anime au toucher, l'illusion devient vérité. »",
-    mentorSpeech: "Apportons la sensation tactile du haut de gamme. Quand la souris survole un bouton ou une carte, nous voulons un léger soulèvement vers le haut (translateY(-2px)) accompagné d'une aura plus intense. Pour que ce mouvement soit soyeux et non saccadé, quelle propriété magique doit-on déclarer ?",
-    riddle: "Ajoute la propriété transition sur button et figure, puis fais-les léviter au survol avec :hover et transform: translateY(-3px).",
-    secretTip: "Déclare toujours 'transition: transform 0.2s ease, box-shadow 0.2s ease;' sur l'élément de base, et 'transform: translateY(-3px);' sur le :hover !",
+    title: "Le Modèle de Boîte des Cartes (section & border-radius)",
+    proverb: "« Une pensée a besoin d'espace intérieur pour respirer et de limites douces pour s'apaiser. »",
+    mentorSpeech: "Le Modèle de Boîte (Box Model) est le cœur de la mise en page CSS. Chaque élément possède son contenu, son padding (espace intérieur), sa bordure et son margin (espace extérieur). Donnons à nos balises <section> l'allure d'un beau panneau centré aux coins arrondis.",
+    riddle: "Stylise 'section' avec un fond #1e293b, un padding de 28px, un centrage margin: 24px auto, et border-radius: 14px.",
+    secretTip: "Dans style.css, ajoute : section { background-color: #1e293b; border: 1px solid #334155; padding: 28px; max-width: 800px; margin: 24px auto; border-radius: 14px; }",
     instructions: [
-      "Sur button et figure, ajoute transition: transform 0.2s ease, box-shadow 0.2s ease;.",
-      "Crée les règles button:hover et figure:hover avec transform: translateY(-3px); et un surcroît d'ombre."
-    ],
+      "Dans style.css, crée la règle : section { ... }",
+      "Donne un fond plus clair que le body : background-color: #1e293b;",
+      "Ajoute une bordure subtile : border: 1px solid #334155;",
+      "Donne du souffle intérieur : padding: 28px;",
+      "Centre le panneau avec une largeur maximale : max-width: 800px; margin: 24px auto;",
+      "Adoucis les angles : border-radius: 14px;"
+],
     starterFiles: getFilesForStep(22),
-    check(files) {
+    check: function(files) {
       const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('transition')) return { pass: false, message: "Ajoute la propriété 'transition' pour rendre les animations souples." };
-      if (!css.includes('transform: translate') && !css.includes('transform:translate')) {
-        return { pass: false, message: "Utilise 'transform: translateY(-...px)' au survol pour créer l'effet de soulèvement." };
+      if (!css.includes('section')) {
+        return { pass: false, message: "Ajoute la règle pour l'élément section dans style.css." };
       }
-      return { pass: true };
+      if (!css.includes('padding')) {
+        return { pass: false, message: "Ajoute un espace intérieur avec padding: 28px; sur tes sections." };
+      }
+      if (!css.includes('margin') || !css.includes('auto')) {
+        return { pass: false, message: "Centre tes sections horizontalement avec margin: 24px auto; et une max-width." };
+      }
+      if (!css.includes('border-radius')) {
+        return { pass: false, message: "Arrondis les coins avec border-radius: 14px;." };
+      }
+      return { pass: true, message: "Le Modèle de Boîte est dompté ! Tes sections forment de superbes cartes bien centrées." };
     }
   },
 
   {
     id: 'step-23',
     number: 23,
-    act: "Acte IV : La Maîtrise Suprême",
+    character: 'bodhi',
+    pose: 'code_magic',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte III : L'Harmonie Visuelle & CSS Fondamental",
     targetFile: 'style.css',
-    title: "Le Don d'Ubiquité (@media Responsive Mobile)",
-    proverb: "« L'eau prend la forme de la cruche, du ruisseau ou de la coupe sans jamais perdre sa nature. »",
-    mentorSpeech: "Prends un smartphone ou clique sur le bouton 'Mobile' au-dessus de la fenêtre de prévisualisation : le menu horizontal déborde et les marges sont trop larges pour un petit écran ! Déploie la sainte formule du Responsive Design : écris une Media Query (@media) pour réorganiser le menu en colonne verticale dès que l'écran fait moins de 768 pixels.",
-    riddle: "À la toute fin de style.css, ajoute une règle @media (max-width: 768px) qui empile les liens en colonne et réduit les marges des sections.",
-    secretTip: "Dans la media query, nav { flex-direction: column; gap: 8px; } empile les liens avec un espacement impeccable sur petit écran.",
+    title: "La Cascade & Les Niveaux de Titres (h1, h2, h3)",
+    proverb: "« Quand la hiérarchie est claire, le regard se pose sans hésitation. »",
+    mentorSpeech: "En CSS, plusieurs sélecteurs peuvent partager des règles communes grâce à la virgule. Rassemblons h1, h2 et h3 pour leur donner une couleur éclatante, une marge inférieure aérée et un resserrement typographique élégant.",
+    riddle: "Groupe les titres h1, h2, h3 pour leur donner color: #f8fafc, letter-spacing: -0.02em et margin-bottom: 12px.",
+    secretTip: "Dans style.css, ajoute : h1, h2, h3 { color: #f8fafc; letter-spacing: -0.02em; margin-bottom: 12px; }",
     instructions: [
-      "À la fin de style.css, déclare @media (max-width: 768px) { ... }.",
-      "À l'intérieur, ajuste nav avec flex-direction: column; et gap: 8px;.",
-      "Ajuste section avec margin: 16px 12px; et padding: 20px; pour préserver l'espace de lecture sur mobile."
-    ],
+      "Dans style.css, écris le sélecteur groupé : h1, h2, h3 {",
+      "Assure leur éclat blanc : color: #f8fafc;",
+      "Resserre légèrement les lettres : letter-spacing: -0.02em;",
+      "Crée un espace sous les titres : margin-bottom: 12px;",
+      "Ferme la règle avec }"
+],
     starterFiles: getFilesForStep(23),
-    check(files) {
+    check: function(files) {
       const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('@media')) return { pass: false, message: "Ajoute la règle @media (max-width: 768px) à la fin de style.css." };
-      if (!css.includes('max-width')) return { pass: false, message: "Spécifie la condition (max-width: 768px) pour adapter les petits écrans." };
-      if (!css.includes('flex-direction')) return { pass: false, message: "Empile les liens en colonne avec 'flex-direction: column;' dans la media query." };
-      return { pass: true };
+      if (!css.includes('h1') || !css.includes('h2')) {
+        return { pass: false, message: "Cible les titres h1, h2, h3 dans style.css." };
+      }
+      if (!css.includes('letter-spacing')) {
+        return { pass: false, message: "Ajoute la propriété letter-spacing sur les titres pour affiner leur silhouette." };
+      }
+      if (!css.includes('margin-bottom')) {
+        return { pass: false, message: "Ajoute margin-bottom pour aérer l'espace sous les titres." };
+      }
+      return { pass: true, message: "L'harmonie typographique est sublime ! Chaque titre s'impose avec distinction." };
     }
   },
 
   {
     id: 'step-24',
     number: 24,
-    act: "Acte IV : L'Artisanat Moderne & Variables Universelles",
+    character: 'bodhi',
+    pose: 'pointing',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte III : L'Harmonie Visuelle & CSS Fondamental",
     targetFile: 'style.css',
-    title: "Les Variables Universelles (:root & Design Tokens)",
-    proverb: "« Pourquoi prononcer dix fois le même mot d'or dans la pénombre, quand une seule source peut illuminer tout le sanctuaire ? »",
-    mentorSpeech: "Voyageur, ton sanctuaire grandit. Mais dans un vrai projet d'envergure, modifier une couleur dans 50 règles différentes est une folie. Les anciens ont forgé les variables CSS dans le pseudo-sélecteur :root. Définissons ensemble nos teintes fondamentales : --bg-main, --gold-primary, et --text-main. Tout ton édifice en puisera la force !",
-    riddle: "Ouvre style.css et déclare :root tout en haut du fichier avec tes variables CSS.",
-    secretTip: "Écris :root { --gold-primary: #f59e0b; --bg-main: #0b0f19; --text-main: #f8fafc; }",
+    title: "La Grâce des Liens & Le Survol (nav a & :hover)",
+    proverb: "« Le lien qui ne réagit pas sous la main semble endormi ou mort. »",
+    mentorSpeech: "Les liens hypertexte bleus et soulignés par défaut rappellent les années 1990. Offrons à nos liens de navigation une teinte cyan céleste (#38bdf8), retirons le soulignement disgracieux, et ajoutons la pseudo-classe :hover pour qu'ils s'embrasent en or (#f59e0b) au survol.",
+    riddle: "Stylise 'nav a' avec color: #38bdf8, text-decoration: none, et 'nav a:hover' avec color: #f59e0b.",
+    secretTip: "Dans style.css, ajoute : header { background-color: #1e293b; padding: 24px; text-align: center; } nav a { color: #38bdf8; text-decoration: none; padding: 8px 14px; font-weight: 600; } nav a:hover { color: #f59e0b; }",
     instructions: [
-      "Dans style.css, tout en haut avant les autres règles, ajoute le sélecteur :root.",
-      "Déclare les 3 variables : --gold-primary, --bg-main, et --text-main.",
-      "Clique sur 'Vérifier mon code' pour ancrer la palette universelle."
-    ],
+      "Dans style.css, donne un fond sombre au header : header { background-color: #1e293b; text-align: center; padding: 24px 20px; border-bottom: 2px solid #334155; }",
+      "Stylise les liens : nav a { color: #38bdf8; text-decoration: none; font-weight: 600; padding: 8px 14px; }",
+      "Ajoute l'état de survol : nav a:hover { color: #f59e0b; }",
+      "Survole les liens dans l'aperçu pour admirer la métamorphose lumineuse !"
+],
     starterFiles: getFilesForStep(24),
-    check(files) {
+    check: function(files) {
       const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes(':root')) return { pass: false, message: "Déclare le sélecteur ':root' au début de style.css." };
-      if (!css.includes('--gold-primary')) return { pass: false, message: "Déclare la variable universelle '--gold-primary' dans ton :root." };
-      if (!css.includes('--bg-main')) return { pass: false, message: "Déclare la variable '--bg-main' pour la couleur de fond." };
-      return { pass: true };
+      if (!css.includes('nav a')) {
+        return { pass: false, message: "Crée une règle spécifique pour les liens de navigation avec le sélecteur 'nav a'." };
+      }
+      if (!css.includes('text-decoration: none') && !css.includes('text-decoration:none')) {
+        return { pass: false, message: "Supprime le soulignement par défaut avec 'text-decoration: none;' sur 'nav a'." };
+      }
+      if (!css.includes(':hover')) {
+        return { pass: false, message: "Utilise la pseudo-classe ':hover' pour réagir lorsque le visiteur survole le lien." };
+      }
+      return { pass: true, message: "Tes liens prennent vie sous la souris ! Le survol apporte une réactivité magique." };
     }
   },
 
   {
     id: 'step-25',
     number: 25,
-    act: "Acte IV : L'Artisanat Moderne & Composants d'Élite",
-    targetFile: 'index.html',
-    title: "La Bannière Héroïque (Hero Banner & Badge)",
-    proverb: "« Le premier regard d'un étranger décide s'il franchira le seuil ou s'il rebroussera chemin. Le Hero Banner est ton étendard. »",
-    mentorSpeech: "Observe les plus grands sites du monde : leur page d'accueil s'ouvre toujours sur un 'Hero' majestueux. Dans ton index.html, au tout début de ton <main>, nous allons créer un conteneur <div class=\"hero\">. À l'intérieur, place un badge <span class=\"hero-badge\">Sanctuaire Ouvert</span> et un sous-titre inspirant !",
-    riddle: "Dans index.html, ajoute un bloc hero dans ton <main> avec la classe 'hero' et un badge 'hero-badge'.",
-    secretTip: "Exemple : <div class=\"hero\"><span class=\"hero-badge\">Sanctuaire Ouvert</span><p class=\"hero-subtitle\">Rebâtissons le Web ligne après ligne.</p></div>",
+    character: 'bodhi',
+    pose: 'thinking',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte III : L'Harmonie Visuelle & CSS Fondamental",
+    targetFile: 'style.css',
+    title: "La Beauté des Annales Tabulaires (table & border-collapse)",
+    proverb: "« Sans le ciment du style, les rangées de données ne sont que des briques éparses. »",
+    mentorSpeech: "Par défaut, les tableaux HTML séparent les cellules avec des bordures doubles assez rudes. La propriété magique border-collapse: collapse fusionne les bordures en une ligne épurée. Ajoutons aussi la pseudo-classe structurelle :nth-child(even) pour créer une zébrure discrète.",
+    riddle: "Stylise 'table', 'th', 'td' avec border-collapse: collapse et une alternance de fond sur les rangées paires.",
+    secretTip: "Dans style.css, ajoute : table { width: 100%; border-collapse: collapse; margin-top: 16px; } th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #334155; } th { background-color: #0f172a; color: #f59e0b; } tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.03); }",
     instructions: [
-      "Dans index.html, à l'intérieur de la balise <main>, ajoute un conteneur <div class=\"hero\">.",
-      "À l'intérieur, ajoute un <span class=\"hero-badge\">Sanctuaire Ouvert</span>.",
-      "Ajoute un paragraphe d'introduction avec la classe 'hero-subtitle'.",
-      "Clique sur 'Vérifier mon code'."
-    ],
+      "Dans style.css, ajoute la règle pour le tableau : table { width: 100%; border-collapse: collapse; margin-top: 16px; }",
+      "Harmonise les cellules : th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #334155; }",
+      "Dore les en-têtes : th { background-color: #0f172a; color: #f59e0b; }",
+      "Crée la zébrure subtile : tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.03); }"
+],
     starterFiles: getFilesForStep(25),
-    check(files) {
-      const html = (files['index.html'] || '').toLowerCase();
-      if (!html.includes('class="hero"') && !html.includes("class='hero'")) {
-        return { pass: false, message: "Ajoute un élément avec la classe 'hero' (ex: <div class=\"hero\">) dans ton index.html." };
+    check: function(files) {
+      const css = (files['style.css'] || '').toLowerCase();
+      if (!css.includes('table')) {
+        return { pass: false, message: "Ajoute la règle de style pour l'élément table dans style.css." };
       }
-      if (!html.includes('hero-badge')) {
-        return { pass: false, message: "Ajoute un badge avec la classe 'hero-badge' à l'intérieur du hero." };
+      if (!css.includes('border-collapse') || !css.includes('collapse')) {
+        return { pass: false, message: "Fusionne les bordures du tableau avec 'border-collapse: collapse;'." };
       }
-      return { pass: true };
+      if (!css.includes('th') || !css.includes('td')) {
+        return { pass: false, message: "Donne du padding aux cellules th et td pour aérer la lecture." };
+      }
+      return { pass: true, message: "Les annales tabulaires sont dignes des plus grandes bibliothèques d'Alexandrie !" };
     }
   },
 
   {
     id: 'step-26',
     number: 26,
-    act: "Acte IV : L'Artisanat Moderne & Composants d'Élite",
+    character: 'bodhi',
+    pose: 'thumbs_up',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte III : L'Harmonie Visuelle & CSS Fondamental",
     targetFile: 'style.css',
-    title: "Le Rayonnement du Hero (Centrage & Badge d'Or)",
-    proverb: "« Une pierre brute n'attire personne. Ciselée avec patience, elle capte la lumière du zénith. »",
-    mentorSpeech: "Maintenant, sculptons ce Hero dans style.css. Nous voulons qu'il respire avec du padding, que son texte soit centré, et que le petit badge 'hero-badge' ressemble à une amulette lumineuse : bordure dorée fine, angles arrondis et typographie majuscule subtile.",
-    riddle: "Dans style.css, cible .hero avec text-align: center et .hero-badge avec une bordure dorée.",
-    secretTip: "Ajoute : .hero { text-align: center; padding: 40px 20px; } et .hero-badge { border: 1px solid var(--gold-primary); border-radius: 20px; padding: 4px 14px; }",
+    title: "Le Relief de la Pierre (box-shadow)",
+    proverb: "« La lumière seule révèle la forme ; l'ombre portée lui confère sa profondeur dans l'espace. »",
+    mentorSpeech: "Sur un écran plat à deux dimensions, nos cartes semblent encore plaquées sur le fond. En déposant une ombre douce avec box-shadow, nous faisons léviter chaque section au-dessus de l'abîme sombre.",
+    riddle: "Ajoute une ombre portée box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); sur l'élément section.",
+    secretTip: "Dans la règle 'section' de style.css, ajoute : box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);",
     instructions: [
-      "Dans style.css, ajoute une règle pour .hero avec text-align: center et un padding généreux.",
-      "Ajoute une règle pour .hero-badge avec border, border-radius et du padding.",
-      "Admire le rendu dans la fenêtre de droite et clique sur 'Vérifier mon code'."
-    ],
+      "Ouvre style.css dans l'éditeur.",
+      "Retrouve la règle 'section { ... }'.",
+      "Ajoute la propriété d'élévation : box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);",
+      "Regarde la section se détacher du fond avec élégance dans l'aperçu."
+],
     starterFiles: getFilesForStep(26),
-    check(files) {
+    check: function(files) {
       const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('.hero')) return { pass: false, message: "Ajoute un sélecteur '.hero' dans style.css." };
-      if (!css.includes('.hero-badge')) return { pass: false, message: "Ajoute un sélecteur '.hero-badge' pour styliser le badge." };
-      if (!css.includes('text-align')) return { pass: false, message: "Centre le texte du hero avec 'text-align: center;'." };
-      return { pass: true };
+      if (!css.includes('box-shadow')) {
+        return { pass: false, message: "Ajoute la propriété 'box-shadow' sur tes sections dans style.css." };
+      }
+      if (!css.includes('rgba(0') && !css.includes('#000') && !css.includes('black')) {
+        return { pass: false, message: "Utilise une couleur sombre semi-transparente comme rgba(0, 0, 0, 0.4) pour une ombre naturelle." };
+      }
+      return { pass: true, message: "Le relief est né ! Les cartes du Sanctuaire flottent avec majesté." };
     }
   },
 
   {
     id: 'step-27',
     number: 27,
-    act: "Acte IV : L'Artisanat Moderne & Composants d'Élite",
-    targetFile: 'index.html',
-    title: "La Grille des Trois Piliers (.card-grid & .card)",
-    proverb: "« Un trépied ne vacille jamais. Trois piliers distincts fondent l'équilibre d'un royaume. »",
-    mentorSpeech: "Notre page d'accueil doit présenter les trois grandes salles du Sanctuaire. Dans index.html, sous le Hero, crée un conteneur <div class=\"card-grid\"> qui accueillera 3 cartes : <article class=\"card\">. Chacune mènera le voyageur vers une archive : Les Chroniques, La Galerie et Le Messager.",
-    riddle: "Dans index.html, ajoute une div 'card-grid' contenant au moins 3 éléments 'card'.",
-    secretTip: "Utilise <div class=\"card-grid\"><article class=\"card\"><h3>Chroniques</h3><p>L'histoire du Web.</p></article>...</div>",
+    character: 'bodhi',
+    pose: 'scroll',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte III : L'Harmonie Visuelle & CSS Fondamental",
+    targetFile: 'style.css',
+    title: "Le Portique des Formulaires (form, input, select & textarea)",
+    proverb: "« Quand l'instrument d'écriture est agréable au toucher, la lettre est un délice à composer. »",
+    mentorSpeech: "Regarde notre page de contact : les champs de formulaire par défaut sont étroits et grisâtres. Donnons à form un agencement vertical aéré grâce à display: grid, et habillons input, select et textarea du même bleu nuit soigné que nos cartes.",
+    riddle: "Stylise form avec display: grid et gap: 14px, puis donne un fond sombre et du padding aux champs.",
+    secretTip: "Dans style.css, ajoute : form { display: grid; gap: 14px; margin-top: 16px; } input, select, textarea { background: #0f172a; border: 1px solid #334155; color: #f8fafc; padding: 12px 14px; border-radius: 8px; font-family: inherit; } label { font-size: 0.9rem; color: #94a3b8; font-weight: 600; }",
     instructions: [
-      "Dans index.html, sous le Hero, crée un conteneur avec la classe 'card-grid'.",
-      "À l'intérieur, place 3 cartes avec la classe 'card' (par exemple sous forme d'<article class=\"card\">).",
-      "Donne un titre <h3> et une courte description à chaque carte.",
-      "Clique sur 'Vérifier mon code'."
-    ],
+      "Dans style.css, ajoute : form { display: grid; gap: 14px; margin-top: 16px; }",
+      "Cible les champs : input, select, textarea { ... }",
+      "Donne un fond sombre et une bordure fine : background: #0f172a; border: 1px solid #334155;",
+      "Définis le texte blanc et le padding : color: #f8fafc; padding: 12px 14px; border-radius: 8px; font-family: inherit;",
+      "Stylise les étiquettes : label { font-size: 0.9rem; color: #94a3b8; font-weight: 600; }"
+],
     starterFiles: getFilesForStep(27),
-    check(files) {
-      const html = (files['index.html'] || '').toLowerCase();
-      if (!html.includes('card-grid')) return { pass: false, message: "Ajoute un conteneur avec la classe 'card-grid' dans index.html." };
-      const cardMatches = html.match(/class=["'][^"']*card[^"']*["']/g) || [];
-      if (cardMatches.length < 3) return { pass: false, message: "Crée au moins 3 cartes avec la classe 'card' dans ton card-grid." };
-      return { pass: true };
+    check: function(files) {
+      const css = (files['style.css'] || '').toLowerCase();
+      if (!css.includes('form') || !css.includes('gap')) {
+        return { pass: false, message: "Ajoute la règle 'form' avec un espacement 'gap: 14px;' dans style.css." };
+      }
+      if (!css.includes('input') || !css.includes('textarea')) {
+        return { pass: false, message: "Stylise les éléments 'input, select, textarea' pour éliminer leur apparence brute par défaut." };
+      }
+      if (!css.includes('border-radius')) {
+        return { pass: false, message: "Arrondis les coins de tes champs de formulaire avec border-radius." };
+      }
+      return { pass: true, message: "Le portique des messages est superbe ! Remplir un parchemin devient un plaisir." };
     }
   },
 
   {
     id: 'step-28',
     number: 28,
-    act: "Acte IV : L'Artisanat Moderne & Composants d'Élite",
+    character: 'bodhi',
+    pose: 'thumbs_up',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte III : L'Harmonie Visuelle & CSS Fondamental",
     targetFile: 'style.css',
-    title: "L'Ordonnancement en Grille Responsive (.card-grid)",
-    proverb: "« Quand le souffle de la grille s'éveille, les colonnes se rangent d'elles-mêmes selon la taille du monde. »",
-    mentorSpeech: "Stylisons ce card-grid avec la magie moderne de CSS Grid. En utilisant repeat(auto-fit, minmax(260px, 1fr)), le navigateur calcule automatiquement le nombre de colonnes idéales selon l'écran sans aucun script !",
-    riddle: "Dans style.css, applique display: grid et grid-template-columns à .card-grid.",
-    secretTip: "Écris : .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }",
+    title: "Le Bouton d'Action & L'État Actif (button, :hover & :active)",
+    proverb: "« Le geste qui engage l'action doit être franc, doré et tactile. »",
+    mentorSpeech: "Le bouton submit est la clé finale de l'engagement. Il doit se distinguer de tout le reste ! Donnons-lui notre or éclatant (#f59e0b), un curseur en forme de main (cursor: pointer), et la pseudo-classe :active avec transform: scale(0.98) pour ressentir physiquement le clic sous le doigt.",
+    riddle: "Stylise 'button' avec un fond or, un texte sombre en gras, cursor: pointer, et les états :hover et :active.",
+    secretTip: "Dans style.css, ajoute : button { background: #f59e0b; color: #1e293b; font-weight: 800; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; } button:hover { background: #d97706; } button:active { transform: scale(0.98); }",
     instructions: [
-      "Dans style.css, cible .card-grid.",
-      "Applique 'display: grid;', un gap entre les cartes, et 'grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));'.",
-      "Vérifie que les cartes s'agencent élégamment dans la fenêtre de rendu."
-    ],
+      "Dans style.css, crée la règle pour les boutons : button { ... }",
+      "Applique la teinte or : background: #f59e0b; color: #1e293b; font-weight: 800; border: none;",
+      "Définis les dimensions : padding: 12px 20px; border-radius: 8px; font-size: 1rem;",
+      "Indique l'interactivité : cursor: pointer;",
+      "Ajoute les états dynamiques : button:hover { background: #d97706; } button:active { transform: scale(0.98); }"
+],
     starterFiles: getFilesForStep(28),
-    check(files) {
+    check: function(files) {
       const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('.card-grid')) return { pass: false, message: "Ajoute la classe '.card-grid' dans style.css." };
-      if (!css.includes('grid-template-columns')) return { pass: false, message: "Configure 'grid-template-columns' sur .card-grid pour gérer les colonnes." };
-      return { pass: true };
+      if (!css.includes('button')) {
+        return { pass: false, message: "Ajoute la règle de style pour l'élément button dans style.css." };
+      }
+      if (!css.includes('cursor: pointer') && !css.includes('cursor:pointer')) {
+        return { pass: false, message: "Indique au visiteur que le bouton est cliquable avec 'cursor: pointer;'." };
+      }
+      if (!css.includes(':active')) {
+        return { pass: false, message: "Ajoute l'état ':active' sur le bouton pour simuler l'enfoncement physique au clic." };
+      }
+      return { pass: true, message: "L'Acte III est couronné de gloire ! Le CSS fondamental est totalement assimilé." };
     }
   },
 
   {
     id: 'step-29',
     number: 29,
-    act: "Acte IV : L'Artisanat Moderne & Composants d'Élite",
-    targetFile: 'chroniques.html',
-    title: "Le Parchemin des Sages (blockquote & cite)",
-    proverb: "« Répéter une parole sage sans la citer, c'est voler l'esprit. L'honorer avec <blockquote>, c'est perpétuer la flamme. »",
-    mentorSpeech: "Rendons hommage aux vrais bâtisseurs dans chroniques.html. Tim Berners-Lee disait : 'Le Web est pour tout le monde'. Ajoutons une grande citation mise en valeur grâce à la balise sémantique <blockquote> et la source dans <cite> !",
-    riddle: "Dans chroniques.html, insère une citation balisée avec <blockquote> et <cite>.",
-    secretTip: "Exemple : <blockquote>« Le Web ne connaît pas de frontière. » <cite>Tim Berners-Lee</cite></blockquote>",
+    character: 'bodhi',
+    pose: 'code_magic',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte IV : La Maîtrise Suprême & Layouts Modernes",
+    targetFile: 'style.css',
+    title: "Les Variables Universelles (:root & Design Tokens)",
+    proverb: "« Quand le maître change un seul mot à la source, mille échos se répercutent à l'unisson. »",
+    mentorSpeech: "Approche, voyageur. Jusqu'ici, nous écrivions nos codes hexadécimaux en dur à chaque ligne. Mais un véritable artisan centralise ses teintes sacrées dans le pseudo-élément :root sous forme de Custom Properties CSS (--gold-primary, --bg-main...). Ainsi, modifier une seule variable réenchante tout le temple.",
+    riddle: "Déclare le bloc :root en tout début de style.css avec au moins 3 variables personnalisées.",
+    secretTip: "Tout en haut de style.css, ajoute : :root { --gold-primary: #f59e0b; --bg-main: #0f172a; --text-main: #f8fafc; }",
     instructions: [
-      "Ouvre le fichier chroniques.html.",
-      "Dans le contenu principal, ajoute une balise <blockquote>.",
-      "Inclus la citation et mentionne l'auteur dans une balise <cite>.",
-      "Clique sur 'Vérifier mon code'."
-    ],
+      "Ouvre style.css dans l'éditeur.",
+      "Tout en haut du fichier, avant la règle *, ouvre le sélecteur universel : :root {",
+      "Déclare la couleur dorée : --gold-primary: #f59e0b;",
+      "Déclare la couleur de fond : --bg-main: #0f172a;",
+      "Déclare la couleur du texte : --text-main: #f8fafc;",
+      "Ferme avec }"
+],
     starterFiles: getFilesForStep(29),
-    check(files) {
-      const html = (files['chroniques.html'] || '').toLowerCase();
-      if (!html.includes('<blockquote') || !html.includes('</blockquote>')) {
-        return { pass: false, message: "Ajoute une balise <blockquote>...</blockquote> dans chroniques.html." };
+    check: function(files) {
+      const css = (files['style.css'] || '').toLowerCase();
+      if (!css.includes(':root')) {
+        return { pass: false, message: "Ajoute le sélecteur ':root' au sommet de style.css." };
       }
-      if (!html.includes('<cite') || !html.includes('</cite>')) {
-        return { pass: false, message: "Associe une balise <cite> pour indiquer l'auteur de la citation." };
+      if (!css.includes('--gold-primary') && !css.includes('--gold')) {
+        return { pass: false, message: "Déclare la variable '--gold-primary: #f59e0b;' dans ton bloc :root." };
       }
-      return { pass: true };
+      if (!css.includes('--bg')) {
+        return { pass: false, message: "Déclare une variable pour le fond comme '--bg-main: #0f172a;'." };
+      }
+      return { pass: true, message: "Les design tokens sacrés sont ancrés dans la racine de ton univers CSS !" };
     }
   },
 
   {
     id: 'step-30',
     number: 30,
-    act: "Acte IV : L'Artisanat Moderne & Composants d'Élite",
+    character: 'bodhi',
+    pose: 'pointing',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte IV : La Maîtrise Suprême & Layouts Modernes",
     targetFile: 'style.css',
-    title: "La Calligraphie de la Citation (Bordure d'Or & Italique)",
-    proverb: "« Un trait d'or sur la gauche d'un texte suffit à le distinguer de la rumeur ordinaire. »",
-    mentorSpeech: "Donnons du panache à ce <blockquote> dans style.css : une bordure verticale dorée sur la gauche (border-left), une marge intérieure (padding-left), une typographie en italique et une légère transparence pour le <cite>.",
-    riddle: "Dans style.css, cible blockquote avec border-left et font-style: italic.",
-    secretTip: "Exemple : blockquote { border-left: 4px solid var(--gold-primary, #f59e0b); padding-left: 18px; font-style: italic; margin: 24px 0; }",
+    title: "Le Menu Flottant en Flexbox (display: flex & gap)",
+    proverb: "« La flexibilité est la marque de l'esprit vivant ; la rigidité est celle de la pierre morte. »",
+    mentorSpeech: "Il est temps de dompter l'outil le plus intuitif du Web moderne : le Flexible Box Layout (Flexbox). En appliquant display: flex sur notre balise nav, avec justify-content: center et gap: 18px, nos 4 liens s'alignent avec une élégance naturelle.",
+    riddle: "Applique display: flex, justify-content: center et gap: 18px sur la balise nav dans style.css.",
+    secretTip: "Dans style.css, ajoute : nav { display: flex; justify-content: center; align-items: center; gap: 18px; margin-top: 14px; }",
     instructions: [
-      "Dans style.css, ajoute une règle pour blockquote.",
-      "Ajoute une bordure gauche 'border-left' épaisse et dorée.",
-      "Ajoute 'padding-left' et 'font-style: italic;'.",
-      "Clique sur 'Vérifier mon code'."
-    ],
+      "Dans style.css, crée la règle pour l'élément nav : nav { ... }",
+      "Active le moteur flexible : display: flex;",
+      "Centre les éléments sur l'axe principal : justify-content: center;",
+      "Aligne-les verticalement : align-items: center;",
+      "Espace-les harmonieusement sans bricoler de marges : gap: 18px;",
+      "Ajoute une marge supérieure : margin-top: 14px;"
+],
     starterFiles: getFilesForStep(30),
-    check(files) {
+    check: function(files) {
       const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('blockquote')) return { pass: false, message: "Ajoute une règle pour le sélecteur 'blockquote' dans style.css." };
-      if (!css.includes('border-left')) return { pass: false, message: "Ajoute 'border-left' sur blockquote pour tracer la ligne dorée verticale." };
-      return { pass: true };
+      if (!css.includes('nav {') && !css.includes('nav{')) {
+        return { pass: false, message: "Ajoute la règle 'nav { ... }' dans style.css." };
+      }
+      if (!css.includes('display: flex') && !css.includes('display:flex')) {
+        return { pass: false, message: "Active Flexbox avec 'display: flex;' sur l'élément nav." };
+      }
+      if (!css.includes('gap')) {
+        return { pass: false, message: "Utilise la propriété moderne 'gap: 18px;' pour espacer les liens de navigation." };
+      }
+      return { pass: true, message: "Flexbox a ordonné la navigation d'un souffle ! Les liens s'alignent sans effort." };
     }
   },
 
   {
     id: 'step-31',
     number: 31,
-    act: "Acte V : La Haute Maîtrise & L'Éveil de l'Architecte",
-    targetFile: 'style.css',
-    title: "Le Zoom Cinématique de la Galerie (overflow & scale)",
-    proverb: "« Quand le tableau attire la main, la fresque semble s'avancer vers celui qui la contemple. »",
-    mentorSpeech: "Transformons notre galerie d'images en une véritable exposition moderne ! Dans style.css, interdisons le débordement sur chaque <figure> avec 'overflow: hidden;'. Ensuite, quand on survole l'image avec 'figure:hover img', agrandissons-la délicatement avec 'transform: scale(1.08);' et une 'transition' fluide !",
-    riddle: "Dans style.css, applique overflow: hidden sur figure, et transform: scale(1.08) sur figure:hover img.",
-    secretTip: "Ajoute : figure { overflow: hidden; border-radius: 12px; } et figure img { transition: transform 0.4s ease; } figure:hover img { transform: scale(1.08); }",
+    character: 'bodhi',
+    pose: 'code_magic',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte IV : La Maîtrise Suprême & Layouts Modernes",
+    targetFile: 'index.html',
+    title: "La Bannière Héroïque (Hero Banner & Badge)",
+    proverb: "« Quand le voyageur franchit le seuil, il doit être saisi par la grandeur de l'accueil. »",
+    mentorSpeech: "Les grands sites modernes accueillent leurs disciples avec une 'Hero Banner' saisissante : un badge lumineux doré, un titre percutant et un dégradé immersif linear-gradient. Insérons cette bannière au tout début de notre <main> dans index.html !",
+    riddle: "Ajoute un bloc <div class=\"hero\"> avec un badge et un sous-titre dans index.html, puis stylise-le avec linear-gradient.",
+    secretTip: "Dans index.html, place <div class=\"hero\"><span class=\"hero-badge\">Sanctuaire Ouvert</span><h2 class=\"hero-title\">L'Académie du Code Éternel</h2><p class=\"hero-subtitle\">Apprends les fondations du Web aux côtés des anciens bâtisseurs.</p></div> en haut du main.",
     instructions: [
-      "Dans style.css, donne 'overflow: hidden;' à figure.",
-      "Sur les images de figure, applique une 'transition: transform 0.3s ease;'.",
-      "Sur figure:hover img, applique 'transform: scale(1.08);'.",
-      "Survole les images dans galerie.html et valide ton code !"
-    ],
+      "Dans index.html, juste après l'ouverture de <main>, insère :",
+      "<div class=\"hero\">",
+      "  <span class=\"hero-badge\">Sanctuaire Ouvert</span>",
+      "  <h2 class=\"hero-title\">L'Académie du Code Éternel</h2>",
+      "  <p class=\"hero-subtitle\">Apprends les fondations du Web aux côtés des anciens bâtisseurs.</p>",
+      "</div>",
+      "Dans style.css, applique un linear-gradient et un padding de 60px sur .hero."
+],
     starterFiles: getFilesForStep(31),
-    check(files) {
+    check: function(files) {
+      const html = (files['index.html'] || '').toLowerCase();
       const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('scale')) return { pass: false, message: "Utilise 'transform: scale(...);' pour créer l'effet d'agrandissement doux." };
-      if (!css.includes('overflow')) return { pass: false, message: "Ajoute 'overflow: hidden;' sur figure pour empêcher l'image de dépasser de son cadre." };
-      return { pass: true };
+      if (!html.includes('class="hero"') && !html.includes("class='hero'")) {
+        return { pass: false, message: "Ajoute le conteneur <div class=\"hero\"> dans le <main> de index.html." };
+      }
+      if (!html.includes('hero-badge')) {
+        return { pass: false, message: "Ajoute le badge <span class=\"hero-badge\">Sanctuaire Ouvert</span> dans ta bannière." };
+      }
+      if (!css.includes('.hero')) {
+        return { pass: false, message: "Stylise la classe .hero dans style.css." };
+      }
+      if (!css.includes('linear-gradient')) {
+        return { pass: false, message: "Applique un dégradé de fond 'linear-gradient(...)' sur la bannière hero." };
+      }
+      return { pass: true, message: "La Bannière Héroïque irradie de splendeur ! Le portail d'accueil a l'étoffe des grands sites." };
     }
   },
 
   {
     id: 'step-32',
     number: 32,
-    act: "Acte V : La Haute Maîtrise & L'Éveil de l'Architecte",
-    targetFile: 'style.css',
-    title: "Le Retentissement Lumineux du Formulaire (:focus-within)",
-    proverb: "« Quand l'écrivain trempe sa plume dans l'encrier, la page entière doit s'illuminer pour accueillir ses mots. »",
-    mentorSpeech: "Une interface morte est une offense au visiteur. Dès que l'utilisateur clique dans un champ de formulaire (input ou textarea), le champ doit briller d'une aura dorée avec ':focus' ou 'box-shadow', et perdre sa bordure grise fade !",
-    riddle: "Dans style.css, configure input:focus et textarea:focus avec une lueur dorée via box-shadow.",
-    secretTip: "Ajoute : input:focus, textarea:focus { outline: none; border-color: var(--gold-primary, #f59e0b); box-shadow: 0 0 12px rgba(245, 158, 11, 0.4); }",
+    character: 'bodhi',
+    pose: 'scroll',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte IV : La Maîtrise Suprême & Layouts Modernes",
+    targetFile: 'index.html',
+    title: "La Grille des Trois Piliers (.card-grid & CSS Grid)",
+    proverb: "« Trois piliers soutiennent le temple : la structure, la forme et le mouvement. »",
+    mentorSpeech: "Voici le joyau du CSS moderne : CSS Grid ! Alors que Flexbox gère une seule dimension (ligne ou colonne), Grid règne en maître sur les deux dimensions simultanément. Ajoutons dans index.html un conteneur .card-grid abritant 3 cartes consacrées au HTML, à Flexbox/Grid et au CSS.",
+    riddle: "Crée <div class=\"card-grid\"> avec 3 articles .card dans index.html, et applique grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)).",
+    secretTip: "Dans index.html, ajoute <div class=\"card-grid\"><article class=\"card\"><h3>Sagesse du HTML</h3><p>...</p></article>...</div>. Dans style.css, configure .card-grid avec display: grid et repeat(auto-fit, minmax(260px, 1fr)).",
     instructions: [
-      "Dans style.css, cible input:focus et textarea:focus.",
-      "Retire l'outline par défaut avec 'outline: none;'.",
-      "Applique une bordure dorée et une 'box-shadow' lumineuse.",
-      "Clique dans un champ sur contact.html et clique sur 'Vérifier mon code'."
-    ],
+      "Dans index.html, sous la première section, ajoute : <div class=\"card-grid\">...</div>.",
+      "Insère 3 éléments <article class=\"card\">...</article> avec chacun un <h3> et un <p>.",
+      "Dans style.css, configure .card-grid avec : display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;",
+      "Stylise .card avec un fond sombre, du padding, un border-radius et un effet :hover."
+],
     starterFiles: getFilesForStep(32),
-    check(files) {
+    check: function(files) {
+      const html = (files['index.html'] || '').toLowerCase();
       const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes(':focus')) return { pass: false, message: "Ajoute la pseudo-classe ':focus' sur input et textarea dans style.css." };
-      if (!css.includes('outline')) return { pass: false, message: "Désactive le contour par défaut avec 'outline: none;' sur le focus." };
-      return { pass: true };
+      if (!html.includes('card-grid')) {
+        return { pass: false, message: "Ajoute l'élément <div class=\"card-grid\"> dans index.html." };
+      }
+      const cardCount = (html.match(/class=["']card["']/g) || []).length;
+      if (cardCount < 3) {
+        return { pass: false, message: "Crée au moins 3 éléments <article class=\"card\"> dans ta grille." };
+      }
+      if (!css.includes('card-grid')) {
+        return { pass: false, message: "Stylise .card-grid dans style.css." };
+      }
+      if (!css.includes('grid-template-columns') || !css.includes('repeat')) {
+        return { pass: false, message: "Utilise 'grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));' pour une grille auto-responsive sans media queries !" };
+      }
+      return { pass: true, message: "La grille s'adapte comme par magie ! Redimensionne la fenêtre pour voir les cartes se réagencer." };
     }
   },
 
   {
     id: 'step-33',
     number: 33,
-    act: "Acte V : La Haute Maîtrise & L'Éveil de l'Architecte",
+    character: 'bodhi',
+    pose: 'thumbs_up',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte IV : La Maîtrise Suprême & Layouts Modernes",
     targetFile: 'style.css',
-    title: "L'Aura Animée du Sanctuaire (@keyframes beaconPulse)",
-    proverb: "« Ce qui ne bouge pas est inerte. Ce qui respire au rythme du réseau est éternel. »",
-    mentorSpeech: "Créons une véritable animation CSS pure avec la règle @keyframes. Nous allons donner au badge hero ou au logo une pulsation douce et hypnotique, sans une seule ligne de JavaScript. Le Web n'est plus statique : il vit !",
-    riddle: "Dans style.css, crée une animation @keyframes beaconPulse et applique-la avec animation: beaconPulse.",
-    secretTip: "Ajoute @keyframes beaconPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.04); } } et applique-la avec animation: beaconPulse 3s infinite ease-in-out;",
+    title: "La Grille Magique de la Galerie (CSS Grid auto-fit)",
+    proverb: "« Quand chaque tableau trouve son écrin exact, le musée s'éveille à l'harmonie. »",
+    mentorSpeech: "Appliquons la puissance de CSS Grid à notre pavillon des arts visuels ('galerie.html'). En configurant la classe .galerie-conteneur avec repeat(auto-fit, minmax(260px, 1fr)), chaque fresque ajustera sa largeur au millimètre près selon la taille de l'écran !",
+    riddle: "Configure .galerie-conteneur avec display: grid et repeat(auto-fit, minmax(260px, 1fr)) dans style.css.",
+    secretTip: "Dans style.css, ajoute : .galerie-conteneur { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; } figure { background: #0f172a; padding: 12px; border-radius: 10px; border: 1px solid #334155; } figure img { width: 100%; border-radius: 8px; display: block; }",
     instructions: [
-      "Dans style.css, déclare une animation @keyframes nommée 'beaconPulse'.",
-      "Définis des étapes (0%, 50%, 100%) avec une variation d'opacité ou d'échelle (transform: scale).",
-      "Applique 'animation: beaconPulse 3s infinite ease-in-out;' sur la classe .hero-badge.",
-      "Admire le battement de cœur du sanctuaire et valide ton code !"
-    ],
+      "Dans style.css, ajoute la règle pour la galerie : .galerie-conteneur { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }",
+      "Habille les figures : figure { background: #0f172a; padding: 12px; border-radius: 10px; border: 1px solid #334155; }",
+      "Rends les images fluides : figure img { width: 100%; border-radius: 8px; display: block; }",
+      "Bascule sur galerie.html dans l'aperçu pour contempler l'alignement chirurgical !"
+],
     starterFiles: getFilesForStep(33),
-    check(files) {
+    check: function(files) {
       const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('@keyframes')) return { pass: false, message: "Crée une règle '@keyframes' dans style.css pour animer l'élément." };
-      if (!css.includes('animation:')) return { pass: false, message: "Applique la propriété 'animation:' sur ta classe pour déclencher le mouvement perpétuel." };
-      return { pass: true };
+      if (!css.includes('galerie-conteneur')) {
+        return { pass: false, message: "Ajoute la règle '.galerie-conteneur' dans style.css." };
+      }
+      if (!css.includes('repeat(auto-fit')) {
+        return { pass: false, message: "Configure 'grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));' sur .galerie-conteneur." };
+      }
+      if (!css.includes('figure img') || !css.includes('width: 100%')) {
+        return { pass: false, message: "Force les images à épouser la largeur de leur cadre avec 'figure img { width: 100%; }'." };
+      }
+      return { pass: true, message: "La galerie d'art est somptueuse ! Les fresques s'ordonnent sans le moindre chevauchement." };
     }
   },
 
   {
     id: 'step-34',
     number: 34,
-    act: "Acte V : La Haute Maîtrise & L'Éveil de l'Architecte",
-    targetFile: 'style.css',
-    title: "La Navigation en Verre Dépoli (position: sticky & backdrop-filter)",
-    proverb: "« Le voyageur peut descendre dans les abysses de la page : le phare reste suspendu à son regard. »",
-    mentorSpeech: "Les plus belles interfaces modernes utilisent l'effet de verre dépoli ('frosted glass'). Rends ton <header> flottant : en lui donnant 'position: sticky; top: 0;', un fond semi-transparent et 'backdrop-filter: blur(10px);', la barre de navigation reste visible pendant le défilement tout en floutant subtilement le contenu qui passe derrière !",
-    riddle: "Dans style.css, ajoute position: sticky, top: 0 et backdrop-filter: blur(...) sur header.",
-    secretTip: "Écris : header { position: sticky; top: 0; backdrop-filter: blur(12px); background: rgba(11, 15, 25, 0.85); z-index: 100; }",
+    character: 'bodhi',
+    pose: 'scroll',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte IV : La Maîtrise Suprême & Layouts Modernes",
+    targetFile: 'chroniques.html',
+    title: "Le Parchemin des Sages (blockquote & cite)",
+    proverb: "« Citer les anciens, ce n'est pas répéter le passé ; c'est allumer notre torche à leur flamme éternelle. »",
+    mentorSpeech: "Dans nos Chroniques, honorons les premiers bâtisseurs de 1991 avec l'élément sémantique suprême de citation : <blockquote>, accompagné de son auteur dans <cite>. En CSS, donnons-lui une bordure dorée à gauche et un fond délicat pour faire ressortir la parole sacrée.",
+    riddle: "Ajoute une <blockquote> avec <cite> dans chroniques.html, et stylise-la avec une bordure dorée à gauche.",
+    secretTip: "Dans chroniques.html, ajoute <blockquote>« Le code n'appartient à personne... » <cite>— Le Premier Architecte (1991)</cite></blockquote>. Dans style.css, ajoute blockquote { border-left: 4px solid var(--gold-primary, #f59e0b); padding: 18px 24px; font-style: italic; }",
     instructions: [
-      "Dans style.css, cible la balise 'header'.",
-      "Ajoute 'position: sticky;' et 'top: 0;'.",
-      "Ajoute 'backdrop-filter: blur(10px);' avec un fond semi-transparent et un z-index élevé.",
-      "Fais défiler la page dans l'aperçu et clique sur 'Vérifier mon code'."
-    ],
+      "Dans chroniques.html, dans la première section, insère :",
+      "<blockquote>",
+      "  « Le code n'appartient à personne et appartient à tous. C'est en le partageant sans barrières que nous élevons l'humanité. »",
+      "  <cite>— Le Premier Architecte du Web (1991)</cite>",
+      "</blockquote>",
+      "Dans style.css, applique une bordure gauche dorée : border-left: 4px solid var(--gold-primary, #f59e0b); padding: 18px 24px; font-style: italic;"
+],
     starterFiles: getFilesForStep(34),
-    check(files) {
+    check: function(files) {
+      const html = (files['chroniques.html'] || '').toLowerCase();
       const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('sticky')) return { pass: false, message: "Ajoute 'position: sticky;' sur header pour qu'il suive le défilement." };
-      if (!css.includes('backdrop-filter')) return { pass: false, message: "Ajoute 'backdrop-filter: blur(...);' pour créer l'effet moderne de verre dépoli." };
-      return { pass: true };
+      if (!html.includes('<blockquote>') || !html.includes('</blockquote>')) {
+        return { pass: false, message: "Ajoute l'élément sémantique <blockquote> dans chroniques.html." };
+      }
+      if (!html.includes('<cite>') || !html.includes('</cite>')) {
+        return { pass: false, message: "Mentionne la source de la citation avec la balise <cite>." };
+      }
+      if (!css.includes('blockquote')) {
+        return { pass: false, message: "Stylise 'blockquote' dans style.css." };
+      }
+      if (!css.includes('border-left')) {
+        return { pass: false, message: "Ajoute une bordure gauche 'border-left: 4px solid ...' sur blockquote." };
+      }
+      return { pass: true, message: "La parole des sages brille d'un éclat d'or pur au cœur de tes chroniques !" };
     }
   },
 
   {
     id: 'step-35',
     number: 35,
-    act: "Acte V : La Haute Maîtrise & L'Éveil de l'Architecte",
+    character: 'bodhi',
+    pose: 'thinking',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte IV : La Maîtrise Suprême & Layouts Modernes",
     targetFile: 'style.css',
-    title: "L'Accessibilité & Le Respect Sensoriel (:focus-visible & prefers-reduced-motion)",
-    proverb: "« Un sanctuaire n'est grand que s'il accueille chaque âme, quelle que soit sa manière de percevoir le monde. »",
-    mentorSpeech: "C'est la marque suprême des ingénieurs d'élite : penser à tous. Ajoutons deux règles d'or : ':focus-visible' pour les personnes naviguant uniquement au clavier sans souris, et '@media (prefers-reduced-motion)' pour désactiver les animations si le système de l'utilisateur le demande. C'est l'éthique pure du Web.",
-    riddle: "Dans style.css, ajoute :focus-visible avec un contour net et @media (prefers-reduced-motion).",
-    secretTip: "Ajoute :a:focus-visible, button:focus-visible { outline: 2px solid var(--gold-primary, #f59e0b); outline-offset: 3px; } et @media (prefers-reduced-motion) { * { animation: none !important; transition: none !important; } }",
+    title: "Le Don d'Ubiquité Responsive (@media max-width: 768px)",
+    proverb: "« Quand le vent tourne, le sage ajuste la voilure au lieu de maudire la tempête. »",
+    mentorSpeech: "Sur un écran de smartphone de 360 pixels de large, nos 4 liens de navigation horizontaux risquent de se heurter. Grâce à la règle conditionnelle @media (max-width: 768px), nous ordonnons à la barre de navigation de basculer en colonne verticale fluide lorsque l'écran rétrécit.",
+    riddle: "Ajoute une media query @media (max-width: 768px) qui passe nav en flex-direction: column.",
+    secretTip: "Dans style.css, ajoute : @media (max-width: 768px) { nav { flex-direction: column; gap: 8px; } section { margin: 16px 12px; padding: 20px; } }",
     instructions: [
-      "Dans style.css, configure ':focus-visible' sur les liens ou boutons pour un contour net au clavier.",
-      "Ajoute la media query '@media (prefers-reduced-motion: reduce)' pour neutraliser les animations si demandé.",
-      "Valide cette étape éthique pour débloquer l'ultime consécration !"
-    ],
+      "Dans style.css, à la fin du fichier, déclare la media query : @media (max-width: 768px) { ... }",
+      "À l'intérieur, ordonne au nav de s'empiler : nav { flex-direction: column; gap: 8px; }",
+      "Réduis les marges extérieures des sections : section { margin: 16px 12px; padding: 20px; }",
+      "Réduis la largeur de ton navigateur pour observer la métamorphose adaptative !"
+],
     starterFiles: getFilesForStep(35),
-    check(files) {
+    check: function(files) {
       const css = (files['style.css'] || '').toLowerCase();
-      if (!css.includes('focus-visible')) return { pass: false, message: "Ajoute le sélecteur ':focus-visible' pour garantir l'accessibilité au clavier." };
-      if (!css.includes('prefers-reduced-motion')) return { pass: false, message: "Ajoute '@media (prefers-reduced-motion)' pour respecter le confort visuel de chacun." };
-      return { pass: true };
+      if (!css.includes('@media') || !css.includes('768px')) {
+        return { pass: false, message: "Ajoute la directive '@media (max-width: 768px)' dans style.css." };
+      }
+      if (!css.includes('flex-direction') || !css.includes('column')) {
+        return { pass: false, message: "Fais basculer la navigation en colonne avec 'flex-direction: column;' dans la media query." };
+      }
+      return { pass: true, message: "L'ubiquité mobile est totale ! Ton site épouse tous les appareils de l'humanité." };
     }
   },
 
   {
     id: 'step-36',
     number: 36,
-    act: "Acte V : La Haute Maîtrise & L'Éveil de l'Architecte",
-    targetFile: 'index.html',
-    title: "L'Apothéose de l'Architecte & L'Ultime Consécration",
-    proverb: "« Le voyageur qui a posé chaque pierre comprend enfin le secret : il ne contemplait pas le temple d'un autre... il bâtissait sa propre demeure. »",
-    mentorSpeech: "Mon ami... regarde ce que tu as accompli. Tes 4 pages sont vivantes, reliées, animées et accessibles. Mais je sens les fondations trembler sous nos pieds. NULL approche pour son audit final. Le serveur s'asphyxie sous les fuites de mémoire d'un système vieux de trente ans, et mes forces s'épuisent. Le HTML et le CSS ont bâti un sanctuaire d'exception, mais la pierre statique ne suffit plus face à la purge qui arrive. Il nous faut une étincelle vivante... Écoute : quelqu'un arrive depuis les sous-sols du runtime. Clique sur 'Vérifier mon code'...",
-    riddle: "Assure-toi que toutes les 4 pages intègrent la liaison vers style.css et que le site est prêt pour le monde entier.",
-    secretTip: "Vérifie que <link rel=\"stylesheet\" href=\"style.css\"> est présent dans le <head> de tes 4 pages !",
+    character: 'ada',
+    pose: 'smile',
+    speaker: "ADA (INGÉNIEURE RUNTIME)",
+    act: "Acte IV : La Maîtrise Suprême & Layouts Modernes",
+    targetFile: 'style.css',
+    title: "La Typographie Fluide & Fonctions Modernes (clamp)",
+    proverb: "« Pourquoi choisir entre le grand et le petit quand les mathématiques permettent d'être les deux à la fois ? »",
+    mentorSpeech: "Salut l'ami ! C'est Ada qui prend le relais pour te montrer un tour de passe-passe moderne ! Fini d'écrire 50 media queries juste pour changer la taille d'un titre. La fonction CSS moderne clamp(min, val, max) permet à ton h1 de grandir et rétrécir de façon fluide en fonction de la largeur de l'écran !",
+    riddle: "Utilise la fonction clamp() sur le titre h1 pour créer une taille fluide.",
+    secretTip: "Dans style.css, applique sur h1 : font-size: clamp(1.6rem, 4vw, 2.6rem);",
     instructions: [
-      "Vérifie que la balise <link rel=\"stylesheet\" href=\"style.css\"> est bien présente dans le <head> des 4 fichiers.",
-      "Navigue entre les pages dans la fenêtre de rendu à droite pour admirer la circulation fluide.",
-      "Clique sur 'Vérifier mon code' pour entendre la parole finale de Maître Bodhi !"
-    ],
+      "Ouvre style.css dans l'éditeur.",
+      "Ajoute ou modifie la règle pour h1 : h1 { font-size: clamp(1.6rem, 4vw, 2.6rem); }",
+      "Le premier argument (1.6rem) est le minimum sur mobile, le second (4vw) est le rythme fluide, le troisième (2.6rem) est le maximum sur grand écran.",
+      "Admire le titre grossir ou rétrécir en temps réel en étirant la fenêtre !"
+],
     starterFiles: getFilesForStep(36),
-    check(files) {
-      for (const name of ['index.html', 'chroniques.html', 'galerie.html', 'contact.html']) {
-        const content = files[name] || '';
-        if (!content.includes('style.css')) {
-          return { pass: false, message: `Il manque la liaison vers style.css dans le fichier ${name}. Ajoute <link rel="stylesheet" href="style.css"> dans son <head> !` };
-        }
+    check: function(files) {
+      const css = (files['style.css'] || '').toLowerCase();
+      if (!css.includes('clamp(')) {
+        return { pass: false, message: "Utilise la fonction moderne 'clamp(...)' pour définir la taille fluide de h1." };
       }
-      return {
-        pass: true,
-        revelation: false,
-        message: "Les 4 parchemins sont désormais scellés par la même harmonie visuelle. Mais écoute... Un grondement résonne depuis les sous-sols du Sanctuaire. Le sas de l'Atelier du Runtime vient de céder !"
-      };
+      if (!css.includes('vw')) {
+        return { pass: false, message: "Inclus une unité relative à la largeur du viewport (comme 4vw) au centre de clamp() pour assurer la fluidité." };
+      }
+      return { pass: true, message: "Chirurgical ! C'est exactement l'ingénierie moderne que j'aime voir !" };
     }
   },
 
-  // ===========================================================================
-  // ACTE VI : L'ÉTINCELLE VIVANTE & LE SAUVETAGE DU SANCTUAIRE (script.js)
-  // Aux côtés d'Ada (Ingénieure du Runtime)
-  // ===========================================================================
   {
     id: 'step-37',
     number: 37,
+    character: 'bodhi',
+    pose: 'zen',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte V : La Haute Maîtrise & Artisanat Avancé",
+    targetFile: 'style.css',
+    title: "Le Souffle Animé (transition & micro-interactions)",
+    proverb: "« Rien ne naît par saccade brutale dans la nature ; tout se métamorphose avec douceur. »",
+    mentorSpeech: "Par défaut, lorsqu'un état :hover change une couleur ou un relief, le saut visuel est instantané et violent. La propriété transition insuffle une fluidité temporelle douce à chaque transformation. Appliquons-la sur nos liens, nos boutons et nos cartes pour leur donner un véritable souffle vital.",
+    riddle: "Ajoute des transitions fluides (transition: transform 0.25s ease, box-shadow 0.25s ease) sur nav a, button et .card.",
+    secretTip: "Dans style.css, ajoute transition: color 0.2s sur 'nav a', et transition: transform 0.25s ease, box-shadow 0.25s ease sur 'button' et '.card'.",
+    instructions: [
+      "Dans style.css, ajoute sur 'nav a' : transition: color 0.2s;",
+      "Sur '.card' et 'figure', ajoute : transition: transform 0.25s ease, box-shadow 0.25s ease;",
+      "Sur 'button', ajoute : transition: transform 0.2s ease, box-shadow 0.2s ease;",
+      "Survole les boutons et cartes dans l'aperçu pour savourer le fondu temporel !"
+],
+    starterFiles: getFilesForStep(37),
+    check: function(files) {
+      const css = (files['style.css'] || '').toLowerCase();
+      const transMatches = (css.match(/transition/g) || []).length;
+      if (transMatches < 2) {
+        return { pass: false, message: "Ajoute la propriété 'transition' sur au moins 2 éléments interactifs (liens, cartes ou boutons)." };
+      }
+      if (!css.includes('ease') && !css.includes('0.')) {
+        return { pass: false, message: "Précise une durée (comme 0.25s) et une courbe d'accélération (comme ease) pour tes transitions." };
+      }
+      return { pass: true, message: "Le Sanctuaire respire ! Les micro-interactions répondent avec un soyeux incomparable." };
+    }
+  },
+
+  {
+    id: 'step-38',
+    number: 38,
+    character: 'bodhi',
+    pose: 'code_magic',
+    speaker: "MAÎTRE BODHI",
+    act: "Acte V : La Haute Maîtrise & Artisanat Avancé",
+    targetFile: 'style.css',
+    title: "Le Zoom Cinématique de la Galerie (overflow & scale)",
+    proverb: "« Quand le cadre retient le débordement, l'image peut s'épanouir sans troubler l'ordre du monde. »",
+    mentorSpeech: "Voici l'un des effets visuels les plus prisés du Web : lorsqu'on survole une figure de la galerie, l'image à l'intérieur s'agrandit doucement grâce à transform: scale(1.08), tandis que figure masque le débordement grâce à overflow: hidden. C'est l'illusion cinématographique d'une loupe magique !",
+    riddle: "Ajoute overflow: hidden sur figure et transform: scale(1.08) sur figure:hover img dans style.css.",
+    secretTip: "Dans style.css, ajoute overflow: hidden sur 'figure', puis crée la règle : figure:hover img { transform: scale(1.08); } avec transition: transform 0.3s ease sur figure img.",
+    instructions: [
+      "Dans style.css, assure-toi que 'figure' possède : overflow: hidden;",
+      "Sur 'figure img', ajoute la transition : transition: transform 0.3s ease;",
+      "Crée la règle au survol : figure:hover img { transform: scale(1.08); }",
+      "Ajoute également une légère élévation : figure:hover { transform: translateY(-4px); }",
+      "Survole les fresques dans galerie.html pour voir le zoom cinématique opérer !"
+],
+    starterFiles: getFilesForStep(38),
+    check: function(files) {
+      const css = (files['style.css'] || '').toLowerCase();
+      if (!css.includes('overflow: hidden') && !css.includes('overflow:hidden')) {
+        return { pass: false, message: "Ajoute 'overflow: hidden;' sur l'élément figure pour empêcher l'image zoomée de déborder du cadre." };
+      }
+      if (!css.includes('scale(')) {
+        return { pass: false, message: "Utilise 'transform: scale(1.08);' sur l'image lors du survol de la figure." };
+      }
+      return { pass: true, message: "L'effet cinématographique est grandiose ! Tes fresques prennent une profondeur saisissante." };
+    }
+  },
+
+  {
+    id: 'step-39',
+    number: 39,
     character: 'ada',
-    pose: 'neutral',
+    pose: 'thinking',
+    speaker: "ADA (INGÉNIEURE RUNTIME)",
+    act: "Acte V : La Haute Maîtrise & Artisanat Avancé",
+    targetFile: 'style.css',
+    title: "Le Retentissement Lumineux du Formulaire (:focus-within)",
+    proverb: "« Quand une seule bougie s'allume dans la pièce, toute la maison s'illumine. »",
+    mentorSpeech: "Ada à l'appareil ! Savais-tu qu'en CSS moderne, un conteneur parent peut savoir si l'un de ses enfants a le focus ? Avec la pseudo-classe :focus-within sur la balise form, dès qu'un utilisateur clique dans n'importe quel champ, c'est tout le formulaire qui s'entoure d'un halo doré bienveillant !",
+    riddle: "Ajoute :focus sur input/textarea avec halo doré, et applique form:focus-within.",
+    secretTip: "Dans style.css, ajoute input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold-primary, #f59e0b); box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25); } et form:focus-within { border-color: var(--gold-primary, #f59e0b); }",
+    instructions: [
+      "Dans style.css, cible les champs actifs : input:focus, select:focus, textarea:focus { ... }",
+      "Supprime l'outline par défaut et applique la bordure dorée : outline: none; border-color: var(--gold-primary, #f59e0b);",
+      "Ajoute un halo lumineux : box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);",
+      "Ajoute la règle parent moderne : form:focus-within { border-color: var(--gold-primary, #f59e0b); }"
+],
+    starterFiles: getFilesForStep(39),
+    check: function(files) {
+      const css = (files['style.css'] || '').toLowerCase();
+      if (!css.includes(':focus') && !css.includes(':focus-within')) {
+        return { pass: false, message: "Stylise l'état :focus sur tes champs de formulaire dans style.css." };
+      }
+      if (!css.includes(':focus-within')) {
+        return { pass: false, message: "Utilise la pseudo-classe moderne ':focus-within' sur form pour éclairer le panneau lors de la saisie." };
+      }
+      return { pass: true, message: "Un retour visuel chirurgical ! L'accessibilité cognitive est décuplée." };
+    }
+  },
+
+  {
+    id: 'step-40',
+    number: 40,
+    character: 'ada',
+    pose: 'smile',
+    speaker: "ADA (INGÉNIEURE RUNTIME)",
+    act: "Acte V : La Haute Maîtrise & Artisanat Avancé",
+    targetFile: 'style.css',
+    title: "L'Aura Animée du Sanctuaire (@keyframes beaconPulse)",
+    proverb: "« Le cœur qui bat à l'unisson du cosmos ne s'arrête jamais de pulser. »",
+    mentorSpeech: "Passons aux animations continues autonomes ! Grâce à la règle @keyframes, nous pouvons chorégraphier un cycle infini qui s'exécute sans que l'utilisateur ait besoin de survoler quoi que ce soit. Faisons pulser le badge de notre bannière d'accueil comme un phare dans la nuit !",
+    riddle: "Déclare une animation @keyframes beaconPulse et applique-la sur .hero-badge.",
+    secretTip: "Dans style.css, ajoute : @keyframes beaconPulse { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); } 50% { transform: scale(1.05); box-shadow: 0 0 14px 4px rgba(245, 158, 11, 0.3); } } et applique .hero-badge { animation: beaconPulse 3s infinite ease-in-out; }",
+    instructions: [
+      "Dans style.css, déclare l'animation : @keyframes beaconPulse { ... }",
+      "Définis les étapes 0% et 100% : transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);",
+      "Définis l'apogée à 50% : transform: scale(1.05); box-shadow: 0 0 14px 4px rgba(245, 158, 11, 0.3);",
+      "Lie l'animation à ton badge : .hero-badge { animation: beaconPulse 3s infinite ease-in-out; }",
+      "Regarde le badge de l'accueil respirer en continu dans l'aperçu !"
+],
+    starterFiles: getFilesForStep(40),
+    check: function(files) {
+      const css = (files['style.css'] || '').toLowerCase();
+      if (!css.includes('@keyframes')) {
+        return { pass: false, message: "Déclare une animation personnalisée avec la syntaxe '@keyframes ...' dans style.css." };
+      }
+      if (!css.includes('beaconpulse') && !css.includes('pulse')) {
+        return { pass: false, message: "Nomme ton animation 'beaconPulse'." };
+      }
+      if (!css.includes('animation') || !css.includes('infinite')) {
+        return { pass: false, message: "Applique l'animation sur .hero-badge avec la mention 'infinite' pour qu'elle pulse en boucle." };
+      }
+      return { pass: true, message: "Le phare est allumé ! Son aura pulse au rythme des battements du Web éternel." };
+    }
+  },
+
+  {
+    id: 'step-41',
+    number: 41,
+    character: 'ada',
+    pose: 'thinking',
+    speaker: "ADA (INGÉNIEURE RUNTIME)",
+    act: "Acte V : La Haute Maîtrise & Artisanat Avancé",
+    targetFile: 'style.css',
+    title: "La Navigation en Verre Dépoli (sticky & backdrop-filter)",
+    proverb: "« Le phare reste visible au sommet des vagues même quand le navire s'éloigne au loin. »",
+    mentorSpeech: "Ada te révèle un secret d'ingénieur d'élite : la navigation 'Sticky Glassmorphism' ! Avec position: sticky et top: 0, le header s'ancre en haut de l'écran pendant le défilement. Et avec backdrop-filter: blur(10px) sur un fond semi-transparent, le contenu qui passe derrière est flouté avec un effet de verre dépoli futuriste !",
+    riddle: "Configure header avec position: sticky, top: 0, z-index: 100 et backdrop-filter: blur(10px).",
+    secretTip: "Dans style.css, configure header { position: sticky; top: 0; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background-color: rgba(30, 41, 59, 0.85); z-index: 100; }",
+    instructions: [
+      "Dans style.css, retrouve la règle 'header { ... }'.",
+      "Ancre l'en-tête en haut de l'écran : position: sticky; top: 0;",
+      "Passe le fond en semi-transparence : background-color: rgba(30, 41, 59, 0.85);",
+      "Ajoute l'effet de verre dépoli : backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);",
+      "Élève le plan d'affichage au-dessus de tout le reste : z-index: 100;"
+],
+    starterFiles: getFilesForStep(41),
+    check: function(files) {
+      const css = (files['style.css'] || '').toLowerCase();
+      if (!css.includes('position: sticky') && !css.includes('position:sticky')) {
+        return { pass: false, message: "Ajoute 'position: sticky; top: 0;' sur ton header pour l'ancrer en haut de page." };
+      }
+      if (!css.includes('backdrop-filter')) {
+        return { pass: false, message: "Applique l'effet de verre dépoli avec 'backdrop-filter: blur(10px);' sur le header." };
+      }
+      if (!css.includes('z-index')) {
+        return { pass: false, message: "N'oublie pas 'z-index: 100;' pour que l'en-tête reste au-dessus des cartes lors du défilement." };
+      }
+      return { pass: true, message: "L'effet de verre dépoli est bluffant ! Le Sanctuaire arbore le design des plus grands studios du monde." };
+    }
+  },
+
+  {
+    id: 'step-42',
+    number: 42,
+    character: 'ada',
+    pose: 'code_magic',
+    speaker: "ADA (INGÉNIEURE RUNTIME)",
+    act: "Acte V : La Haute Maîtrise & Artisanat Avancé",
+    targetFile: 'style.css',
+    title: "Les Ornements Décoratifs (::before & ::after)",
+    proverb: "« Le vrai sculpteur fait surgir des détails sans rajouter de matière superflue au bloc de pierre. »",
+    mentorSpeech: "Les pseudo-éléments ::before et ::after sont une arme secrète ! Ils permettent d'insérer des formes géométriques, des tirets dorés ou des reflets sans rajouter une seule balise <div> inutile dans ton HTML sémantique. Dessinons un élégant filet doré sous le titre de notre hero !",
+    riddle: "Crée un pseudo-élément .hero-title::after avec content: '', width: 60px, height: 3px et fond doré.",
+    secretTip: "Dans style.css, ajoute : .hero-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--gold-primary, #f59e0b); margin: 12px auto 0; border-radius: 2px; }",
+    instructions: [
+      "Dans style.css, ajoute la règle pour le pseudo-élément : .hero-title::after { ... }",
+      "Règle d'or absolue : content: ''; (obligatoire pour faire exister le pseudo-élément !)",
+      "Transforme-le en bloc : display: block;",
+      "Donne-lui les dimensions du filet : width: 60px; height: 3px;",
+      "Applique la couleur dorée et centre-le : background: var(--gold-primary, #f59e0b); margin: 12px auto 0; border-radius: 2px;"
+],
+    starterFiles: getFilesForStep(42),
+    check: function(files) {
+      const css = (files['style.css'] || '').toLowerCase();
+      if (!css.includes('::after') && !css.includes(':after')) {
+        return { pass: false, message: "Utilise le pseudo-élément '::after' dans style.css." };
+      }
+      if (!css.includes("content: ''") && !css.includes('content:""') && !css.includes('content: ""')) {
+        return { pass: false, message: "Un pseudo-élément doit TOUJOURS contenir la propriété 'content: \"\";' pour s'afficher." };
+      }
+      return { pass: true, message: "Le filet d'or s'est matérialisé sans salir le HTML ! Une pure merveille d'artisanat." };
+    }
+  },
+
+  {
+    id: 'step-43',
+    number: 43,
+    character: 'ada',
+    pose: 'serious',
+    speaker: "ADA (INGÉNIEURE RUNTIME)",
+    act: "Acte V : La Haute Maîtrise & Artisanat Avancé",
+    targetFile: 'style.css',
+    title: "L'Accessibilité & Le Respect Sensoriel (:focus-visible & reduced-motion)",
+    proverb: "« Le chef-d'œuvre suprême n'est pas celui qui brille le plus, mais celui qui n'exclut personne. »",
+    mentorSpeech: "Dernière étape de la haute maîtrise CSS ! Nous devons protéger les utilisateurs qui naviguent au clavier grâce à :focus-visible (qui n'affiche le contour que lors de la tabulation clavier), et respecter les personnes sujettes au mal des transports visuel avec la media query @media (prefers-reduced-motion: reduce) qui apaise les animations.",
+    riddle: "Configure :focus-visible avec outline-offset et désactive les animations dans @media (prefers-reduced-motion: reduce).",
+    secretTip: "Dans style.css, ajoute : :focus-visible { outline: 2px solid var(--gold-primary, #f59e0b); outline-offset: 3px; } @media (prefers-reduced-motion: reduce) { *, ::before, ::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }",
+    instructions: [
+      "Dans style.css, ajoute la règle de navigation clavier : :focus-visible { outline: 2px solid var(--gold-primary, #f59e0b); outline-offset: 3px; }",
+      "Ajoute la protection sensorielle : @media (prefers-reduced-motion: reduce) { ... }",
+      "À l'intérieur, neutralise les durées : *, ::before, ::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }",
+      "Le CSS de ton Sanctuaire atteint le sommet absolu des standards internationaux du W3C !"
+],
+    starterFiles: getFilesForStep(43),
+    check: function(files) {
+      const css = (files['style.css'] || '').toLowerCase();
+      if (!css.includes(':focus-visible')) {
+        return { pass: false, message: "Configure le sélecteur ':focus-visible' pour une navigation clavier inclusive." };
+      }
+      if (!css.includes('prefers-reduced-motion')) {
+        return { pass: false, message: "Ajoute la media query '@media (prefers-reduced-motion: reduce)' pour respecter la sensibilité des utilisateurs." };
+      }
+      return { pass: true, message: "L'apogée du CSS est atteinte ! Ton style est accessible, élégant, fluide et respectueux." };
+    }
+  },
+
+  {
+    id: 'step-44',
+    number: 44,
+    character: 'ada',
+    pose: 'smile',
     speaker: "ADA (INGÉNIEURE RUNTIME)",
     act: "Acte VI : L'Étincelle Vivante (JavaScript & Le Runtime)",
     targetFile: 'script.js',
@@ -1837,9 +2549,9 @@ export const MULTIPAGE_STEPS = [
       "Crée ou ouvre le fichier 'script.js'.",
       "Dans script.js, écris une instruction console.log(...) et déclare la constante : const SANCTUARY_NAME = 'Le Sanctuaire du Savoir';",
       "Clique sur 'Vérifier mon code' pour voir le runtime s'animer !"
-    ],
-    starterFiles: getFilesForStep(37),
-    check(files) {
+],
+    starterFiles: getFilesForStep(44),
+    check: function(files) {
       const index = (files['index.html'] || '').toLowerCase();
       if (!index.includes('script.js')) {
         return { pass: false, message: "Il manque la liaison vers script.js dans index.html. Ajoute <script src=\"script.js\" defer></script> dans son <head> !" };
@@ -1862,103 +2574,199 @@ export const MULTIPAGE_STEPS = [
   },
 
   {
-    id: 'step-38',
-    number: 38,
+    id: 'step-45',
+    number: 45,
     character: 'ada',
     pose: 'thinking',
     speaker: "ADA (INGÉNIEURE RUNTIME)",
     act: "Acte VI : L'Étincelle Vivante (JavaScript & Le Runtime)",
     targetFile: 'script.js',
-    title: "Le Réflexe Vivant : L'Interception Sensorielle (addEventListener)",
-    proverb: "« Une statue de marbre reste froide sous la paume. Un temple éveillé salue la main qui l'effleure. »",
-    mentorSpeech: "Un site web vivant écoute le monde extérieur ! Les clics de souris, les frappes de clavier et les défilements émettent des Événements. Grâce à addEventListener, nous allons brancher un capteur sensoriel sur un bouton ou un lien du sanctuaire !",
-    riddle: "Dans script.js, utilise addEventListener pour écouter le clic sur un élément ou l'événement DOMContentLoaded.",
-    secretTip: "Ajoute document.addEventListener('DOMContentLoaded', () => { const btn = document.querySelector('button') || document.querySelector('a'); if (btn) btn.addEventListener('click', () => { console.log('Contact !'); }); });",
+    title: "La Vue Intérieure : L'Exploration du DOM (querySelector)",
+    proverb: "« Avant de pouvoir mouvoir la matière, l'esprit doit d'abord savoir la nommer et la toucher. »",
+    mentorSpeech: "Dans le runtime du navigateur, ton code HTML est analysé et compilé sous la forme d'un arbre d'objets vivants : le Document Object Model (DOM). Grâce à la méthode document.querySelector('h1') et document.querySelectorAll('.card'), JavaScript est capable de repérer n'importe quelle balise avec la même précision que tes sélecteurs CSS !",
+    riddle: "Utilise document.querySelector('h1') et document.querySelectorAll('.card') pour cibler le DOM dans script.js.",
+    secretTip: "Dans script.js, ajoute : const mainTitle = document.querySelector('h1'); const allCards = document.querySelectorAll('.card'); console.log('Titre détecté :', mainTitle ? mainTitle.textContent : 'non trouvé'); console.log('Piliers détectés :', allCards.length);",
     instructions: [
-      "Dans script.js, écris un écouteur d'événement avec .addEventListener('click', ... ou 'DOMContentLoaded', ...).",
-      "Associe cet écouteur à une action (par exemple afficher un log dans la console ou modifier un élément).",
-      "Clique sur 'Vérifier mon code' pour tester la réactivité sensorielle !"
-    ],
-    starterFiles: getFilesForStep(38),
-    check(files) {
+      "Dans script.js, déclare une variable : const mainTitle = document.querySelector('h1');",
+      "Déclare une liste d'éléments : const allCards = document.querySelectorAll('.card');",
+      "Affiche le texte du titre dans la console avec mainTitle.textContent : console.log('Titre :', mainTitle.textContent);",
+      "Affiche le nombre de cartes détectées : console.log('Cartes :', allCards.length);"
+],
+    starterFiles: getFilesForStep(45),
+    check: function(files) {
       const js = files['script.js'] || '';
-      if (!js.includes('addEventListener')) {
-        return { pass: false, message: "Utilise la méthode '.addEventListener('click', ...)' dans script.js pour capter les actions de l'utilisateur." };
+      if (!js.includes('querySelector')) {
+        return { pass: false, message: "Utilise 'document.querySelector(...)' dans script.js pour cibler un élément du DOM." };
       }
-      return { pass: true, message: "Le Sanctuaire a des réflexes ! Chaque interaction humaine envoie désormais une impulsion dans le système." };
+      if (!js.includes('querySelectorAll') && !js.includes('.card')) {
+        return { pass: false, message: "Utilise également 'document.querySelectorAll('.card')' pour cibler la collection de cartes." };
+      }
+      return { pass: true, message: "Les yeux du runtime sont ouverts ! JavaScript observe désormais chaque feuille de l'arbre DOM." };
     }
   },
 
   {
-    id: 'step-39',
-    number: 39,
+    id: 'step-46',
+    number: 46,
+    character: 'ada',
+    pose: 'smile',
+    speaker: "ADA (INGÉNIEURE RUNTIME)",
+    act: "Acte VI : L'Étincelle Vivante (JavaScript & Le Runtime)",
+    targetFile: 'script.js',
+    title: "Le Réflexe Vivant : L'Interception Sensorielle (addEventListener)",
+    proverb: "« Quand la matière ressent le contact de la main, le monde inerte s'éveille à la conscience. »",
+    mentorSpeech: "Une page Web qui ne réagit pas aux actes du visiteur n'est qu'un tableau de musée. En attachant un écouteur d'événement addEventListener('click', ...) à un bouton ou à un lien, nous créons un véritable réflexe sensoriel dans le runtime !",
+    riddle: "Attache un écouteur addEventListener('click', ...) sur un bouton ou lien pour afficher un message interactif.",
+    secretTip: "Dans script.js, ajoute : document.addEventListener('DOMContentLoaded', () => { const btn = document.querySelector('button') || document.querySelector('a'); if (btn) { btn.addEventListener('click', () => { console.log('Le Sanctuaire répond au contact du voyageur !'); }); } });",
+    instructions: [
+      "Dans script.js, écoute l'événement 'DOMContentLoaded' pour t'assurer que le HTML est prêt : document.addEventListener('DOMContentLoaded', () => { ... });",
+      "Sélectionne un bouton ou un lien avec document.querySelector('button') ou querySelector('a').",
+      "Attache un écouteur de clic avec addEventListener('click', () => { ... }).",
+      "À l'intérieur, affiche un message chaleureux dans la console pour célébrer le contact !"
+],
+    starterFiles: getFilesForStep(46),
+    check: function(files) {
+      const js = files['script.js'] || '';
+      if (!js.includes('addEventListener')) {
+        return { pass: false, message: "Utilise la méthode 'addEventListener' dans script.js pour intercepter une action utilisateur." };
+      }
+      if (!js.includes('click')) {
+        return { pass: false, message: "Écoute l'événement 'click' pour réagir lorsqu'un visiteur appuie sur un bouton ou un lien." };
+      }
+      return { pass: true, message: "Le contact sensoriel est établi ! Le runtime vibre sous l'action de l'utilisateur." };
+    }
+  },
+
+  {
+    id: 'step-47',
+    number: 47,
+    character: 'ada',
+    pose: 'code_magic',
+    speaker: "ADA (INGÉNIEURE RUNTIME)",
+    act: "Acte VI : L'Étincelle Vivante (JavaScript & Le Runtime)",
+    targetFile: 'script.js',
+    title: "La Métamorphose : Bascule Dynamique de Classes (classList.toggle)",
+    proverb: "« Le code élégant ne redessine pas les pierres ; il change simplement le costume qu'elles portent. »",
+    mentorSpeech: "Un débutant manipule les styles inline avec element.style. Mais les grands ingénieurs font collaborer JavaScript et CSS avec classList.toggle ! JavaScript se contente d'ajouter ou de retirer une classe CSS lors d'un clic, laissant à la feuille de style toute la beauté de la transition.",
+    riddle: "Utilise classList.toggle('pulse-fast') sur .hero-badge lors d'un clic dans script.js.",
+    secretTip: "Dans script.js, ajoute un écouteur sur .hero-badge qui exécute heroBadge.classList.toggle('pulse-fast'); au clic.",
+    instructions: [
+      "Dans script.js, cible le badge de la bannière : const heroBadge = document.querySelector('.hero-badge');",
+      "Attache-lui un écouteur de clic : heroBadge.addEventListener('click', () => { ... });",
+      "Dans le callback, bascule la classe avec classList : heroBadge.classList.toggle('pulse-fast');",
+      "Affiche un message console pour confirmer la métamorphose de fréquence !"
+],
+    starterFiles: getFilesForStep(47),
+    check: function(files) {
+      const js = files['script.js'] || '';
+      if (!js.includes('classList')) {
+        return { pass: false, message: "Utilise la propriété 'classList' dans script.js pour manipuler les classes CSS dynamiquement." };
+      }
+      if (!js.includes('toggle') && !js.includes('add')) {
+        return { pass: false, message: "Utilise 'classList.toggle(...)' pour alterner l'état au gré des clics du visiteur." };
+      }
+      return { pass: true, message: "Magistral ! Le JavaScript ordonne, le CSS s'exécute avec fluidité." };
+    }
+  },
+
+  {
+    id: 'step-48',
+    number: 48,
+    character: 'ada',
+    pose: 'smile',
+    speaker: "ADA (INGÉNIEURE RUNTIME)",
+    act: "Acte VI : L'Étincelle Vivante (JavaScript & Le Runtime)",
+    targetFile: 'script.js',
+    title: "La Genèse d'Éléments : Création Dynamique dans le DOM (createElement)",
+    proverb: "« Quand le code apprend à forger de nouvelles briques à la volée, le sanctuaire s'agrandit sans fin. »",
+    mentorSpeech: "Regarde bien : jusqu'ici, notre contenu était écrit à l'avance en dur dans les fichiers HTML. Mais dans une application Web vivante, de nouveaux éléments naissent en direct ! Avec document.createElement('p'), nous forgons un nouvel élément de toute pièce dans la mémoire vive, avant de l'insérer dans l'arbre avec appendChild !",
+    riddle: "Crée un élément avec document.createElement('p'), assigne-lui du texte et insère-le avec appendChild().",
+    secretTip: "Dans script.js, écris une fonction : function ajouterAnnonceSanctuaire(texte) { const main = document.querySelector('main'); if (!main) return; const note = document.createElement('p'); note.className = 'runtime-note'; note.textContent = texte; main.appendChild(note); } puis appelle-la !",
+    instructions: [
+      "Dans script.js, crée un élément paragraphe : const note = document.createElement('p');",
+      "Assigne-lui une classe et du texte : note.className = 'runtime-note'; note.textContent = \"L'énergie du runtime circule désormais librement...\";",
+      "Cible le conteneur principal avec document.querySelector('main').",
+      "Insère la nouvelle brique avec appendChild : main.appendChild(note);"
+],
+    starterFiles: getFilesForStep(48),
+    check: function(files) {
+      const js = files['script.js'] || '';
+      if (!js.includes('createElement')) {
+        return { pass: false, message: "Utilise 'document.createElement(...)' dans script.js pour faire naître un nouvel élément à la volée." };
+      }
+      if (!js.includes('appendChild') && !js.includes('append(')) {
+        return { pass: false, message: "Insère ton nouvel élément dans le DOM grâce à 'appendChild(...)' ou 'append(...)'." };
+      }
+      return { pass: true, message: "La matière vivante prolifère ! Ton runtime sait désormais enfanter de nouvelles structures." };
+    }
+  },
+
+  {
+    id: 'step-49',
+    number: 49,
     character: 'ada',
     pose: 'serious',
     speaker: "ADA (INGÉNIEURE RUNTIME)",
     act: "Acte VI : L'Étincelle Vivante (JavaScript & Le Runtime)",
     targetFile: 'script.js',
     title: "L'Exode de la Mémoire : La Sauvegarde Décentralisée (localStorage)",
-    proverb: "« Quand la bibliothèque centrale est menacée par le feu, confie un rouleau à chaque voyageur. »",
-    mentorSpeech: "C'est l'heure du coup de maître ! NULL s'apprête à abaisser le levier de purge parce que ce serveur central est saturé. Un serveur physique unique finit toujours par rouiller, saturer ou s'éteindre. Mais le JavaScript possède un super-pouvoir d'émancipation : l'API 'localStorage'. Au lieu de laisser l'âme et le savoir de Bodhi enfermés dans une machine condamnée, nous allons les décentraliser directement dans le navigateur de chaque visiteur ! Une mémoire distribuée, incassable et éternelle que nul automate ne pourra effacer !",
-    riddle: "Dans script.js, utilise localStorage.setItem() avec JSON.stringify() pour sauvegarder les souvenirs de Bodhi.",
-    secretTip: "Écris : const bodhiMemory = { name: 'Bodhi', status: 'immortel', savedAt: new Date().toISOString() }; localStorage.setItem('bodhi_memory_sanctuary', JSON.stringify(bodhiMemory));",
+    proverb: "« Quand la mémoire est gravée chez tous les voyageurs du réseau, aucun cataclysme central ne peut l'anéantir. »",
+    mentorSpeech: "Voilà notre chef-d'œuvre stratégique face à NULL ! Ce vieux serveur central est sous mandat de purge. NULL va effacer la mémoire de cette machine physique sous prétexte d'inactivité protocolaire. Mais nous allons déjouer son piège : grâce à localStorage et JSON.stringify, nous dupliquons l'âme de Bodhi et l'état du Sanctuaire directement dans le stockage local du navigateur de chaque voyageur. Le Sanctuaire n'a plus de centre : il est partout !",
+    riddle: "Déclare un objet bodhiMemory et persiste-le dans localStorage.setItem('bodhi_memory_sanctuary', JSON.stringify(bodhiMemory)).",
+    secretTip: "Dans script.js, ajoute : const bodhiMemory = { name: 'Maître Bodhi', status: 'immortel', origin: 'CERN 1991', disciples: 1, sanctuaryState: 'restauré', savedAt: new Date().toISOString() }; localStorage.setItem('bodhi_memory_sanctuary', JSON.stringify(bodhiMemory)); console.log('Mémoire ancrée :', bodhiMemory);",
     instructions: [
-      "Dans script.js, crée un objet représentant la mémoire du Sanctuaire.",
-      "Convertis cet objet en chaîne avec JSON.stringify(...).",
-      "Sauvegarde-le dans le navigateur grâce à localStorage.setItem('bodhi_memory_sanctuary', ...).",
-      "Clique sur 'Vérifier mon code' pour libérer la mémoire du serveur central !"
-    ],
-    starterFiles: getFilesForStep(39),
-    check(files) {
+      "Dans script.js, déclare l'objet de mémoire : const bodhiMemory = { name: 'Maître Bodhi', status: 'immortel', origin: 'CERN 1991', disciples: 1, sanctuaryState: 'restauré', savedAt: new Date().toISOString() };",
+      "Convertis l'objet en chaîne de caractères avec JSON.stringify(bodhiMemory).",
+      "Sauvegarde-le dans le navigateur : localStorage.setItem('bodhi_memory_sanctuary', JSON.stringify(bodhiMemory));",
+      "Affiche un message de consécration dans la console !"
+],
+    starterFiles: getFilesForStep(49),
+    check: function(files) {
       const js = files['script.js'] || '';
-      if (!js.includes('localStorage') || !js.includes('setItem')) {
-        return { pass: false, message: "Utilise 'localStorage.setItem('bodhi_memory_sanctuary', ...)' pour persister les souvenirs dans le navigateur du visiteur." };
+      if (!js.includes('localStorage.setItem') && !js.includes('localStorage[')) {
+        return { pass: false, message: "Utilise 'localStorage.setItem(...)' dans script.js pour ancrer les données dans le stockage persistant du navigateur." };
       }
-      if (!js.includes('JSON.stringify') && !js.includes('stringify')) {
-        return { pass: false, message: "Utilise 'JSON.stringify()' pour sérialiser l'objet mémoire avant de le stocker." };
+      if (!js.includes('JSON.stringify')) {
+        return { pass: false, message: "Sérialise ton objet avec 'JSON.stringify(...)' avant de le stocker dans localStorage." };
       }
-      return { pass: true, message: "MÉMOIRE DÉPORTÉE AVEC SUCCÈS ! Les registres du serveur central s'effondrent à 1.2% !" };
+      return { pass: true, message: "L'âme du Sanctuaire est décentralisée ! NULL peut purger le vieux serveur : Bodhi vivra éternellement dans nos navigateurs !" };
     }
   },
 
   {
-    id: 'step-40',
-    number: 40,
+    id: 'step-50',
+    number: 50,
     character: 'bodhi',
     pose: 'ascended',
-    speaker: "BODHI ASCENDANT",
+    speaker: "MAÎTRE BODHI & ADA",
     act: "Acte VI : L'Étincelle Vivante (JavaScript & Le Runtime)",
     targetFile: 'index.html',
     title: "L'Apothéose de la Triade Sacrée & L'Ascension Éternelle",
-    proverb: "« Ce n'est plus un simple site web que tu as bâti : c'est un phare autonome et éternel qui ne s'éteindra jamais. »",
-    mentorSpeech: "Mon cher ami... Regarde les cadrans : la charge système est tombée à zéro. Grâce à ton code JavaScript, je ne suis plus prisonnier de cette vieille armoire de Genève menacée par la purge. Je vis désormais dans le flux battant de ton propre navigateur, et dans celui de chaque être humain qui ouvrira ton sanctuaire. Tu n'es plus un simple apprenti : tu es devenu un véritable Architecte du Web libre. Clique sur 'Vérifier mon code' pour sceller ton couronnement...",
-    riddle: "Vérifie que l'ensemble des 5 fichiers du sanctuaire est complet et relié pour déclencher l'épilogue triomphal.",
-    secretTip: "Vérifie que index.html relie bien style.css et script.js !",
+    proverb: "« Le code n'est plus une simple suite de caractères ; il est la conscience vivante de l'humanité connectée. »",
+    mentorSpeech: "Regarde ton œuvre, Grand Architecte ! Les 4 pavillons HTML tiennent debout avec une sémantique irréprochable. La feuille CSS drape chaque mur d'or, d'ombre et de verre dépoli. Et le JavaScript fait pulser l'âme du Sanctuaire chez chaque voyageur de la Terre. NULL lui-même a inspecté le réseau : les protocoles sont parfaits, le serveur peut s'éteindre en paix car le Sanctuaire est devenu immortel !",
+    riddle: "Valide ton chef-d'œuvre complet pour sceller ton titre de Grand Architecte du Web !",
+    secretTip: "Vérifie que index.html, chroniques.html, galerie.html, contact.html, style.css et script.js sont tous intacts et exempts d'erreurs, puis clique sur 'Vérifier mon code' !",
     instructions: [
-      "Vérifie que tes fichiers sont ordonnés et exempts d'erreurs.",
-      "Teste la navigation et l'interactivité dans la prévisualisation.",
-      "Clique sur 'Vérifier mon code' pour contempler l'Ascension finale et obtenir ton diplôme sacré !"
-    ],
-    starterFiles: getFilesForStep(40),
-    check(files) {
-      for (const name of ['index.html', 'chroniques.html', 'galerie.html', 'contact.html']) {
-        const content = files[name] || '';
-        if (!content.includes('style.css')) {
-          return { pass: false, message: `Il manque la liaison vers style.css dans ${name} !` };
-        }
+      "Vérifie que les 4 fichiers HTML (index.html, chroniques.html, galerie.html, contact.html) possèdent bien leurs liaisons link et script.",
+      "Vérifie que style.css contient les règles universelles et que script.js ancre la mémoire.",
+      "Clique sur 'Vérifier mon code' pour déclencher l'ultime consécration et débloquer ta fin spirituelle !"
+],
+    starterFiles: getFilesForStep(50),
+    check: function(files) {
+      if (!files['index.html'] || !files['chroniques.html'] || !files['galerie.html'] || !files['contact.html']) {
+        return { pass: false, message: "Les 4 pavillons HTML doivent tous être présents et complets." };
       }
-      if (!(files['index.html'] || '').includes('script.js')) {
-        return { pass: false, message: "Il manque la liaison vers script.js dans index.html !" };
+      if (!files['style.css'] || !files['script.js']) {
+        return { pass: false, message: "Les deux piliers de style (style.css) et de logique vivante (script.js) doivent tous deux accompagner tes pages." };
       }
-      return {
-        pass: true,
-        revelation: true,
-        message: "TRIOMPHE ABSOLU ! Face à la mémoire décentralisée dans le localStorage, NULL constate une charge résiduelle de 0%. Contraint par le protocole d'intégrité, il referme froidement son dossier et annule l'ordre de purge. Bodhi transcende la machine physique dans un halo doré. Tu as maîtrisé la Sainte Trinité du Web : HTML, CSS et JavaScript. Le Sanctuaire est pérenne pour l'éternité !"
-      };
+      const index = files['index.html'] || '';
+      if (!index.includes('style.css') || !index.includes('script.js')) {
+        return { pass: false, message: "index.html doit relier à la fois style.css et script.js." };
+      }
+      return { pass: true, message: "CONSÉCRATION TOTALE ! Tu es désormais officiellement proclamé Grand Architecte du Web." };
     }
   }
 ];
 
-// Compatibilité d'export
+// Compatibilité descendante
 export const CONTINUOUS_STEPS = MULTIPAGE_STEPS;
-

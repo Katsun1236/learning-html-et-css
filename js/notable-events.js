@@ -10,7 +10,7 @@ import { NULL_POSES, BODHI_POSES, ADA_POSES } from './dialogue-box.js';
 export const NOTABLE_EVENTS = [
   {
     id: 'event-1',
-    triggerAfterStep: 7, // Après Acte I
+    triggerAfterStep: 8, // Après Acte I (Étape 8)
     title: "ALERTE SYSTÈME : Première Purge Sectorielle",
     speaker: "NULL",
     character: 'null',
@@ -104,7 +104,7 @@ export const NOTABLE_EVENTS = [
 
   {
     id: 'event-2',
-    triggerAfterStep: 15, // Après Acte II
+    triggerAfterStep: 18, // Après Acte II (Étape 18)
     title: "ALERTE SYSTÈME : La Fracture des Chemins (404)",
     speaker: "NULL",
     character: 'null',
@@ -198,7 +198,7 @@ export const NOTABLE_EVENTS = [
 
   {
     id: 'event-3',
-    triggerAfterStep: 23, // Après Acte III
+    triggerAfterStep: 28, // Après Acte III (Étape 28)
     title: "ALERTE SYSTÈME : L'Avis de Purge Ultime (Seuil 99 %)",
     speaker: "NULL",
     character: 'null',
@@ -555,7 +555,8 @@ export class NotableEventsEngine {
         overlay.classList.add('hidden');
         sound.playSuccess();
         this.app.bodhi.setSpeaker('MAÎTRE BODHI', 'weak', 'bodhi');
-        const targetStep = (eventData.triggerAfterStep !== undefined) ? Math.min(eventData.triggerAfterStep, 39) : (this.app.currentStepIndex + 1);
+        const maxStepIdx = (this.app.steps && this.app.steps.length > 0) ? (this.app.steps.length - 1) : 49;
+        const targetStep = (eventData.triggerAfterStep !== undefined) ? Math.min(eventData.triggerAfterStep, maxStepIdx) : (this.app.currentStepIndex + 1);
         if (targetStep > this.app.highestUnlockedStep) {
           this.app.highestUnlockedStep = targetStep;
           if (this.app.storage) this.app.storage.setHighestUnlockedStep(targetStep);
