@@ -1,6 +1,7 @@
 # Dependencies & cache
 node_modules/
 .npm/
+.wrangler/
 
 # Scratch & temporary development scripts
 scratch/
