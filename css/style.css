@@ -398,15 +398,21 @@ body {
   height: 1.6em;
 }
 
-.code-textarea {
+.editor-code-container {
   flex: 1;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.code-highlight,
+.code-textarea {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: transparent;
-  color: #f8fafc;
-  border: none;
-  outline: none;
-  resize: none;
   padding: 16px;
   font-family: var(--font-mono);
   font-size: 0.88rem;
@@ -415,12 +421,128 @@ body {
   white-space: pre;
   word-break: normal;
   overflow-wrap: normal;
-  overflow-x: auto;
+  margin: 0;
+  border: none;
+  box-sizing: border-box;
 }
 
-[data-theme="light"] .code-textarea {
+.code-highlight {
+  pointer-events: none;
+  user-select: none;
+  background: transparent;
+  color: #f8fafc;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.code-highlight code {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  white-space: pre;
+}
+
+.code-textarea {
+  z-index: 2;
+  background: transparent;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  caret-color: var(--amber-primary);
+  outline: none;
+  resize: none;
+  overflow: auto;
+}
+
+.code-textarea::selection {
+  background: rgba(56, 189, 248, 0.35);
+  -webkit-text-fill-color: transparent;
+}
+
+/* =============================================================================
+   COLORATION SYNTAXIQUE FIDÈLE STYLE VS CODE DARK+
+   ============================================================================= */
+.token-comment {
+  color: #6a9955;
+  font-style: italic;
+}
+
+.token-doctype {
+  color: #569cd6;
+  font-weight: 700;
+}
+
+.token-bracket {
+  color: #808080;
+}
+
+.token-tag {
+  color: #4ec9b0;
+  font-weight: 600;
+}
+
+.token-attr-name {
+  color: #9cdcfe;
+}
+
+.token-operator {
+  color: #d4d4d4;
+}
+
+.token-attr-value,
+.token-string {
+  color: #ce9178;
+}
+
+.token-color {
+  color: #ce9178;
+}
+
+.token-number {
+  color: #b5cea8;
+}
+
+.token-keyword {
+  color: #c586c0;
+  font-weight: 700;
+}
+
+.token-property {
+  color: #9cdcfe;
+}
+
+.token-variable {
+  color: #4fc1ff;
+  font-weight: 600;
+}
+
+.token-selector {
+  color: #d7ba7d;
+}
+
+.token-value {
+  color: #4ec9b0;
+}
+
+.token-punctuation {
+  color: #808080;
+}
+
+[data-theme="light"] .code-highlight {
   color: #0f172a;
 }
+
+[data-theme="light"] .token-comment { color: #008000; }
+[data-theme="light"] .token-doctype { color: #0000ff; }
+[data-theme="light"] .token-bracket { color: #808080; }
+[data-theme="light"] .token-tag { color: #800000; }
+[data-theme="light"] .token-attr-name { color: #e50000; }
+[data-theme="light"] .token-attr-value,
+[data-theme="light"] .token-string { color: #a31515; }
+[data-theme="light"] .token-number { color: #098658; }
+[data-theme="light"] .token-keyword { color: #af00db; }
+[data-theme="light"] .token-property { color: #e50000; }
+[data-theme="light"] .token-selector { color: #800000; }
+[data-theme="light"] .token-value { color: #0451a5; }
 
 .editor-status-bar {
   height: 24px;

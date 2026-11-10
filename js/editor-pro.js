@@ -4,6 +4,7 @@
 // =============================================================================
 
 import { IntelliSenseEngine } from './intellisense.js';
+import { highlightCode } from './syntax-highlighter.js';
 
 export class VSCodeEditor {
   constructor({
@@ -42,10 +43,18 @@ export class VSCodeEditor {
   initEditor() {
     if (!this.textarea) return;
 
-    this.updateLineNumbers();
+    this.highlightPre = document.getElementById('editor-highlight');
+    this.highlightCode = document.getElementById('editor-highlight-code');
 
-    // Scroll synchronisé entre textarea et numéros de ligne
+    this.updateLineNumbers();
+    this.updateHighlight();
+
+    // Scroll synchronisé entre textarea, coloration et numéros de ligne
     this.textarea.addEventListener('scroll', () => {
+      if (this.highlightPre) {
+        this.highlightPre.scrollTop = this.textarea.scrollTop;
+        this.highlightPre.scrollLeft = this.textarea.scrollLeft;
+      }
       if (this.lineNumbers) {
         this.lineNumbers.scrollTop = this.textarea.scrollTop;
       }
@@ -67,9 +76,17 @@ export class VSCodeEditor {
     this.textarea.addEventListener('input', () => {
       this.syncActiveBuffer();
       this.updateLineNumbers();
+      this.updateHighlight();
       this.recordHistorySnapshot(false);
       this.triggerChange();
     });
+  }
+
+  updateHighlight() {
+    if (!this.highlightCode || !this.textarea) return;
+    const val = this.textarea.value || '';
+    const highlighted = highlightCode(val, this.activeFile || 'index.html');
+    this.highlightCode.innerHTML = highlighted + (val.endsWith('\n') ? ' ' : '');
   }
 
   getMode() {
@@ -113,6 +130,7 @@ export class VSCodeEditor {
       }
       this.updateLineNumbers();
       this.updateCursorPosition();
+      this.updateHighlight();
       this.updatePreview();
     }
 
@@ -163,6 +181,7 @@ export class VSCodeEditor {
       }
       this.updateLineNumbers();
       this.updateCursorPosition();
+      this.updateHighlight();
       this.updatePreview();
     }
 
@@ -199,6 +218,7 @@ export class VSCodeEditor {
 
     this.updateLineNumbers();
     this.updateCursorPosition();
+    this.updateHighlight();
     this.updatePreview();
 
     // Enregistrer le premier instantané d'historique pour ce fichier
@@ -648,6 +668,7 @@ export class VSCodeEditor {
   }
 
   triggerChange() {
+    this.updateHighlight();
     clearTimeout(this.debounceTimer);
     this.debounceTimer = setTimeout(() => {
       this.updatePreview();

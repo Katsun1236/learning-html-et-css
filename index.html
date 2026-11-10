@@ -69,7 +69,10 @@
       <div class="editor-body">
         <div id="editor-container" class="code-editor-wrapper">
           <div id="editor-line-numbers" class="line-numbers-gutter"></div>
-          <textarea id="editor-textarea" class="code-textarea" spellcheck="false" placeholder="<!-- Rédige le balisage HTML ici... -->"></textarea>
+          <div class="editor-code-container">
+            <pre id="editor-highlight" class="code-highlight" aria-hidden="true"><code id="editor-highlight-code"></code></pre>
+            <textarea id="editor-textarea" class="code-textarea" spellcheck="false" placeholder="<!-- Rédige le balisage HTML ici... -->"></textarea>
+          </div>
         </div>
       </div>
 
