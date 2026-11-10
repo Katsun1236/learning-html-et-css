@@ -425,10 +425,6 @@ export class SanctuaireApp {
     // Bodhi avec déblocage progressif des questions
     this.bodhi.loadStep(step, MULTIPAGE_STEPS.length, this.highestUnlockedStep);
 
-    if (this.relics) {
-      this.relics.setCurrentStep(step.number);
-    }
-
     // Navigation sereine
     if (this.el.bodhiNextBtn) {
       const canAdvance = this.currentStepIndex < this.highestUnlockedStep;
@@ -1014,7 +1010,7 @@ export class SanctuaireApp {
     const rawVal = this.el.secretCodeInput.value.trim().toUpperCase();
     if (!rawVal) {
       if (this.el.secretCodeFeedback) {
-        this.el.secretCodeFeedback.textContent = "Saisis un code d'Architecte (ex: ACTE1, NULL1, CSS, ADA, RELIQUES, FINALE).";
+        this.el.secretCodeFeedback.textContent = "Saisis un code d'Architecte (ex: ACTE1, NULL1, CSS, ADA, FINALE).";
         this.el.secretCodeFeedback.className = "secret-code-feedback error";
       }
       return;
@@ -1024,7 +1020,7 @@ export class SanctuaireApp {
     if (!handled) {
       sound.playError();
       if (this.el.secretCodeFeedback) {
-        this.el.secretCodeFeedback.textContent = `Code « ${rawVal} » inconnu. Essaie ACTE1, NULL1, ACTE2, NULL2, CSS, NULL3, ADA, RELIQUES, ou FINALE.`;
+        this.el.secretCodeFeedback.textContent = `Code « ${rawVal} » inconnu. Essaie ACTE1, NULL1, ACTE2, NULL2, CSS, NULL3, ADA, ou FINALE.`;
         this.el.secretCodeFeedback.className = "secret-code-feedback error";
       }
     }
@@ -1082,15 +1078,7 @@ export class SanctuaireApp {
       return true;
     }
 
-    // 3. Réponse d'Ada sur les Reliques
-    if (c === 'RELIQUES' || c === 'DOSSIER' || c === 'ENQUETE') {
-      this.closeSecretCodesModal();
-      sound.playSuccess();
-      this.showToast("Ada : « Les vieilles reliques statiques ont été purgées ! Le Web vit dans le runtime. »", "info");
-      return true;
-    }
-
-    // 4. Fins secrètes traditionnelles
+    // 3. Fins secrètes traditionnelles
     const phareAliases = ['PHARE', 'PHARE1991', 'FIN1', 'LUMIERE', '1'];
     const gardienAliases = ['GARDIEN', 'GARDIENW3C', 'FIN2', 'MEMOIRE', '2'];
     const rebelleAliases = ['REBELLE', 'REBELLE404', 'FIN3', 'BAZAR', '3'];

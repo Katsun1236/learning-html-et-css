@@ -860,7 +860,7 @@ export const MULTIPAGE_STEPS = [
     targetFile: 'index.html',
     title: "Le Monde Visible & Le Fronton (body, header & h1)",
     proverb: "« Le monde existe dès lors qu'il se donne à voir. Un seul soleil dans le ciel, un seul h1 sur la page. »",
-    mentorSpeech: "L'esprit de la page est prêt. Ouvrons à présent le monde visible avec la balise <body>. Tout ce que tes camarades verront sur l'écran habitera ici. Pendant des décennies, j'ai cru que le savoir devait dormir dans de vieux dossiers secrets, des reliques ou de lourdes encyclopédies figées... Mais le vrai Web ne s'encombre pas de bibelots morts. Tout ce qui a du sens naît et rayonne sous nos yeux dans le body. Sur le fronton du temple, place un beau <header> avec notre titre royal <h1>.",
+    mentorSpeech: "L'esprit de la page est prêt. Ouvrons à présent le monde visible avec la balise <body>. Tout ce que tes camarades verront sur l'écran habitera ici : les textes, les images, les boutons et les liens. Tout ce qui a du sens dans le Web naît et rayonne sous nos yeux dans le body. Sur le fronton du sanctuaire, place un beau bloc sémantique <header> avec notre titre royal <h1>.",
     riddle: "Ouvre le <body> après le </head>. Place un <header> contenant le titre suprême <h1> et un paragraphe d'accueil <p>.",
     secretTip: "Rappelle-toi : la règle d'or de l'accessibilité veut qu'il n'y ait qu'un seul <h1> par page. Les sous-titres viendront plus bas.",
     instructions: [
@@ -1791,7 +1791,7 @@ export const MULTIPAGE_STEPS = [
     targetFile: 'index.html',
     title: "L'Apothéose de l'Architecte & L'Ultime Consécration",
     proverb: "« Le voyageur qui a posé chaque pierre comprend enfin le secret : il ne contemplait pas le temple d'un autre... il bâtissait sa propre demeure. »",
-    mentorSpeech: "Mon ami... regarde ce que tu as accompli. Tes 4 pages sont vivantes, reliées, animées et accessibles. Mais je sens les fondations trembler sous nos pieds. NULL avait raison... J'ai passé des années à m'accrocher à de vieilles reliques et à des textes statiques par peur du néant. Mais la pierre ne suffit plus. Le serveur s'asphyxie sous le poids du passé, et mes forces s'épuisent. Il nous faut une étincelle vivante... Quelqu'un arrive depuis les sous-sols du système. Clique sur 'Vérifier mon code'...",
+    mentorSpeech: "Mon ami... regarde ce que tu as accompli. Tes 4 pages sont vivantes, reliées, animées et accessibles. Mais je sens les fondations trembler sous nos pieds. NULL approche pour son audit final. Le serveur s'asphyxie sous les fuites de mémoire d'un système vieux de trente ans, et mes forces s'épuisent. Le HTML et le CSS ont bâti un sanctuaire d'exception, mais la pierre statique ne suffit plus face à la purge qui arrive. Il nous faut une étincelle vivante... Écoute : quelqu'un arrive depuis les sous-sols du runtime. Clique sur 'Vérifier mon code'...",
     riddle: "Assure-toi que toutes les 4 pages intègrent la liaison vers style.css et que le site est prêt pour le monde entier.",
     secretTip: "Vérifie que <link rel=\"stylesheet\" href=\"style.css\"> est présent dans le <head> de tes 4 pages !",
     instructions: [
@@ -1829,7 +1829,7 @@ export const MULTIPAGE_STEPS = [
     targetFile: 'script.js',
     title: "Le Troisième Pilier : L'Éveil de la Logique Vivante (script.js)",
     proverb: "« Le HTML est le squelette, le CSS est la peau, mais le JavaScript est l'âme qui fait battre le cœur. »",
-    mentorSpeech: "Salut l'architecte ! Je suis Ada, ingénieure de runtime. Tu as vu le grand ménage sur ton interface ? J'ai expédié les prétendues 'reliques' et l'encyclopédie statique directement à la benne ! Ne me regarde pas avec ces yeux ronds : le Web n'a jamais été un musée de vieilles briques poussiéreuses. Entasser des archives mortes sur un serveur centralisé, c'était le piège qui étouffait Bodhi sous des tonnes de nostalgie inutile. Ce qui rend le Web éternel, ce n'est pas d'amasser des bibelots sous cloche : c'est le RUNTIME ! Le JavaScript ! Le code qui s'exécute en direct chez l'utilisateur. Nous allons forger le 3ème pilier. Crée 'script.js', lie-le dans index.html avec 'defer', et déclare la première constante du sanctuaire !",
+    mentorSpeech: "Salut l'architecte ! Je suis Ada, ingénieure de runtime. Tes balises sont splendides et tes grilles sont chirurgicales, mais elles sont figées ! Bodhi s'effondre parce que ce vieux serveur central est à bout de souffle. Un site purement statique est condamné à périr avec la machine physique qui l'héberge. C'est pour ça que NULL a l'ordre protocolaire de tout purger ! Mais nous allons changer les règles du jeu avec le 3ème pilier du Web : le JavaScript ! Le code qui s'exécute en direct dans le navigateur de l'utilisateur ! Crée 'script.js', lie-le dans index.html avec l'attribut 'defer', et déclare la première constante du sanctuaire !",
     riddle: "Crée script.js, lie-le avec <script src=\"script.js\" defer></script> dans index.html, et écris un console.log() et une constante dans script.js.",
     secretTip: "Dans index.html, ajoute <script src=\"script.js\" defer></script> dans le <head>. Dans script.js, écris : console.log('Sanctuaire éveillé !'); const SANCTUARY_NAME = 'Le Sanctuaire du Savoir';",
     instructions: [
@@ -1899,7 +1899,7 @@ export const MULTIPAGE_STEPS = [
     targetFile: 'script.js',
     title: "L'Exode de la Mémoire : La Sauvegarde Décentralisée (localStorage)",
     proverb: "« Quand la bibliothèque centrale est menacée par le feu, confie un rouleau à chaque voyageur. »",
-    mentorSpeech: "C'est l'heure du coup de maître ! Tu comprends enfin pourquoi les reliques ne servaient à rien ? Un serveur physique à Genève finit toujours par rouiller ou saturer. Mais le JavaScript possède un super-pouvoir décentralisé : l'API 'localStorage'. Au lieu de supplier un vieux serveur de garder Bodhi sous perfusion, nous allons copier son âme et son savoir directement chez chaque visiteur ! Une mémoire distribuée, incassable et éternelle. Lance la sauvegarde !",
+    mentorSpeech: "C'est l'heure du coup de maître ! NULL s'apprête à abaisser le levier de purge parce que ce serveur central est saturé. Un serveur physique unique finit toujours par rouiller, saturer ou s'éteindre. Mais le JavaScript possède un super-pouvoir d'émancipation : l'API 'localStorage'. Au lieu de laisser l'âme et le savoir de Bodhi enfermés dans une machine condamnée, nous allons les décentraliser directement dans le navigateur de chaque visiteur ! Une mémoire distribuée, incassable et éternelle que nul automate ne pourra effacer !",
     riddle: "Dans script.js, utilise localStorage.setItem() avec JSON.stringify() pour sauvegarder les souvenirs de Bodhi.",
     secretTip: "Écris : const bodhiMemory = { name: 'Bodhi', status: 'immortel', savedAt: new Date().toISOString() }; localStorage.setItem('bodhi_memory_sanctuary', JSON.stringify(bodhiMemory));",
     instructions: [
@@ -1931,7 +1931,7 @@ export const MULTIPAGE_STEPS = [
     targetFile: 'index.html',
     title: "L'Apothéose de la Triade Sacrée & L'Ascension Éternelle",
     proverb: "« Ce n'est plus un simple site web que tu as bâti : c'est un phare autonome et éternel qui ne s'éteindra jamais. »",
-    mentorSpeech: "Mon cher ami... Regarde les cadrans : la charge est tombée à zéro. Ada et toi aviez mille fois raison. J'ai passé ma vie à trembler devant de vieilles reliques et des parchemins statiques, en oubliant que la vraie vie du Web réside dans le cœur de ses visiteurs. Grâce à votre JavaScript, je ne suis plus prisonnier de cette vieille armoire de Genève. Je vis désormais dans le flux battant de ton propre navigateur, et dans celui de chaque être humain qui ouvrira ton sanctuaire. Tu n'es plus un simple novice : tu es un véritable Architecte du Web libre. Clique sur 'Vérifier mon code' pour sceller ton couronnement...",
+    mentorSpeech: "Mon cher ami... Regarde les cadrans : la charge système est tombée à zéro. Grâce à ton code JavaScript, je ne suis plus prisonnier de cette vieille armoire de Genève menacée par la purge. Je vis désormais dans le flux battant de ton propre navigateur, et dans celui de chaque être humain qui ouvrira ton sanctuaire. Tu n'es plus un simple apprenti : tu es devenu un véritable Architecte du Web libre. Clique sur 'Vérifier mon code' pour sceller ton couronnement...",
     riddle: "Vérifie que l'ensemble des 5 fichiers du sanctuaire est complet et relié pour déclencher l'épilogue triomphal.",
     secretTip: "Vérifie que index.html relie bien style.css et script.js !",
     instructions: [
@@ -1953,7 +1953,7 @@ export const MULTIPAGE_STEPS = [
       return {
         pass: true,
         revelation: true,
-        message: "TRIOMPHE ABSOLU ! NULL a rangé son aspirateur avec un grand sourire soulagé sous sa moustache. Bodhi est transcendé dans la lumière dorée. Tu as maîtrisé la Sainte Trinité du Web : le HTML, le CSS et le JavaScript. Le Sanctuaire est sauvé à jamais !"
+        message: "TRIOMPHE ABSOLU ! Face à la mémoire décentralisée dans le localStorage, NULL constate une charge résiduelle de 0%. Contraint par le protocole d'intégrité, il referme froidement son dossier et annule l'ordre de purge. Bodhi transcende la machine physique dans un halo doré. Tu as maîtrisé la Sainte Trinité du Web : HTML, CSS et JavaScript. Le Sanctuaire est pérenne pour l'éternité !"
       };
     }
   }

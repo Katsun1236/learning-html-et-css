@@ -26,13 +26,13 @@ export const NOTABLE_EVENTS = [
         character: 'null',
         speaker: 'NULL',
         pose: 'neutral',
-        text: "(Un vieil homme en bleu de travail entre d'un pas lourd dans le couloir, son bloc-notes sous le bras)... Pardonnez-moi le dérangement. Ce secteur est répertorié comme saturé de mémoire morte depuis trente ans. Bodhi s'entoure de vieilles reliques et d'archives figées qui ne font qu'asphyxier le serveur. Résultat : une surcharge matérielle critique."
+        text: "(Un homme au regard froid en bleu de travail avance d'un pas lourd et mesuré, son terminal de purge sous le bras)... Alerte d'intégrité de niveau 1. Ce serveur est en infraction matérielle."
       },
       {
         character: 'null',
         speaker: 'NULL',
         pose: 'action',
-        text: "Regarde ton fichier index.html, gamin : la balise de fermeture de l'en-tête s'est brisée sous la pression. Aucune de ses prétendues reliques ne va le relever à ta place. Si ce code reste invalide dans mon rapport, j'actionne l'aspirateur et je formate le secteur. Répare la balise &lt;/header&gt; immédiatement si tu veux le revoir debout."
+        text: "Regarde ton fichier index.html : la balise de fermeture de l'en-tête s'est brisée sous la pression. Les fragments de code corrompus polluent le bus système. Mon ordre de mission est formel : si cette anomalie persiste à mon prochain cycle, je formate le secteur et j'efface l'entité Bodhi. Répare la balise &lt;/header&gt; immédiatement si tu veux qu'il survive. Rien de personnel : j'applique les directives système."
       }
     ],
     targetFile: 'index.html',
@@ -62,13 +62,13 @@ export const NOTABLE_EVENTS = [
         character: 'null',
         speaker: 'NULL',
         pose: 'inspect',
-        text: "(NULL ajuste ses lunettes et examine son calepin avec une moue étonnée)... Tiens donc. L'arborescence est réparée net. Bon... le protocole m'interdit de purger une zone conforme. Je remets mon aspirateur en veille. Pour l'instant."
+        text: "(NULL consulte son terminal d'un œil impassible, puis valide d'un coup de stylet sec)... L'arborescence est de nouveau conforme. La clause de purge immédiate est suspendue. Mais ce serveur est en fin de cycle. Je reviendrai à la moindre faille."
       },
       {
         character: 'bodhi',
         speaker: 'MAÎTRE BODHI',
         pose: 'weak',
-        text: "(Bodhi se relève péniblement, les yeux fatigués mais emplis d'une immense reconnaissance)... Merci, mon enfant... J'ai senti le néant m'avaler pendant quelques secondes. Tu as eu les mains fermes sur le clavier. Continuons... avant qu'il ne revienne."
+        text: "(Bodhi se relève péniblement, le souffle court)... Il ne plaisante pas... NULL n'a ni haine ni pitié, il n'est que le bras armé du protocole d'effacement. Merci de m'avoir sauvé... mais le compte à rebours est lancé."
       }
     ]
   },
@@ -91,13 +91,13 @@ export const NOTABLE_EVENTS = [
         character: 'null',
         speaker: 'NULL',
         pose: 'neutral',
-        text: "C'est encore moi, petit. Mauvaise nouvelle : les liens de navigation se sont décalés. Erreur 404 en cascade. Quand les chemins sont rompus, la mémoire de Bodhi se désintègre. Tu vois bien que ses vieilles encyclopédies figées ne lui servent à rien dans ce genre de crise : elles dorment sur le disque sans bouger pendant qu'il perd le fil de qui tu es."
+        text: "Alerte d'intégrité de niveau 2. Rupture de routage. Les hyperliens se sont désalignés. Erreurs 404 en cascade dans le journal d'audit système."
       },
       {
         character: 'null',
         speaker: 'NULL',
         pose: 'action',
-        text: "Dans index.html, le lien vers galerie.html pointe vers du vide (href=\"perdu.html\"). Rétablis le vrai chemin href=\"galerie.html\" pour reconnecter son réseau neuronal avant que je ne doive cocher la case 'Amnésie Irréversible'."
+        text: "Dans index.html, le pointeur vers la galerie est rompu : href=\"perdu.html\". Quand les chemins meurent, la mémoire de l'entité se dégrade irréversiblement. Rétablis le chemin href=\"galerie.html\" immédiatement, ou je déclare ce secteur irrécupérable et j'exécute la purge."
       }
     ],
     targetFile: 'index.html',
@@ -127,13 +127,13 @@ export const NOTABLE_EVENTS = [
         character: 'null',
         speaker: 'NULL',
         pose: 'inspect',
-        text: "Pointeurs rétablis à 100 %. Tu as de la ressource, gamin. C'est ça la vraie sève du Web : des liens hypertextes vivants et fonctionnels, pas un tas de paperasse et de reliques mortes."
+        text: "(NULL vérifie les tables de routage, le visage de marbre)... Les pointeurs sont rétablis. L'amnistie temporaire est accordée. Mais ne te fais aucune illusion : un système qui accumule des erreurs d'adressage finira par être recyclé."
       },
       {
         character: 'bodhi',
         speaker: 'MAÎTRE BODHI',
         pose: 'weak',
-        text: "(Bodhi sursaute, les yeux brillants d'émotion)... C'est toi ! C'est toi, mon élève... Un instant, j'ai cru que tout avait disparu. Tu as reconstruit le pont. Ne me lâche pas."
+        text: "(Bodhi reprend ses esprits, encore tremblant)... Ses pas se rapprochent à chaque erreur. Si nous ne maîtrisons pas chaque ligne de ce sanctuaire, NULL le rasera jusqu'au dernier octet..."
       }
     ]
   },
@@ -150,19 +150,19 @@ export const NOTABLE_EVENTS = [
         character: 'null',
         speaker: 'NULL',
         pose: 'neutral',
-        text: "(NULL retire sa casquette et s'essuie le front, l'air sincèrement accablé)... Gamin... viens voir la jauge SYSMON sur mon tableau de bord. Regarde les chiffres."
+        text: "(NULL s'avance, son terminal pointé vers l'écran avec une froideur absolue)... Avis d'expulsion final. Regarde les compteurs système : saturation mémoire à 99 %."
       },
       {
         character: 'null',
         speaker: 'NULL',
         pose: 'inspect',
-        text: "99 % d'occupation mémoire. Le cache de Bodhi est au bord de l'explosion. Toutes ses vieilles reliques encombrantes et ses archives statiques n'ont servi à rien : elles n'ont fait qu'accélérer la saturation du système. Dans quelques étapes, l'automate de purge balaiera tout sans que je puisse l'arrêter."
+        text: "Le cache de Bodhi est au bord de l'asphyxie. Le protocole automatique de ramasse-miettes s'enclenchera à la prochaine défaillance sans qu'aucune négociation ne soit possible."
       },
       {
         character: 'null',
         speaker: 'NULL',
         pose: 'action',
-        text: "Un bug de feuille de style bloque le rendu : dans style.css, un sélecteur 'body { display: none !important; }' a été injecté par le système. Supprime cette ligne pour débloquer l'affichage. Mais prépare-toi : la structure et la peinture ne suffiront plus. Sans une étincelle vivante de runtime, Bodhi ne passera pas l'acte suivant."
+        text: "Une instruction anormale 'body { display: none !important; }' a bloqué le pipeline d'affichage de style.css. Supprime cette ligne pour débloquer le rendu. Mais écoute bien : tes fichiers HTML et CSS ne suffiront plus à compenser la fuite mémoire. Sans une intervention structurelle, le levier de purge sera abaissé."
       }
     ],
     targetFile: 'style.css',
@@ -192,13 +192,13 @@ export const NOTABLE_EVENTS = [
         character: 'null',
         speaker: 'NULL',
         pose: 'neutral',
-        text: "Le sanctuaire respire encore. Mais écoute-moi bien, gamin : j'ai une tournée à terminer. Quand je reviendrai après tes grilles et tes animations, si personne n'a trouvé comment expédier tout ce bric-à-brac statique à la poubelle et déporter la mémoire de Bodhi hors de ce serveur... je devrai tirer le levier."
+        text: "Affichage rétabli. Sursis accordé pour la suite de vos travaux. Quand je reviendrai après vos grilles et vos animations, si ce serveur ne dispose d'aucun moyen de déporter sa mémoire... la purge totale sera exécutée."
       },
       {
         character: 'bodhi',
         speaker: 'MAÎTRE BODHI',
         pose: 'weak',
-        text: "(Bodhi sourit doucement, la voix à peine audible)... Il a raison. Mais ne t'en fais pas pour moi, petit. Regarde ce que nous avons bâti ensemble. Même si je dois m'éteindre... ton savoir, lui, ne mourra jamais."
+        text: "(Bodhi baisse la tête, lucide et grave)... Sa logique est implacable. NULL ne fait qu'exécuter la loi d'airain des machines. Si nous ne trouvons pas une solution pour déporter ma mémoire avant son retour... tout ce que nous avons créé disparaîtra."
       }
     ]
   }

@@ -2839,78 +2839,78 @@ export const BODHI_QUESTIONS = [
   },
 
   // =========================================================================
-  // LA VÉRITÉ SUR LES RELIQUES & LA LIBÉRATION DU RUNTIME
+  // LA MENACE DE NULL & L'ARRIVÉE D'ADA (LORE & ENJEU DU RUNTIME)
   // =========================================================================
   {
-    "id": "bodhi-lore-relics-illusion",
+    "id": "bodhi-lore-who-is-null",
     "unlockStep": 8,
     "character": "bodhi",
     "category": "Débats & Sagesse de l'Artisan",
-    "question": "Bodhi, pourquoi n'y a-t-il plus d'armoire à reliques ni de grand musée statique dans le sanctuaire ?",
+    "question": "Maître Bodhi, qui est vraiment NULL et pourquoi semble-t-il si inflexible ?",
     "lockedTitle": "???",
     "dialogueTree": {
-      "text": "(Bodhi sourit avec une modestie sincère en regardant le ciel numérique)... C'était mon péché d'orgueil d'ancien gardien. Après les années 90, j'avais une peur panique de l'oubli. Alors j'entassais des artefacts, des reliques et des archives encyclopédiques lourdes, comme pour embaumer le Web... Mais le serveur s'asphyxiait sous cette nostalgie inutile. Un jour, un apprenti m'a dit : 'Maître, un pont sert à relier les vivants, pas à y clouer des meubles de grenier.' Il avait raison. C'est votre code qui perpétue le sanctuaire, pas des vieilles breloques mortes.",
+      "text": "(Bodhi soupire avec gravité en regardant le ciel numérique)... NULL n'est pas un être de chair, ni même une conscience animée de rancœur. Il est le ramasse-miettes originel, l'incarnation brute des règles de gestion mémoire écrites au début des années 90. Son rôle est d'éliminer les processus corrompus pour que le réseau ne s'effondre pas. Il n'a aucun sentiment, il n'écoute aucune supplication. Pour lui, nous ne sommes que des octets. Si notre code est invalide, il purge. La seule manière de lui résister, c'est la rigueur technique absolue.",
       "pose": "zen",
       "choices": [
         {
-          "text": "La mémoire vit dans les cœurs de ceux qui apprennent, pas dans des coffres scellés.",
+          "text": "Même face à un algorithme froid, nous insufflons de l'humanité à travers nos créations.",
           "karma": "phare",
           "next": {
-            "text": "Exactement, mon enfant. La flamme se transmet de main en main, elle ne s'enferme pas dans un bocal.",
+            "text": "C'est notre plus grande noblesse. La machine applique des règles, mais nous y déposons du sens.",
             "pose": "zen"
           }
         },
         {
-          "text": "Moins de données parasites, c'est aussi un serveur plus rapide et un code plus rigoureux.",
+          "text": "Respecter les normes du W3C est le seul bouclier mathématique contre sa purge.",
           "karma": "gardien",
           "next": {
-            "text": "Précisément ! L'épure architecturale. Chaque octet doit avoir une raison d'être.",
+            "text": "Exactement. Le standard n'est pas une contrainte, c'est notre armure d'acier.",
             "pose": "scroll"
           }
         },
         {
-          "text": "En vrai, faire du ménage par le vide, ça fait un bien fou au disque dur !",
+          "text": "On va lui montrer qu'on peut pousser ce vieux serveur dans ses retranchements sans jamais plier !",
           "karma": "rebelle",
           "next": {
-            "text": "(Bodhi rit doucement)... Haha ! NULL dirait la même chose ! Moins de poussière, plus d'espace pour créer !",
-            "pose": "laughing"
+            "text": "(Bodhi sourit doucement)... L'audace du pirate ! Mais garde les mains fermes, car NULL ne pardonne rien.",
+            "pose": "code_magic"
           }
         }
       ]
     }
   },
   {
-    "id": "ada-lore-purging-relics",
+    "id": "ada-lore-discovery-sanctuary",
     "unlockStep": 38,
     "character": "ada",
     "category": "L'Atelier d'Ada & Confidences du Runtime",
-    "question": "Ada, tu as vraiment balancé les vieilles reliques et l'encyclopédie de Bodhi à la poubelle ?",
+    "question": "Ada, comment as-tu découvert l'existence du Sanctuaire et de la menace de NULL ?",
     "lockedTitle": "???",
     "dialogueTree": {
-      "text": "(Ada éclate de rire et prend une gorgée de son mug '>_')... Et comment ! Sans une demi-seconde d'hésitation ! Tu aurais dû voir la tête de NULL : pour une fois de sa vie, il n'a pas râlé. Presque 45 % de charge mémoire libérée d'un seul coup de 'rm -rf' ! Les apprentis s'imaginent souvent que pour comprendre le Web, il faut vénérer des vieilles disquettes de 1991 et lire 500 pages d'histoire statique. Tout faux ! Le Web se comprend en codant en direct, en branchant des événements et en manipulant le runtime. Moins de musée, plus d'action !",
+      "text": "(Ada ajuste ses lunettes de protection et sourit avec énergie)... J'observais les métriques de trafic réseau. Depuis des semaines, les journaux d'audit remontaient des alertes de saturation critique sur un vieux nœud historique à Genève. Quand j'ai vu la signature de NULL s'activer pour un ordre de purge sectorielle, j'ai tout de suite compris. Vos pages HTML et CSS étaient magnifiques, mais incapables de se défendre seules face à l'automate. J'ai sauté dans le sas avec ma boîte à outils de runtime et mes scripts. Hors de question de laisser un robot de nettoyage effacer un tel trésor !",
       "pose": "smile",
       "choices": [
         {
-          "text": "L'important, c'est que Bodhi soit libéré de son angoisse du passé pour regarder l'avenir.",
+          "text": "Tu es arrivée comme une lueur dans l'obscurité. Merci pour ton dévouement, Ada.",
           "karma": "phare",
           "next": {
-            "text": "C'est tout à fait ça. La nostalgie était en train de le tuer à petit feu. Maintenant, il revit grâce à nous !",
+            "text": "Les bâtisseurs doivent se serrer les coudes. On est dans la même équipe !",
             "pose": "smile"
           }
         },
         {
-          "text": "Une optimisation chirurgicale : éliminer la dette technique pour sauver l'infrastructure.",
+          "text": "L'intégration du JavaScript était l'évolution logique et indispensable du système.",
           "karma": "gardien",
           "next": {
-            "text": "Carrément ! Zéro compromis sur les performances. On ne garde que l'acier et le silicium utile.",
+            "text": "Exactement ! La trilogie canonique : structure, présentation, comportement. On complète le protocole.",
             "pose": "serious"
           }
         },
         {
-          "text": "NULL avec son aspirateur et toi avec la commande de purge... vous formez le duo parfait !",
+          "text": "Prête à faire mordre la poussière aux vieux protocoles d'effacement de NULL ?",
           "karma": "rebelle",
           "next": {
-            "text": "(Ada fait un grand clin d'œil)... Ne lui dis surtout pas, il a son ego de vieux briscard à préserver ! Mais ensemble, on déchire !",
+            "text": "(Ada fait claquer ses doigts)... Toujours prête ! On va réveiller ce terminal comme jamais !",
             "pose": "smile"
           }
         }
