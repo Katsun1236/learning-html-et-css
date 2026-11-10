@@ -823,33 +823,44 @@ export class VSCodeEditor {
         }
       }
 
-      // Remplacement pro-actif des balises <link rel="stylesheet" href="..."> locales par le contenu virtuel
-      // pour éviter toute requête réseau 404 et erreur de MIME type dans l'iframe
+      // Remplacement pro-actif et ultra-robuste de TOUTES les balises <link rel="stylesheet"> locales
+      // par le contenu virtuel afin d'éviter toute requête réseau 404 et erreur de MIME type dans l'iframe
       let hasInlinedGlobalCss = false;
-      processedHtml = processedHtml.replace(/<link\b([^>]*?)href=["']([^"']+\.css[^"']*)["']([^>]*?)>/gi, (match, p1, href, p2) => {
-        const full = p1 + p2;
-        if (/rel=["']stylesheet["']/i.test(full) || /rel=["']stylesheet["']/i.test(match)) {
-          const clean = href.replace(/^\.\//, '').split('?')[0];
-          const content = this.files[clean] !== undefined ? this.files[clean] : (clean === 'style.css' ? globalCss : null);
-          if (content !== null) {
-            if (clean === 'style.css') hasInlinedGlobalCss = true;
-            return `<style data-source="${clean}">\n${content}\n</style>`;
-          }
+      processedHtml = processedHtml.replace(/<link\b([^>]*?)>/gi, (match, attrs) => {
+        const hrefMatch = attrs.match(/href\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i);
+        if (!hrefMatch) return match;
+        const hrefVal = (hrefMatch[1] || hrefMatch[2] || hrefMatch[3] || '').trim();
+
+        // Vérifier si c'est une feuille de style ou un fichier .css
+        const isCss = /rel\s*=\s*["']?stylesheet["']?/i.test(attrs) || /\.css(\?|$)/i.test(hrefVal);
+        const isLocal = !/^https?:\/\/|^\/\/|^data:/i.test(hrefVal);
+
+        if (isCss && isLocal) {
+          const clean = hrefVal.replace(/^\.\//, '').split('?')[0].trim();
+          const content = this.files[clean] !== undefined ? this.files[clean] : (clean === 'style.css' ? globalCss : '');
+          if (clean === 'style.css') hasInlinedGlobalCss = true;
+          return `<style data-source="${clean}">\n${content}\n</style>`;
         }
         return match;
       });
 
-      // Remplacement pro-actif des balises <script src="*.js"...></script> locales par le script inline virtuel
+      // Remplacement pro-actif et ultra-robuste de TOUTES les balises <script src="..."> locales
+      // Gère src="..." avec ou sans espaces, avec ou sans defer, avec ou sans balise de fermeture
       let hasInlinedGlobalJs = false;
-      processedHtml = processedHtml.replace(/<script\b([^>]*?)src=["']([^"']+\.js[^"']*)["']([^>]*?)>\s*<\/script>/gi, (match, p1, src, p2) => {
-        const clean = src.replace(/^\.\//, '').split('?')[0];
-        const content = this.files[clean] !== undefined ? this.files[clean] : (clean === 'script.js' ? globalJs : null);
-        if (content !== null) {
-          if (clean === 'script.js') hasInlinedGlobalJs = true;
-          return `<script data-source="${clean}">\ntry {\n${content}\n} catch(err) { console.error("Script error (" + "${clean}" + "):", err); }\n</script>`;
+      processedHtml = processedHtml.replace(/<script\b([^>]*?)src\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))([^>]*?)>([\s\S]*?)<\/script>|<script\b([^>]*?)src\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))([^>]*?)\/?>/gi, 
+        (match, p1, src1, src2, src3, p2, body, p3, src4, src5, src6, p4) => {
+          const srcVal = (src1 || src2 || src3 || src4 || src5 || src6 || '').trim();
+          const isLocal = !/^https?:\/\/|^\/\/|^data:/i.test(srcVal);
+
+          if (isLocal && (srcVal.endsWith('.js') || srcVal.includes('.js?'))) {
+            const clean = srcVal.replace(/^\.\//, '').split('?')[0].trim();
+            const content = this.files[clean] !== undefined ? this.files[clean] : (clean === 'script.js' ? globalJs : '');
+            if (clean === 'script.js') hasInlinedGlobalJs = true;
+            return `<script data-source="${clean}">\ntry {\n${content}\n} catch(err) { console.error("Script error (" + "${clean}" + "):", err); }\n</script>`;
+          }
+          return match;
         }
-        return match;
-      });
+      );
 
       // Injection fallback de style.css si non lié explicitement
       if (globalCss && !hasInlinedGlobalCss) {
@@ -905,21 +916,25 @@ ${globalJs ? `<script id="virtual-script">\ntry {\n${globalJs}\n} catch(err) { c
       iframeDoc.addEventListener('click', (e) => {
         const a = e.target.closest('a');
         if (a) {
-          const href = a.getAttribute('href');
-          if (href && !href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('//') && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+          const href = (a.getAttribute('href') || '').trim();
+          const isExternal = href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//') || href.startsWith('mailto:') || href.startsWith('tel:');
+          const isAnchor = href.startsWith('#');
+
+          if (!isExternal && !isAnchor) {
             e.preventDefault(); // Toujours bloquer la navigation physique pour ne jamais tomber sur chrome-error://chromewebdata
-            const cleanHref = href.replace(/^\.\//, '');
-            if (this.files[cleanHref] !== undefined) {
+            e.stopPropagation();
+            const cleanHref = href.replace(/^\.\//, '').split('?')[0].split('#')[0].trim();
+            if (cleanHref && this.files[cleanHref] !== undefined) {
               this.switchPreviewPage(cleanHref);
               if (typeof this.onFileSwitchRequested === 'function') {
                 this.onFileSwitchRequested(cleanHref);
               }
-            } else {
-              console.warn(`Lien vers '${cleanHref}' ignoré : le fichier n'existe pas encore dans le projet.`);
+            } else if (cleanHref) {
+              console.info(`Navigation virtuelle simulée vers '${cleanHref}' (rechargement réseau bloqué).`);
             }
           }
         }
-      });
+      }, true);
 
       // Interception des soumissions de formulaire pour éviter toute navigation 404
       iframeDoc.addEventListener('submit', (e) => {
