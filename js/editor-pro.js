@@ -664,14 +664,71 @@ export class VSCodeEditor {
     const pageHtml = this.files[this.activePreviewPage] || '';
     const globalCss = this.files['style.css'] || '';
 
+    // Extraction du titre pour le mini-navigateur
+    const titleMatch = pageHtml.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+    const extractedTitle = titleMatch ? titleMatch[1].trim() : '';
+
+    const tabTitleEl = document.getElementById('preview-browser-tab-title');
+    if (tabTitleEl) {
+      tabTitleEl.textContent = extractedTitle || this.activePreviewPage || 'index.html';
+      tabTitleEl.title = extractedTitle || this.activePreviewPage || 'index.html';
+    }
+    const urlEl = document.getElementById('preview-browser-url');
+    if (urlEl) {
+      urlEl.textContent = `https://sanctuaire.web/${this.activePreviewPage || 'index.html'}`;
+    }
+
     let documentContent = '';
     const hasHtmlTag = pageHtml.toLowerCase().includes('<html');
 
     if (hasHtmlTag) {
-      if (pageHtml.includes('</head>')) {
-        documentContent = pageHtml.replace('</head>', `<style id="virtual-style">\n${globalCss}\n</style></head>`);
+      // Vérifier si le body contient du contenu visible
+      const hasBodyTag = /<body[^>]*>/i.test(pageHtml);
+      let bodyInner = '';
+      if (hasBodyTag) {
+        const bMatch = pageHtml.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+        bodyInner = bMatch ? bMatch[1].replace(/<script[\s\S]*?<\/script>/gi, '').trim() : '';
+      }
+      const isBodyEmpty = !hasBodyTag || bodyInner.length === 0;
+
+      let processedHtml = pageHtml;
+      if (isBodyEmpty) {
+        const safeTitle = extractedTitle
+          ? extractedTitle.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+          : 'Sans titre';
+
+        const emptyBodyNotice = `
+<div class="empty-body-helper" style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:65vh; padding:28px 16px; font-family:system-ui,-apple-system,sans-serif; text-align:center; color:#334155; user-select:none;">
+  <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:24px 28px; max-width:460px; box-shadow:0 8px 24px rgba(0,0,0,0.06);">
+    <div style="display:inline-block; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:#0284c7; background:#e0f2fe; padding:4px 10px; border-radius:20px; margin-bottom:12px;">En attente de la balise &lt;body&gt;</div>
+    <h3 style="margin:0 0 8px 0; font-size:1.1rem; color:#0f172a; font-weight:700;">L'en-tête (&lt;head&gt;) est actif !</h3>
+    <p style="margin:0 0 12px 0; font-size:0.9rem; color:#475569; line-height:1.5;">
+      Ton titre <strong>« ${safeTitle} »</strong> est bien visible dans l'onglet du navigateur au-dessus.
+    </p>
+    <p style="margin:0 0 14px 0; font-size:0.85rem; color:#64748b; line-height:1.4;">
+      Dans le Web, la balise &lt;head&gt; ne s'affiche jamais sur la page blanche. Tout ce qui est visible habite dans le corps du document.
+    </p>
+    <div style="font-size:0.85rem; color:#b45309; background:#fef3c7; border:1px solid #fde68a; padding:10px 14px; border-radius:8px; line-height:1.4; font-weight:600;">
+      Ouvre la balise <strong>&lt;body&gt;</strong> pour faire apparaître tes textes et tes images !
+    </div>
+  </div>
+</div>`;
+
+        if (!hasBodyTag) {
+          if (processedHtml.includes('</html>')) {
+            processedHtml = processedHtml.replace('</html>', `<body>${emptyBodyNotice}</body>\n</html>`);
+          } else {
+            processedHtml += `\n<body>${emptyBodyNotice}</body>`;
+          }
+        } else {
+          processedHtml = processedHtml.replace(/<body([^>]*)>([\s\S]*?)<\/body>/i, `<body$1>${emptyBodyNotice}</body>`);
+        }
+      }
+
+      if (processedHtml.includes('</head>')) {
+        documentContent = processedHtml.replace('</head>', `<style id="virtual-style">\n${globalCss}\n</style></head>`);
       } else {
-        documentContent = `<style id="virtual-style">\n${globalCss}\n</style>\n` + pageHtml;
+        documentContent = `<style id="virtual-style">\n${globalCss}\n</style>\n` + processedHtml;
       }
     } else {
       documentContent = `<!DOCTYPE html>
