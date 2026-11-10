@@ -30,10 +30,10 @@ class SanctuaireApp {
     this.initBodhi();
     this.initSplitResizer();
     this.initCinematic();
+    this.initRelicsSystem();
     this.initCheatsheet();
     this.initWebpedia();
     this.initNotableEvents();
-    this.initRelicsSystem();
     this.initExportSystem();
     this.initSecretCodes();
     this.bindEvents();
@@ -1009,7 +1009,8 @@ class SanctuaireApp {
         const relicId = wrap.getAttribute('data-relic-id');
         if (!relicId) return;
 
-        const isNew = this.relics.unlockRelic(relicId);
+        const relicsEngine = this.relics || relicsManager;
+        const isNew = relicsEngine ? relicsEngine.unlockRelic(relicId) : false;
         sound.playSuccess();
         if (isNew) {
           fireConfetti();
@@ -1072,7 +1073,8 @@ class SanctuaireApp {
     this.el.webpediaContent.innerHTML = filtered.map(art => {
       let relicHtml = '';
       if (art.hasRelic) {
-        const isUnlocked = this.relics.isRelicUnlocked({ id: art.hasRelic, unlockedAtStep: 999 });
+        const relicsEngine = this.relics || relicsManager;
+        const isUnlocked = relicsEngine ? relicsEngine.isRelicUnlocked({ id: art.hasRelic, unlockedAtStep: 999 }) : false;
         relicHtml = `
           <div class="webpedia-relic-interactive ${isUnlocked ? 'is-collected' : ''}" data-relic-id="${art.hasRelic}" title="Clique pour saisir cette relique dans ton Dossier Classifié">
             <div class="webpedia-relic-img-box">
