@@ -3,7 +3,7 @@
 // Création manuelle de fichiers, autocomplétion IntelliSense, dialogues interactifs
 // =============================================================================
 
-import { MULTIPAGE_STEPS } from './continuous-steps.js';
+import { MULTIPAGE_STEPS, getStepCanonicalFiles } from './continuous-steps.js';
 import { CHEATSHEET } from './cheatsheet-data.js';
 import { GLOSSARY_ITEMS } from './glossary-data.js';
 import { VSCodeEditor } from './editor-pro.js';
@@ -547,6 +547,19 @@ export class SanctuaireApp {
   }
 
   resetStepBaseline() {
+    // Si un événement notable de NULL est en cours d'affrontement
+    if (this.notableEvents && this.notableEvents.activeEvent) {
+      const ev = this.notableEvents.activeEvent;
+      if (confirm(`Souhaites-tu restaurer le modèle initial de débogage pour cette alerte de NULL (${ev.title}) ?`)) {
+        const canonical = getStepCanonicalFiles(ev.triggerAfterStep);
+        const buggedFiles = ev.bugInjection(canonical, true);
+        this.editor.setFiles(buggedFiles, ev.targetFile || 'index.html');
+        storage.saveProjectFiles(buggedFiles);
+        this.showToast("Modèle initial de débogage de NULL restauré !", "info");
+      }
+      return;
+    }
+
     const step = MULTIPAGE_STEPS[this.currentStepIndex];
     if (!step) return;
 
@@ -1131,6 +1144,19 @@ export class SanctuaireApp {
       }
     }
     if (this.notableEvents) {
+      // 1. Synchroniser l'étape active avec le moment narratif de l'alerte
+      const stepIndex = Math.max(0, (ev.triggerAfterStep !== undefined ? ev.triggerAfterStep - 1 : 0));
+      this.currentStepIndex = stepIndex;
+      storage.setCurrentStep(stepIndex);
+      this.updateStepUI();
+
+      // 2. Précharger immédiatement la base canonique avec le bug injecté pour le défi
+      const canonical = getStepCanonicalFiles(ev.triggerAfterStep);
+      const buggedFiles = ev.bugInjection(canonical, true);
+      this.editor.setFiles(buggedFiles, ev.targetFile || 'index.html');
+      storage.saveProjectFiles(buggedFiles);
+
+      // 3. Déclencher la cinématique d'alerte de NULL
       this.notableEvents.triggerEvent(ev);
     }
   }

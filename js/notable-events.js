@@ -48,15 +48,20 @@ export const NOTABLE_EVENTS = [
       }
     ],
     targetFile: 'index.html',
-    bugInjection(files) {
-      let copy = { ...files };
-      if (!copy['index.html'] || !copy['index.html'].includes('</header>')) {
-        const canonical = getStepCanonicalFiles(7);
-        copy = { ...canonical, ...copy };
-        copy['index.html'] = canonical['index.html'];
+    bugInjection(files, forceCanonical = false) {
+      const canonical = getStepCanonicalFiles(7);
+      let baseHtml = canonical['index.html'];
+      if (!forceCanonical && files && files['index.html'] && files['index.html'].includes('<header>')) {
+        baseHtml = files['index.html'];
       }
-      copy['index.html'] = copy['index.html'].replace('</header>', '<!-- CORRUPTED_SECTOR: HEADER NON FERMÉ -->');
-      return copy;
+      const buggedIndex = baseHtml.includes('</header>')
+        ? baseHtml.replace('</header>', '<!-- CORRUPTED_SECTOR: HEADER NON FERMÉ -->')
+        : (baseHtml.includes('<!-- CORRUPTED_SECTOR: HEADER NON FERMÉ -->') ? baseHtml : canonical['index.html'].replace('</header>', '<!-- CORRUPTED_SECTOR: HEADER NON FERMÉ -->'));
+      return {
+        ...canonical,
+        ...(forceCanonical ? {} : files),
+        'index.html': buggedIndex
+      };
     },
     missionRiddle: "Trouve le commentaire '<!-- CORRUPTED_SECTOR: HEADER NON FERMÉ -->' dans index.html et remplace-le par la vraie balise </header> pour rétablir l'arborescence !",
     check(files) {
@@ -137,15 +142,20 @@ export const NOTABLE_EVENTS = [
       }
     ],
     targetFile: 'index.html',
-    bugInjection(files) {
-      let copy = { ...files };
-      if (!copy['index.html'] || !copy['index.html'].includes('galerie.html')) {
-        const canonical = getStepCanonicalFiles(15);
-        copy = { ...canonical, ...copy };
-        copy['index.html'] = canonical['index.html'];
+    bugInjection(files, forceCanonical = false) {
+      const canonical = getStepCanonicalFiles(15);
+      let baseHtml = canonical['index.html'];
+      if (!forceCanonical && files && files['index.html'] && files['index.html'].includes('galerie.html')) {
+        baseHtml = files['index.html'];
       }
-      copy['index.html'] = copy['index.html'].replace('href="galerie.html"', 'href="perdu.html"');
-      return copy;
+      const buggedIndex = baseHtml.includes('galerie.html')
+        ? baseHtml.replace('galerie.html', 'perdu.html')
+        : canonical['index.html'].replace('galerie.html', 'perdu.html');
+      return {
+        ...canonical,
+        ...(forceCanonical ? {} : files),
+        'index.html': buggedIndex
+      };
     },
     missionRiddle: "Corrige l'attribut erroné href=\"perdu.html\" dans la barre de navigation de index.html pour repointer vers href=\"galerie.html\" !",
     check(files) {
@@ -220,15 +230,19 @@ export const NOTABLE_EVENTS = [
       }
     ],
     targetFile: 'style.css',
-    bugInjection(files) {
-      let copy = { ...files };
-      if (!copy['style.css'] || copy['style.css'].length < 20) {
-        const canonical = getStepCanonicalFiles(23);
-        copy = { ...canonical, ...copy };
-        copy['style.css'] = canonical['style.css'] || '/* Base du Sanctuaire */\n';
+    bugInjection(files, forceCanonical = false) {
+      const canonical = getStepCanonicalFiles(23);
+      let baseCss = canonical['style.css'];
+      if (!forceCanonical && files && files['style.css'] && files['style.css'].length >= 30) {
+        baseCss = files['style.css'];
       }
-      copy['style.css'] = `/* ALERTE SECURITE GC */\nbody { display: none !important; }\n\n` + copy['style.css'];
-      return copy;
+      const cleanCss = baseCss.replace(/\/\* ALERTE SECURITE GC \*\/\s*body\s*\{\s*display:\s*none\s*!important;\s*\}\s*/g, '');
+      const buggedCss = `/* ALERTE SECURITE GC */\nbody { display: none !important; }\n\n` + cleanCss;
+      return {
+        ...canonical,
+        ...(forceCanonical ? {} : files),
+        'style.css': buggedCss
+      };
     },
     missionRiddle: "Ouvre style.css et supprime la règle 'body { display: none !important; }' pour rétablir la lumière !",
     check(files) {
@@ -411,6 +425,9 @@ export class NotableEventsEngine {
     const currentFiles = this.app.editor.getFiles();
     const buggedFiles = eventData.bugInjection(currentFiles);
     this.app.editor.setFiles(buggedFiles, eventData.targetFile);
+    if (this.app.storage) {
+      this.app.storage.saveProjectFiles(buggedFiles);
+    }
 
     // Mettre l'interface du compagnon en mode alerte NULL
     if (this.app.bodhi) {
@@ -538,7 +555,7 @@ export class NotableEventsEngine {
         overlay.classList.add('hidden');
         sound.playSuccess();
         this.app.bodhi.setSpeaker('MAÎTRE BODHI', 'weak', 'bodhi');
-        const targetStep = (eventData.triggerAfterStep !== undefined) ? Math.min(eventData.triggerAfterStep + 1, 39) : (this.app.currentStepIndex + 1);
+        const targetStep = (eventData.triggerAfterStep !== undefined) ? Math.min(eventData.triggerAfterStep, 39) : (this.app.currentStepIndex + 1);
         if (targetStep > this.app.highestUnlockedStep) {
           this.app.highestUnlockedStep = targetStep;
           if (this.app.storage) this.app.storage.setHighestUnlockedStep(targetStep);
