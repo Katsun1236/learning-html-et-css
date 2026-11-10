@@ -1,16 +1,18 @@
 // =============================================================================
 // MOTEUR DES ÉVÉNEMENTS NOTABLES & DUEL DE DÉBOGAGE
-// Les intrusions de NULL (Agent de Maintenance) & Sauvetage de Bodhi
+// Les intrusions de NULL & Sauvetage de Bodhi
 // =============================================================================
 
 import { sound } from './audio.js';
+import { getStepCanonicalFiles } from './continuous-steps.js';
+import { NULL_POSES, BODHI_POSES } from './dialogue-box.js';
 
 export const NOTABLE_EVENTS = [
   {
     id: 'event-1',
     triggerAfterStep: 7, // Après Acte I
     title: "ALERTE SYSTÈME : Première Purge Sectorielle",
-    speaker: "NULL (AGENT DE MAINTENANCE)",
+    speaker: "NULL",
     character: 'null',
     cinematicImage: 'assets/backgrounds/cinematic_bodhi_purge.jpg',
     introDialogue: [
@@ -22,29 +24,32 @@ export const NOTABLE_EVENTS = [
       },
       {
         character: 'null',
-        speaker: 'NULL (AGENT DE MAINTENANCE)',
+        speaker: 'NULL',
         pose: 'neutral',
-        text: "(Un homme âgé en bleu de travail entre lourdement dans le couloir, son bloc-notes sous le bras)... Pardonnez-moi le dérangement. Je suis le responsable du nettoyage système. Ce secteur est répertorié comme inactif depuis trente ans."
+        text: "(Un vieil homme en bleu de travail entre d'un pas lourd dans le couloir, son bloc-notes sous le bras)... Pardonnez-moi le dérangement. Ce secteur est répertorié comme inactif depuis trente ans."
       },
       {
         character: 'null',
-        speaker: 'NULL (AGENT DE MAINTENANCE)',
+        speaker: 'NULL',
         pose: 'action',
-        text: "Regarde ton fichier index.html, gamin : la balise de fermeture de l'en-tête s'est brisée sous la pression. Si ce code reste invalide dans mon rapport, je dois actionner l'aspirateur et formater l'entité Bodhi. Répare la balise </header> immédiatement si tu veux le revoir debout."
+        text: "Regarde ton fichier index.html, gamin : la balise de fermeture de l'en-tête s'est brisée sous la pression. Si ce code reste invalide dans mon rapport, je dois actionner l'aspirateur et formater l'entité Bodhi. Répare la balise &lt;/header&gt; immédiatement si tu veux le revoir debout."
       }
     ],
     targetFile: 'index.html',
     bugInjection(files) {
-      const copy = { ...files };
-      if (copy['index.html']) {
-        copy['index.html'] = copy['index.html'].replace('</header>', '<!-- CORRUPTED_SECTOR: HEADER NON FERMÉ -->');
+      let copy = { ...files };
+      if (!copy['index.html'] || !copy['index.html'].includes('</header>')) {
+        const canonical = getStepCanonicalFiles(7);
+        copy = { ...canonical, ...copy };
+        copy['index.html'] = canonical['index.html'];
       }
+      copy['index.html'] = copy['index.html'].replace('</header>', '<!-- CORRUPTED_SECTOR: HEADER NON FERMÉ -->');
       return copy;
     },
-    missionRiddle: "Trouve la balise </header> manquante dans index.html et referme-la proprement pour valider l'intégrité du document !",
+    missionRiddle: "Trouve le commentaire '<!-- CORRUPTED_SECTOR: HEADER NON FERMÉ -->' dans index.html et remplace-le par la vraie balise </header> pour rétablir l'arborescence !",
     check(files) {
       const html = files['index.html'] || '';
-      if (!html.includes('</header>')) {
+      if (!html.includes('</header>') || html.includes('CORRUPTED_SECTOR')) {
         return { pass: false, message: "La balise </header> n'est toujours pas refermée. L'arborescence est brisée !" };
       }
       return {
@@ -55,7 +60,7 @@ export const NOTABLE_EVENTS = [
     resolutionDialogue: [
       {
         character: 'null',
-        speaker: 'NULL (AGENT DE MAINTENANCE)',
+        speaker: 'NULL',
         pose: 'inspect',
         text: "(NULL ajuste ses lunettes et examine son calepin avec une moue étonnée)... Tiens donc. L'arborescence est réparée net. Bon... le protocole m'interdit de purger une zone conforme. Je remets mon aspirateur en veille. Pour l'instant."
       },
@@ -72,7 +77,7 @@ export const NOTABLE_EVENTS = [
     id: 'event-2',
     triggerAfterStep: 15, // Après Acte II
     title: "ALERTE SYSTÈME : La Fracture des Chemins (404)",
-    speaker: "NULL (AGENT DE MAINTENANCE)",
+    speaker: "NULL",
     character: 'null',
     cinematicImage: 'assets/backgrounds/cinematic_bodhi_purge.jpg',
     introDialogue: [
@@ -84,26 +89,29 @@ export const NOTABLE_EVENTS = [
       },
       {
         character: 'null',
-        speaker: 'NULL (AGENT DE MAINTENANCE)',
+        speaker: 'NULL',
         pose: 'neutral',
         text: "C'est encore moi, petit. Mauvaise nouvelle : les liens de navigation se sont décalés. Erreur 404 en cascade. Quand les chemins sont morts, la mémoire de Bodhi perd le fil de qui tu es."
       },
       {
         character: 'null',
-        speaker: 'NULL (AGENT DE MAINTENANCE)',
+        speaker: 'NULL',
         pose: 'action',
         text: "Dans index.html, le lien vers galerie.html pointe vers du vide (href=\"perdu.html\"). Rétablis le vrai chemin href=\"galerie.html\" pour reconnecter son réseau neuronal avant que je ne doive cocher la case 'Amnésie Irréversible'."
       }
     ],
     targetFile: 'index.html',
     bugInjection(files) {
-      const copy = { ...files };
-      if (copy['index.html']) {
-        copy['index.html'] = copy['index.html'].replace('href="galerie.html"', 'href="perdu.html"');
+      let copy = { ...files };
+      if (!copy['index.html'] || !copy['index.html'].includes('galerie.html')) {
+        const canonical = getStepCanonicalFiles(15);
+        copy = { ...canonical, ...copy };
+        copy['index.html'] = canonical['index.html'];
       }
+      copy['index.html'] = copy['index.html'].replace('href="galerie.html"', 'href="perdu.html"');
       return copy;
     },
-    missionRiddle: "Corrige l'attribut href erroné dans la barre de navigation de index.html pour pointer vers galerie.html !",
+    missionRiddle: "Corrige l'attribut erroné href=\"perdu.html\" dans la barre de navigation de index.html pour repointer vers href=\"galerie.html\" !",
     check(files) {
       const html = files['index.html'] || '';
       if (!html.includes('href="galerie.html"')) {
@@ -117,7 +125,7 @@ export const NOTABLE_EVENTS = [
     resolutionDialogue: [
       {
         character: 'null',
-        speaker: 'NULL (AGENT DE MAINTENANCE)',
+        speaker: 'NULL',
         pose: 'inspect',
         text: "Pointeurs rétablis à 100 %. Tu as de la ressource, gamin. Peu de gens savent réparer les artères d'un site aussi vite."
       },
@@ -134,35 +142,38 @@ export const NOTABLE_EVENTS = [
     id: 'event-3',
     triggerAfterStep: 23, // Après Acte III
     title: "ALERTE SYSTÈME : L'Avis de Purge Ultime (Seuil 99 %)",
-    speaker: "NULL (AGENT DE MAINTENANCE)",
+    speaker: "NULL",
     character: 'null',
     cinematicImage: 'assets/backgrounds/cinematic_bodhi_purge.jpg',
     introDialogue: [
       {
         character: 'null',
-        speaker: 'NULL (AGENT DE MAINTENANCE)',
+        speaker: 'NULL',
         pose: 'neutral',
         text: "(NULL retire sa casquette et s'essuie le front, l'air sincèrement accablé)... Gamin... viens voir la jauge SYSMON sur mon tableau de bord. Regarde les chiffres."
       },
       {
         character: 'null',
-        speaker: 'NULL (AGENT DE MAINTENANCE)',
+        speaker: 'NULL',
         pose: 'inspect',
-        text: "99 % d'occupation mémoire. Le cache de Bodhi est au bord de l'explosion thermonucléaire. Dans quelques étapes, mon automate lancera la purge finale sans que je puisse l'arrêter."
+        text: "99 % d'occupation mémoire. Le cache de Bodhi est au bord de l'explosion. Dans quelques étapes, mon automate lancera la purge finale sans que je puisse l'arrêter."
       },
       {
         character: 'null',
-        speaker: 'NULL (AGENT DE MAINTENANCE)',
+        speaker: 'NULL',
         pose: 'action',
-        text: "Un bug de feuille de style bloque le rendu : dans style.css, un sélecteur 'body { display: none; }' a été injecté par le système de sécurité. Supprime cette ligne pour débloquer l'affichage, mais prépare-toi : le HTML et le CSS ne suffiront plus à le sauver."
+        text: "Un bug de feuille de style bloque le rendu : dans style.css, un sélecteur 'body { display: none !important; }' a été injecté par le système. Supprime cette ligne pour débloquer l'affichage, mais prépare-toi : le HTML et le CSS ne suffiront plus à le sauver."
       }
     ],
     targetFile: 'style.css',
     bugInjection(files) {
-      const copy = { ...files };
-      if (copy['style.css']) {
-        copy['style.css'] = `/* ALERTE SECURITE GC */\nbody { display: none !important; }\n\n` + copy['style.css'];
+      let copy = { ...files };
+      if (!copy['style.css'] || copy['style.css'].length < 20) {
+        const canonical = getStepCanonicalFiles(23);
+        copy = { ...canonical, ...copy };
+        copy['style.css'] = canonical['style.css'] || '/* Base du Sanctuaire */\n';
       }
+      copy['style.css'] = `/* ALERTE SECURITE GC */\nbody { display: none !important; }\n\n` + copy['style.css'];
       return copy;
     },
     missionRiddle: "Ouvre style.css et supprime la règle 'body { display: none !important; }' pour rétablir la lumière !",
@@ -179,7 +190,7 @@ export const NOTABLE_EVENTS = [
     resolutionDialogue: [
       {
         character: 'null',
-        speaker: 'NULL (AGENT DE MAINTENANCE)',
+        speaker: 'NULL',
         pose: 'neutral',
         text: "Le sanctuaire respire encore. Mais écoute-moi bien, gamin : j'ai une tournée à terminer. Quand je reviendrai après tes grilles et tes animations, si personne n'a trouvé comment déporter la mémoire de Bodhi hors de ce serveur... je devrai tirer le levier."
       },
@@ -206,6 +217,14 @@ export class NotableEventsEngine {
     this.completedEvents = new Set(JSON.parse(saved));
   }
 
+  cancelActiveEvent() {
+    this.activeEvent = null;
+    const overlay = document.getElementById('notable-event-overlay');
+    if (overlay) {
+      overlay.classList.add('hidden');
+    }
+  }
+
   hasPendingEvent(completedStepNumber) {
     return NOTABLE_EVENTS.some(ev => ev.triggerAfterStep === completedStepNumber && !this.completedEvents.has(ev.id));
   }
@@ -217,8 +236,6 @@ export class NotableEventsEngine {
   async triggerEvent(eventData) {
     this.activeEvent = eventData;
     sound.playError();
-
-    // 1. Déclencher l'effet de glitch et la cinématique
     this.showCinematicAlert(eventData);
   }
 
@@ -232,7 +249,7 @@ export class NotableEventsEngine {
     }
 
     overlay.innerHTML = `
-      <div class="event-cinematic-backdrop" style="background-image: url('${eventData.cinematicImage}');">
+      <div class="event-cinematic-backdrop" id="event-cinematic-backdrop" style="background-image: url('${eventData.cinematicImage}');">
         <div class="event-crt-scanlines"></div>
         <div class="event-vignette"></div>
         <div class="event-alert-bar">
@@ -240,11 +257,21 @@ export class NotableEventsEngine {
           <span class="event-alert-title">${eventData.title}</span>
         </div>
 
+        <!-- Standee grand format de NULL (style Visual Novel) -->
+        <div class="event-null-standee hidden" id="event-null-standee">
+          <img src="assets/characters/null_action.jpg" alt="NULL" class="null-standee-img" id="null-standee-img">
+        </div>
+
         <div class="event-dialogue-card" id="event-dialogue-box">
-          <div class="event-speaker-badge" id="event-speaker-name">ALERTE SYSTÈME</div>
-          <p class="event-speech-text" id="event-speech-text">Initialisation de la purge...</p>
-          <div class="event-actions">
-            <button id="event-dialogue-next-btn" class="event-btn-primary">Continuer ▶</button>
+          <div class="event-avatar-portrait-wrap">
+            <img id="event-speaker-portrait" src="assets/characters/bodhi_glitch.jpg" alt="Personnage" class="event-speaker-portrait">
+          </div>
+          <div class="event-dialogue-content">
+            <div class="event-speaker-badge" id="event-speaker-name">ALERTE SYSTÈME</div>
+            <p class="event-speech-text" id="event-speech-text">Initialisation de la purge...</p>
+            <div class="event-actions">
+              <button id="event-dialogue-next-btn" class="event-btn-primary">Continuer</button>
+            </div>
           </div>
         </div>
       </div>
@@ -252,16 +279,40 @@ export class NotableEventsEngine {
 
     overlay.classList.remove('hidden');
 
-    // Déroulement des dialogues d'intro
     let dialogueIndex = 0;
     const speakerEl = overlay.querySelector('#event-speaker-name');
     const speechEl = overlay.querySelector('#event-speech-text');
     const nextBtn = overlay.querySelector('#event-dialogue-next-btn');
+    const standee = overlay.querySelector('#event-null-standee');
+    const standeeImg = overlay.querySelector('#null-standee-img');
+    const portraitImg = overlay.querySelector('#event-speaker-portrait');
 
     const showDialogue = () => {
       const d = eventData.introDialogue[dialogueIndex];
       speakerEl.textContent = d.speaker;
       speechEl.innerHTML = d.text;
+
+      const isNull = (d.character === 'null');
+      const pose = d.pose || 'neutral';
+
+      if (isNull) {
+        const nullImg = NULL_POSES[pose] || 'assets/characters/null_neutral.jpg';
+        if (standee) {
+          standee.classList.remove('hidden');
+          if (standeeImg) standeeImg.src = nullImg;
+        }
+        if (portraitImg) {
+          portraitImg.src = nullImg;
+          portraitImg.alt = "NULL";
+        }
+      } else {
+        if (standee) standee.classList.add('hidden');
+        if (portraitImg) {
+          portraitImg.src = BODHI_POSES[pose] || 'assets/characters/bodhi_glitch.jpg';
+          portraitImg.alt = "Maître Bodhi";
+        }
+      }
+
       if (dialogueIndex === eventData.introDialogue.length - 1) {
         nextBtn.textContent = "Passer au Débogage d'Urgence";
       } else {
@@ -277,7 +328,6 @@ export class NotableEventsEngine {
       if (dialogueIndex < eventData.introDialogue.length) {
         showDialogue();
       } else {
-        // Fin de l'intro, fermer l'overlay et injecter le bug dans l'éditeur
         overlay.classList.add('hidden');
         this.startDebugChallenge(eventData);
       }
@@ -285,14 +335,13 @@ export class NotableEventsEngine {
   }
 
   startDebugChallenge(eventData) {
-    // Injecter le bug dans les fichiers du joueur
     const currentFiles = this.app.editor.getFiles();
     const buggedFiles = eventData.bugInjection(currentFiles);
     this.app.editor.setFiles(buggedFiles, eventData.targetFile);
 
-    // Mettre l'interface Bodhi en mode alerte NULL
+    // Mettre l'interface du compagnon en mode alerte NULL
     if (this.app.bodhi) {
-      this.app.bodhi.setSpeaker(eventData.speaker, 'action', 'null');
+      this.app.bodhi.setSpeaker('NULL', 'action', 'null');
       this.app.bodhi.speechContainer.innerHTML = `
         <div class="bodhi-feedback error debug-alert-mode">
           <p class="bodhi-feedback-title">${eventData.title}</p>
@@ -318,7 +367,6 @@ export class NotableEventsEngine {
       }
     } catch (_) {}
 
-    // Afficher les dialogues de résolution
     this.showResolutionScreen(ev);
     this.activeEvent = null;
   }
@@ -336,11 +384,21 @@ export class NotableEventsEngine {
           <span class="event-alert-title">SITUATION RÉSOLUE // PURGE NEUTRALISÉE</span>
         </div>
 
+        <!-- Standee grand format de NULL -->
+        <div class="event-null-standee hidden" id="event-null-standee-res">
+          <img src="assets/characters/null_inspect.jpg" alt="NULL" class="null-standee-img" id="null-standee-img-res">
+        </div>
+
         <div class="event-dialogue-card" id="event-dialogue-box">
-          <div class="event-speaker-badge" id="event-speaker-name">RÉSOLU</div>
-          <p class="event-speech-text" id="event-speech-text"></p>
-          <div class="event-actions">
-            <button id="event-resolution-next-btn" class="event-btn-primary">Poursuivre la voie</button>
+          <div class="event-avatar-portrait-wrap">
+            <img id="event-speaker-portrait-res" src="assets/characters/null_inspect.jpg" alt="NULL" class="event-speaker-portrait">
+          </div>
+          <div class="event-dialogue-content">
+            <div class="event-speaker-badge" id="event-speaker-name">RÉSOLU</div>
+            <p class="event-speech-text" id="event-speech-text"></p>
+            <div class="event-actions">
+              <button id="event-resolution-next-btn" class="event-btn-primary">Poursuivre la voie</button>
+            </div>
           </div>
         </div>
       </div>
@@ -352,11 +410,36 @@ export class NotableEventsEngine {
     const speakerEl = overlay.querySelector('#event-speaker-name');
     const speechEl = overlay.querySelector('#event-speech-text');
     const nextBtn = overlay.querySelector('#event-resolution-next-btn');
+    const standee = overlay.querySelector('#event-null-standee-res');
+    const standeeImg = overlay.querySelector('#null-standee-img-res');
+    const portraitImg = overlay.querySelector('#event-speaker-portrait-res');
 
     const showNext = () => {
       const d = eventData.resolutionDialogue[idx];
       speakerEl.textContent = d.speaker;
       speechEl.innerHTML = d.text;
+
+      const isNull = (d.character === 'null');
+      const pose = d.pose || 'neutral';
+
+      if (isNull) {
+        const nullImg = NULL_POSES[pose] || 'assets/characters/null_inspect.jpg';
+        if (standee) {
+          standee.classList.remove('hidden');
+          if (standeeImg) standeeImg.src = nullImg;
+        }
+        if (portraitImg) {
+          portraitImg.src = nullImg;
+          portraitImg.alt = "NULL";
+        }
+      } else {
+        if (standee) standee.classList.add('hidden');
+        if (portraitImg) {
+          portraitImg.src = BODHI_POSES[pose] || 'assets/characters/bodhi_weak.jpg';
+          portraitImg.alt = "Maître Bodhi";
+        }
+      }
+
       if (idx === eventData.resolutionDialogue.length - 1) {
         nextBtn.textContent = "Reprendre l'apprentissage";
       } else {
@@ -374,9 +457,13 @@ export class NotableEventsEngine {
       } else {
         overlay.classList.add('hidden');
         sound.playSuccess();
-        // Réactiver l'étape suivante normalement
         this.app.bodhi.setSpeaker('MAÎTRE BODHI', 'weak', 'bodhi');
-        this.app.loadStep(this.app.currentStepIndex + 1);
+        const targetStep = (eventData.triggerAfterStep !== undefined) ? Math.min(eventData.triggerAfterStep + 1, 39) : (this.app.currentStepIndex + 1);
+        if (targetStep > this.app.highestUnlockedStep) {
+          this.app.highestUnlockedStep = targetStep;
+          if (this.app.storage) this.app.storage.setHighestUnlockedStep(targetStep);
+        }
+        this.app.loadStep(targetStep);
       }
     };
   }

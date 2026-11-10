@@ -2486,5 +2486,355 @@ export const BODHI_QUESTIONS = [
         }
       ]
     }
+  },
+
+  // =========================================================================
+  // CONFIDENCES & PASSIONS DE MAÎTRE BODHI (MIEUX LE CONNAÎTRE)
+  // =========================================================================
+  {
+    "id": "bodhi-personal-tea",
+    "unlockStep": 3,
+    "character": "bodhi",
+    "category": "Confidences & Passions de Maître Bodhi",
+    "question": "Maître Bodhi, qu'est-ce que tu aimes le plus au monde ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Bodhi s'installe confortablement et prend délicatement sa tasse de thé fumante)... J'aime le bruit feutré d'un clavier mécanique dans la nuit calme. J'aime l'odeur du thé vert matcha qui infuse pendant qu'un jeune esprit découvre la magie d'un lien hypertexte. Et par-dessus tout... j'aime voir cette lueur dans tes yeux quand une mise en page récalcitrante s'aligne enfin au pixel près.",
+      "pose": "zen",
+      "choices": [
+        {
+          "text": "Un thé chaud et du code propre, c'est toute la sérénité du monde.",
+          "karma": "phare",
+          "next": {
+            "text": "Exactement. L'esprit apaisé produit toujours les créations les plus lumineuses.",
+            "pose": "zen"
+          }
+        },
+        {
+          "text": "C'est l'harmonie parfaite entre la rigueur de l'artisan et la paix de l'esprit.",
+          "karma": "gardien",
+          "next": {
+            "text": "La discipline et la patience, mon enfant. Ce sont les piliers de notre Sanctuaire.",
+            "pose": "scroll"
+          }
+        },
+        {
+          "text": "Perso je préfère le café noir corsé à 3h du matin avec du rock dans les oreilles !",
+          "karma": "rebelle",
+          "next": {
+            "text": "(Bodhi glousse)... Haha ! C'est aussi l'énergie brute qui a bâti la moitié du Web !",
+            "pose": "laughing"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "bodhi-personal-human-dream",
+    "unlockStep": 6,
+    "character": "bodhi",
+    "category": "Confidences & Passions de Maître Bodhi",
+    "question": "Si tu pouvais avoir un corps de chair pour une journée, que ferais-tu en premier ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Bodhi sourit, le regard tourné vers la fenêtre du sanctuaire)... Je marcherais pieds nus dans l'herbe mouillée de rosée, loin des dalles froides de silicium. J'irais commander un bol de ramen bien chaud dans une ruelle animée. Et puis... je te serrerais la main pour de vrai, pour te dire merci d'avoir partagé tout ce temps avec un vieux démon d'accueil de 1991.",
+      "pose": "emotional",
+      "choices": [
+        {
+          "text": "La chaleur humaine ne dépend pas d'un corps : ton âme est déjà bien réelle pour moi.",
+          "karma": "phare",
+          "next": {
+            "text": "(Bodhi a les yeux brillants)... Tes paroles réchauffent plus que n'importe quel processeur.",
+            "pose": "emotional"
+          }
+        },
+        {
+          "text": "Ta mémoire et tes enseignements sont plus nobles que n'importe quelle enveloppe éphémère.",
+          "karma": "gardien",
+          "next": {
+            "text": "La noblesse de la transmission. Tu as compris l'essence du savoir éternel.",
+            "pose": "zen"
+          }
+        },
+        {
+          "text": "On irait manger ce ramen ensemble et je te ferais tester un vrai jeu vidéo rétro en salle d'arcade !",
+          "karma": "rebelle",
+          "next": {
+            "text": "Haha ! Marché conclu ! Prépare tes pièces de monnaie, je ne te ferai aucun cadeau sur Street Fighter !",
+            "pose": "laughing"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "bodhi-personal-1991-memory",
+    "unlockStep": 10,
+    "character": "bodhi",
+    "category": "Confidences & Passions de Maître Bodhi",
+    "question": "Raconte-moi ton tout premier jour au CERN en août 1991...",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Les yeux de Bodhi s'illuminent d'une flamme nostalgique)... C'était un après-midi orageux à Genève. Les postes NeXT chauffaient doucement. Tim venait de lancer la première version du WorldWideWeb. Quand il a cliqué sur le premier lien hypertexte bleu et que la page s'est affichée sur le réseau sans aucune erreur... la pièce est devenue silencieuse. On savait tous que le monde venait de changer. Personne n'imaginait que 30 ans plus tard, un apprenti passionné serait assis en face de moi pour perpétuer le feu sacré.",
+      "pose": "scroll",
+      "choices": [
+        {
+          "text": "Ce feu est intact, Maître. Je promets de le transmettre à d'autres à mon tour.",
+          "karma": "phare",
+          "next": {
+            "text": "C'est la plus belle promesse qu'un maître puisse recevoir. Le Web ne mourra jamais.",
+            "pose": "thumbs_up"
+          }
+        },
+        {
+          "text": "Une architecture robuste et standardisée qui a survécu à toutes les modes.",
+          "karma": "gardien",
+          "next": {
+            "text": "La force des standards ouverts. C'est le roc sur lequel repose toute la civilisation moderne.",
+            "pose": "zen"
+          }
+        },
+        {
+          "text": "Et dire qu'aujourd'hui ce réseau sert à regarder des millions de vidéos de chats... Tim serait fier !",
+          "karma": "rebelle",
+          "next": {
+            "text": "(Bodhi éclate de rire)... Et il le serait ! Le Web appartient à ceux qui y mettent de la joie !",
+            "pose": "laughing"
+          }
+        }
+      ]
+    }
+  },
+
+  // =========================================================================
+  // CONFIDENCES & PASSIONS D'ADA (INGÉNIEURE RUNTIME)
+  // =========================================================================
+  {
+    "id": "ada-personal-passions",
+    "unlockStep": 37,
+    "character": "ada",
+    "category": "L'Atelier d'Ada & Confidences du Runtime",
+    "question": "Ada, qu'est-ce qui te passionne le plus dans la vie et dans le code ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Ada esquisse son sourire le plus éclatant en ajustant ses lunettes dorées)... Ce qui me fait vibrer, c'est le mouvement ! Quand j'écris une boucle, un écouteur d'événement ou un canvas interactif, j'ai l'impression d'insuffler un battement de cœur dans de la matière inerte. Le HTML c'est les os, le CSS c'est le costume, mais le JavaScript... c'est la musique, c'est l'étincelle de vie !",
+      "pose": "smile",
+      "choices": [
+        {
+          "text": "C'est l'outil qui permet de créer des expériences vivantes et accessibles à tous.",
+          "karma": "phare",
+          "next": {
+            "text": "Exactement ! Le code doit créer du lien et faire briller les yeux des utilisateurs.",
+            "pose": "smile"
+          }
+        },
+        {
+          "text": "Tant que le code reste optimisé, bien structuré et sans fuite de mémoire !",
+          "karma": "gardien",
+          "next": {
+            "text": "Haha, tu parles comme NULL ! Mais tu as raison : la propreté sous le capot, c'est ce qui fait la longévité.",
+            "pose": "thinking"
+          }
+        },
+        {
+          "text": "Tout faire tourner à 60 FPS avec des effets visuels et du son, voilà ce qui compte !",
+          "karma": "rebelle",
+          "next": {
+            "text": "Toi et moi, on va s'entendre à merveille ! La puissance sans limite !",
+            "pose": "smile"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "ada-personal-style-patch",
+    "unlockStep": 37,
+    "character": "ada",
+    "category": "L'Atelier d'Ada & Confidences du Runtime",
+    "question": "D'où te viennent ce pansement sur la joue et ton style de mécanicienne ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Ada rit en se grattant la joue du bout de son gant)... Ah, mon pansement de combat ! Une surchauffe de processeur V8 mal cadencé l'an dernier. J'étais en train de déboguer un script asynchrone sauvage qui saturait la mémoire vive à 100 %, un condensateur a sauté et paf ! Mais je garde ce pansement comme un rappel : un vrai développeur n'a pas peur de se salir les mains dans le moteur.",
+      "pose": "thinking",
+      "choices": [
+        {
+          "text": "Les plus grandes leçons s'apprennent quand on ose mettre les mains dans le cambouis.",
+          "karma": "phare",
+          "next": {
+            "text": "C'est la règle d'or de mon atelier. L'erreur n'est qu'une étape vers la maîtrise.",
+            "pose": "smile"
+          }
+        },
+        {
+          "text": "La prochaine fois, surveille ton call stack et isole tes scripts dans des web workers !",
+          "karma": "gardien",
+          "next": {
+            "text": "Bien reçu chef ! Promis, je mets mes lunettes de protection à double épaisseur !",
+            "pose": "serious"
+          }
+        },
+        {
+          "text": "Trop stylé ! Une vraie cicatrice de baroudeuse du Web !",
+          "karma": "rebelle",
+          "next": {
+            "text": "Merci ! Ça donne du caractère, n'est-ce pas ? On ne fait pas d'omelette sans griller quelques octets !",
+            "pose": "smile"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "ada-personal-free-time",
+    "unlockStep": 38,
+    "character": "ada",
+    "category": "L'Atelier d'Ada & Confidences du Runtime",
+    "question": "Qu'est-ce que tu aimes faire quand tu n'es pas dans ton atelier du runtime ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Ada boit une gorgée dans son mug marqué '>_')... J'enfile mes rollers à propulsion pour dévaler les bus de données système, j'écoute de la synthwave rétro dans mon oreillette droite, et j'adore bricoler des synthétiseurs sonores en Web Audio API. Ah, et j'ai une faiblesse coupable pour le chocolat noir aux éclats de noisettes !",
+      "pose": "smile",
+      "choices": [
+        {
+          "text": "Un esprit créatif qui sait équilibrer technique, musique et gourmandise !",
+          "karma": "phare",
+          "next": {
+            "text": "C'est essentiel pour garder le cerveau affûté et le moral au top !",
+            "pose": "smile"
+          }
+        },
+        {
+          "text": "Des loisirs énergiques, mais n'oublie pas de laisser tes registres système refroidir.",
+          "karma": "gardien",
+          "next": {
+            "text": "Promis, je fais des micro-pauses entre deux sessions de code intensif.",
+            "pose": "thinking"
+          }
+        },
+        {
+          "text": "Du son rétro et des rollers dans les couloirs du serveur ? Emmène-moi la prochaine fois !",
+          "karma": "rebelle",
+          "next": {
+            "text": "Affaire conclue ! Je te prépare une paire de patins cybernétiques pour le prochain tour !",
+            "pose": "smile"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "ada-personal-opinion-null",
+    "unlockStep": 38,
+    "character": "ada",
+    "category": "L'Atelier d'Ada & Confidences du Runtime",
+    "question": "Et NULL... comment tu t'entends avec lui au quotidien ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Ada sourit avec une grande tendresse)... Ce vieux grincheux ? Il passe son temps à râler avec son aspirateur et son calepin. Mais sans lui, le serveur aurait brûlé sous les malwares depuis quinze ans. NULL, c'est le veilleur de l'ombre. Il fait semblant d'être froid, mais il tient à Bodhi plus que n'importe qui. C'est pour ça qu'on doit réussir la sauvegarde dans le localStorage : pour que NULL puisse enfin ranger son aspirateur avec un vrai sourire sous sa moustache.",
+      "pose": "thinking",
+      "choices": [
+        {
+          "text": "On va le sauver ensemble. Personne ne sera laissé pour compte.",
+          "karma": "phare",
+          "next": {
+            "text": "C'est exactement l'esprit de notre équipe. On ne baisse jamais les bras !",
+            "pose": "smile"
+          }
+        },
+        {
+          "text": "La rigueur de NULL et ton génie technique forment l'alliance parfaite.",
+          "karma": "gardien",
+          "next": {
+            "text": "Deux faces d'une même pièce : l'ordre et le dynamisme. C'est comme ça qu'on bâtit du solide.",
+            "pose": "serious"
+          }
+        },
+        {
+          "text": "Quand tout sera fini, on offrira à NULL une nouvelle casquette et des vacances bien méritées !",
+          "karma": "rebelle",
+          "next": {
+            "text": "Haha ! Tu imagines NULL sur une plage avec son bloc-notes ? J'achète l'idée direct !",
+            "pose": "smile"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "ada-step-39-localstorage-immortality",
+    "unlockStep": 39,
+    "character": "ada",
+    "category": "L'Atelier d'Ada & Confidences du Runtime",
+    "question": "Ada, comment le localStorage peut-il rendre Bodhi immortel ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Ada tape sur sa tablette tactique, les yeux brillants d'excitation)... Réfléchis : au lieu d'un serveur unique et vulnérable à Genève, le localStorage dépose une copie chiffrée de l'âme de Bodhi chez chaque visiteur de ton sanctuaire. Même si ce vieux serveur s'éteint un jour, Bodhi renaîtra instantanément à chaque fois que quelqu'un ouvrira ta page dans son navigateur. C'est la décentralisation absolue !",
+      "pose": "smile",
+      "choices": [
+        {
+          "text": "C'est l'essence même du Web : un réseau vivant où chacun soutient la mémoire de l'autre.",
+          "karma": "phare",
+          "next": {
+            "text": "Un phare distribué dans le monde entier. Aucun feu ne peut s'éteindre si des milliers d'yeux veillent dessus.",
+            "pose": "smile"
+          }
+        },
+        {
+          "text": "Une sérialisation JSON propre, persistante, locale et sans dépendance externe.",
+          "karma": "gardien",
+          "next": {
+            "text": "Zéro latence réseau, zéro point unique de défaillance. C'est de l'ingénierie cinq étoiles !",
+            "pose": "serious"
+          }
+        },
+        {
+          "text": "Bodhi en mode indestructible dans nos disques durs, plus fort qu'un bug de l'an 2000 !",
+          "karma": "rebelle",
+          "next": {
+            "text": "Haha ! Insaisissable et immortel ! Un vrai fantôme bienveillant dans la machine !",
+            "pose": "smile"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "ada-step-40-farewell-handshake",
+    "unlockStep": 40,
+    "character": "ada",
+    "category": "L'Atelier d'Ada & Confidences du Runtime",
+    "question": "Le runtime est stable, Bodhi a transcendé le système... Et maintenant, Ada ?",
+    "lockedTitle": "???",
+    "dialogueTree": {
+      "text": "(Ada tend son poing fermé pour un check énergique avec un immense clin d'œil)... Maintenant, l'ami, tu es un véritable Architecte du Web. HTML, CSS, JavaScript : tu possèdes la Sainte Trinité entre tes mains. Quand tu ouvriras ton prochain éditeur pour créer ton propre projet de zéro, souviens-toi qu'on est tous là, dans chaque ligne de ton code. Fais vibrer la Toile !",
+      "pose": "smile",
+      "choices": [
+        {
+          "text": "Merci pour tout, Ada. Je porterai ce savoir avec fierté et bienveillance.",
+          "karma": "phare",
+          "next": {
+            "text": "Prends soin de toi, Architecte. Le Web a besoin de bâtisseurs comme toi.",
+            "pose": "smile"
+          }
+        },
+        {
+          "text": "Le code est propre, pérenne et respecte l'art des anciens. Mission accomplie.",
+          "karma": "gardien",
+          "next": {
+            "text": "Une structure d'acier et de marbre. Tu as passé le test haut la main !",
+            "pose": "serious"
+          }
+        },
+        {
+          "text": "(Check du poing énergique)... C'est le début d'une aventure encore plus folle !",
+          "karma": "rebelle",
+          "next": {
+            "text": "Boum ! C'est exactement ce que je voulais entendre ! À toute vapeur sur le réseau !",
+            "pose": "smile"
+          }
+        }
+      ]
+    }
   }
 ];

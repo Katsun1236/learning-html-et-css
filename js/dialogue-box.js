@@ -8,6 +8,16 @@ import { BODHI_QUESTIONS } from './bodhi-lore.js';
 import { storage } from './storage.js';
 import { enrichWithGlossary, getGlossaryItem } from './glossary-data.js';
 
+export function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export const BODHI_POSES = {
   neutral: 'assets/characters/bodhi_neutral.jpg',
   thinking: 'assets/characters/bodhi_thinking.jpg',
@@ -44,8 +54,8 @@ export const ADA_POSES = {
 
 export const ALL_CHARACTERS = {
   bodhi: { name: 'MAÎTRE BODHI', poses: BODHI_POSES },
-  null: { name: 'NULL (MAINTENANCE)', poses: NULL_POSES },
-  ada: { name: 'ADA (RUNTIME)', poses: ADA_POSES }
+  null: { name: 'NULL', poses: NULL_POSES },
+  ada: { name: 'ADA (INGÉNIEURE RUNTIME)', poses: ADA_POSES }
 };
 
 export class BodhiDialogueEngine {
@@ -523,8 +533,17 @@ export class BodhiDialogueEngine {
 
   updateAskButtonBadge() {
     if (!this.askBtn) return;
+    const char = this.currentCharacter || 'bodhi';
+    if (char === 'null') {
+      let badge = this.askBtn.querySelector('.ask-btn-badge');
+      if (badge) badge.remove();
+      return;
+    }
     const currentLevel = this.getCurrentLevel();
-    const hasUnseen = BODHI_QUESTIONS.some(q => q.unlockStep <= currentLevel && !this.seenQuestions.has(q.id));
+    const hasUnseen = BODHI_QUESTIONS.some(q => {
+      const matchChar = (char === 'ada') ? (q.character === 'ada') : (!q.character || q.character === 'bodhi');
+      return matchChar && (q.unlockStep || 1) <= currentLevel && !this.seenQuestions.has(q.id);
+    });
 
     let badge = this.askBtn.querySelector('.ask-btn-badge');
     if (hasUnseen) {
@@ -542,15 +561,18 @@ export class BodhiDialogueEngine {
   renderQAList() {
     if (!this.qaQuestionsList) return;
 
+    const char = this.currentCharacter || 'bodhi';
     const currentLevel = this.getCurrentLevel();
-    const availableQuestions = BODHI_QUESTIONS.filter(q => (q.unlockStep || 1) <= currentLevel);
-    
-    // Extraction dynamique ordonnée de toutes les catégories présentes
-    const categoryNames = Array.from(new Set(availableQuestions.map(q => q.category || 'Sagesse de Bodhi')));
+    const availableQuestions = BODHI_QUESTIONS.filter(q => {
+      const matchChar = (char === 'ada') ? (q.character === 'ada') : (!q.character || q.character === 'bodhi');
+      return matchChar && (q.unlockStep || 1) <= currentLevel;
+    });
+    const defaultCategory = (char === 'ada') ? "L'Atelier d'Ada & Confidences du Runtime" : "Sagesse de Bodhi";
+    const categoryNames = Array.from(new Set(availableQuestions.map(q => q.category || defaultCategory)));
 
     let html = '';
     categoryNames.forEach(catName => {
-      const unlockedList = availableQuestions.filter(q => (q.category || 'Sagesse de Bodhi') === catName);
+      const unlockedList = availableQuestions.filter(q => (q.category || defaultCategory) === catName);
       if (unlockedList.length === 0) return;
 
       html += `
@@ -561,7 +583,7 @@ export class BodhiDialogueEngine {
               const isNew = !this.seenQuestions.has(q.id);
               return `
                 <button class="qa-question-pill ${isNew ? 'is-new' : ''}" data-qid="${q.id}">
-                  <span class="qa-q-text">${q.question}</span>
+                  <span class="qa-q-text">${escapeHtml(q.question)}</span>
                   ${isNew ? '<span class="qa-new-badge">!</span>' : ''}
                 </button>
               `;
@@ -572,9 +594,12 @@ export class BodhiDialogueEngine {
     });
 
     if (!html) {
+      const emptyMsg = (char === 'ada')
+        ? "Poursuis tes découvertes dans script.js pour débloquer de nouveaux échanges avec Ada."
+        : "Poursuis ta construction dans l'éditeur pour inspirer de nouveaux dialogues avec Maître Bodhi.";
       html = `
         <div class="qa-empty-state" style="padding: 16px; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
-          <p>Poursuis ta construction dans l'éditeur pour inspirer de nouveaux dialogues avec Maître Bodhi.</p>
+          <p>${emptyMsg}</p>
         </div>
       `;
     }
@@ -606,7 +631,8 @@ export class BodhiDialogueEngine {
       this.renderQAList();
       this.qaDrawer.classList.remove('hidden');
       if (this.speechContainer) this.speechContainer.classList.add('hidden');
-      this.setPose('thinking');
+      const thinkPose = (this.currentCharacter === 'ada') ? 'thinking' : 'thinking';
+      this.setPose(thinkPose, this.currentCharacter);
     } else {
       this.closeQADrawer();
     }
@@ -616,7 +642,8 @@ export class BodhiDialogueEngine {
     if (!this.qaDrawer) return;
     this.qaDrawer.classList.add('hidden');
     if (this.speechContainer) this.speechContainer.classList.remove('hidden');
-    this.setPose('neutral');
+    const normalPose = (this.currentStep && this.currentStep.pose) || 'neutral';
+    this.setPose(normalPose, this.currentCharacter);
   }
 
   startConversation(questionData) {
@@ -625,13 +652,17 @@ export class BodhiDialogueEngine {
 
     if (!this.speechContainer) return;
 
+    const char = questionData.character || this.currentCharacter || 'bodhi';
+    this.activeQuestionCharacter = char;
+
     const tree = questionData.dialogueTree;
     this.currentDialogueTree = tree;
-    this.setPose(tree.pose || questionData.pose || 'neutral');
+    const pose = tree.pose || questionData.pose || 'neutral';
+    this.setPose(pose, char);
 
     this.conversationHistory = [
       { role: 'user', text: questionData.question },
-      { role: 'bodhi', text: tree.text, pose: tree.pose || 'neutral' }
+      { role: char, text: tree.text, pose: pose }
     ];
 
     this.renderConversationNode(tree);
@@ -639,6 +670,13 @@ export class BodhiDialogueEngine {
 
   renderConversationNode(node) {
     if (!this.speechContainer) return;
+
+    const char = this.activeQuestionCharacter || this.currentCharacter || 'bodhi';
+    const isAda = (char === 'ada');
+    const speakerLabel = isAda ? "Ada (Ingénieure Runtime) :" : "Maître Bodhi :";
+    const endTagText = isAda
+      ? "Ada te fait un clin d'œil complice en buvant une gorgée de son mug '>_'. L'échange est gravé dans le runtime."
+      : "Bodhi te sourit avec bienveillance. L'échange est gravé dans ton esprit.";
 
     const historyHtml = this.conversationHistory.map(entry => {
       if (entry.role === 'user') {
@@ -650,8 +688,8 @@ export class BodhiDialogueEngine {
         `;
       } else {
         return `
-          <div class="qa-bodhi-bubble">
-            <span class="qa-label">Maître Bodhi :</span>
+          <div class="qa-bodhi-bubble ${isAda ? 'qa-ada-bubble' : ''}">
+            <span class="qa-label">${speakerLabel}</span>
             <p>« ${enrichWithGlossary(entry.text)} »</p>
           </div>
         `;
@@ -666,7 +704,7 @@ export class BodhiDialogueEngine {
           <div class="qa-choices-list">
             ${node.choices.map((c, idx) => `
               <button class="btn-qa-choice" data-idx="${idx}">
-                ${c.text}
+                ${escapeHtml(c.text)}
               </button>
             `).join('')}
           </div>
@@ -675,7 +713,7 @@ export class BodhiDialogueEngine {
     } else {
       choicesHtml = `
         <div class="qa-end-dialogue-tag">
-          Bodhi te sourit avec bienveillance. L'échange est gravé dans ton esprit.
+          ${endTagText}
         </div>
       `;
     }
@@ -715,8 +753,8 @@ export class BodhiDialogueEngine {
           }
 
           this.conversationHistory.push({ role: 'user', text: choice.text });
-          this.conversationHistory.push({ role: 'bodhi', text: choice.next.text, pose: choice.next.pose || 'neutral' });
-          this.setPose(choice.next.pose || 'neutral');
+          this.conversationHistory.push({ role: char, text: choice.next.text, pose: choice.next.pose || 'neutral' });
+          this.setPose(choice.next.pose || 'neutral', char);
           this.renderConversationNode(choice.next);
         }
       });
@@ -733,15 +771,24 @@ export class BodhiDialogueEngine {
     }
   }
 
-  setPose(poseName, character = 'bodhi') {
+  setPose(poseName, character = null) {
     if (!this.avatarContainer) return;
-    this.currentCharacter = character || 'bodhi';
-    const charData = ALL_CHARACTERS[this.currentCharacter] || ALL_CHARACTERS.bodhi;
-    let src = charData.poses[poseName] || charData.poses.neutral;
+    if (character) {
+      this.currentCharacter = character;
+    }
+    const charKey = this.currentCharacter || 'bodhi';
+    const charData = ALL_CHARACTERS[charKey] || ALL_CHARACTERS.bodhi;
+    let src = charData.poses[poseName];
 
-    // Fallback si la pose demandée est une pose Bodhi sur un autre perso ou vice-versa
+    // Fallback intelligent selon le personnage actif pour ne jamais afficher Bodhi à la place d'Ada ou de NULL
     if (!src) {
-      src = BODHI_POSES[poseName] || BODHI_POSES.neutral;
+      if (charKey === 'ada') {
+        src = charData.poses.thinking || charData.poses.smile || charData.poses.neutral;
+      } else if (charKey === 'null') {
+        src = charData.poses.inspect || charData.poses.neutral;
+      } else {
+        src = charData.poses.neutral;
+      }
     }
 
     this.currentPose = poseName;
@@ -760,10 +807,35 @@ export class BodhiDialogueEngine {
   }
 
   setSpeaker(name, poseName, character = 'bodhi') {
+    this.currentCharacter = character || 'bodhi';
     if (this.nameBadge && name) {
       this.nameBadge.textContent = name;
     }
-    this.setPose(poseName, character);
+    this.setPose(poseName, this.currentCharacter);
+
+    // Visibilité des boutons selon le personnage actif
+    if (this.currentCharacter === 'null') {
+      if (this.hintBtn) this.hintBtn.style.display = 'none';
+      if (this.askBtn) this.askBtn.style.display = 'none';
+    } else if (this.currentCharacter === 'ada') {
+      if (this.hintBtn) {
+        this.hintBtn.style.display = '';
+        this.hintBtn.textContent = "Conseil d'Ada";
+      }
+      if (this.askBtn) {
+        this.askBtn.style.display = '';
+        this.askBtn.textContent = "Discuter avec Ada";
+      }
+    } else {
+      if (this.hintBtn) {
+        this.hintBtn.style.display = '';
+        this.hintBtn.textContent = "Conseil secret";
+      }
+      if (this.askBtn) {
+        this.askBtn.style.display = '';
+        this.askBtn.textContent = "Poser une question";
+      }
+    }
   }
 
   loadStep(step, totalSteps, highestUnlockedStep = 0) {
@@ -777,6 +849,33 @@ export class BodhiDialogueEngine {
     const speaker = step.speaker || (ALL_CHARACTERS[char] ? ALL_CHARACTERS[char].name : "MAÎTRE BODHI");
 
     this.setSpeaker(speaker, pose, char);
+
+    // Visibilité des boutons d'interaction selon le personnage
+    if (char === 'null') {
+      // NULL ne donne aucun conseil et ne répond à aucune question
+      if (this.hintBtn) this.hintBtn.style.display = 'none';
+      if (this.askBtn) this.askBtn.style.display = 'none';
+    } else if (char === 'ada') {
+      // Ada donne des conseils techniques sur le runtime ET on peut lui poser des questions pour mieux la connaître
+      if (this.hintBtn) {
+        this.hintBtn.style.display = '';
+        this.hintBtn.textContent = "Conseil d'Ada";
+      }
+      if (this.askBtn) {
+        this.askBtn.style.display = '';
+        this.askBtn.textContent = "Discuter avec Ada";
+      }
+    } else {
+      // Bodhi propose ses conseils secrets et ses questions
+      if (this.hintBtn) {
+        this.hintBtn.style.display = '';
+        this.hintBtn.textContent = "Conseil secret";
+      }
+      if (this.askBtn) {
+        this.askBtn.style.display = '';
+        this.askBtn.textContent = "Poser une question";
+      }
+    }
 
     if (this.stepBadge) {
       this.stepBadge.style.display = 'none';
@@ -827,10 +926,6 @@ export class BodhiDialogueEngine {
         });
       }
     }
-
-    if (this.hintBtn) {
-      this.hintBtn.textContent = "Conseil secret";
-    }
   }
 
   formatInstructionTags(text) {
@@ -839,17 +934,23 @@ export class BodhiDialogueEngine {
 
   toggleHint() {
     if (!this.currentStep || !this.speechContainer) return;
+    const char = this.currentCharacter || 'bodhi';
+    if (char === 'null') return; // NULL ne donne aucun conseil
+
     this.showingHint = !this.showingHint;
 
     const existingHint = this.speechContainer.querySelector('.bodhi-hint-bubble');
     if (existingHint) existingHint.remove();
 
     if (this.showingHint) {
-      this.setPose('secret');
+      const hintPose = (char === 'ada') ? 'thinking' : 'secret';
+      this.setPose(hintPose, char);
+      
+      const hintLabel = (char === 'ada') ? "Conseil d'experte d'Ada :" : "Conseil d'initié de Maître Bodhi :";
       const hintText = this.currentStep.secretTip || this.currentStep.riddle || 'Observe attentivement les balises et leur imbrication.';
       const hintHtml = `
         <div class="bodhi-hint-bubble">
-          <span class="bodhi-hint-label">Conseil d'initié de Maître Bodhi :</span>
+          <span class="bodhi-hint-label">${hintLabel}</span>
           <p class="bodhi-hint-text">${enrichWithGlossary(hintText)}</p>
         </div>
       `;
@@ -857,8 +958,11 @@ export class BodhiDialogueEngine {
       if (this.hintBtn) this.hintBtn.textContent = "Masquer le conseil";
       this.speechContainer.scrollTop = this.speechContainer.scrollHeight;
     } else {
-      this.setPose('neutral');
-      if (this.hintBtn) this.hintBtn.textContent = "Conseil secret";
+      const normalPose = this.currentStep.pose || 'neutral';
+      this.setPose(normalPose, char);
+      if (this.hintBtn) {
+        this.hintBtn.textContent = (char === 'ada') ? "Conseil d'Ada" : "Conseil secret";
+      }
     }
   }
 

@@ -57,34 +57,52 @@ export const storage = {
   },
 
   getTheme() {
-    return localStorage.getItem(`${STORAGE_PREFIX}theme`) || 'dark';
+    try {
+      return (typeof localStorage !== 'undefined' && localStorage.getItem(`${STORAGE_PREFIX}theme`)) || 'dark';
+    } catch {
+      return 'dark';
+    }
   },
 
   setTheme(theme) {
-    localStorage.setItem(`${STORAGE_PREFIX}theme`, theme);
+    try {
+      if (typeof localStorage !== 'undefined') localStorage.setItem(`${STORAGE_PREFIX}theme`, theme);
+    } catch (_) {}
   },
 
   getSoundEnabled() {
-    const val = localStorage.getItem(`${STORAGE_PREFIX}sound`);
-    return val !== 'false'; // par défaut activé
+    try {
+      const val = typeof localStorage !== 'undefined' ? localStorage.getItem(`${STORAGE_PREFIX}sound`) : null;
+      return val !== 'false'; // par défaut activé
+    } catch {
+      return true;
+    }
   },
 
   setSoundEnabled(enabled) {
-    localStorage.setItem(`${STORAGE_PREFIX}sound`, enabled ? 'true' : 'false');
+    try {
+      if (typeof localStorage !== 'undefined') localStorage.setItem(`${STORAGE_PREFIX}sound`, enabled ? 'true' : 'false');
+    } catch (_) {}
   },
 
   hasSeenPrologue() {
-    // Vérifie si le joueur a déjà vu l'introduction une première fois
-    return localStorage.getItem(`${STORAGE_PREFIX}intro_seen_v1`) === 'true';
+    try {
+      return typeof localStorage !== 'undefined' && localStorage.getItem(`${STORAGE_PREFIX}intro_seen_v1`) === 'true';
+    } catch {
+      return true;
+    }
   },
 
   setSeenPrologue(seen = true) {
-    localStorage.setItem(`${STORAGE_PREFIX}intro_seen_v1`, seen ? 'true' : 'false');
+    try {
+      if (typeof localStorage !== 'undefined') localStorage.setItem(`${STORAGE_PREFIX}intro_seen_v1`, seen ? 'true' : 'false');
+    } catch (_) {}
   },
 
   // Gestion du projet multi-fichiers (index.html, chroniques.html, etc.)
   getProjectFiles() {
     try {
+      if (typeof localStorage === 'undefined') return null;
       const data = localStorage.getItem(`${STORAGE_PREFIX}multipage_project`);
       return data ? JSON.parse(data) : null;
     } catch {
@@ -94,7 +112,7 @@ export const storage = {
 
   saveProjectFiles(files) {
     try {
-      localStorage.setItem(`${STORAGE_PREFIX}multipage_project`, JSON.stringify(files));
+      if (typeof localStorage !== 'undefined') localStorage.setItem(`${STORAGE_PREFIX}multipage_project`, JSON.stringify(files));
     } catch (e) {
       console.warn('Erreur sauvegarde projet :', e);
     }
@@ -102,36 +120,59 @@ export const storage = {
 
   // Progression verrouillée des étapes (on doit valider l'étape pour débloquer la suivante)
   getHighestUnlockedStep() {
-    const val = localStorage.getItem(`${STORAGE_PREFIX}highest_step`);
-    return val ? parseInt(val, 10) : 0; // Étape 1 débloquée par défaut
-  },
-
-  setHighestUnlockedStep(stepIndex) {
-    const current = this.getHighestUnlockedStep();
-    if (stepIndex > current) {
-      localStorage.setItem(`${STORAGE_PREFIX}highest_step`, stepIndex.toString());
+    try {
+      if (typeof localStorage === 'undefined') return 0;
+      const val = localStorage.getItem(`${STORAGE_PREFIX}highest_step`);
+      return val ? parseInt(val, 10) : 0; // Étape 1 débloquée par défaut
+    } catch {
+      return 0;
     }
   },
 
+  setHighestUnlockedStep(stepIndex) {
+    try {
+      if (typeof localStorage === 'undefined') return;
+      const current = this.getHighestUnlockedStep();
+      if (stepIndex > current) {
+        localStorage.setItem(`${STORAGE_PREFIX}highest_step`, stepIndex.toString());
+      }
+    } catch (_) {}
+  },
+
   getCurrentStep() {
-    const val = localStorage.getItem(`${STORAGE_PREFIX}current_active_step`);
-    return val ? parseInt(val, 10) : 0;
+    try {
+      if (typeof localStorage === 'undefined') return 0;
+      const val = localStorage.getItem(`${STORAGE_PREFIX}current_active_step`);
+      return val ? parseInt(val, 10) : 0;
+    } catch {
+      return 0;
+    }
   },
 
   setCurrentStep(stepIndex) {
-    localStorage.setItem(`${STORAGE_PREFIX}current_active_step`, stepIndex.toString());
+    try {
+      if (typeof localStorage !== 'undefined') localStorage.setItem(`${STORAGE_PREFIX}current_active_step`, stepIndex.toString());
+    } catch (_) {}
   },
 
   getArchitectAlignment() {
-    return localStorage.getItem(`${STORAGE_PREFIX}architect_alignment`) || 'phare';
+    try {
+      if (typeof localStorage === 'undefined') return 'phare';
+      return localStorage.getItem(`${STORAGE_PREFIX}architect_alignment`) || 'phare';
+    } catch {
+      return 'phare';
+    }
   },
 
   setArchitectAlignment(alignment) {
-    localStorage.setItem(`${STORAGE_PREFIX}architect_alignment`, alignment);
+    try {
+      if (typeof localStorage !== 'undefined') localStorage.setItem(`${STORAGE_PREFIX}architect_alignment`, alignment);
+    } catch (_) {}
   },
 
   getKarma() {
     try {
+      if (typeof localStorage === 'undefined') return { phare: 0, gardien: 0, rebelle: 0 };
       const data = localStorage.getItem(`${STORAGE_PREFIX}karma`);
       return data ? JSON.parse(data) : { phare: 0, gardien: 0, rebelle: 0 };
     } catch {

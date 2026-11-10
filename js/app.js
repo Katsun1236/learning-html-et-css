@@ -389,6 +389,9 @@ export class SanctuaireApp {
 
   loadStep(index) {
     if (index < 0 || index >= MULTIPAGE_STEPS.length) return;
+    if (this.notableEvents && this.notableEvents.activeEvent) {
+      this.notableEvents.cancelActiveEvent();
+    }
     this.currentStepIndex = index;
     storage.setCurrentStep(index);
 
@@ -472,30 +475,7 @@ export class SanctuaireApp {
   validateCurrentStep() {
     const files = this.editor.getFiles();
 
-    // =========================================================================
-    // DÉBOGAGE D'URGENCE LORS D'UN ÉVÉNEMENT NOTABLE (NULL)
-    // =========================================================================
-    if (this.notableEvents && this.notableEvents.activeEvent) {
-      const res = this.notableEvents.checkEventResolution(files);
-      if (res && res.pass) {
-        fireConfetti();
-        this.notableEvents.resolveActiveEvent();
-        this.showToast(res.message, "success");
-      } else {
-        this.bodhi.onValidationFailure(res ? res.message : "Le code injecté par NULL n'est toujours pas réparé !");
-        this.showToast("La purge approche : répare le code !", "error");
-      }
-      return;
-    }
-
-    const allCodeCombined = Object.values(files).join(' ') + ' ' + (this.editor.textarea ? this.editor.textarea.value : '');
-    const lowerCombined = allCodeCombined.toLowerCase();
-
-    // =========================================================================
-    // CODES SECRETS D'ARCHITECTE (TAPÉS DIRECTEMENT DANS L'ÉDITEUR DE CODE)
-    // =========================================================================
-
-    // Vérifier les codes de saut d'histoire directs (uniquement si le contenu de l'éditeur est une commande isolée)
+    // 1. Toujours vérifier les codes secrets d'Architecte en priorité (permet de naviguer librement ou quitter un défi)
     const editorRaw = (this.editor.textarea ? this.editor.textarea.value : '').trim();
     if (editorRaw && !editorRaw.includes('<') && !editorRaw.includes('{') && editorRaw.length <= 30) {
       if (this.handleStoryTeleportCode(editorRaw)) {
@@ -517,6 +497,23 @@ export class SanctuaireApp {
         return;
       }
     }
+
+    // 2. Débogage d'urgence lors d'un Événement Notable (NULL)
+    if (this.notableEvents && this.notableEvents.activeEvent) {
+      const res = this.notableEvents.checkEventResolution(files);
+      if (res && res.pass) {
+        fireConfetti();
+        this.notableEvents.resolveActiveEvent();
+        this.showToast(res.message, "success");
+      } else {
+        this.bodhi.onValidationFailure(res ? res.message : "Le code injecté par NULL n'est toujours pas réparé !");
+        this.showToast("La purge approche : répare le code !", "error");
+      }
+      return;
+    }
+
+    const allCodeCombined = Object.values(files).join(' ') + ' ' + (this.editor.textarea ? this.editor.textarea.value : '');
+    const lowerCombined = allCodeCombined.toLowerCase();
 
     const step = MULTIPAGE_STEPS[this.currentStepIndex];
     if (!step) return;
