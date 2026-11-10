@@ -34,9 +34,6 @@
       <button id="open-relics-btn" class="header-control-btn btn-relics-special" title="Consulter les Reliques du Premier Serveur (Dossier Classifié)">
         <span>Reliques</span>
       </button>
-      <button id="secret-codes-btn" class="header-control-btn" title="Codes Secrets &amp; Sauts d'Histoire (Ctrl+Shift+S)">
-        <span>Codes</span>
-      </button>
       <button id="export-project-btn" class="header-control-btn" title="Télécharger ton Sanctuaire (.ZIP complet)">
         <span>Exporter</span>
       </button>
@@ -378,7 +375,7 @@
           Saisis un code secret d'Architecte pour naviguer instantanément vers n'importe quel chapitre, incident ou événement clé de l'histoire :
         </p>
         <div class="secret-input-wrapper">
-          <input type="text" id="secret-code-input" class="secret-code-input" placeholder="Ex: ACTE1, NULL1, CSS, ADA, RELIQUES, FINALE..." autocomplete="off">
+          <input type="text" id="secret-code-input" class="secret-code-input" placeholder="Entre un code d'Architecte..." autocomplete="off">
           <button id="submit-secret-code-btn" class="btn-primary">Activer</button>
         </div>
         <div id="secret-code-feedback" class="secret-code-feedback"></div>
@@ -422,6 +419,6 @@
   <div id="toast" class="toast"></div>
 
   <!-- APPLICATION PRINCIPALE (AVEC GESTION DU CACHE NAVIGATEUR) -->
-  <script type="module" src="js/app.js?v=2.2"></script>
+  <script type="module" src="js/app.js?v=2.3"></script>
 </body>
 </html>
