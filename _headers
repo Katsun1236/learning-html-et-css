@@ -5,8 +5,18 @@
   Permissions-Policy: geolocation=(), microphone=(), camera=()
   Cache-Control: public, max-age=3600
 
+/style.css
+  Content-Type: text/css; charset=utf-8
+  Cache-Control: no-cache
+
+/script.js
+  Content-Type: application/javascript; charset=utf-8
+  Cache-Control: no-cache
+
 /css/*
+  Content-Type: text/css; charset=utf-8
   Cache-Control: public, max-age=86400
 
 /js/*
+  Content-Type: application/javascript; charset=utf-8
   Cache-Control: public, max-age=86400

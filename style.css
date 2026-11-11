@@ -1,0 +1,11 @@
+/* ==========================================================================
+   SANCTUAIRE DU WEB - STYLESHEET DE SECOURS (ROOT FALLBACK)
+   Toutes les règles CSS sont injectées dynamiquement par le runtime pédagogique.
+   Ce fichier évite tout incident réseau 404 ou erreur de type MIME.
+   ========================================================================== */
+
+:root {
+  --primary: #2563eb;
+  --bg-color: #ffffff;
+  --text-color: #0f172a;
+}

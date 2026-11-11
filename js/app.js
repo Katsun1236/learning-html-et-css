@@ -1045,35 +1045,35 @@ export class SanctuaireApp {
 
     // 1. Actes & Étapes clés
     if (c === 'ACTE1' || c === 'DEBUT' || c === 'S1') {
-      this.teleportToStep(0, "Acte I : Le Commencement");
+      this.teleportToStep(0, "Acte I : HTML - Structure & Bases (index.html)");
       return true;
     }
     if (c === 'ACTE2' || c === 'PAGES' || c === 'S9') {
-      this.teleportToStep(8, "Acte II : La Toile Multi-pages (Étape 9)");
+      this.teleportToStep(8, "Acte II : HTML - Multi-pages, Tableaux & Formulaires (Étape 9)");
       return true;
     }
     if (c === 'ACTE3' || c === 'CSS' || c === 'S19') {
-      this.teleportToStep(18, "Acte III : L'Harmonie CSS (Étape 19)");
+      this.teleportToStep(18, "Acte III : CSS - Fondamentaux & Modèle de Boîte (Étape 19)");
       return true;
     }
     if (c === 'ACTE4' || c === 'GRID' || c === 'S29') {
-      this.teleportToStep(28, "Acte IV : CSS Grid & Layouts (Étape 29)");
+      this.teleportToStep(28, "Acte IV : CSS - Flexbox, Grid & Responsive (Étape 29)");
       return true;
     }
     if (c === 'ACTE5' || c === 'MAITRISE' || c === 'S37') {
-      this.teleportToStep(36, "Acte V : Haute Maîtrise & Artisanat Avancé (Étape 37)");
+      this.teleportToStep(36, "Acte V : CSS - Animations, Effets & Accessibilité (Étape 37)");
       return true;
     }
     if (c === 'ADA' || c === 'ACTE6' || c === 'JS' || c === 'S44') {
-      this.teleportToStep(43, "Acte VI : L'Atelier du Runtime avec Ada (Étape 44)");
+      this.teleportToStep(43, "Acte VI : JavaScript - DOM, Événements & LocalStorage (Étape 44)");
       return true;
     }
     if (c === 'LOCALSTORAGE' || c === 'S49') {
-      this.teleportToStep(48, "Étape 49 : L'Exode de la Mémoire (localStorage)");
+      this.teleportToStep(48, "Étape 49 : Persistance des données avec localStorage");
       return true;
     }
     if (c === 'FINALE' || c === 'APOTHEOSE' || c === 'S50' || c === 'S40') {
-      this.teleportToStep(49, "Étape 50 : L'Apothéose & L'Ascension Éternelle");
+      this.teleportToStep(49, "Étape 50 : Projet complet - Intégration HTML, CSS & JavaScript");
       return true;
     }
 

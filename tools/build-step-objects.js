@@ -1,5 +1,5 @@
 // =============================================================================
-// DEFINITION ET VALIDATION DES 50 ETAPES PEDAGOGIQUES
+// DEFINITION ET VALIDATION DES 50 ETAPES PEDAGOGIQUES - ACTE I
 // =============================================================================
 
 const fs = require('fs');
@@ -12,7 +12,7 @@ const rawPreamble = fs.readFileSync(path.join(__dirname, 'canonical-definitions.
 // We load the 50 step definitions
 const steps = [
   // ===========================================================================
-  // ACTE I : LE COMMENCEMENT DANS LE NÉANT (index.html)
+  // ACTE I : HTML - STRUCTURE & BASES (index.html)
   // ===========================================================================
   {
     id: 'step-1',
@@ -20,9 +20,9 @@ const steps = [
     character: 'bodhi',
     pose: 'neutral',
     speaker: "MAÎTRE BODHI",
-    act: "Acte I : Le Commencement dans le Néant",
+    act: "Acte I : HTML - Structure & Bases (index.html)",
     targetFile: 'index.html',
-    title: "Le Grand Silence du Fichier Vide",
+    title: "Fichier index.html & <!DOCTYPE html>",
     proverb: "« Le néant n'est pas le vide ; c'est l'espace infini où tout peut advenir. »",
     mentorSpeech: "Approche, voyageur. Ouvre les yeux : ton atelier est totalement vierge. Pas un seul fichier n'existe encore. Avant d'écrire la moindre ligne de code, un véritable bâtisseur doit d'abord faire naître son support. Crée toi-même le tout premier fichier de ton univers, puis proclame l'incantation sacrée du HTML5.",
     riddle: "Crée le fichier 'index.html', proclame le DOCTYPE et ouvre la balise racine html en français.",
@@ -61,9 +61,9 @@ const steps = [
     character: 'bodhi',
     pose: 'thinking',
     speaker: "MAÎTRE BODHI",
-    act: "Acte I : Le Commencement dans le Néant",
+    act: "Acte I : HTML - Structure & Bases (index.html)",
     targetFile: 'index.html',
-    title: "L'Esprit Invisible du Document (head, charset & title)",
+    title: "Balises <head>, <meta charset> & <title>",
     proverb: "« Ce qui est invisible aux yeux des visiteurs guide la clarté du monde. »",
     mentorSpeech: "Regarde bien la structure : une page web possède deux royaumes. Le premier est le <head>, le sanctuaire de l'esprit invisible où reposent les métadonnées, l'encodage et le nom véritable de ton œuvre dans l'onglet du navigateur.",
     riddle: "Glisse un élément <head> dans <html> avec l'encodage universel UTF-8 et un titre digne.",
@@ -95,9 +95,9 @@ const steps = [
     character: 'bodhi',
     pose: 'zen',
     speaker: "MAÎTRE BODHI",
-    act: "Acte I : Le Commencement dans le Néant",
+    act: "Acte I : HTML - Structure & Bases (index.html)",
     targetFile: 'index.html',
-    title: "Le Don d'Ubiquité Responsive & Métadonnées",
+    title: "Balises <meta name=\"viewport\"> & description",
     proverb: "« Le roseau qui plie sous la brise embrasse toutes les tailles d'écrans. »",
     mentorSpeech: "Un document digne de traverser les âges ne doit ignorer aucun voyageur, qu'il consulte le réseau depuis un écran géant ou une vitre de poche. Pour cela, le viewport ordonne au navigateur d'ajuster l'échelle à la largeur de l'appareil. Ajoutons aussi une description pour que les indexeurs du monde entier comprennent ton intention.",
     riddle: "Insère la balise viewport et une description dans ton <head>.",
@@ -128,9 +128,9 @@ const steps = [
     character: 'bodhi',
     pose: 'thumbs_up',
     speaker: "MAÎTRE BODHI",
-    act: "Acte I : Le Commencement dans le Néant",
+    act: "Acte I : HTML - Structure & Bases (index.html)",
     targetFile: 'index.html',
-    title: "Le Monde Visible & Le Fronton (body, header & h1)",
+    title: "Balises <body>, <header> & Titre <h1>",
     proverb: "« Ce qui était pensé dans l'ombre doit maintenant rayonner dans la clarté. »",
     mentorSpeech: "Le monde invisible est en ordre. Il est temps d'ouvrir le second royaume : le <body>, le lieu où naît toute forme perçue par l'œil humain. Érigeons-y le fronton du temple : un <header> majestueux couronné par le titre suprême <h1>.",
     riddle: "Ouvre <body>, dresse un <header> avec un <h1> et un paragraphe d'accueil.",
@@ -165,9 +165,9 @@ const steps = [
     character: 'bodhi',
     pose: 'pointing',
     speaker: "MAÎTRE BODHI",
-    act: "Acte I : Le Commencement dans le Néant",
+    act: "Acte I : HTML - Structure & Bases (index.html)",
     targetFile: 'index.html',
-    title: "Le Réseau des Routes (nav & liens relatifs)",
+    title: "Navigation <nav> & Liens <a>",
     proverb: "« Une maison sans porte est une prison ; un site sans liens est une île perdue. »",
     mentorSpeech: "La magie originelle du Web réside dans l'hyperlien : la faculté de franchir les distances d'un simple effleurement. Traçons dans notre <header> la carte des 4 pavillons que nous allons bâtir ensemble.",
     riddle: "Crée un élément <nav> dans ton <header> contenant 4 liens relatifs.",
@@ -201,9 +201,9 @@ const steps = [
     character: 'bodhi',
     pose: 'scroll',
     speaker: "MAÎTRE BODHI",
-    act: "Acte I : Le Commencement dans le Néant",
+    act: "Acte I : HTML - Structure & Bases (index.html)",
     targetFile: 'index.html',
-    title: "Le Cœur de l'Édifice (main, section & h2)",
+    title: "Contenu principal <main>, <section> & <article>",
     proverb: "« Le corps a son cœur, le navire a sa quille, le document a son main. »",
     mentorSpeech: "Après l'en-tête vient le cœur battant de la page : l'élément <main>. Il ne doit exister qu'une seule fois par page pour accueillir le contenu unique et précieux de ce lieu. Divisons-le avec une <section> thématique et un titre de second niveau <h2>.",
     riddle: "Ajoute un <main> après le header, contenant une <section>, un <h2> et un <article>.",
@@ -238,9 +238,9 @@ const steps = [
     character: 'bodhi',
     pose: 'code_magic',
     speaker: "MAÎTRE BODHI",
-    act: "Acte I : Le Commencement dans le Néant",
+    act: "Acte I : HTML - Structure & Bases (index.html)",
     targetFile: 'index.html',
-    title: "L'Art de l'Emphase & Du Texte Sémantique (strong, em & code)",
+    title: "Formatage de texte <strong>, <em> & <code>",
     proverb: "« Le sage ne crie pas pour être entendu ; il choisit le mot juste qui porte son poids d'or. »",
     mentorSpeech: "Autrefois, des scribes égarés utilisaient des balises purement graphiques comme b ou i. Mais un véritable artisan s'adresse aussi bien aux yeux qu'aux liseuses d'écran des malvoyants et aux robots d'indexation. Utilisons <strong> pour une importance capitale, <em> pour une nuance spirituelle et <code> pour citer le langage des machines.",
     riddle: "Enrichis ton paragraphe avec les balises <strong>, <em> et <code>.",
@@ -272,9 +272,9 @@ const steps = [
     character: 'bodhi',
     pose: 'zen',
     speaker: "MAÎTRE BODHI",
-    act: "Acte I : Le Commencement dans le Néant",
+    act: "Acte I : HTML - Structure & Bases (index.html)",
     targetFile: 'index.html',
-    title: "Le Sceau de Clôture (footer & entités)",
+    title: "Pied de page <footer> & Symbole &copy;",
     proverb: "« Tout cycle qui s'achève avec grâce prépare le lever du jour suivant. »",
     mentorSpeech: "Une œuvre accomplie porte toujours la signature de son créateur. Tout en bas de la page, après <main>, déposons l'élément <footer>. Nous y inscrirons l'année et l'entité sacrée &copy; pour sceller les droits du bâtisseur.",
     riddle: "Ajoute un <footer> contenant un paragraphe avec l'entité &copy; et la mention du Sanctuaire.",

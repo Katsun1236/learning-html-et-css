@@ -908,39 +908,52 @@ ${globalJs ? `<script id="virtual-script">\ntry {\n${globalJs}\n} catch(err) { c
     }
 
     try {
-      const iframeDoc = this.previewIframe.contentDocument || this.previewIframe.contentWindow.document;
-      iframeDoc.open();
-      iframeDoc.write(documentContent);
-      iframeDoc.close();
+      // Si l'iframe est corrompue ou bloquée dans un état d'erreur de sous-trame (chromewebdata), on force un retour sain
+      try {
+        if (!this.previewIframe.contentDocument || this.previewIframe.contentWindow?.location?.href?.includes('chromewebdata')) {
+          this.previewIframe.src = 'about:blank';
+        }
+      } catch {
+        this.previewIframe.src = 'about:blank';
+      }
 
-      iframeDoc.addEventListener('click', (e) => {
-        const a = e.target.closest('a');
-        if (a) {
-          const href = (a.getAttribute('href') || '').trim();
-          const isExternal = href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//') || href.startsWith('mailto:') || href.startsWith('tel:');
-          const isAnchor = href.startsWith('#');
+      const iframeDoc = this.previewIframe.contentDocument || this.previewIframe.contentWindow?.document;
+      if (iframeDoc) {
+        iframeDoc.open();
+        iframeDoc.write(documentContent);
+        iframeDoc.close();
 
-          if (!isExternal && !isAnchor) {
-            e.preventDefault(); // Toujours bloquer la navigation physique pour ne jamais tomber sur chrome-error://chromewebdata
-            e.stopPropagation();
-            const cleanHref = href.replace(/^\.\//, '').split('?')[0].split('#')[0].trim();
-            if (cleanHref && this.files[cleanHref] !== undefined) {
-              this.switchPreviewPage(cleanHref);
-              if (typeof this.onFileSwitchRequested === 'function') {
-                this.onFileSwitchRequested(cleanHref);
+        iframeDoc.addEventListener('click', (e) => {
+          const a = e.target.closest('a');
+          if (a) {
+            const href = (a.getAttribute('href') || '').trim();
+            const isExternal = href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//') || href.startsWith('mailto:') || href.startsWith('tel:');
+            const isAnchor = href.startsWith('#');
+
+            if (!isExternal && !isAnchor) {
+              e.preventDefault(); // Toujours bloquer la navigation physique pour ne jamais tomber sur chrome-error://chromewebdata
+              e.stopPropagation();
+              const cleanHref = href.replace(/^\.\//, '').split('?')[0].split('#')[0].trim();
+              if (cleanHref && this.files[cleanHref] !== undefined) {
+                this.switchPreviewPage(cleanHref);
+                if (typeof this.onFileSwitchRequested === 'function') {
+                  this.onFileSwitchRequested(cleanHref);
+                }
+              } else if (cleanHref) {
+                console.info(`Navigation virtuelle simulée vers '${cleanHref}' (rechargement réseau bloqué).`);
               }
-            } else if (cleanHref) {
-              console.info(`Navigation virtuelle simulée vers '${cleanHref}' (rechargement réseau bloqué).`);
             }
           }
-        }
-      }, true);
+        }, true);
 
-      // Interception des soumissions de formulaire pour éviter toute navigation 404
-      iframeDoc.addEventListener('submit', (e) => {
-        e.preventDefault();
-        console.info('Simulation : formulaire intercepté dans la prévisualisation (aucun rechargement réseau).');
-      });
+        // Interception des soumissions de formulaire pour éviter toute navigation 404
+        iframeDoc.addEventListener('submit', (e) => {
+          e.preventDefault();
+          console.info('Simulation : formulaire intercepté dans la prévisualisation (aucun rechargement réseau).');
+        });
+      } else {
+        this.previewIframe.srcdoc = documentContent;
+      }
     } catch {
       this.previewIframe.srcdoc = documentContent;
     }
