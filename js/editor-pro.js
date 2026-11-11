@@ -86,6 +86,20 @@ export class VSCodeEditor {
       this.recordHistorySnapshot(false);
       this.triggerChange();
     });
+
+    // Écoute des navigations virtuelles issues de la prévisualisation (postMessage sécurisé)
+    window.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'sanctuaire_navigate') {
+        const href = (event.data.href || '').trim();
+        const cleanHref = href.replace(/^\.\//, '').split('?')[0].split('#')[0].trim();
+        if (cleanHref && this.files[cleanHref] !== undefined) {
+          this.switchPreviewPage(cleanHref);
+          if (typeof this.onFileSwitchRequested === 'function') {
+            this.onFileSwitchRequested(cleanHref);
+          }
+        }
+      }
+    });
   }
 
   updateHighlight() {
@@ -845,11 +859,10 @@ export class VSCodeEditor {
       });
 
       // Remplacement pro-actif et ultra-robuste de TOUTES les balises <script src="..."> locales
-      // Gère src="..." avec ou sans espaces, avec ou sans defer, avec ou sans balise de fermeture
       let hasInlinedGlobalJs = false;
-      processedHtml = processedHtml.replace(/<script\b([^>]*?)src\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))([^>]*?)>([\s\S]*?)<\/script>|<script\b([^>]*?)src\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))([^>]*?)\/?>/gi, 
-        (match, p1, src1, src2, src3, p2, body, p3, src4, src5, src6, p4) => {
-          const srcVal = (src1 || src2 || src3 || src4 || src5 || src6 || '').trim();
+      processedHtml = processedHtml.replace(/<script\b([^>]*?)src\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))([^>]*?)(?:>([\s\S]*?<\/script>)|>|\/>)/gi, 
+        (match, p1, s1, s2, s3, p2, closing) => {
+          const srcVal = (s1 || s2 || s3 || '').trim();
           const isLocal = !/^https?:\/\/|^\/\/|^data:/i.test(srcVal);
 
           if (isLocal && (srcVal.endsWith('.js') || srcVal.includes('.js?'))) {
@@ -907,56 +920,46 @@ ${globalJs ? `<script id="virtual-script">\ntry {\n${globalJs}\n} catch(err) { c
 </html>`;
     }
 
-    try {
-      // Si l'iframe est corrompue ou bloquée dans un état d'erreur de sous-trame (chromewebdata), on force un retour sain
-      try {
-        if (!this.previewIframe.contentDocument || this.previewIframe.contentWindow?.location?.href?.includes('chromewebdata')) {
-          this.previewIframe.src = 'about:blank';
-        }
-      } catch {
-        this.previewIframe.src = 'about:blank';
-      }
+    // Injection du harnais de sécurité anti-crash et routage virtuel interne
+    const harnessScript = `<script id="preview-safety-harness">
+(function() {
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = (a.getAttribute('href') || '').trim();
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+    e.preventDefault();
+    e.stopPropagation();
+    try { window.parent.postMessage({ type: 'sanctuaire_navigate', href: href }, '*'); } catch(_) {}
+  }, true);
 
-      const iframeDoc = this.previewIframe.contentDocument || this.previewIframe.contentWindow?.document;
-      if (iframeDoc) {
-        iframeDoc.open();
-        iframeDoc.write(documentContent);
-        iframeDoc.close();
+  document.addEventListener('submit', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }, true);
+})();
+<\/script>`;
 
-        iframeDoc.addEventListener('click', (e) => {
-          const a = e.target.closest('a');
-          if (a) {
-            const href = (a.getAttribute('href') || '').trim();
-            const isExternal = href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//') || href.startsWith('mailto:') || href.startsWith('tel:');
-            const isAnchor = href.startsWith('#');
-
-            if (!isExternal && !isAnchor) {
-              e.preventDefault(); // Toujours bloquer la navigation physique pour ne jamais tomber sur chrome-error://chromewebdata
-              e.stopPropagation();
-              const cleanHref = href.replace(/^\.\//, '').split('?')[0].split('#')[0].trim();
-              if (cleanHref && this.files[cleanHref] !== undefined) {
-                this.switchPreviewPage(cleanHref);
-                if (typeof this.onFileSwitchRequested === 'function') {
-                  this.onFileSwitchRequested(cleanHref);
-                }
-              } else if (cleanHref) {
-                console.info(`Navigation virtuelle simulée vers '${cleanHref}' (rechargement réseau bloqué).`);
-              }
-            }
-          }
-        }, true);
-
-        // Interception des soumissions de formulaire pour éviter toute navigation 404
-        iframeDoc.addEventListener('submit', (e) => {
-          e.preventDefault();
-          console.info('Simulation : formulaire intercepté dans la prévisualisation (aucun rechargement réseau).');
-        });
-      } else {
-        this.previewIframe.srcdoc = documentContent;
-      }
-    } catch {
-      this.previewIframe.srcdoc = documentContent;
+    if (documentContent.includes('</body>')) {
+      documentContent = documentContent.replace('</body>', `${harnessScript}\n</body>`);
+    } else {
+      documentContent += `\n${harnessScript}`;
     }
+
+    // Rendu haute fidélité via srcdoc (100% sécurisé et isolé du réseau)
+    try {
+      this.previewIframe.srcdoc = documentContent;
+    } catch {
+      try {
+        const iframeDoc = this.previewIframe.contentDocument || this.previewIframe.contentWindow?.document;
+        if (iframeDoc) {
+          iframeDoc.open();
+          iframeDoc.write(documentContent);
+          iframeDoc.close();
+        }
+      } catch (_) {}
+    }
+  }
   }
 
   // =========================================================================

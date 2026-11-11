@@ -1,6 +1,7 @@
 // =============================================================================
 // COLORATEUR SYNTAXIQUE ULTRA-RAPIDE STYLE VS CODE (DARK+)
 // Zéro dépendance, synchronisé avec le textarea transparent
+// Sécurisé contre toute boucle infinie ou blocage du runtime
 // =============================================================================
 
 function escapeHtml(str) {
@@ -15,7 +16,7 @@ export function highlightCode(code, fileName = 'index.html') {
   const lower = fileName.toLowerCase();
   if (lower.endsWith('.css')) return highlightCSS(code);
   if (lower.endsWith('.js')) return highlightJS(code);
-  if (lower.endsWith('.txt')) return escapeHtml(code);
+  if (lower.endsWith('.txt') || lower.endsWith('.xml')) return escapeHtml(code);
   return highlightHTML(code);
 }
 
@@ -25,12 +26,15 @@ function highlightHTML(code) {
   const len = code.length;
 
   while (i < len) {
+    const prevI = i;
+
     // 1. Commentaires HTML <!-- ... -->
     if (code.startsWith('<!--', i)) {
       const end = code.indexOf('-->', i);
       const comment = end !== -1 ? code.slice(i, end + 3) : code.slice(i);
       result += `<span class="token-comment">${escapeHtml(comment)}</span>`;
       i += comment.length;
+      if (i <= prevI) i = prevI + 1;
       continue;
     }
 
@@ -40,6 +44,7 @@ function highlightHTML(code) {
       const doctype = end !== -1 ? code.slice(i, end + 1) : code.slice(i);
       result += `<span class="token-doctype">${escapeHtml(doctype)}</span>`;
       i += doctype.length;
+      if (i <= prevI) i = prevI + 1;
       continue;
     }
 
@@ -87,15 +92,27 @@ function highlightHTML(code) {
         tagHtml += '<span class="token-bracket">&gt;</span>';
         result += tagHtml;
         i += fullTag.length;
+        if (i <= prevI) i = prevI + 1;
         continue;
+      } else {
+        // Balise non fermée (ex: '<div' ou '<p class="') en cours de frappe
+        const rest = code.slice(i);
+        result += `<span class="token-bracket">&lt;</span>${escapeHtml(rest.slice(1))}`;
+        i = len;
+        break;
       }
     }
 
     // 4. Texte ordinaire
-    const nextBracket = code.indexOf('<', i);
+    const nextBracket = code.indexOf('<', i + 1);
     const chunk = nextBracket !== -1 ? code.slice(i, nextBracket) : code.slice(i);
     result += escapeHtml(chunk);
-    i += chunk.length;
+    i += Math.max(1, chunk.length);
+
+    if (i <= prevI) {
+      result += escapeHtml(code[prevI]);
+      i = prevI + 1;
+    }
   }
 
   return result;
@@ -107,12 +124,15 @@ function highlightCSS(code) {
   const len = code.length;
 
   while (i < len) {
+    const prevI = i;
+
     // 1. Commentaires CSS /* ... */
     if (code.startsWith('/*', i)) {
       const end = code.indexOf('*/', i);
       const comment = end !== -1 ? code.slice(i, end + 2) : code.slice(i);
       result += `<span class="token-comment">${escapeHtml(comment)}</span>`;
       i += comment.length;
+      if (i <= prevI) i = prevI + 1;
       continue;
     }
 
@@ -127,6 +147,7 @@ function highlightCSS(code) {
       const str = code.slice(i, end + 1);
       result += `<span class="token-string">${escapeHtml(str)}</span>`;
       i += str.length;
+      if (i <= prevI) i = prevI + 1;
       continue;
     }
 
@@ -135,6 +156,7 @@ function highlightCSS(code) {
     if (hexMatch) {
       result += `<span class="token-color">${hexMatch[0]}</span>`;
       i += hexMatch[0].length;
+      if (i <= prevI) i = prevI + 1;
       continue;
     }
 
@@ -143,6 +165,7 @@ function highlightCSS(code) {
     if (numMatch && (i === 0 || /[\s:,(]/.test(code[i - 1]))) {
       result += `<span class="token-number">${escapeHtml(numMatch[1])}</span>`;
       i += numMatch[1].length;
+      if (i <= prevI) i = prevI + 1;
       continue;
     }
 
@@ -152,6 +175,7 @@ function highlightCSS(code) {
       if (atMatch) {
         result += `<span class="token-keyword">${escapeHtml(atMatch[0])}</span>`;
         i += atMatch[0].length;
+        if (i <= prevI) i = prevI + 1;
         continue;
       }
     }
@@ -183,12 +207,18 @@ function highlightCSS(code) {
         result += `<span class="token-selector">${escapeHtml(word)}</span>`;
       }
       i += word.length;
+      if (i <= prevI) i = prevI + 1;
       continue;
     }
 
     // 8. Espaces ou autres caractères
     result += escapeHtml(code[i]);
     i++;
+
+    if (i <= prevI) {
+      result += escapeHtml(code[prevI]);
+      i = prevI + 1;
+    }
   }
 
   return result;
@@ -211,12 +241,15 @@ function highlightJS(code) {
   ]);
 
   while (i < len) {
+    const prevI = i;
+
     // 1. Commentaires // ... ou /* ... */
     if (code.startsWith('//', i)) {
       const end = code.indexOf('\n', i);
       const comment = end !== -1 ? code.slice(i, end) : code.slice(i);
       result += `<span class="token-comment">${escapeHtml(comment)}</span>`;
       i += comment.length;
+      if (i <= prevI) i = prevI + 1;
       continue;
     }
     if (code.startsWith('/*', i)) {
@@ -224,6 +257,7 @@ function highlightJS(code) {
       const comment = end !== -1 ? code.slice(i, end + 2) : code.slice(i);
       result += `<span class="token-comment">${escapeHtml(comment)}</span>`;
       i += comment.length;
+      if (i <= prevI) i = prevI + 1;
       continue;
     }
 
@@ -238,6 +272,7 @@ function highlightJS(code) {
       const str = code.slice(i, end + 1);
       result += `<span class="token-string">${escapeHtml(str)}</span>`;
       i += str.length;
+      if (i <= prevI) i = prevI + 1;
       continue;
     }
 
@@ -246,6 +281,7 @@ function highlightJS(code) {
     if (numMatch && (i === 0 || /[\s:,(=\-+*\/]/.test(code[i - 1]))) {
       result += `<span class="token-number">${escapeHtml(numMatch[1])}</span>`;
       i += numMatch[1].length;
+      if (i <= prevI) i = prevI + 1;
       continue;
     }
 
@@ -281,12 +317,18 @@ function highlightJS(code) {
         result += `<span class="token-attr-name">${escapeHtml(word)}</span>`;
       }
       i += word.length;
+      if (i <= prevI) i = prevI + 1;
       continue;
     }
 
     // 6. Autres
     result += escapeHtml(code[i]);
     i++;
+
+    if (i <= prevI) {
+      result += escapeHtml(code[prevI]);
+      i = prevI + 1;
+    }
   }
 
   return result;

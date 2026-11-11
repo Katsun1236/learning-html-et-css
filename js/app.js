@@ -19,6 +19,7 @@ export class SanctuaireApp {
     this.currentStepIndex = 0;
     this.highestUnlockedStep = 0;
     this.selectedInternetCategory = 'all';
+    this.storage = storage;
 
     // Sous-systèmes fondamentaux pré-initialisés sans risque
     try {
@@ -356,15 +357,17 @@ export class SanctuaireApp {
   }
 
   loadSavedProgress() {
-    this.highestUnlockedStep = storage.getHighestUnlockedStep();
-    const savedStep = storage.getCurrentStep();
-    const initialIndex = Math.min(savedStep, this.highestUnlockedStep, MULTIPAGE_STEPS.length - 1);
+    const rawHighest = storage.getHighestUnlockedStep();
+    this.highestUnlockedStep = Number.isFinite(rawHighest) ? Math.max(0, rawHighest) : 0;
+    const rawSaved = storage.getCurrentStep();
+    const savedStep = Number.isFinite(rawSaved) ? Math.max(0, rawSaved) : 0;
+    const initialIndex = Math.max(0, Math.min(savedStep, this.highestUnlockedStep, MULTIPAGE_STEPS.length - 1));
 
     const savedFiles = storage.getProjectFiles();
-    const step = MULTIPAGE_STEPS[initialIndex];
+    const step = MULTIPAGE_STEPS[initialIndex] || MULTIPAGE_STEPS[0];
 
     if (savedFiles && Object.keys(savedFiles).length > 0) {
-      this.editor.setFiles(savedFiles, step.targetFile);
+      this.editor.setFiles(savedFiles, step?.targetFile);
     } else {
       // Démarrage initial : aucun fichier pré-rempli, le joueur doit créer index.html lui-même
       this.editor.setFiles({}, null);
@@ -564,9 +567,14 @@ export class SanctuaireApp {
     if (!step) return;
 
     if (confirm("Souhaites-tu restaurer le modèle de code propre pour cette étape ?")) {
-      if (step.starterFiles && Object.keys(step.starterFiles).length > 0) {
-        this.editor.setFiles(step.starterFiles, step.targetFile || 'index.html');
-        storage.saveProjectFiles(step.starterFiles);
+      const stepNum = step.number || (this.currentStepIndex + 1);
+      const baseline = (step.starterFiles && Object.keys(step.starterFiles).length > 0)
+        ? step.starterFiles
+        : getStepCanonicalFiles(stepNum);
+
+      if (baseline && Object.keys(baseline).length > 0) {
+        this.editor.setFiles(baseline, step.targetFile || 'index.html');
+        storage.saveProjectFiles(baseline);
       }
       this.showToast("Modèle de l'étape restauré.", "info");
     }

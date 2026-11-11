@@ -6,6 +6,7 @@
 import { sound } from './audio.js';
 import { getStepCanonicalFiles } from './continuous-steps.js';
 import { NULL_POSES, BODHI_POSES, ADA_POSES } from './dialogue-box.js';
+import { storage } from './storage.js';
 
 export const NOTABLE_EVENTS = [
   {
@@ -49,7 +50,7 @@ export const NOTABLE_EVENTS = [
     ],
     targetFile: 'index.html',
     bugInjection(files, forceCanonical = false) {
-      const canonical = getStepCanonicalFiles(7);
+      const canonical = getStepCanonicalFiles(8);
       let baseHtml = canonical['index.html'];
       if (!forceCanonical && files && files['index.html'] && files['index.html'].includes('<header>')) {
         baseHtml = files['index.html'];
@@ -143,7 +144,7 @@ export const NOTABLE_EVENTS = [
     ],
     targetFile: 'index.html',
     bugInjection(files, forceCanonical = false) {
-      const canonical = getStepCanonicalFiles(15);
+      const canonical = getStepCanonicalFiles(18);
       let baseHtml = canonical['index.html'];
       if (!forceCanonical && files && files['index.html'] && files['index.html'].includes('galerie.html')) {
         baseHtml = files['index.html'];
@@ -231,7 +232,7 @@ export const NOTABLE_EVENTS = [
     ],
     targetFile: 'style.css',
     bugInjection(files, forceCanonical = false) {
-      const canonical = getStepCanonicalFiles(23);
+      const canonical = getStepCanonicalFiles(28);
       let baseCss = canonical['style.css'];
       if (!forceCanonical && files && files['style.css'] && files['style.css'].length >= 30) {
         baseCss = files['style.css'];
@@ -425,9 +426,7 @@ export class NotableEventsEngine {
     const currentFiles = this.app.editor.getFiles();
     const buggedFiles = eventData.bugInjection(currentFiles);
     this.app.editor.setFiles(buggedFiles, eventData.targetFile);
-    if (this.app.storage) {
-      this.app.storage.saveProjectFiles(buggedFiles);
-    }
+    storage.saveProjectFiles(buggedFiles);
 
     // Mettre l'interface du compagnon en mode alerte NULL
     if (this.app.bodhi) {
@@ -555,11 +554,11 @@ export class NotableEventsEngine {
         overlay.classList.add('hidden');
         sound.playSuccess();
         this.app.bodhi.setSpeaker('MAÎTRE BODHI', 'weak', 'bodhi');
-        const maxStepIdx = (this.app.steps && this.app.steps.length > 0) ? (this.app.steps.length - 1) : 49;
+        const maxStepIdx = (this.app.steps && this.app.steps.length > 0) ? (this.app.steps.length - 1) : 59;
         const targetStep = (eventData.triggerAfterStep !== undefined) ? Math.min(eventData.triggerAfterStep, maxStepIdx) : (this.app.currentStepIndex + 1);
         if (targetStep > this.app.highestUnlockedStep) {
           this.app.highestUnlockedStep = targetStep;
-          if (this.app.storage) this.app.storage.setHighestUnlockedStep(targetStep);
+          storage.setHighestUnlockedStep(targetStep);
         }
         this.app.loadStep(targetStep);
       }
