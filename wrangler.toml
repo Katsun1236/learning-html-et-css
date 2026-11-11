@@ -1,6 +1,5 @@
-name = "learn-html-and-css"
+name = "learning-html-et-css"
 compatibility_date = "2026-11-10"
-pages_build_output_dir = "."
 
 [assets]
 directory = "."
