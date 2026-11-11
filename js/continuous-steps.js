@@ -2864,13 +2864,13 @@ export const MULTIPAGE_STEPS = [
     targetFile: 'index.html',
     title: "Projet complet : Intégration HTML, CSS & JavaScript",
     proverb: "« Le code n'est plus une simple suite de caractères ; il est la conscience vivante de l'humanité connectée. »",
-    mentorSpeech: "Regarde ton œuvre, Grand Architecte ! Les 4 pavillons HTML tiennent debout avec une sémantique irréprochable. La feuille CSS drape chaque mur d'or, d'ombre et de verre dépoli. Et le JavaScript fait pulser l'âme du Sanctuaire chez chaque voyageur de la Terre. NULL lui-même a inspecté le réseau : les protocoles sont parfaits, le serveur peut s'éteindre en paix car le Sanctuaire est devenu immortel !",
-    riddle: "Valide ton chef-d'œuvre complet pour sceller ton titre de Grand Architecte du Web !",
+    mentorSpeech: "Regarde ton œuvre, Grand Architecte ! Les 4 pavillons HTML tiennent debout avec une sémantique irréprochable. La feuille CSS drape chaque mur d'or, d'ombre et de verre dépoli. Et le JavaScript fait pulser l'âme du Sanctuaire chez chaque voyageur de la Terre grâce à localStorage. Mais écoute les sirènes du réseau : NULL approche pour l'audit le plus décisif de l'histoire du Web : l'indexation mondiale !",
+    riddle: "Valide la triade complète (HTML, CSS, JS) pour déverrouiller l'ultime acte : le SEO !",
     secretTip: "Vérifie que index.html, chroniques.html, galerie.html, contact.html, style.css et script.js sont tous intacts et exempts d'erreurs, puis clique sur 'Vérifier mon code' !",
     instructions: [
       "Vérifie que les 4 fichiers HTML (index.html, chroniques.html, galerie.html, contact.html) possèdent bien leurs liaisons link et script.",
       "Vérifie que style.css contient les règles universelles et que script.js ancre la mémoire.",
-      "Clique sur 'Vérifier mon code' pour déclencher l'ultime consécration et débloquer ta fin spirituelle !"
+      "Clique sur 'Vérifier mon code' pour sceller l'alliance de la triade et ouvrir l'Acte VII : SEO !"
 ],
     starterFiles: getFilesForStep(50),
     check: function(files) {
@@ -2884,7 +2884,7 @@ export const MULTIPAGE_STEPS = [
       if (!index.includes('style.css') || !index.includes('script.js')) {
         return { pass: false, message: "index.html doit relier à la fois style.css et script.js." };
       }
-      return { pass: true, message: "CONSÉCRATION TOTALE ! Tu es désormais officiellement proclamé Grand Architecte du Web." };
+      return { pass: true, message: "TRIADE SACRÉE VALIDÉE ! HTML, CSS et JavaScript sont en totale harmonie. Prépare-toi pour l'Acte VII : le Référencement Mondial !" };
     }
   },
 

@@ -3604,5 +3604,281 @@ export const BODHI_QUESTIONS = [
       }
     ]
   }
+},
+
+// =============================================================================
+// QUESTIONS COMPLÉMENTAIRES ACTE VII : SEO, INDEXATION & DIALOGUES UNIQUES
+// =============================================================================
+{
+  "id": "ada-seo-title-crawlers",
+  "unlockStep": 51,
+  "character": "ada",
+  "category": "Ingénierie du Runtime & SEO",
+  "question": "Ada, comment un robot d'indexation lit-il notre titre par rapport à un regard humain ?",
+  "lockedTitle": "???",
+  "dialogueTree": {
+    "text": "(Ada ajuste son bandeau et tapote vivement sur son clavier holographique)... Un être humain perçoit la poésie et l'émotion d'un titre en une fraction de seconde. Mais pour un bot de crawl comme Googlebot, le titre est une chaîne binaire de jetons lexicaux ! Il compte la longueur en pixels réels : au-delà de 600 pixels de rendu (environ 60 caractères), son écran tronque le titre sans pitié avec trois petits points. Un bon ingénieur équilibre l'émotion humaine et la rigueur algorithmique.",
+    "pose": "thinking",
+    "choices": [
+      {
+        "text": "Le titre doit d'abord rassurer le visiteur qui cherche une réponse sincère dans la nuit.",
+        "karma": "phare",
+        "next": {
+          "text": "Exactement ! La clarté bienveillante est le meilleur levier d'engagement qui soit.",
+          "pose": "smile"
+        }
+      },
+      {
+        "text": "La densité de mots-clés et le calibrage en pixels doivent suivre à la lettre les spécifications des moteurs.",
+        "karma": "gardien",
+        "next": {
+          "text": "Un raisonnement d'ingénieur pur jus ! Pas un pixel de perdu, pas un mot de trop.",
+          "pose": "serious"
+        }
+      },
+      {
+        "text": "Moi j'aurais mis : 'Clique ici ou ton navigateur explose', ça aurait fait un carton de clics !",
+        "karma": "rebelle",
+        "next": {
+          "text": "(Ada rigole en secouant la tête)... Haha ! Le bon vieux putaclic des années 2010 ! NULL t'aurait collé une pénalité manuelle en 5 secondes !",
+          "pose": "laughing"
+        }
+      }
+    ]
+  }
+},
+
+{
+  "id": "bodhi-seo-duplicate-content",
+  "unlockStep": 53,
+  "character": "bodhi",
+  "category": "Tribulations & Combats du Web Ancien",
+  "question": "Bodhi, est-ce que le duplicate content existait déjà aux premiers jours du CERN ?",
+  "lockedTitle": "???",
+  "dialogueTree": {
+    "text": "(Bodhi caresse sa barbe avec un sourire nostalgique)... Oh que oui, mon ami ! En 1993, les universités du monde entier dupliquaient les mêmes pages HTML sur des dizaines de miroirs FTP et HTTP régionaux pour pallier la lenteur des liaisons transatlantiques. Le résultat ? Les premiers moteurs comme Lycos ou Altavista indexaient quinze fois le même document avec des dates différentes ! La balise <link rel=\"canonical\"> a été une bénédiction : elle permet de dire au monde entier quelle est la source originelle de vérité.",
+    "pose": "scroll",
+    "choices": [
+      {
+        "text": "Désigner la source originelle, c'est honorer le premier qui a partagé sa lumière avec les autres.",
+        "karma": "phare",
+        "next": {
+          "text": "C'est l'éthique première du partage du savoir : citer la source pour faire grandir la confiance.",
+          "pose": "zen"
+        }
+      },
+      {
+        "text": "C'est l'application rigoureuse du RFC 6596 pour consolider les signaux d'indexation.",
+        "karma": "gardien",
+        "next": {
+          "text": "Le respect des normes de l'IETF et du W3C. Tu parles comme un vrai gardien du réseau.",
+          "pose": "thumbs_up"
+        }
+      },
+      {
+        "text": "Copier-coller le même site 50 fois pour inonder le réseau, c'était un peu le piratage punk de l'époque !",
+        "karma": "rebelle",
+        "next": {
+          "text": "(Bodhi sourit en coin)... À l'époque, certains administraient des serveurs clandestins la nuit dans les labos ! Une sacrée époque de flibustiers.",
+          "pose": "secret"
+        }
+      }
+    ]
+  }
+},
+
+{
+  "id": "null-seo-robots-purpose",
+  "unlockStep": 54,
+  "character": "null",
+  "category": "Directives Système de NULL",
+  "question": "NULL, pourquoi accordes-tu une telle importance à un simple fichier robots.txt ?",
+  "lockedTitle": "???",
+  "dialogueTree": {
+    "text": "(NULL s'arrête, tourne lentement la tête et ajuste les réglages de son terminal avec une voix sans intonation)... Vous pensez qu'un fichier de trois lignes est anodin ? Imaginez des millions de spiders parcourant des milliards de requêtes chaque seconde. Sans robots.txt, chaque crawler saturerait la bande passante et ferait tomber les bases de données sous des requêtes inutiles. Le fichier robots.txt n'est pas une suggestion polie : c'est le régulateur thermique du réseau mondial.",
+    "pose": "inspect",
+    "choices": [
+      {
+        "text": "C'est un accord de respect mutuel entre les voyageurs automates et les maisons qui les accueillent.",
+        "karma": "phare",
+        "next": {
+          "text": "Terminologie poétique, mais conceptuellement exacte. La politesse technique évite l'épuisement des ressources.",
+          "pose": "neutral"
+        }
+      },
+      {
+        "text": "C'est la norme du Robots Exclusion Standard respectée scrupuleusement depuis 1994.",
+        "karma": "gardien",
+        "next": {
+          "text": "Exact. Consensus universel de 1994, ratifié formellement en RFC 9309. Conformité validée.",
+          "pose": "action"
+        }
+      },
+      {
+        "text": "Et si j'écrivais 'User-agent: * \n Disallow: /', ça ferait paniquer tous les bots de la planète ?",
+        "karma": "rebelle",
+        "next": {
+          "text": "(NULL hausse un sourcil mécanique)... Cela s'appelle un suicide d'indexation. Mon terminal de purge n'aurait même plus besoin d'intervenir : le domaine disparaîtrait de la surface du Web en 48 heures.",
+          "pose": "inspect"
+        }
+      }
+    ]
+  }
+},
+
+{
+  "id": "ada-seo-open-graph-magic",
+  "unlockStep": 55,
+  "character": "ada",
+  "category": "Ingénierie du Runtime & SEO",
+  "question": "Ada, qu'est-ce qui rend le protocole Open Graph si révolutionnaire dans les échanges modernes ?",
+  "lockedTitle": "???",
+  "dialogueTree": {
+    "text": "(Ada sourit avec fierté, les yeux pétillants)... Avant l'Open Graph en 2010, quand tu collais un lien dans un chat, tu n'avais qu'une URL bleue toute nue. Pas d'image, pas de titre propre, rien ! Open Graph a permis aux créateurs de décider exactement quelle image, quel titre et quel résumé s'affichent quand quelqu'un partage leur travail sur Discord ou WhatsApp. C'est transformer une simple adresse texte en une véritable carte postale numérique !",
+    "pose": "smile",
+    "choices": [
+      {
+        "text": "C'est donner envie aux amis et aux curieux de cliquer pour venir découvrir le Sanctuaire.",
+        "karma": "phare",
+        "next": {
+          "text": "Tout à fait ! Une belle vignette chaleureuse donne immédiatement envie d'entrer dans la communauté.",
+          "pose": "smile"
+        }
+      },
+      {
+        "text": "C'est l'extension élégante des métadonnées RDFa au sein même de la balise <head>.",
+        "karma": "gardien",
+        "next": {
+          "text": "Précisément ! Une architecture de données sémantiques propre qui ne pollue pas le balisage visible.",
+          "pose": "code_magic"
+        }
+      },
+      {
+        "text": "Et surtout, une belle image de couverture génère 300 % de clics en plus sur les réseaux !",
+        "karma": "rebelle",
+        "next": {
+          "text": "(Ada fait un clin d'œil)... Les statistiques ne mentent jamais ! On fait du code propre, mais on veut que le monde entier vienne le voir !",
+          "pose": "smile"
+        }
+      }
+    ]
+  }
+},
+
+{
+  "id": "bodhi-seo-core-web-vitals",
+  "unlockStep": 57,
+  "character": "bodhi",
+  "category": "Sagesse de Bodhi",
+  "question": "Bodhi, pourquoi Google pénalise-t-il autant les images sans attributs width et height ?",
+  "lockedTitle": "???",
+  "dialogueTree": {
+    "text": "(Bodhi secoue la tête avec une gravité sincère)... Connais-tu cette sensation désagréable lorsque tu es en train de lire un texte paisiblement sur ton smartphone, et que soudain une image se charge au-dessus, repoussant brutalement tout le paragraphe 200 pixels plus bas sous ton doigt ? C'est le Cumulative Layout Shift. Les anciens bâtisseurs savaient que réserver l'espace à l'avance avec width et height est une politesse élémentaire envers l'attention du visiteur.",
+    "pose": "thinking",
+    "choices": [
+      {
+        "text": "La politesse et la sérénité du lecteur priment sur toute autre considération technique.",
+        "karma": "phare",
+        "next": {
+          "text": "C'est le cœur de l'artisanat : concevoir pour le confort de celui qui reçoit ton travail.",
+          "pose": "zen"
+        }
+      },
+      {
+        "text": "Un score CLS inférieur à 0.1 garantit la conformité avec les audits Lighthouse les plus exigeants.",
+        "karma": "gardien",
+        "next": {
+          "text": "Chaque milliseconde et chaque déplacement mesuré avec une rigueur d'horloger.",
+          "pose": "scroll"
+        }
+      },
+      {
+        "text": "Le saut d'image, c'est comme quelqu'un qui tire sur ta chaise au moment où tu t'assois !",
+        "karma": "rebelle",
+        "next": {
+          "text": "(Bodhi rit franchement)... C'est exactement cette métaphore ! Rien de plus rageant que de cliquer sur le mauvais bouton à cause d'un saut de mise en page !",
+          "pose": "laughing"
+        }
+      }
+    ]
+  }
+},
+
+{
+  "id": "ada-seo-jsonld-schema",
+  "unlockStep": 59,
+  "character": "ada",
+  "category": "Ingénierie du Runtime & SEO",
+  "question": "Ada, ces données Schema.org en JSON-LD, c'est la concrétisation du fameux Web Sémantique ?",
+  "lockedTitle": "???",
+  "dialogueTree": {
+    "text": "(Ada hoche la tête avec enthousiasme)... Exactement ! Au début des années 2000, Tim Berners-Lee rêvait d'un Web où les ordinateurs ne se contenteraient pas d'afficher des mots, mais comprendraient leur signification profonde. À l'époque, les formats étaient trop lourds. Mais le JSON-LD a tout changé : en quelques lignes d'objet JSON dans le <head>, un moteur sait sans la moindre ambiguïté qui est le Sanctuaire, qui est l'auteur, et quelle formation est dispensée !",
+    "pose": "code_magic",
+    "choices": [
+      {
+        "text": "Quand les machines comprennent la bienveillance du projet, elles le partagent au plus grand nombre.",
+        "karma": "phare",
+        "next": {
+          "text": "Le Web devient une conscience collective partagée entre humains et algorithmes bienveillants.",
+          "pose": "smile"
+        }
+      },
+      {
+        "text": "La taxonomie formelle de Schema.org permet d'alimenter les graphes de connaissances mondiaux.",
+        "karma": "gardien",
+        "next": {
+          "text": "Une structure de données universelle, interprétable par n'importe quel moteur sur Terre.",
+          "pose": "serious"
+        }
+      },
+      {
+        "text": "C'est surtout le passe-droit ultime pour afficher des étoiles dorées et des fiches géantes sur Google !",
+        "karma": "rebelle",
+        "next": {
+          "text": "(Ada esquisse un grand sourire complice)... Les fameux Rich Results dorés ! C'est la récompense suprême pour avoir codé proprement !",
+          "pose": "smile"
+        }
+      }
+    ]
+  }
+},
+
+{
+  "id": "null-seo-final-verdict",
+  "unlockStep": 60,
+  "character": "null",
+  "category": "Directives Système de NULL",
+  "question": "NULL, maintenant que le sitemap.xml et les 60 étapes sont validés, quel est le verdict final ?",
+  "lockedTitle": "???",
+  "dialogueTree": {
+    "text": "(NULL consulte son terminal. Pour la première fois, une imperceptible lueur de satisfaction traverse son regard)... Rapport d'audit global : Architecture HTML : 100 %. Modèle de boîte et responsive CSS : 100 %. Runtime JavaScript et persistance locale : 100 %. Métadonnées, balises canoniques, robots.txt et sitemap.xml : 100 %. L'avis de purge est levé définitivement. Ce serveur physique n'est plus un point de défaillance unique : le Sanctuaire est répliqué, indexé et immortel dans le réseau mondial. Félicitations, Grand Architecte.",
+    "pose": "action",
+    "choices": [
+      {
+        "text": "Le savoir est désormais ouvert et accessible à tous les voyageurs de la Terre.",
+        "karma": "phare",
+        "next": {
+          "text": "Transmission validée. Le Sanctuaire restera gravé dans les index pour l'éternité.",
+          "pose": "neutral"
+        }
+      },
+      {
+        "text": "La conformité aux standards du Web est totale, de la première balise au sitemap final.",
+        "karma": "gardien",
+        "next": {
+          "text": "Zéro avertissement. Zéro erreur de validation. Vous avez honoré le protocole avec une rigueur absolue.",
+          "pose": "inspect"
+        }
+      },
+      {
+        "text": "Alors, vieux robot, on a réussi à te faire ranger ton gros levier de purge pour de bon !",
+        "karma": "rebelle",
+        "next": {
+          "text": "(NULL range méthodiquement son terminal sous son bras)... Vous avez gagné par les règles du jeu. Le levier est verrouillé. Circulez, Architecte.",
+          "pose": "neutral"
+        }
+      }
+    ]
+  }
 }
 ];
