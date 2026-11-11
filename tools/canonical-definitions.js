@@ -209,6 +209,96 @@ const INDEX_S44 = INDEX_S32.replace(
   '  <script src="script.js" defer></script>\n</head>'
 );
 
+// === SEO & RÉFÉRENCEMENT (ÉTAPES 51 À 60) ===
+const INDEX_S51 = INDEX_S44.replace(
+  '<title>Le Sanctuaire du Savoir</title>',
+  '<title>Le Sanctuaire du Savoir - Apprendre HTML, CSS et JavaScript</title>'
+);
+
+const INDEX_S52 = INDEX_S51.replace(
+  '<meta name="description" content="Le Sanctuaire du Savoir : académie sacrée d\'apprentissage du Web, du code pur et des standards ouverts.">',
+  '<meta name="description" content="Apprends les bases et les secrets du Web moderne avec le Sanctuaire du Savoir : cours et exercices pratiques en HTML sémantique, CSS moderne et JavaScript.">'
+);
+
+const INDEX_S53 = INDEX_S52.replace(
+  '  <link rel="stylesheet" href="style.css">',
+  '  <link rel="stylesheet" href="style.css">\n  <link rel="canonical" href="https://sanctuaire.web/index.html">'
+);
+
+const INDEX_S54 = INDEX_S53.replace(
+  '  <link rel="canonical" href="https://sanctuaire.web/index.html">',
+  '  <link rel="canonical" href="https://sanctuaire.web/index.html">\n  <meta name="robots" content="index, follow">'
+);
+
+const INDEX_S55 = INDEX_S54.replace(
+  '  <meta name="robots" content="index, follow">',
+  `  <meta name="robots" content="index, follow">
+  <!-- Protocole Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Le Sanctuaire du Savoir - Apprendre HTML, CSS et JavaScript">
+  <meta property="og:description" content="Apprends les bases et les secrets du Web moderne : cours et exercices pratiques en HTML sémantique, CSS moderne et JavaScript.">
+  <meta property="og:url" content="https://sanctuaire.web/index.html">
+  <meta property="og:image" content="https://sanctuaire.web/assets/sanctuary-preview.jpg">`
+);
+
+const INDEX_S56 = INDEX_S55.replace(
+  '  <meta property="og:image" content="https://sanctuaire.web/assets/sanctuary-preview.jpg">',
+  `  <meta property="og:image" content="https://sanctuaire.web/assets/sanctuary-preview.jpg">
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Le Sanctuaire du Savoir - Apprendre HTML, CSS et JavaScript">
+  <meta name="twitter:description" content="Apprends les bases et les secrets du Web moderne : cours et exercices pratiques en HTML sémantique, CSS moderne et JavaScript.">
+  <meta name="twitter:image" content="https://sanctuaire.web/assets/sanctuary-preview.jpg">`
+);
+
+const INDEX_S59 = INDEX_S56.replace(
+  '</head>',
+  `  <!-- Données structurées Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Le Sanctuaire du Savoir",
+    "url": "https://sanctuaire.web",
+    "description": "Académie interactive d'apprentissage du Web, du code pur et des standards ouverts."
+  }
+  </script>
+</head>`
+);
+
+const INDEX_S60 = INDEX_S59;
+
+const ROBOTS_TXT_S54 = `User-agent: *
+Allow: /
+
+Sitemap: https://sanctuaire.web/sitemap.xml
+`;
+
+const SITEMAP_XML_S60 = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://sanctuaire.web/index.html</loc>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://sanctuaire.web/chroniques.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://sanctuaire.web/galerie.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://sanctuaire.web/contact.html</loc>
+    <priority>0.7</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+</urlset>
+`;
+
 // === 2. CHRONIQUES.HTML PROGRESSION ===
 const CHRONIQUES_S9 = `<!DOCTYPE html>
 <html lang="fr">
@@ -336,6 +426,17 @@ const CHRONIQUES_S34 = CHRONIQUES_S19.replace(
     <section>`
 );
 
+const CHRONIQUES_S58 = CHRONIQUES_S34.replace(
+  '<main>',
+  `<main>
+    <nav aria-label="Fil d'Ariane" class="breadcrumb">
+      <ol>
+        <li><a href="index.html">Accueil</a></li>
+        <li><span aria-current="page">Chroniques</span></li>
+      </ol>
+    </nav>`
+);
+
 // === 3. GALERIE.HTML PROGRESSION ===
 const GALERIE_S13 = `<!DOCTYPE html>
 <html lang="fr">
@@ -398,6 +499,11 @@ const GALERIE_S19 = GALERIE_S14.replace(
   '<title>Galerie des Bâtisseurs</title>',
   '<title>Galerie des Bâtisseurs</title>\n  <link rel="stylesheet" href="style.css">'
 );
+
+const GALERIE_S57 = GALERIE_S19
+  .replace('alt="Le Tisseur du Web"', 'alt="Fresque du Tisseur du Web agençant les nœuds de la toile en 1991" width="600" height="400" loading="lazy"')
+  .replace('alt="Le Portail Hypertexte"', 'alt="Illustration du pont hypertexte reliant les documents distants en un clic" width="600" height="400" loading="lazy"')
+  .replace('alt="L\'Envoyé Messager"', 'alt="Représentation de l\'envoyé du réseau transmettant les formulaires au serveur" width="600" height="400" loading="lazy"');
 
 // === 4. CONTACT.HTML PROGRESSION ===
 const CONTACT_S15 = `<!DOCTYPE html>
@@ -920,7 +1026,14 @@ function getFilesForStep(stepNum) {
   else if (stepNum >= 19 && stepNum <= 30) files['index.html'] = INDEX_S19;
   else if (stepNum === 31) files['index.html'] = INDEX_S31;
   else if (stepNum >= 32 && stepNum <= 43) files['index.html'] = INDEX_S32;
-  else files['index.html'] = INDEX_S44; // 44..50
+  else if (stepNum >= 44 && stepNum <= 50) files['index.html'] = INDEX_S44;
+  else if (stepNum === 51) files['index.html'] = INDEX_S51;
+  else if (stepNum === 52) files['index.html'] = INDEX_S52;
+  else if (stepNum === 53) files['index.html'] = INDEX_S53;
+  else if (stepNum === 54) files['index.html'] = INDEX_S54;
+  else if (stepNum === 55) files['index.html'] = INDEX_S55;
+  else if (stepNum >= 56 && stepNum <= 58) files['index.html'] = INDEX_S56;
+  else files['index.html'] = INDEX_S59; // 59..60
 
   // CHRONIQUES.HTML
   if (stepNum === 9) files['chroniques.html'] = CHRONIQUES_S9;
@@ -928,12 +1041,14 @@ function getFilesForStep(stepNum) {
   else if (stepNum === 11) files['chroniques.html'] = CHRONIQUES_S11;
   else if (stepNum >= 12 && stepNum <= 18) files['chroniques.html'] = CHRONIQUES_S12;
   else if (stepNum >= 19 && stepNum <= 33) files['chroniques.html'] = CHRONIQUES_S19;
-  else if (stepNum >= 34) files['chroniques.html'] = CHRONIQUES_S34;
+  else if (stepNum >= 34 && stepNum <= 57) files['chroniques.html'] = CHRONIQUES_S34;
+  else if (stepNum >= 58) files['chroniques.html'] = CHRONIQUES_S58;
 
   // GALERIE.HTML
   if (stepNum === 13) files['galerie.html'] = GALERIE_S13;
   else if (stepNum >= 14 && stepNum <= 18) files['galerie.html'] = GALERIE_S14;
-  else if (stepNum >= 19) files['galerie.html'] = GALERIE_S19;
+  else if (stepNum >= 19 && stepNum <= 56) files['galerie.html'] = GALERIE_S19;
+  else if (stepNum >= 57) files['galerie.html'] = GALERIE_S57;
 
   // CONTACT.HTML
   if (stepNum === 15) files['contact.html'] = CONTACT_S15;
@@ -977,6 +1092,12 @@ function getFilesForStep(stepNum) {
   else if (stepNum === 48) files['script.js'] = SCRIPT_S48;
   else if (stepNum === 49) files['script.js'] = SCRIPT_S49;
   else if (stepNum >= 50) files['script.js'] = SCRIPT_S50;
+
+  // ROBOTS.TXT (ACTE VII : SEO)
+  if (stepNum >= 54) files['robots.txt'] = ROBOTS_TXT_S54;
+
+  // SITEMAP.XML (ACTE VII : SEO)
+  if (stepNum >= 60) files['sitemap.xml'] = SITEMAP_XML_S60;
 
   return files;
 }

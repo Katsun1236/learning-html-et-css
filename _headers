@@ -13,6 +13,14 @@
   Content-Type: application/javascript; charset=utf-8
   Cache-Control: no-cache
 
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
+
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=86400
+
 /css/*
   Content-Type: text/css; charset=utf-8
   Cache-Control: public, max-age=86400

@@ -152,8 +152,8 @@ export class VSCodeEditor {
     if (!rawName) return { success: false, message: "Le nom du fichier ne peut pas être vide." };
     const name = rawName.trim().toLowerCase();
 
-    if (!name.endsWith('.html') && !name.endsWith('.css') && !name.endsWith('.js')) {
-      return { success: false, message: "L'extension doit être .html, .css ou .js (script dynamique)." };
+    if (!name.endsWith('.html') && !name.endsWith('.css') && !name.endsWith('.js') && !name.endsWith('.xml') && !name.endsWith('.txt')) {
+      return { success: false, message: "L'extension doit être .html, .css, .js, .xml ou .txt." };
     }
 
     if (this.files[name] !== undefined) {

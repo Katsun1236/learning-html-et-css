@@ -8,8 +8,10 @@ export function analyzeCode(code, fileName = 'index.html') {
     return { issues: [], status: 'empty' };
   }
 
-  const isCss = fileName.toLowerCase().endsWith('.css');
-  return isCss ? analyzeCSS(code) : analyzeHTML(code);
+  const lower = fileName.toLowerCase();
+  if (lower.endsWith('.css')) return analyzeCSS(code);
+  if (lower.endsWith('.txt') || lower.endsWith('.js')) return { issues: [], status: 'valid' };
+  return analyzeHTML(code);
 }
 
 function analyzeHTML(code) {

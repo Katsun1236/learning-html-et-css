@@ -8,16 +8,17 @@ const { getFilesForStep } = require('./canonical-definitions.js');
 const { steps: stepsAct1, rawPreamble } = require('./build-step-objects.js');
 const { stepsAct2And3 } = require('./steps-act2-3.js');
 const { stepsAct4to6 } = require('./steps-act4-6.js');
+const { stepsAct7Seo } = require('./steps-act7-seo.js');
 
-const allSteps = [...stepsAct1, ...stepsAct2And3, ...stepsAct4to6];
+const allSteps = [...stepsAct1, ...stepsAct2And3, ...stepsAct4to6, ...stepsAct7Seo];
 
 console.log('Total steps collected:', allSteps.length);
-if (allSteps.length !== 50) {
-  throw new Error('Expected exactly 50 steps, got ' + allSteps.length);
+if (allSteps.length !== 60) {
+  throw new Error('Expected exactly 60 steps, got ' + allSteps.length);
 }
 
 // 1. Validation de chaque étape avec ses fichiers canoniques
-console.log('--- DEBUT DE LA SUITE DE TESTS SUR LES 50 ETAPES ---');
+console.log('--- DEBUT DE LA SUITE DE TESTS SUR LES 60 ETAPES ---');
 allSteps.forEach((step, idx) => {
   const stepNum = idx + 1;
   if (step.number !== stepNum) {
@@ -31,7 +32,7 @@ allSteps.forEach((step, idx) => {
   }
   console.log(`OK Étape ${stepNum.toString().padStart(2, '0')}: [${step.targetFile.padEnd(15)}] ${step.title}`);
 });
-console.log('--- TOUTES LES 50 ETAPES PASSENT AVEC SUCCES A 100% ! ---');
+console.log('--- TOUTES LES 60 ETAPES PASSENT AVEC SUCCES A 100% ! ---');
 
 // 2. Sérialisation propre vers js/continuous-steps.js
 function serializeStep(s) {

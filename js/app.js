@@ -1023,7 +1023,7 @@ export class SanctuaireApp {
     const rawVal = this.el.secretCodeInput.value.trim().toUpperCase();
     if (!rawVal) {
       if (this.el.secretCodeFeedback) {
-        this.el.secretCodeFeedback.textContent = "Saisis un code d'Architecte (ex: ACTE1, NULL1, CSS, ADA, FINALE).";
+        this.el.secretCodeFeedback.textContent = "Saisis un code d'Architecte (ex: ACTE1, NULL1, CSS, ADA, SEO, FINALE).";
         this.el.secretCodeFeedback.className = "secret-code-feedback error";
       }
       return;
@@ -1033,7 +1033,7 @@ export class SanctuaireApp {
     if (!handled) {
       sound.playError();
       if (this.el.secretCodeFeedback) {
-        this.el.secretCodeFeedback.textContent = `Code « ${rawVal} » inconnu. Essaie ACTE1, NULL1, ACTE2, NULL2, CSS, NULL3, ADA, ou FINALE.`;
+        this.el.secretCodeFeedback.textContent = `Code « ${rawVal} » inconnu. Essaie ACTE1, NULL1, ACTE2, NULL2, CSS, NULL3, ADA, SEO, ou FINALE.`;
         this.el.secretCodeFeedback.className = "secret-code-feedback error";
       }
     }
@@ -1072,8 +1072,24 @@ export class SanctuaireApp {
       this.teleportToStep(48, "Étape 49 : Persistance des données avec localStorage");
       return true;
     }
-    if (c === 'FINALE' || c === 'APOTHEOSE' || c === 'S50' || c === 'S40') {
-      this.teleportToStep(49, "Étape 50 : Projet complet - Intégration HTML, CSS & JavaScript");
+    if (c === 'SEO' || c === 'ACTE7' || c === 'S51') {
+      this.teleportToStep(50, "Acte VII : SEO - Référencement, Métadonnées & Indexation (Étape 51)");
+      return true;
+    }
+    if (c === 'ROBOTS' || c === 'S54') {
+      this.teleportToStep(53, "Étape 54 : Balise <meta name=\"robots\"> & Fichier robots.txt");
+      return true;
+    }
+    if (c === 'OG' || c === 'OPENGRAPH' || c === 'S55') {
+      this.teleportToStep(54, "Étape 55 : Protocole Open Graph");
+      return true;
+    }
+    if (c === 'JSONLD' || c === 'SCHEMA' || c === 'S59') {
+      this.teleportToStep(58, "Étape 59 : Données structurées JSON-LD & Schema.org");
+      return true;
+    }
+    if (c === 'FINALE' || c === 'APOTHEOSE' || c === 'S60' || c === 'SITEMAP' || c === 'S50') {
+      this.teleportToStep(59, "Étape 60 : Fichier sitemap.xml & Audit SEO global");
       return true;
     }
 
@@ -1113,7 +1129,7 @@ export class SanctuaireApp {
       storage.setHighestUnlockedStep(this.highestUnlockedStep);
       this.loadStep(this.highestUnlockedStep);
       this.closeSecretCodesModal();
-      this.showToast("Accès Grand Architecte accordé ! Toutes les 50 étapes sont déverrouillées.", "success");
+      this.showToast(`Accès Grand Architecte accordé ! Toutes les ${MULTIPAGE_STEPS.length} étapes sont déverrouillées.`, "success");
       return true;
     }
 

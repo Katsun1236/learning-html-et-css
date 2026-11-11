@@ -15,6 +15,7 @@ export function highlightCode(code, fileName = 'index.html') {
   const lower = fileName.toLowerCase();
   if (lower.endsWith('.css')) return highlightCSS(code);
   if (lower.endsWith('.js')) return highlightJS(code);
+  if (lower.endsWith('.txt')) return escapeHtml(code);
   return highlightHTML(code);
 }
 
