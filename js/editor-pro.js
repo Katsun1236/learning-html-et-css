@@ -960,7 +960,6 @@ ${globalJs ? `<script id="virtual-script">\ntry {\n${globalJs}\n} catch(err) { c
       } catch (_) {}
     }
   }
-  }
 
   // =========================================================================
   // MODULE EMMET INTELLIGENT (EXPANSION RAPIDE SUR TOUCHE TAB)
